@@ -18,11 +18,6 @@ public class test7 {
     @Test
     public void testLog4j(){
         LOGGER.info("普通信息");
-        LOGGER.error("普通错误");
-        LOGGER.trace("堆栈信息");
-        LOGGER.fatal("致命错误");
-        LOGGER.warn("警告信息");
-        LOGGER.debug("调试信息");
     }
 
 }
