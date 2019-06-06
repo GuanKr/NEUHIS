@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findbyID(int id) {
+    public List<User> findbyattribute_name(String attribute_name, String attribute) {
         return null;
     }
 
