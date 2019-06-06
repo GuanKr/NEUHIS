@@ -17,7 +17,6 @@ public class test7 {
      */
     @Test
     public void testLog4j(){
-        LOGGER.info("普通信息");
     }
 
 }
