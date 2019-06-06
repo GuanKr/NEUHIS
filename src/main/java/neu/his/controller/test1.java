@@ -1,7 +1,6 @@
 package neu.his.controller;
 
 
-import com.github.pagehelper.PageHelper;
 import neu.his.bean.User;
 import neu.his.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

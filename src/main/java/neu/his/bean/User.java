@@ -13,13 +13,19 @@ public class User {
 
     private String password;
 
-    public User(Integer id, Integer roleId, Integer departmentId, String name, String loginName, String password) {
+    private Integer titleId;
+
+    private Integer registrationLevelId;
+
+    public User(Integer id, Integer roleId, Integer departmentId, String name, String loginName, String password, Integer titleId, Integer registrationLevelId) {
         this.id = id;
         this.roleId = roleId;
         this.departmentId = departmentId;
         this.name = name;
         this.loginName = loginName;
         this.password = password;
+        this.titleId = titleId;
+        this.registrationLevelId = registrationLevelId;
     }
 
     public User() {
@@ -74,15 +80,19 @@ public class User {
         this.password = password == null ? null : password.trim();
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", roleId=" + roleId +
-                ", departmentId=" + departmentId +
-                ", name='" + name + '\'' +
-                ", loginName='" + loginName + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+    public Integer getTitleId() {
+        return titleId;
+    }
+
+    public void setTitleId(Integer titleId) {
+        this.titleId = titleId;
+    }
+
+    public Integer getRegistrationLevelId() {
+        return registrationLevelId;
+    }
+
+    public void setRegistrationLevelId(Integer registrationLevelId) {
+        this.registrationLevelId = registrationLevelId;
     }
 }

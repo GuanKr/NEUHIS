@@ -493,6 +493,126 @@ public class UserExample {
             addCriterion("password not between", value1, value2, "password");
             return (Criteria) this;
         }
+
+        public Criteria andTitleIdIsNull() {
+            addCriterion("title_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleIdIsNotNull() {
+            addCriterion("title_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleIdEqualTo(Integer value) {
+            addCriterion("title_id =", value, "titleId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleIdNotEqualTo(Integer value) {
+            addCriterion("title_id <>", value, "titleId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleIdGreaterThan(Integer value) {
+            addCriterion("title_id >", value, "titleId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("title_id >=", value, "titleId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleIdLessThan(Integer value) {
+            addCriterion("title_id <", value, "titleId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleIdLessThanOrEqualTo(Integer value) {
+            addCriterion("title_id <=", value, "titleId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleIdIn(List<Integer> values) {
+            addCriterion("title_id in", values, "titleId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleIdNotIn(List<Integer> values) {
+            addCriterion("title_id not in", values, "titleId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleIdBetween(Integer value1, Integer value2) {
+            addCriterion("title_id between", value1, value2, "titleId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("title_id not between", value1, value2, "titleId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistrationLevelIdIsNull() {
+            addCriterion("registration_level_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistrationLevelIdIsNotNull() {
+            addCriterion("registration_level_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistrationLevelIdEqualTo(Integer value) {
+            addCriterion("registration_level_id =", value, "registrationLevelId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistrationLevelIdNotEqualTo(Integer value) {
+            addCriterion("registration_level_id <>", value, "registrationLevelId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistrationLevelIdGreaterThan(Integer value) {
+            addCriterion("registration_level_id >", value, "registrationLevelId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistrationLevelIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("registration_level_id >=", value, "registrationLevelId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistrationLevelIdLessThan(Integer value) {
+            addCriterion("registration_level_id <", value, "registrationLevelId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistrationLevelIdLessThanOrEqualTo(Integer value) {
+            addCriterion("registration_level_id <=", value, "registrationLevelId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistrationLevelIdIn(List<Integer> values) {
+            addCriterion("registration_level_id in", values, "registrationLevelId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistrationLevelIdNotIn(List<Integer> values) {
+            addCriterion("registration_level_id not in", values, "registrationLevelId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistrationLevelIdBetween(Integer value1, Integer value2) {
+            addCriterion("registration_level_id between", value1, value2, "registrationLevelId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistrationLevelIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("registration_level_id not between", value1, value2, "registrationLevelId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
