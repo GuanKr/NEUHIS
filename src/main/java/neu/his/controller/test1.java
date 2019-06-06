@@ -17,16 +17,11 @@ public class test1 {
     UserService userService;
 
     @RequestMapping("list")
-    public void m1(){
+    public void m1() {
         List<User> list = userService.findAll();
-        for(User user : list){
+        for (User user : list) {
             System.out.println(user);
         }
-    }
-
-    @RequestMapping("index")
-    public String m2(){
-        return "index";
     }
 
 }
