@@ -25,10 +25,12 @@ public interface UserMapper {
     @Insert({
         "insert into user (id, role_id, ",
         "department_id, name, ",
-        "login_name, password)",
+        "login_name, password, ",
+        "title_id, registration_level_id)",
         "values (#{id,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, ",
         "#{departmentId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, ",
-        "#{loginName,jdbcType=VARCHAR}, #{password,jdbcType=CHAR})"
+        "#{loginName,jdbcType=VARCHAR}, #{password,jdbcType=CHAR}, ",
+        "#{titleId,jdbcType=INTEGER}, #{registrationLevelId,jdbcType=INTEGER})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=true, resultType=Integer.class)
     int insert(User record);
@@ -39,7 +41,7 @@ public interface UserMapper {
 
     @Select({
         "select",
-        "id, role_id, department_id, name, login_name, password",
+        "id, role_id, department_id, name, login_name, password, title_id, registration_level_id",
         "from user",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -58,7 +60,9 @@ public interface UserMapper {
           "department_id = #{departmentId,jdbcType=INTEGER},",
           "name = #{name,jdbcType=VARCHAR},",
           "login_name = #{loginName,jdbcType=VARCHAR},",
-          "password = #{password,jdbcType=CHAR}",
+          "password = #{password,jdbcType=CHAR},",
+          "title_id = #{titleId,jdbcType=INTEGER},",
+          "registration_level_id = #{registrationLevelId,jdbcType=INTEGER}",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(User record);

@@ -22,4 +22,19 @@ public class UserServiceImpl implements UserService {
     public void deletebyID(int id) {
         dao.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public List<User> findbyattribute_name(String attribute_name, String attribute) {
+        return null;
+    }
+
+    @Override
+    public void insertuser(User user) {
+
+    }
+
+    @Override
+    public void updateuser(User user) {
+
+    }
 }
