@@ -36,10 +36,6 @@
         </tr>
         </thead>
         <tbody id="tablebody">
-        <c:forEach items=""
-        <tr>
-            <th><input type="text" name=""></th>
-        </tr>
         </tbody>
     </table></div>
 <script type="text/javascript" src="js/jquery.min.js"></script>
@@ -70,10 +66,10 @@
                             <c:forEach items="departmentList" var="department">
                                 <c:choose>
                                     <c:when test="${department.departmentId == result[i].departmentId}">
-                                        <option value="${department.departmentId}" selected>${department.departmentName}</option>
+                                        + "<option value='${department.departmentId}' selected>${department.departmentName}</option>"
                                     </c:when>
                                     <c:otherwise>
-                                        <option value="${country.code}">${country.name}</option>
+                                        + "<option value='${department.departmentId}'>${department.departmentName}</option>"
                                     </c:otherwise>
                                 </c:choose>
                             </c:forEach>
