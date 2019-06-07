@@ -46,6 +46,8 @@ public class User {
         this.titlename = titlename;
     }
 
+
+
     public String getRegistrationLevelname() {
         return registrationLevelname;
     }
