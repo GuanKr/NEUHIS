@@ -62,4 +62,15 @@ public class Department {
     public void setDepartmentType(String departmentType) {
         this.departmentType = departmentType == null ? null : departmentType.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "id=" + id +
+                ", departmentCode='" + departmentCode + '\'' +
+                ", departmentName='" + departmentName + '\'' +
+                ", departmentCategory='" + departmentCategory + '\'' +
+                ", departmentType='" + departmentType + '\'' +
+                '}';
+    }
 }

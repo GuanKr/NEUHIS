@@ -29,4 +29,12 @@ public class Title {
     public void setTitleName(String titleName) {
         this.titleName = titleName == null ? null : titleName.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Title{" +
+                "id=" + id +
+                ", titleName='" + titleName + '\'' +
+                '}';
+    }
 }

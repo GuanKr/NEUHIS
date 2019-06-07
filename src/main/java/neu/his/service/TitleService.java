@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface TitleService {
     //列出所有
-    List<Title> findALL();
+    List<Title> findAll();
 ;}

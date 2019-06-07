@@ -16,7 +16,7 @@ public class TitleServiceImpl implements TitleService {
     TitleMapper dao;
 
     @Override
-    public List<Title> findALL() {
+    public List<Title> findAll() {
         return dao.selectByExample(new TitleExample());
     }
 }
