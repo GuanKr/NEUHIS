@@ -33,43 +33,67 @@
             <th>类别</th>
             <th>职称</th>
             <th>挂号级别</th>
-            <th>是否排班</th>
         </tr>
         </thead>
         <tbody id="tablebody">
+        <c:forEach items=""
+        <tr>
+            <th><input type="text" name=""></th>
+        </tr>
         </tbody>
     </table></div>
-
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript">
-
     var getUserList = function(){
+        var departmentList = $.ajax({
+                                type: "POST",
+                                url: "department/list",
+                                async: false,
+                                success: function (result) {
+                                    return result;
+                                },
+                                error :function () {
+                                    alert("获取科室信息失败");
+                                }
+                            });
         $.ajax({
             type: "POST",//方法类型
             url: "user/list" ,//url
             async: false,
             success: function (result) {
-
                     $("#tablebody").html("");
                     for(var i = 0; i < result.length; i++){
-                        $("#tablebody").append("<tr><td>"
-                            + result[i].name
-                            + "</td><td>" + result[i].departmentId
-                            + "</td><td>" + result[i].roleId
-                            + "</td><td>" + result[i].titleId
+                        $("#tablebody").append("<tr><td><input type='text' value='"
+                            + result[i].name + "' name='users[" + i + "].name'/>"
+                            + "</td><td><select class='form-control' placeholder='"+ result[i].departmentname +"name='users[' " + i + "].departmentId'>"
+                            <c:forEach items="departmentList" var="department">
+                                <c:choose>
+                                    <c:when test="${department.departmentId == result[i].departmentId}">
+                                        <option value="${department.departmentId}" selected>${department.departmentName}</option>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <option value="${country.code}">${country.name}</option>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                            + "</select>"
+                            + "</td><td>" + result[i].rolename
+                            + "</td><td>" + result[i].titlename
                             + "</td><td>" + result[i].registrationLevelId
-                            + "</td><td>" + result[i].paiban //TODO
-                            + "</td><td><button class='btn btn-primary' id='withdraw' onclick='withdrawClick(" + result.data[i].id + ")'>退号</button>"
                             + "</td></tr>");
                     }
-
             },
             error : function() {
-                alert("获取信息失败");
+                alert("获取用户信息失败");
             }
         });
     };
+    $(document).ready(function () {
+        //加载用户列表
+        getUserList();
+        }
+    );
 
 </script>
 
