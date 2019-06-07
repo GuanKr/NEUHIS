@@ -17,6 +17,12 @@ public class User {
 
     private Integer registrationLevelId;
 
+    public String rolename;
+
+    public String departmentname;
+
+    public String titlename;
+
     public User(Integer id, Integer roleId, Integer departmentId, String name, String loginName, String password, Integer titleId, Integer registrationLevelId) {
         this.id = id;
         this.roleId = roleId;
@@ -26,6 +32,30 @@ public class User {
         this.password = password;
         this.titleId = titleId;
         this.registrationLevelId = registrationLevelId;
+    }
+
+    public String getRolename() {
+        return rolename;
+    }
+
+    public void setRolename(String rolename) {
+        this.rolename = rolename;
+    }
+
+    public String getDepartmentname() {
+        return departmentname;
+    }
+
+    public void setDepartmentname(String departmentname) {
+        this.departmentname = departmentname;
+    }
+
+    public String getTitlename() {
+        return titlename;
+    }
+
+    public void setTitlename(String titlename) {
+        this.titlename = titlename;
     }
 
     public User() {
@@ -94,5 +124,22 @@ public class User {
 
     public void setRegistrationLevelId(Integer registrationLevelId) {
         this.registrationLevelId = registrationLevelId;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", roleId=" + roleId +
+                ", departmentId=" + departmentId +
+                ", name='" + name + '\'' +
+                ", loginName='" + loginName + '\'' +
+                ", password='" + password + '\'' +
+                ", titleId=" + titleId +
+                ", registrationLevelId=" + registrationLevelId +
+                ", rolename='" + rolename + '\'' +
+                ", departmentname='" + departmentname + '\'' +
+                ", titlename='" + titlename + '\'' +
+                '}';
     }
 }

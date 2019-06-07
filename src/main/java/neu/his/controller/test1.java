@@ -19,8 +19,9 @@ public class test1 {
     public void m1() {
         List<User> list = userService.findAll();
         for (User user : list) {
-            System.out.println(user);
+            System.out.println(user.toString());
         }
     }
+    
 
 }
