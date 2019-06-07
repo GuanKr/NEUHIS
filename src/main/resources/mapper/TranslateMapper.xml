@@ -14,6 +14,10 @@
         select department_name from department where department.id = #{id}
     </select>
 
+    <select id="translate_registration_level" parameterType="java.lang.Integer" resultType="String">
+        select registration_level.level_name from registration_level where registration_level.id = #{id}
+    </select>
+
     <select id="de_translate_title" parameterType="java.lang.String" resultType="Integer">
         select title.id from title where title.title_name = #{name}
     </select>
@@ -26,6 +30,8 @@
         select department.id from department where department.department_name = #{name}
     </select>
 
-
+    <select id="de_translate_registration_level" parameterType="java.lang.String" resultType="Integer">
+        select registration_level.id from registration_level where registration_level.level_name = #{name}
+    </select>
 
 </mapper>

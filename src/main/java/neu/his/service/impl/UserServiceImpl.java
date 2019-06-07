@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService {
             user.setDepartmentname(dao1.translate_department(user.getDepartmentId()));
             user.setRolename(dao1.translate_role(user.getRoleId()));
             user.setTitlename(dao1.translate_title(user.getTitleId()));
+            user.setRegistrationLevelname(dao1.translate_registration_level(user.getRegistrationLevelId()));
         }
         return list;
     }
@@ -37,7 +38,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findbyattribute_name(String attribute_name, String attribute) {
-        return null;
+        List<User> list;
+        UserExample example = new UserExample();
+        if(attribute_name.equals("role_name")){
+            example.or().andRoleIdEqualTo(dao1.de_translate_role(attribute));
+        }
+        list = dao.selectByExample(example);
+        return list;
     }
 
     @Override
@@ -45,6 +52,7 @@ public class UserServiceImpl implements UserService {
         user.setRoleId(dao1.de_translate_role(user.getRolename()));
         user.setDepartmentId(dao1.de_translate_department(user.getDepartmentname()));
         user.setTitleId(dao1.de_translate_title(user.getTitlename()));
+        user.setRegistrationLevelId(dao1.de_translate_registration_level(user.getRegistrationLevelname()));
         System.out.println(user.toString());
         dao.insertSelective(user);
     }

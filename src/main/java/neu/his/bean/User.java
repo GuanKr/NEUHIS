@@ -23,6 +23,8 @@ public class User {
 
     public String titlename;
 
+    public String registrationLevelname;
+
     public User(Integer id, Integer roleId, Integer departmentId, String name, String loginName, String password, Integer titleId, Integer registrationLevelId) {
         this.id = id;
         this.roleId = roleId;
@@ -34,14 +36,22 @@ public class User {
         this.registrationLevelId = registrationLevelId;
     }
 
-    public User(String name, String loginName, String password, Integer registrationLevelId, String rolename, String departmentname, String titlename) {
+    public User(String name, String loginName, String password, String registrationLevelname, String rolename, String departmentname, String titlename) {
         this.name = name;
         this.loginName = loginName;
         this.password = password;
-        this.registrationLevelId = registrationLevelId;
+        this.registrationLevelname = registrationLevelname;
         this.rolename = rolename;
         this.departmentname = departmentname;
         this.titlename = titlename;
+    }
+
+    public String getRegistrationLevelname() {
+        return registrationLevelname;
+    }
+
+    public void setRegistrationLevelname(String registrationLevelname) {
+        this.registrationLevelname = registrationLevelname;
     }
 
     public String getRolename() {
@@ -150,6 +160,7 @@ public class User {
                 ", rolename='" + rolename + '\'' +
                 ", departmentname='" + departmentname + '\'' +
                 ", titlename='" + titlename + '\'' +
+                ", registrationLevelname='" + registrationLevelname + '\'' +
                 '}';
     }
 }

@@ -30,8 +30,13 @@ public class test1 {
 
     @RequestMapping("insert")
     public void m3() {
-        User user = new User("1","1","1",1,"门诊医生","心血管内科","主任医师");
+        User user = new User("1","1","1","普通门诊","门诊医生","心血管内科","主任医师");
         userService.insertuser(user);
+    }
+
+    @RequestMapping("query")
+    public void m4() {
+        userService.findbyattribute_name("role_name","门诊医生");
     }
 
 
