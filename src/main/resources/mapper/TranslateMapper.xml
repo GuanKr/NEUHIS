@@ -14,4 +14,18 @@
         select department_name from department where department.id = #{id}
     </select>
 
+    <select id="de_translate_title" parameterType="java.lang.String" resultType="Integer">
+        select title.id from title where title.title_name = #{name}
+    </select>
+
+    <select id="de_translate_role" parameterType="java.lang.String" resultType="Integer">
+        select role.id from role where role.role_name = #{name}
+    </select>
+
+    <select id="de_translate_department" parameterType="java.lang.String" resultType="Integer">
+        select department.id from department where department.department_name = #{name}
+    </select>
+
+
+
 </mapper>

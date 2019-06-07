@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("usertest")
 public class test1 {
     @Autowired
     UserService userService;
@@ -22,6 +22,17 @@ public class test1 {
             System.out.println(user.toString());
         }
     }
-    
+
+    @RequestMapping("delete")
+    public void m2() {
+        userService.deletebyID(7);
+    }
+
+    @RequestMapping("insert")
+    public void m3() {
+        User user = new User("1","1","1",1,"门诊医生","心血管内科","主任医师");
+        userService.insertuser(user);
+    }
+
 
 }

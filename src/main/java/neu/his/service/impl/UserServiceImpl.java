@@ -42,7 +42,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void insertuser(User user) {
-
+        user.setRoleId(dao1.de_translate_role(user.getRolename()));
+        user.setDepartmentId(dao1.de_translate_department(user.getDepartmentname()));
+        user.setTitleId(dao1.de_translate_title(user.getTitlename()));
+        System.out.println(user.toString());
+        dao.insertSelective(user);
     }
 
     @Override

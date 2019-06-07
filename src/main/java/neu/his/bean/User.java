@@ -34,6 +34,16 @@ public class User {
         this.registrationLevelId = registrationLevelId;
     }
 
+    public User(String name, String loginName, String password, Integer registrationLevelId, String rolename, String departmentname, String titlename) {
+        this.name = name;
+        this.loginName = loginName;
+        this.password = password;
+        this.registrationLevelId = registrationLevelId;
+        this.rolename = rolename;
+        this.departmentname = departmentname;
+        this.titlename = titlename;
+    }
+
     public String getRolename() {
         return rolename;
     }
