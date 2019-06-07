@@ -12,45 +12,66 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <base href="<%=basePath%>"/>
-<html>
+<!DOCTYPE html>
+<html lang="zh-cn">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
     <title>用户信息</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
-    <body>
+<body style="margin-top: 50px">
     <div align="center">
         <h3>医院用户管理</h3>
     </div>
-    <div align="center"><form action="/user/list">
-        <table border="1">
-            <tr>
-                <th>&nbsp;</th>
-                <th>姓名</th>
-                <th>科室</th>
-                <th>类别</th>
-                <th>职称</th>
-            </tr>
-            <c:forEach items="${list.list}" var="user">
-                <tr>
-                    <td><input type="checkbox" name="ids" value="${user.id}"/> </td>
-                    <td><input type="text" value="${user.name}" name=""></td>
-                    <td>${user.departmentId}</td>
-                    <td>${user.roleId}</td>
-                    <td>${user.title}</td>
-                </tr>
-            </c:forEach>
-            <tr>
-                <td colspan="6" align="right"><input type="submit" value="删除选择的城市"/> </td>
-            </tr>
-            <tr>
-                <td colspan="6">当前第${list.pageNum + 1}页
-                    <c:forEach step="1" begin="0" end="${list.total}" var="cnt" varStatus="status">
-                        <a href="city/list?pageNum=${cnt}&pageCount=10">第${cnt + 1}页</a>
-                    </c:forEach>
-                    共${list.total}页
-                </td>
-            </tr>
-        </table>
-    </form>
-    </div>
-    </body>
+
+    <div class="container"><table class="table table-hover table-striped">
+        <thead>
+        <tr>
+            <th>姓名</th>
+            <th>科室</th>
+            <th>类别</th>
+            <th>职称</th>
+            <th>挂号级别</th>
+            <th>是否排班</th>
+        </tr>
+        </thead>
+        <tbody id="tablebody">
+        </tbody>
+    </table></div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript">
+
+    var getUserList = function(){
+        $.ajax({
+            type: "POST",//方法类型
+            url: "user/list" ,//url
+            async: false,
+            success: function (result) {
+
+                    $("#tablebody").html("");
+                    for(var i = 0; i < result.length; i++){
+                        $("#tablebody").append("<tr><td>"
+                            + result[i].name
+                            + "</td><td>" + result[i].departmentId
+                            + "</td><td>" + result[i].roleId
+                            + "</td><td>" + result[i].titleId
+                            + "</td><td>" + result[i].registrationLevelId
+                            + "</td><td>" + result[i].paiban //TODO
+                            + "</td><td><button class='btn btn-primary' id='withdraw' onclick='withdrawClick(" + result.data[i].id + ")'>退号</button>"
+                            + "</td></tr>");
+                    }
+
+            },
+            error : function() {
+                alert("获取信息失败");
+            }
+        });
+    };
+
+</script>
+
+</body>
 </html>
