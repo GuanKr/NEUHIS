@@ -30,16 +30,15 @@ public class usercontroller {
     public void insertuser(User user){
         userService.insertuser(user);
     }
-    @RequestMapping("updatetuser")
-    public void updateuser(User user){
-        userService.updateuser(user);
-    }
-
     @RequestMapping("updateusers")
     public void updateusers(List<User> users){
         for (User user : users) {
            userService.updateuser(user);
         }
+    }
+    @RequestMapping("updatetuser")
+    public void updateuser(User user){
+        userService.updateuser(user);
     }
     @RequestMapping("findbyattribute")
     public  List findbyattribute(String attribute_name,String attribute){
