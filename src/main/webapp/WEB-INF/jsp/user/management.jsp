@@ -26,7 +26,7 @@
     </div>
     <form class="container" id="usersForm">
         <div class="row">
-            <    class="col-md-2 pull-right">
+            <div class="col-md-2 pull-right">
                 <input type="reset" class="btn btn-default" value="取消" />
                 <button type="button" id="updateUsers" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;保存&nbsp;&nbsp;&nbsp;&nbsp;</button>
             </div>
@@ -50,7 +50,7 @@
     </form>
     <div class="row">
         <div class="col-md-3">
-            <label class="col-sm-2 control-label">查询</label>
+            <h5 class="col-sm-2 control-label">查询</h5>
         </div>
         <div class="col-md-3">
             <select class="form-control" id="searchBy" onchange="setSearchVal()" name="searchBy">
@@ -152,6 +152,7 @@
         async: false,
         success: function (result) {
             users = result;
+            console.log(result);
         },
         error :function () {
             alert("获取用户表失败");
