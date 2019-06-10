@@ -28,6 +28,7 @@ public class Department {
         this.departmentTypeName = departmentTypeName;
     }
 
+
     public String getDepartmentTypeName() {
         return departmentTypeName;
     }

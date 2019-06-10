@@ -17,6 +17,7 @@ public interface UserService {
     void deletebyID(int id);
 
     //查询  attribute_name为属性名 ， attribute为属性内容
+    //强制转化  错误处理
     List<User> findbyattribute_name(String attribute_name,String attribute);
 
     //新增

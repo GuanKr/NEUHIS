@@ -62,7 +62,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public void deleteByID(int id) {
-
+        departmentMapper.deleteByPrimaryKey(id);
     }
 
     @Override

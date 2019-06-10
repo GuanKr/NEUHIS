@@ -21,6 +21,13 @@ public class RegistrationLevel {
         this.registrationPrice = registrationPrice;
     }
 
+    public RegistrationLevel(String code, String levelName, String isDefault, BigDecimal registrationPrice) {
+        this.code = code;
+        this.levelName = levelName;
+        this.isDefault = isDefault;
+        this.registrationPrice = registrationPrice;
+    }
+
     public RegistrationLevel() {
         super();
     }

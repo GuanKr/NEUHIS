@@ -36,7 +36,7 @@ public class test1 {
 
     @RequestMapping("query1")
     public void m4() {
-        List<User> list = userService.findbyattribute_name("role_name","员");
+        List<User> list = userService.findbyattribute_name("role_name","门诊医生");
 
         for (User user : list) {
             System.out.println(user.toString());
@@ -59,17 +59,16 @@ public class test1 {
         for (User user : list) {
             System.out.println(user.toString());
         }
-
     }
+
     @RequestMapping("query4")
     public void m7() {
         List<User> list = userService.findbyattribute_name("department_name","外科");
-
         for (User user : list) {
             System.out.println(user.toString());
         }
-
     }
+
     @RequestMapping("query5")
     public void m8() {
         List<User> list = userService.findbyattribute_name("title_name","主任");
@@ -77,8 +76,8 @@ public class test1 {
         for (User user : list) {
             System.out.println(user.toString());
         }
-
     }
+
     @RequestMapping("query6")
     public void m9() {
         List<User> list = userService.findbyattribute_name("level_name","诊");

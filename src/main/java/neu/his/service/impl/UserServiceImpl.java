@@ -2,13 +2,10 @@ package neu.his.service.impl;
 
 import neu.his.bean.*;
 import neu.his.dao.*;
-import neu.his.service.DepartmentService;
-import neu.his.service.RoleService;
 import neu.his.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -64,8 +61,8 @@ public class UserServiceImpl implements UserService {
         for(User user : list){
             user.setDepartmentname(translateMapper.translate_department(user.getDepartmentId()));
             user.setRolename(translateMapper.translate_role(user.getRoleId()));
-            user.setTitlename(translateMapper.translate_title(user.getTitleId()));
             user.setRegistrationLevelname(translateMapper.translate_registration_level(user.getRegistrationLevelId()));
+            user.setTitlename(translateMapper.translate_title(user.getTitleId()));
         }
         return list;
     }
@@ -102,6 +99,7 @@ public class UserServiceImpl implements UserService {
                     example.or().andRoleIdEqualTo(roles.get(i).getId());
                 }
             }
+
         }else if(attribute_name.equals("name")){
             for(int i = 0;i<listAll.size();i++){
                 if(listAll.get(i).getName().contains(attribute)){
