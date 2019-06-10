@@ -83,6 +83,8 @@ public class UserServiceImpl implements UserService {
             example.or().andTitleIdEqualTo(dao1.de_translate_title(attribute));
         }else if(attribute_name.equals("level_name")){
             example.or().andRegistrationLevelIdEqualTo(dao1.de_translate_registration_level(attribute));
+        }else {
+            return null;
         }
         list = dao.selectByExample(example);
         list = effectiveness(list);
@@ -102,7 +104,6 @@ public class UserServiceImpl implements UserService {
         user.setDepartmentId(dao1.de_translate_department(user.getDepartmentname()));
         user.setTitleId(dao1.de_translate_title(user.getTitlename()));
         user.setRegistrationLevelId(dao1.de_translate_registration_level(user.getRegistrationLevelname()));
-        System.out.println(user.toString());
         dao.insertSelective(user);
     }
 

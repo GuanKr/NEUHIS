@@ -21,6 +21,12 @@ public class DepartmentServiceImpl implements DepartmentService {
                 return "临床科室";
             case "2":
                 return "医技科室";
+            case "3" :
+                return "财务科室";
+            case "4" :
+                return "行政科室";
+            case "5" :
+                return "其他科室";
             default:
                 return null;
         }
@@ -28,11 +34,68 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public String de_translate(String type_name) {
-        return null;
+        switch (type_name) {
+            case "临床科室":
+                return "1";
+            case "医技科室":
+                return "2";
+            case "财务科室" :
+                return "3";
+            case "行政科室" :
+                return "4";
+            case "其他科室" :
+                return "5";
+            default:
+                return null;
+        }
     }
 
     @Override
     public List<Department> findAll() {
-        return dao.selectByExample(new DepartmentExample());
+        List<Department> list;
+        list =  dao.selectByExample(new DepartmentExample());
+        for(Department department : list){
+            department.setDepartmentTypeName(translate(department.getDepartmentType()));
+        }
+        return list;
+    }
+
+    @Override
+    public void deleteByID(int id) {
+
+    }
+
+    @Override
+    public List<Department> findByAttribute_name(String attribute_name, String attribute) {
+        List<Department> list;
+        DepartmentExample departmentExample = new DepartmentExample();
+        if(attribute_name.equals("department_code")){
+            departmentExample.or().andDepartmentCodeEqualTo(attribute);
+        }else if(attribute_name.equals("department_name")){
+            departmentExample.or().andDepartmentNameEqualTo(attribute);
+        }else if(attribute_name.equals("department_type")){
+            departmentExample.or().andDepartmentTypeEqualTo(de_translate(attribute));
+        }else if(attribute_name.equals("department_category")){
+            departmentExample.or().andDepartmentCategoryEqualTo(attribute);
+        }else {
+            return null;
+        }
+        list =  dao.selectByExample(departmentExample);
+        for(Department department : list){
+            department.setDepartmentTypeName(translate(department.getDepartmentType()));
+        }
+        return list;
+    }
+
+    @Override
+    public void insertDepartment(Department department) {
+        department.setDepartmentType(de_translate(department.getDepartmentTypeName()));
+        dao.insertSelective(department);
+    }
+
+    @Override
+    public void updateDepartment(Department department) {
+        department.setDepartmentType(de_translate(department.getDepartmentTypeName()));
+        dao.updateByPrimaryKey(department);
     }
 }
