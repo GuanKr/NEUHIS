@@ -36,7 +36,7 @@ public class test1 {
 
     @RequestMapping("query1")
     public void m4() {
-        List<User> list = userService.findbyattribute_name("role_name","门诊医生");
+        List<User> list = userService.findbyattribute_name("role_name","员");
 
         for (User user : list) {
             System.out.println(user.toString());
@@ -45,7 +45,7 @@ public class test1 {
     }
     @RequestMapping("query2")
     public void m5() {
-        List<User> list = userService.findbyattribute_name("name","孙三");
+        List<User> list = userService.findbyattribute_name("name","1");
 
         for (User user : list) {
             System.out.println(user.toString());
@@ -54,7 +54,7 @@ public class test1 {
     }
     @RequestMapping("query3")
     public void m6() {
-        List<User> list = userService.findbyattribute_name("login_name","李四");
+        List<User> list = userService.findbyattribute_name("login_name","哈哈哈");
 
         for (User user : list) {
             System.out.println(user.toString());
@@ -63,7 +63,7 @@ public class test1 {
     }
     @RequestMapping("query4")
     public void m7() {
-        List<User> list = userService.findbyattribute_name("department_name","心电图科");
+        List<User> list = userService.findbyattribute_name("department_name","外科");
 
         for (User user : list) {
             System.out.println(user.toString());
@@ -72,7 +72,7 @@ public class test1 {
     }
     @RequestMapping("query5")
     public void m8() {
-        List<User> list = userService.findbyattribute_name("title_name","主任医师");
+        List<User> list = userService.findbyattribute_name("title_name","主任");
 
         for (User user : list) {
             System.out.println(user.toString());
@@ -81,7 +81,7 @@ public class test1 {
     }
     @RequestMapping("query6")
     public void m9() {
-        List<User> list = userService.findbyattribute_name("level_name","普通门诊");
+        List<User> list = userService.findbyattribute_name("level_name","诊");
 
         for (User user : list) {
             System.out.println(user.toString());

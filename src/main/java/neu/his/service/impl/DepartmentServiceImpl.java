@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
     @Autowired
-    DepartmentMapper dao;
+    DepartmentMapper departmentMapper;
 
     @Override
     public String translate(String type) {
@@ -53,7 +53,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public List<Department> findAll() {
         List<Department> list;
-        list =  dao.selectByExample(new DepartmentExample());
+        list =  departmentMapper.selectByExample(new DepartmentExample());
         for(Department department : list){
             department.setDepartmentTypeName(translate(department.getDepartmentType()));
         }
@@ -68,19 +68,39 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public List<Department> findByAttribute_name(String attribute_name, String attribute) {
         List<Department> list;
+        List<Department> listAll;
+
+        listAll = findAll();
+
         DepartmentExample departmentExample = new DepartmentExample();
         if(attribute_name.equals("department_code")){
-            departmentExample.or().andDepartmentCodeEqualTo(attribute);
+            for(int i = 0;i<listAll.size();i++){
+                if(listAll.get(i).getDepartmentCode().contains(attribute)){
+                    departmentExample.or().andDepartmentCodeEqualTo(listAll.get(i).getDepartmentCode());
+                }
+            }
         }else if(attribute_name.equals("department_name")){
-            departmentExample.or().andDepartmentNameEqualTo(attribute);
+            for(int i = 0;i<listAll.size();i++){
+                if(listAll.get(i).getDepartmentName().contains(attribute)){
+                    departmentExample.or().andDepartmentNameEqualTo(listAll.get(i).getDepartmentName());
+                }
+            }
         }else if(attribute_name.equals("department_type")){
-            departmentExample.or().andDepartmentTypeEqualTo(de_translate(attribute));
+            for(int i = 0;i<listAll.size();i++){
+                if(listAll.get(i).getDepartmentTypeName().contains(attribute)){
+                    departmentExample.or().andDepartmentTypeEqualTo(de_translate(listAll.get(i).getDepartmentTypeName()));
+                }
+            }
         }else if(attribute_name.equals("department_category")){
-            departmentExample.or().andDepartmentCategoryEqualTo(attribute);
+            for(int i = 0;i<listAll.size();i++){
+                if(listAll.get(i).getDepartmentCategory().contains(attribute)){
+                    departmentExample.or().andDepartmentCategoryEqualTo(listAll.get(i).getDepartmentCategory());
+                }
+            }
         }else {
             return null;
         }
-        list =  dao.selectByExample(departmentExample);
+        list =  departmentMapper.selectByExample(departmentExample);
         for(Department department : list){
             department.setDepartmentTypeName(translate(department.getDepartmentType()));
         }
@@ -90,12 +110,12 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public void insertDepartment(Department department) {
         department.setDepartmentType(de_translate(department.getDepartmentTypeName()));
-        dao.insertSelective(department);
+        departmentMapper.insertSelective(department);
     }
 
     @Override
     public void updateDepartment(Department department) {
         department.setDepartmentType(de_translate(department.getDepartmentTypeName()));
-        dao.updateByPrimaryKey(department);
+        departmentMapper.updateByPrimaryKey(department);
     }
 }

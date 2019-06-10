@@ -1,9 +1,9 @@
 package neu.his.service.impl;
 
-import neu.his.bean.User;
-import neu.his.bean.UserExample;
-import neu.his.dao.TranslateMapper;
-import neu.his.dao.UserMapper;
+import neu.his.bean.*;
+import neu.his.dao.*;
+import neu.his.service.DepartmentService;
+import neu.his.service.RoleService;
 import neu.his.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +14,22 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    UserMapper dao;
+    UserMapper userMapper;
 
     @Autowired
-    TranslateMapper dao1;
+    TranslateMapper translateMapper;
+
+    @Autowired
+    RoleMapper roleMapper;
+
+    @Autowired
+    DepartmentMapper departmentMapper;
+
+    @Autowired
+    TitleMapper titleMapper;
+
+    @Autowired
+    RegistrationLevelMapper registrationLevelMapper;
 
     @Override
     public List<User> effectiveness(List<User> list) {
@@ -47,13 +59,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         List<User> list;
-        list = dao.selectByExample(new UserExample());
+        list = userMapper.selectByExample(new UserExample());
         list = effectiveness(list);
         for(User user : list){
-            user.setDepartmentname(dao1.translate_department(user.getDepartmentId()));
-            user.setRolename(dao1.translate_role(user.getRoleId()));
-            user.setTitlename(dao1.translate_title(user.getTitleId()));
-            user.setRegistrationLevelname(dao1.translate_registration_level(user.getRegistrationLevelId()));
+            user.setDepartmentname(translateMapper.translate_department(user.getDepartmentId()));
+            user.setRolename(translateMapper.translate_role(user.getRoleId()));
+            user.setTitlename(translateMapper.translate_title(user.getTitleId()));
+            user.setRegistrationLevelname(translateMapper.translate_registration_level(user.getRegistrationLevelId()));
         }
         return list;
     }
@@ -62,37 +74,74 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deletebyID(int id) {
         User user;
-        user = dao.selectByPrimaryKey(id);
+        user = userMapper.selectByPrimaryKey(id);
         user.setRoleId(0);
-        dao.updateByPrimaryKey(user);
+        userMapper.updateByPrimaryKey(user);
     }
 
     @Override
     public List<User> findbyattribute_name(String attribute_name, String attribute) {
         List<User> list;
+        List<Role> roles;
+        List<Department> departments;
+        List<Title> titles;
+        List<RegistrationLevel> registrationLevels;
+        List<User> listAll;
+
         UserExample example = new UserExample();
+
+        listAll = userMapper.selectByExample(new UserExample());
+        roles = roleMapper.selectByExample(new RoleExample());
+        departments = departmentMapper.selectByExample(new DepartmentExample());
+        titles = titleMapper.selectByExample(new TitleExample());
+        registrationLevels =registrationLevelMapper.selectByExample(new RegistrationLevelExample());
+
         if(attribute_name.equals("role_name")){
-            example.or().andRoleIdEqualTo(dao1.de_translate_role(attribute));
+            for(int i = 0;i<roles.size();i++){
+                if(roles.get(i).getRoleName().contains(attribute)){
+                    example.or().andRoleIdEqualTo(roles.get(i).getId());
+                }
+            }
         }else if(attribute_name.equals("name")){
-            example.or().andNameEqualTo(attribute);
+            for(int i = 0;i<listAll.size();i++){
+                if(listAll.get(i).getName().contains(attribute)){
+                    example.or().andNameEqualTo(listAll.get(i).getName());
+                }
+            }
         }else if(attribute_name.equals("login_name")){
-            example.or().andLoginNameEqualTo(attribute);
+            for(int i = 0;i<listAll.size();i++){
+                if(listAll.get(i).getLoginName().contains(attribute)){
+                    example.or().andLoginNameEqualTo(listAll.get(i).getLoginName());
+                }
+            }
         }else if(attribute_name.equals("department_name")){
-            example.or().andDepartmentIdEqualTo(dao1.de_translate_department(attribute));
+            for(int i = 0;i<departments.size();i++){
+                if(departments.get(i).getDepartmentName().contains(attribute)){
+                    example.or().andDepartmentIdEqualTo(departments.get(i).getId());
+                }
+            }
         }else if(attribute_name.equals("title_name")){
-            example.or().andTitleIdEqualTo(dao1.de_translate_title(attribute));
+            for(int i = 0;i<titles.size();i++){
+                if(titles.get(i).getTitleName().contains(attribute)){
+                    example.or().andTitleIdEqualTo(titles.get(i).getId());
+                }
+            }
         }else if(attribute_name.equals("level_name")){
-            example.or().andRegistrationLevelIdEqualTo(dao1.de_translate_registration_level(attribute));
+            for(int i = 0;i<registrationLevels.size();i++){
+                if(registrationLevels.get(i).getLevelName().contains(attribute)){
+                    example.or().andRegistrationLevelIdEqualTo(registrationLevels.get(i).getId());
+                }
+            }
         }else {
             return null;
         }
-        list = dao.selectByExample(example);
+        list = userMapper.selectByExample(example);
         list = effectiveness(list);
         for(User user : list){
-            user.setDepartmentname(dao1.translate_department(user.getDepartmentId()));
-            user.setRolename(dao1.translate_role(user.getRoleId()));
-            user.setTitlename(dao1.translate_title(user.getTitleId()));
-            user.setRegistrationLevelname(dao1.translate_registration_level(user.getRegistrationLevelId()));
+            user.setDepartmentname(translateMapper.translate_department(user.getDepartmentId()));
+            user.setRolename(translateMapper.translate_role(user.getRoleId()));
+            user.setTitlename(translateMapper.translate_title(user.getTitleId()));
+            user.setRegistrationLevelname(translateMapper.translate_registration_level(user.getRegistrationLevelId()));
         }
 
         return list;
@@ -100,19 +149,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void insertuser(User user) {
-        user.setRoleId(dao1.de_translate_role(user.getRolename()));
-        user.setDepartmentId(dao1.de_translate_department(user.getDepartmentname()));
-        user.setTitleId(dao1.de_translate_title(user.getTitlename()));
-        user.setRegistrationLevelId(dao1.de_translate_registration_level(user.getRegistrationLevelname()));
-        dao.insertSelective(user);
+        user.setRoleId(translateMapper.de_translate_role(user.getRolename()));
+        user.setDepartmentId(translateMapper.de_translate_department(user.getDepartmentname()));
+        user.setTitleId(translateMapper.de_translate_title(user.getTitlename()));
+        user.setRegistrationLevelId(translateMapper.de_translate_registration_level(user.getRegistrationLevelname()));
+        userMapper.insertSelective(user);
     }
 
     @Override
     public void updateuser(User user) {
-        user.setRoleId(dao1.de_translate_role(user.getRolename()));
-        user.setDepartmentId(dao1.de_translate_department(user.getDepartmentname()));
-        user.setTitleId(dao1.de_translate_title(user.getTitlename()));
-        user.setRegistrationLevelId(dao1.de_translate_registration_level(user.getRegistrationLevelname()));
-        dao.updateByPrimaryKey(user);
+        user.setRoleId(translateMapper.de_translate_role(user.getRolename()));
+        user.setDepartmentId(translateMapper.de_translate_department(user.getDepartmentname()));
+        user.setTitleId(translateMapper.de_translate_title(user.getTitlename()));
+        user.setRegistrationLevelId(translateMapper.de_translate_registration_level(user.getRegistrationLevelname()));
+        userMapper.updateByPrimaryKey(user);
     }
 }
