@@ -352,7 +352,7 @@
                 url: "user/findbyattribute",
                 data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val()},
                 success: function (result) {
-                    //    TODO result为users 未测试
+                    //    TODO result为users  未测试
                     users = result;
                     setTableBody();
                 }
