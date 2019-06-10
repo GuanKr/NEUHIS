@@ -1,6 +1,7 @@
 package neu.his.controller;
 
 import neu.his.bean.User;
+import neu.his.bean.UserDTO;
 import neu.his.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,10 +36,10 @@ public class UserController {
         userService.insertuser(user);
     }
     @RequestMapping("updateusers")
-    public @ResponseBody
-    void updateUsers(List<User> users){
-        for (User user : users) {
-           userService.updateuser(user);
+    public @ResponseBody void updateUsers(UserDTO users){
+        List<User> realUsers = users.getUsers();
+        for (User user : realUsers){
+            userService.updateuser(user);
         }
     }
     @RequestMapping("updatetuser")
@@ -52,5 +53,4 @@ public class UserController {
         List<User> list=userService.findbyattribute_name(attribute_name,attribute);
         return list;
     }
-
 }

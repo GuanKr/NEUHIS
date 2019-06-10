@@ -37,7 +37,7 @@
                     <th >id</th>
                     <th >姓名</th>
                     <th>科室</th>
-                    <th>类别</th>
+                    <th>角色</th>
                     <th>职称</th>
                     <th>挂号级别</th>
                     <th>登录名</th>
@@ -56,7 +56,7 @@
     <div class="container">
         <div class="col-md-4 container">
             <select class="form-control" id="searchBy" name="searchBy">
-                <option value="role_name">类别</option>
+                <option value="role_name">角色</option>
                 <option value="name">姓名</option>
                 <option value="login_name">登录名</option>
                 <option value="department_name">科室</option>
@@ -95,7 +95,7 @@
                 </div>
             </div>
             <div class="form-group col-md-3">
-                <label class="col-md-4 control-label text-right" for="roleNameInput">类别</label>
+                <label class="col-md-4 control-label text-right" for="roleNameInput">角色</label>
                 <div class="col-md-8 input-group">
                     <select class="show-tick form-control" id="roleNameInput" name="rolename">
                     </select>
@@ -237,7 +237,7 @@
             }
             str += "</select></td>";
             str += "<td><select name=\"users[" + i + "].titlename\" class=\"form-control\">\n";
-            str += "<option value=null selected></option>\n";
+            str += "<option value=null selected>无</option>\n";
             for(var titleI = 0;titleI < titles.length;titleI++){
                 if (titles[titleI].titleName == users[i].titlename){
                     str += "<option value=\"" + titles[titleI].titleName + "\" selected>" + titles[titleI].titleName + "</option>\n";
@@ -247,7 +247,7 @@
             }
             str += "</select></td>";
             str += "<td><select name=\"users[" + i + "].registrationLevelname\" class=\"form-control\">\n";
-            str += "<option value='' selected></option>\n";
+            str += "<option value='' selected>无</option>\n";
             for(var registrationLevelI = 0;registrationLevelI < registrationLevels.length;registrationLevelI++){
                 if (registrationLevels[registrationLevelI].levelName == users[i].registrationLevelname){
                     str += "<option value=\"" + registrationLevels[registrationLevelI].levelName + "\" selected>" + registrationLevels[registrationLevelI].levelName + "</option>\n";
@@ -269,7 +269,7 @@
         }
         $("#departmentInput").html(setDepartment);
         var setRoleName = null;
-        for (let i = 0; i < roles.length; i++) {
+        for (let i = 1; i < roles.length; i++) {
             setRoleName += "<option value=" + roles[i].roleName + ">" + roles[i].roleName + "</option>\n";
         }
         $("#roleNameInput").html(setRoleName);
@@ -294,6 +294,7 @@
                 url: "user/updateusers",
                 data: $('#usersForm').serialize(),
                 success: function () {
+                    alert("保存成功");
                     $.ajax({
                         type: "POST",
                         url: "user/list",
