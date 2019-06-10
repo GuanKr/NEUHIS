@@ -9,5 +9,6 @@
 <html>
 <body>
 <h2>Hello World!</h2>
+    <a href="user/management">用户管理</a>
 </body>
 </html>
