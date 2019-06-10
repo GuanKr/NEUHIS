@@ -11,12 +11,29 @@ public class Department {
 
     private String departmentType;
 
+    private String departmentTypeName;
+
     public Department(Integer id, String departmentCode, String departmentName, String departmentCategory, String departmentType) {
         this.id = id;
         this.departmentCode = departmentCode;
         this.departmentName = departmentName;
         this.departmentCategory = departmentCategory;
         this.departmentType = departmentType;
+    }
+
+    public Department(String departmentCode, String departmentName, String departmentCategory, String departmentTypeName){
+        this.departmentCode = departmentCode;
+        this.departmentName = departmentName;
+        this.departmentCategory = departmentCategory;
+        this.departmentTypeName = departmentTypeName;
+    }
+
+    public String getDepartmentTypeName() {
+        return departmentTypeName;
+    }
+
+    public void setDepartmentTypeName(String departmentTypeName) {
+        this.departmentTypeName = departmentTypeName;
     }
 
     public Department() {
@@ -71,6 +88,7 @@ public class Department {
                 ", departmentName='" + departmentName + '\'' +
                 ", departmentCategory='" + departmentCategory + '\'' +
                 ", departmentType='" + departmentType + '\'' +
+                ", departmentTypeName='" + departmentTypeName + '\'' +
                 '}';
     }
 }

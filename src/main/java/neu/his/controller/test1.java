@@ -25,7 +25,7 @@ public class test1 {
 
     @RequestMapping("delete")
     public void m2() {
-        userService.deletebyID(7);
+        userService.deletebyID(13);
     }
 
     @RequestMapping("insert")

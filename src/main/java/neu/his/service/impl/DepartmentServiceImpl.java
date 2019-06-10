@@ -15,6 +15,23 @@ public class DepartmentServiceImpl implements DepartmentService {
     DepartmentMapper dao;
 
     @Override
+    public String translate(String type) {
+        switch (type) {
+            case "1":
+                return "临床科室";
+            case "2":
+                return "医技科室";
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public String de_translate(String type_name) {
+        return null;
+    }
+
+    @Override
     public List<Department> findAll() {
         return dao.selectByExample(new DepartmentExample());
     }
