@@ -34,8 +34,8 @@
         <table class="table table-hover table-striped">
             <thead>
                 <tr>
-                    <th>id</th>
-                    <th>姓名</th>
+                    <th >id</th>
+                    <th >姓名</th>
                     <th>科室</th>
                     <th>类别</th>
                     <th>职称</th>
@@ -48,12 +48,14 @@
             </tbody>
         </table>
     </form>
-    <div class="row">
-        <div class="col-md-3">
-            <h5 class="col-sm-2 control-label">查询</h5>
+    <fieldset>
+        <div class="">
+            <legend class="container">查询用户</legend>
         </div>
-        <div class="col-md-3">
-            <select class="form-control" id="searchBy" onchange="setSearchVal()" name="searchBy">
+    </fieldset>
+    <div class="container">
+        <div class="col-md-4 container">
+            <select class="form-control" id="searchBy" name="searchBy">
                 <option value="role_name">类别</option>
                 <option value="name">姓名</option>
                 <option value="login_name">登录名</option>
@@ -62,17 +64,14 @@
                 <option value="level_name">挂号等级</option>
             </select>
         </div>
-        <div class="col-md-3" id="searchValS">
-<%--            <select id="searchVal" name="rolename" class="selectpicker show-tick form-control">--%>
-<%--                <c:forEach items="${roles}" var="role">--%>
-<%--                 <option value="${role.roleName}">${role.roleName}</option>--%>
-<%--                </c:forEach>--%>
-<%--            </select>--%>
+        <div class="col-md-4" id="searchValS">
+            <input type='text' id='searchVal' class='form-control'/>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <button type="button" id="search" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;查询&nbsp;&nbsp;&nbsp;&nbsp;</button>
         </div>
     </div>
+    <br/><br/><br/>
     <form class="" role="form" id="addUser"><div class="container">
         <fieldset>
             <div id="legend" class="">
@@ -238,6 +237,7 @@
             }
             str += "</select></td>";
             str += "<td><select name=\"users[" + i + "].titlename\" class=\"form-control\">\n";
+            str += "<option value=null selected></option>\n";
             for(var titleI = 0;titleI < titles.length;titleI++){
                 if (titles[titleI].titleName == users[i].titlename){
                     str += "<option value=\"" + titles[titleI].titleName + "\" selected>" + titles[titleI].titleName + "</option>\n";
@@ -247,8 +247,9 @@
             }
             str += "</select></td>";
             str += "<td><select name=\"users[" + i + "].registrationLevelname\" class=\"form-control\">\n";
+            str += "<option value='' selected></option>\n";
             for(var registrationLevelI = 0;registrationLevelI < registrationLevels.length;registrationLevelI++){
-                if (registrationLevels[registrationLevelI].levelName == user.registrationLevelname){
+                if (registrationLevels[registrationLevelI].levelName == users[i].registrationLevelname){
                     str += "<option value=\"" + registrationLevels[registrationLevelI].levelName + "\" selected>" + registrationLevels[registrationLevelI].levelName + "</option>\n";
                 }else {
                     str += "<option value=\"" + registrationLevels[registrationLevelI].levelName + "\">" + registrationLevels[registrationLevelI].levelName + "</option>\n";
@@ -260,43 +261,6 @@
             str += "</tr>";
         }
         $("#tableBody").append(str);
-    }
-    //根据查找条件不同设置不同的下拉框或输入框
-    function setSearchVal(){
-        var searchByVal= $("#searchBy").val();
-        var str = null;
-        if (searchByVal == "role_name") {
-            str = "<select id=\"searchVal\" class=\"selectpicker show-tick form-control\">\n";
-            for (let i = 0; i < roles.length; i++) {
-                str += "<option value=" + roles[i].roleName + ">" + roles[i].roleName + "</option>\n";
-            }
-            str += "</select>";
-        }
-        if(searchByVal == "name" || val == "login_name"){
-            str = "<input type='text' id='searchVal' class='form-control'/>"
-        }
-        if (searchByVal == "department_name") {
-            str = "<select id='searchVal' class='selectpicker show-tick form-control'>\n";
-            for (let i = 0; i < departments.length; i++) {
-                str += "<option value=" + departments[i].departmentName + ">" + departments[i].departmentName + "</option>\n";
-            }
-            str += "</select>";
-        }
-        if(searchByVal == "title_name"){
-            str = "<select id='searchVal' class='selectpicker show-tick form-control'>\n";
-            for (let i = 0; i < titles.length; i++) {
-                str += "<option value=" + titles[i].titleName + ">" + titles[i].titleName + "</option>\n";
-            }
-            str += "</select>";
-        }
-        if(searchByVal == "level_name"){
-            str = "<select id=\"searchVal\" class=\"selectpicker show-tick form-control\">\n";
-            for (let i = 0; i < registrationLevels.length; i++) {
-                str += "<option value=" + registrationLevels[i].levelName + ">" + registrationLevels[i].levelName + "</option>\n";
-            }
-            str += "</select>";
-        }
-        $("#searchValS").html(str);
     }
     function setAddUser(){
         var setDepartment = null;
@@ -322,7 +286,6 @@
     }
     $(document).ready(function(){
         setTableBody();
-        setSearchVal();
         setAddUser();
         //设置保存按钮功能
         $("#updateUsers").click(function () {
@@ -343,6 +306,9 @@
                             alert("获取用户表失败");
                         }
                     });
+                },
+                error: function () {
+                    alert("保存失败");
                 }
             });
         });
