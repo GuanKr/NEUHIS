@@ -2,9 +2,14 @@ package neu.his.service;
 
 import neu.his.bean.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface UserService {
+    //有效化  自用
+    List<User> effectiveness(List<User> list);
+    User effectiveness(User user);
+
     //列出所有
     List<User> findAll();
 
