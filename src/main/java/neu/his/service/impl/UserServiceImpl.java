@@ -6,6 +6,7 @@ import neu.his.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -32,15 +33,15 @@ public class UserServiceImpl implements UserService {
     public List<User> effectiveness(List<User> list) {
         int length = list.size();
         int flag = 0;
-        int[] sign = new int[length];
+        List<User> sign = new ArrayList<>();
         for(int i = 0 ;i<length;i++){
             if(list.get(i).getRoleId() == 0){
-                sign[flag] = i;
+                sign.add(list.get(i));
                 flag++;
             }
         }
         for(int i = 0;i<flag;i++){
-            list.remove(sign[i]);
+            list.remove(sign.get(i));
         }
         return list;
     }
@@ -56,15 +57,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         List<User> list;
+        List<User> list1;
+
         list = userMapper.selectByExample(new UserExample());
-        list = effectiveness(list);
-        for(User user : list){
+        list1 = effectiveness(list);
+        for(User user : list1){
             user.setDepartmentname(translateMapper.translate_department(user.getDepartmentId()));
             user.setRolename(translateMapper.translate_role(user.getRoleId()));
             user.setRegistrationLevelname(translateMapper.translate_registration_level(user.getRegistrationLevelId()));
             user.setTitlename(translateMapper.translate_title(user.getTitleId()));
         }
-        return list;
+        return list1;
     }
 
 

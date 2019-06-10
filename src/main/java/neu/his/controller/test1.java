@@ -30,7 +30,7 @@ public class test1 {
 
     @RequestMapping("insert")
     public void m3() {
-        User user = new User("1","1","1","普通门诊","门诊医生","心血管内科","主任医师");
+        User user = new User("1","1","1","普通门诊","离职","心血管内科","主任医师");
         userService.insertuser(user);
     }
 
@@ -91,7 +91,7 @@ public class test1 {
 
     @RequestMapping("update")
     public void m10() {
-        User user = new User("1","哈哈哈","1","普通门诊","门诊医生","心血管内科","主任医师");
+        User user = new User("1","哈哈哈","1","普通门诊","离职","心血管内科","主任医师");
         user.setId(13);
         userService.updateuser(user);
     }
