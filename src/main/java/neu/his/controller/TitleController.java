@@ -13,6 +13,7 @@ import java.util.List;
 public class TitleController {
     @Autowired
     TitleService titleService;
+    @RequestMapping("list")
     public @ResponseBody
     List titleList() {
         List<Title> titlelist = titleService.findAll();

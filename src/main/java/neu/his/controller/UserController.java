@@ -25,26 +25,32 @@ public class UserController {
         return userlist;
     }
     @RequestMapping("deletebyID")
-    public void deletebyID(int id) {
+    public @ResponseBody
+    void deletebyID(int id) {
         userService.deletebyID(id);
     }
     @RequestMapping("insertuser")
-    public void insertUser(User user){
+    public @ResponseBody
+    void insertUser(User user){
         userService.insertuser(user);
     }
     @RequestMapping("updateusers")
-    public void updateUsers(List<User> users){
+    public @ResponseBody
+    void updateUsers(List<User> users){
         for (User user : users) {
            userService.updateuser(user);
         }
     }
     @RequestMapping("updatetuser")
-    public void updateUser(User user){
+    public @ResponseBody
+    void updateUser(User user){
         userService.updateuser(user);
     }
     @RequestMapping("findbyattribute")
-    public  List findByAttribute(String attribute_name,String attribute){
+    public  @ResponseBody
+    List findByAttribute(String attribute_name,String attribute){
         List<User> list=userService.findbyattribute_name(attribute_name,attribute);
         return list;
     }
+
 }
