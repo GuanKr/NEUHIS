@@ -18,6 +18,11 @@
         select registration_level.level_name from registration_level where registration_level.id = #{id}
     </select>
 
+    <select id="translate_diagnose_directory" parameterType="java.lang.Integer" resultType="String">
+        select diagnose_directory.disease_category_name from diagnose_directory where diagnose_directory.id = #{id}
+    </select>
+
+
     <select id="de_translate_title" parameterType="java.lang.String" resultType="Integer">
         select title.id from title where title.title_name = #{name}
     </select>
@@ -34,4 +39,7 @@
         select registration_level.id from registration_level where registration_level.level_name = #{name}
     </select>
 
+    <select id="de_translate_diagnose_directory" parameterType="java.lang.String" resultType="Integer">
+        select diagnose_directory.id from diagnose_directory where diagnose_directory.disease_category_name = #{name}
+    </select>
 </mapper>
