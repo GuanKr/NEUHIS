@@ -12,6 +12,20 @@ import java.util.List;
  */
 public interface DiagnoseDirectoryService {
     /**
+     * 类型代码转换为类型名称
+     * @param type 类型代码
+     * @return 类型名称
+     */
+    String translate(String type);
+
+    /**
+     * 类型名称转换为类型代码
+     * @param type_name 类型名称
+     * @return 类型代码
+     */
+    String de_translate(String type_name);
+
+    /**
      * 列出所有诊断目录信息
      * @return 诊断目录信息列表
      */

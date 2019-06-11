@@ -11,12 +11,29 @@ public class DiagnoseDirectory {
 
     private String diseaseType;
 
+    private String deseaseTypeName;
+
     public DiagnoseDirectory(Integer id, String diseaseCategoryCode, String diseaseCategoryName, Integer sequenceNo, String diseaseType) {
         this.id = id;
         this.diseaseCategoryCode = diseaseCategoryCode;
         this.diseaseCategoryName = diseaseCategoryName;
         this.sequenceNo = sequenceNo;
         this.diseaseType = diseaseType;
+    }
+
+    public DiagnoseDirectory(String diseaseCategoryCode, String diseaseCategoryName, Integer sequenceNo, String deseaseTypeName) {
+        this.diseaseCategoryCode = diseaseCategoryCode;
+        this.diseaseCategoryName = diseaseCategoryName;
+        this.sequenceNo = sequenceNo;
+        this.deseaseTypeName = deseaseTypeName;
+    }
+
+    public String getDeseaseTypeName() {
+        return deseaseTypeName;
+    }
+
+    public void setDeseaseTypeName(String deseaseTypeName) {
+        this.deseaseTypeName = deseaseTypeName;
     }
 
     public DiagnoseDirectory() {
@@ -71,6 +88,7 @@ public class DiagnoseDirectory {
                 ", diseaseCategoryName='" + diseaseCategoryName + '\'' +
                 ", sequenceNo=" + sequenceNo +
                 ", diseaseType='" + diseaseType + '\'' +
+                ", deseaseTypeName='" + deseaseTypeName + '\'' +
                 '}';
     }
 }

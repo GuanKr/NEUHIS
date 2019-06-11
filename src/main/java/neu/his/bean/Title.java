@@ -10,6 +10,10 @@ public class Title {
         this.titleName = titleName;
     }
 
+    public Title(String titleName) {
+        this.titleName = titleName;
+    }
+
     public Title() {
         super();
     }

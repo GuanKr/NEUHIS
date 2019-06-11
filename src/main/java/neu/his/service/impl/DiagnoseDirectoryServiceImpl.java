@@ -16,8 +16,35 @@ public class DiagnoseDirectoryServiceImpl implements DiagnoseDirectoryService {
     DiagnoseDirectoryMapper diagnoseDirectoryMapper;
 
     @Override
+    public String translate(String type) {
+        if (type.equals("1")) {
+            return "西医";
+        }else if(type.equals("2")){
+            return "中医";
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public String de_translate(String type_name) {
+        if (type_name.equals("西医")) {
+            return "1";
+        }else if(type_name.equals("中医")){
+            return "2";
+        }else{
+            return null;
+        }
+    }
+
+    @Override
     public List<DiagnoseDirectory> findAll() {
-        return diagnoseDirectoryMapper.selectByExample(new DiagnoseDirectoryExample());
+        List<DiagnoseDirectory> list;
+        list = diagnoseDirectoryMapper.selectByExample(new DiagnoseDirectoryExample());
+        for(DiagnoseDirectory diagnoseDirectory : list){
+
+        }
+        return list;
     }
 
     @Override

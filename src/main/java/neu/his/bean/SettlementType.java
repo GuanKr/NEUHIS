@@ -10,6 +10,10 @@ public class SettlementType {
         this.settlementTypeName = settlementTypeName;
     }
 
+    public SettlementType(String settlementTypeName) {
+        this.settlementTypeName = settlementTypeName;
+    }
+
     public SettlementType() {
         super();
     }
