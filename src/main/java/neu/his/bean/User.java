@@ -1,5 +1,10 @@
 package neu.his.bean;
-
+/**
+ * 存储用户信息
+ * @author lsy
+ * @version 1.8
+ * @since 1.0
+ */
 public class User {
     /**
      * 主键id
@@ -31,6 +36,17 @@ public class User {
 
     public String registrationLevelname;
 
+    /**
+     * 构造方法1
+     * @param id 主键id
+     * @param roleId 角色id
+     * @param departmentId
+     * @param name
+     * @param loginName
+     * @param password
+     * @param titleId
+     * @param registrationLevelId
+     */
     public User(Integer id, Integer roleId, Integer departmentId, String name, String loginName, String password, Integer titleId, Integer registrationLevelId) {
         this.id = id;
         this.roleId = roleId;
@@ -42,6 +58,16 @@ public class User {
         this.registrationLevelId = registrationLevelId;
     }
 
+    /**
+     * 构造方法2
+     * @param name 姓名
+     * @param loginName
+     * @param password
+     * @param registrationLevelname
+     * @param rolename
+     * @param departmentname
+     * @param titlename
+     */
     public User(String name, String loginName, String password, String registrationLevelname, String rolename, String departmentname, String titlename) {
         this.name = name;
         this.loginName = loginName;
@@ -52,6 +78,17 @@ public class User {
         this.titlename = titlename;
     }
 
+    /**
+     * 构造方法3
+     * @param id 主键id
+     * @param name
+     * @param loginName
+     * @param password
+     * @param rolename
+     * @param departmentname
+     * @param titlename
+     * @param registrationLevelname
+     */
     public User(Integer id, String name, String loginName, String password, String rolename, String departmentname, String titlename, String registrationLevelname) {
         this.id = id;
         this.name = name;

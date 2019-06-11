@@ -21,6 +21,14 @@ public class DiagnoseDirectory {
         this.diseaseType = diseaseType;
     }
 
+    public DiagnoseDirectory(String diseaseCategoryCode, Integer id, String diseaseCategoryName, Integer sequenceNo, String deseaseTypeName) {
+        this.id = id;
+        this.diseaseCategoryCode = diseaseCategoryCode;
+        this.diseaseCategoryName = diseaseCategoryName;
+        this.sequenceNo = sequenceNo;
+        this.deseaseTypeName = deseaseTypeName;
+    }
+
     public DiagnoseDirectory(String diseaseCategoryCode, String diseaseCategoryName, Integer sequenceNo, String deseaseTypeName) {
         this.diseaseCategoryCode = diseaseCategoryCode;
         this.diseaseCategoryName = diseaseCategoryName;

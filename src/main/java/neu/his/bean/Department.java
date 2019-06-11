@@ -21,6 +21,14 @@ public class Department {
         this.departmentType = departmentType;
     }
 
+    public Department( String departmentCode, Integer id, String departmentName, String departmentCategory,String departmentTypeName) {
+        this.id = id;
+        this.departmentCode = departmentCode;
+        this.departmentName = departmentName;
+        this.departmentCategory = departmentCategory;
+        this.departmentTypeName = departmentTypeName;
+    }
+
     public Department(String departmentCode, String departmentName, String departmentCategory, String departmentTypeName){
         this.departmentCode = departmentCode;
         this.departmentName = departmentName;
