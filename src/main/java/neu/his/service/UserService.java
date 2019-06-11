@@ -2,28 +2,58 @@ package neu.his.service;
 
 import neu.his.bean.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * 处理用户信息
+ * @author lsy
+ * @version 1.8
+ * @since 1.0
+ */
 public interface UserService {
-    //有效化  自用
+    /**
+     * 去除角色id为0，即离职的用户
+     * @param list 用户列表
+     * @return 用户列表
+     */
     List<User> effectiveness(List<User> list);
+    /**
+     * 去除角色id为0即离职的用户
+     * @param user 用户
+     * @return  用户
+     */
     User effectiveness(User user);
 
-    //列出所有
+    /**
+     * 列出所有用户
+     * @return 所有用户的列表
+     */
     List<User> findAll();
 
-    //删除
+    /**
+     * 删除某一用户
+     * @param id 用户信息主键id
+     */
     void deletebyID(int id);
 
-    //查询  attribute_name为属性名 ， attribute为属性内容
-    //强制转化  错误处理
+    /**
+     * 根据属性名称及内容来查找
+     * @param attribute_name 属性名称
+     * @param attribute 查找内容
+     */
     List<User> findbyattribute_name(String attribute_name,String attribute);
 
-    //新增
+    /**
+     * 插入一个新用户
+     * @param user 新的用户信息
+     */
     void insertuser(User user);
 
-    //修改
+    /**
+     * 更新用户表
+     * @param user 内容更新过的用户信息
+     */
     void updateuser(User user);
 
 }

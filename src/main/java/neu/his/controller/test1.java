@@ -3,6 +3,7 @@ package neu.his.controller;
 
 import neu.his.bean.User;
 import neu.his.service.UserService;
+import neu.his.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -91,9 +92,13 @@ public class test1 {
 
     @RequestMapping("update")
     public void m10() {
-        User user = new User("1","哈哈哈","1","普通门诊","离职","心血管内科","主任医师");
-        user.setId(13);
-        userService.updateuser(user);
+        List<User> list = userService.findAll();
+        list = new UserServiceImpl().effectiveness(list);
+        for(User user: list){
+            userService.updateuser(user);
+        }
+        System.out.println(list);
+
     }
 
 }

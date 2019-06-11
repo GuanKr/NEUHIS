@@ -1,8 +1,14 @@
 package neu.his.bean;
 
 public class User {
+    /**
+     * 主键id
+     */
     private Integer id;
 
+    /**
+     * 角色id
+     */
     private Integer roleId;
 
     private Integer departmentId;
@@ -46,7 +52,17 @@ public class User {
         this.titlename = titlename;
     }
 
+    public User(Integer id, String name, String loginName, String password, String rolename, String departmentname, String titlename, String registrationLevelname) {
+        this.id = id;
+        this.name = name;
+        this.loginName = loginName;
+        this.password = password;
+        this.rolename = rolename;
+        this.departmentname = departmentname;
+        this.titlename = titlename;
+        this.registrationLevelname = registrationLevelname;
 
+    }
 
     public String getRegistrationLevelname() {
         return registrationLevelname;
