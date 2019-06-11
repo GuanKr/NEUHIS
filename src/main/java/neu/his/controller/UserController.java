@@ -1,7 +1,7 @@
 package neu.his.controller;
 
 import neu.his.bean.User;
-import neu.his.bean.UserDTO;
+import neu.his.dto.UserDTO;
 import neu.his.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,8 +37,8 @@ public class UserController {
     }
     @RequestMapping("updateusers")
     public @ResponseBody void updateUsers(UserDTO users){
-        List<User> realUsers = users.getUsers();
-        for (User user : realUsers){
+        List<User> users1 = users.getUsers();
+        for (User user : users1){
             userService.updateuser(user);
         }
     }
@@ -48,8 +48,7 @@ public class UserController {
         userService.updateuser(user);
     }
     @RequestMapping("findbyattribute")
-    public  @ResponseBody
-    List findByAttribute(String attribute_name,String attribute){
+    public  @ResponseBody List findByAttribute(String attribute_name,String attribute){
         List<User> list=userService.findbyattribute_name(attribute_name,attribute);
         return list;
     }
