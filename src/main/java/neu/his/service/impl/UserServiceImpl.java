@@ -31,30 +31,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     RegistrationLevelMapper registrationLevelMapper;
 
-/*    @Override
-    public List<User> effectiveness(List<User> list) {
-        int length = list.size();
-        int flag = 0;
-        List<User> sign = new ArrayList<>();
-        for(int i = 0 ;i<length;i++){
-            if(list.get(i).getRoleId() == 0){
-                sign.add(list.get(i));
-                flag++;
-            }
-        }
-        for(int i = 0;i<flag;i++){
-            list.remove(sign.get(i));
-        }
-        return list;
-    }
-
-    @Override
-    public User effectiveness(User user) {
-        if (user.getRoleId() != 0)
-            return user;
-        else
-            return null;
-    }*/
 
     @Override
     public List<User> findAll() {
@@ -93,15 +69,15 @@ public class UserServiceImpl implements UserService {
 
         UserExample example = new UserExample();
 
-        listAll = userMapper.selectByExample(new UserExample());
+        listAll = findAll();
         roles = roleMapper.selectByExample(new RoleExample());
         departments = departmentMapper.selectByExample(new DepartmentExample());
         titles = titleMapper.selectByExample(new TitleExample());
         registrationLevels =registrationLevelMapper.selectByExample(new RegistrationLevelExample());
+/*        UserExample.Criteria criteria1 = example.createCriteria();
 
         UserExample.Criteria criteria = example.createCriteria();
-        criteria.andRoleIdNotEqualTo(0);
-
+        criteria.andRoleIdNotEqualTo(0);*/
         if(attribute_name.equals("role_name")){
             for(int i = 0;i<roles.size();i++){
                 if(roles.get(i).getRoleName().contains(attribute)){
