@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     RegistrationLevelMapper registrationLevelMapper;
 
-    @Override
+/*    @Override
     public List<User> effectiveness(List<User> list) {
         int length = list.size();
         int flag = 0;
@@ -54,22 +54,23 @@ public class UserServiceImpl implements UserService {
             return user;
         else
             return null;
-    }
+    }*/
 
     @Override
     public List<User> findAll() {
         List<User> list;
-        List<User> list1;
 
-        list = userMapper.selectByExample(new UserExample());
-        list1 = effectiveness(list);
-        for(User user : list1){
+        UserExample userExample = new UserExample();
+        userExample.or().andRoleIdNotEqualTo(0);
+        list = userMapper.selectByExample(userExample);
+
+        for(User user : list){
             user.setDepartmentname(translateMapper.translate_department(user.getDepartmentId()));
             user.setRolename(translateMapper.translate_role(user.getRoleId()));
             user.setRegistrationLevelname(translateMapper.translate_registration_level(user.getRegistrationLevelId()));
             user.setTitlename(translateMapper.translate_title(user.getTitleId()));
         }
-        return list1;
+        return list;
     }
 
 
@@ -97,6 +98,9 @@ public class UserServiceImpl implements UserService {
         departments = departmentMapper.selectByExample(new DepartmentExample());
         titles = titleMapper.selectByExample(new TitleExample());
         registrationLevels =registrationLevelMapper.selectByExample(new RegistrationLevelExample());
+
+        UserExample.Criteria criteria = example.createCriteria();
+        criteria.andRoleIdNotEqualTo(0);
 
         if(attribute_name.equals("role_name")){
             for(int i = 0;i<roles.size();i++){
@@ -139,7 +143,7 @@ public class UserServiceImpl implements UserService {
             return null;
         }
         list = userMapper.selectByExample(example);
-        list = effectiveness(list);
+
         for(User user : list){
             user.setDepartmentname(translateMapper.translate_department(user.getDepartmentId()));
             user.setRolename(translateMapper.translate_role(user.getRoleId()));
