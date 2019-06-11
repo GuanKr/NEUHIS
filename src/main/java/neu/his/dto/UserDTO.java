@@ -1,4 +1,6 @@
-package neu.his.bean;
+package neu.his.dto;
+
+import neu.his.bean.User;
 
 import java.util.List;
 
