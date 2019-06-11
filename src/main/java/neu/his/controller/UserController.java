@@ -28,8 +28,8 @@ public class UserController {
         return userlist;
     }
     @RequestMapping("listWithPageHelper")
-    public @ResponseBody PageInfo listWithPageHelper(int pageNum, int pageCount){
-        PageHelper.startPage(pageNum,pageCount);
+    public @ResponseBody PageInfo listWithPageHelper(int pageNum, int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
         List<User> userlist = userService.findAll();
         PageInfo pageInfo = new PageInfo(userlist);
         return pageInfo;
@@ -58,14 +58,14 @@ public class UserController {
     }
     @RequestMapping("findbyattribute")
     public  @ResponseBody List findByAttribute(String attribute_name,String attribute){
-        List<User> list=userService.findbyattribute_name(attribute_name,attribute);
+        List<User> list = userService.findbyattribute_name(attribute_name,attribute);
         return list;
     }
-    @RequestMapping("findbyattributeWithPageHelper")
-    public  @ResponseBody PageInfo findByAttributeWithPageHelper(String attribute_name,String attribute,int pageNum,int pageCount){
-        PageHelper.startPage(pageNum,pageCount);
-        List<User> list = userService.findbyattribute_name(attribute_name,attribute);
-        PageInfo pageInfo = new PageInfo(list);
-        return pageInfo;
-    }
+//    @RequestMapping("findbyattributeWithPageHelper")
+//    public  @ResponseBody PageInfo findByAttributeWithPageHelper(String attribute_name,String attribute,int pageNum,int pageSize){
+//        PageHelper.startPage(pageNum,pageSize);
+//        List<User> list = userService.findbyattribute_name(attribute_name,attribute);
+//        PageInfo pageInfo = new PageInfo(list);
+//        return pageInfo;
+//    }
 }
