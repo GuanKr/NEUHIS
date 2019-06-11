@@ -48,6 +48,15 @@
             </tbody>
         </table>
     </form>
+    <div align="center"><ul id="pageChoose" class="pagination pagination-lg pageindex">
+<%--        <li><a href="#">&laquo;</a></li>--%>
+<%--        <li class="active"><a href="#">1</a></li>--%>
+<%--        <li><a href="#">2</a></li>--%>
+<%--        <li><a href="#">3</a></li>--%>
+<%--        <li><a href="#">4</a></li>--%>
+<%--        <li class="disabled"><a href="#">5</a></li>--%>
+<%--        <li><a href="#">&raquo;</a></li>--%>
+    </ul></div>
     <fieldset>
         <div class="">
             <legend class="container">查询用户</legend>
@@ -151,7 +160,6 @@
         async: false,
         success: function (result) {
             users = result;
-            console.log(result);
         },
         error :function () {
             alert("获取用户表失败");
@@ -209,6 +217,72 @@
             alert("获取挂号等级表失败");
         }
     });
+    //设置分页选择栏
+    function setPageChoose() {
+        var str;
+        str = "";
+        $("#pageChoose").html("");
+        for (let i = 1;i <= pageInfo.pages; i++){
+            if(pageInfo.pageNum == i){
+                str += "<li class=\"active\"><a onclick='getPageN(" + i + ")'>" + i + "</a></li>";
+            }else {
+                str += "<li><a onclick='getPageN(" + i + ")'>" + i + "</a></li>";
+            }
+        }
+        $("#pageChoose").append(str);
+    }
+    //设置搜索后的分页选择栏
+    function setSearchedPageChoose() {
+        var str;
+        str = "";
+        $("#pageChoose").html("");
+        for (let i = 1;i <= pageInfo.pages; i++){
+            if(pageInfo.pageNum == i){
+                str += "<li class=\"active\"><a onclick='getPageN(" + i + ")'>" + i + "</a></li>";
+            }else {
+                str += "<li><a onclick='getSearchedPageN(" + i + ")'>" + i + "</a></li>";
+            }
+        }
+        $("#pageChoose").append(str);
+    }
+    //获取带有第N页用户信息的pageInfo
+    var pageInfo = null;
+    function getPageN(pageN) {
+        $.ajax({
+            type: "POST",
+            url: "user/listWithPageHelper",
+            data: {pageNum : pageN,pageCount : 3},
+            success: function (result) {
+                pageInfo = result;
+                console.log(pageInfo);
+                users = pageInfo.list;
+                setTableBody();
+                setPageChoose();
+            },
+            error: function () {
+                alert("分页信息错误");
+            }
+        });
+    }
+    //获取查询过后的带有第N页用户信息的pageInfo
+    var pageInfo = null;
+    function getSearchedPageN(pageN) {
+        $.ajax({
+            type: "POST",
+            url: "user/findbyattributeWithPageHelper",
+            data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val(),pageNum : pageN,pageCount : 3},
+            success: function (result) {
+                pageInfo = result;
+                console.log(pageInfo);//调试用
+                users = pageInfo.list;
+                setTableBody();
+                setSearchedPageChoose();
+            },
+            error: function () {
+                alert("分页信息错误");
+            }
+        });
+    }
     //设置用户表格信息
     function setTableBody() {
         var str;
@@ -285,7 +359,8 @@
         $("#registrationLevelNameInput").html(setRegistrationLevelName);
     }
     $(document).ready(function(){
-        setTableBody();
+        // setTableBody();
+        getPageN(1);
         setAddUser();
         //设置保存按钮功能
         $("#updateUsers").click(function () {
@@ -301,7 +376,7 @@
                         async: false,
                         success: function (result) {
                             users = result;
-                            setTableBody();
+                            getPageN(1);
                         },
                         error :function () {
                             alert("获取用户表失败");
@@ -320,9 +395,9 @@
                 url: "user/findbyattribute",
                 data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val()},
                 success: function (result) {
-                    //    TODO result为users 未测试
                     users = result;
                     setTableBody();
+                //    TODO
                 }
             });
         });
@@ -339,7 +414,7 @@
                         async: false,
                         success: function (result) {
                             users = result;
-                            setTableBody();
+                            getPageN(1);
                         },
                         error :function () {
                             alert("获取用户表失败");
