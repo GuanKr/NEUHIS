@@ -22,6 +22,10 @@
         select diagnose_directory.disease_category_name from diagnose_directory where diagnose_directory.id = #{id}
     </select>
 
+    <select id="translate_expense_class" parameterType="java.lang.Integer" resultType="String">
+        select expense_name from expense_class where expense_class.id = #{id}
+    </select>
+
 
     <select id="de_translate_title" parameterType="java.lang.String" resultType="Integer">
         select title.id from title where title.title_name = #{name}
@@ -41,5 +45,9 @@
 
     <select id="de_translate_diagnose_directory" parameterType="java.lang.String" resultType="Integer">
         select diagnose_directory.id from diagnose_directory where diagnose_directory.disease_category_name = #{name}
+    </select>
+
+    <select id="de_translate_expense_class" parameterType="java.lang.String" resultType="Integer">
+        select expense_class.id from expense_class where expense_name = #{name}
     </select>
 </mapper>
