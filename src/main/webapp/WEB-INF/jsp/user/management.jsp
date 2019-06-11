@@ -49,13 +49,6 @@
         </table>
     </form>
     <div align="center"><ul id="pageChoose" class="pagination pagination-lg pageindex">
-<%--        <li><a href="#">&laquo;</a></li>--%>
-<%--        <li class="active"><a href="#">1</a></li>--%>
-<%--        <li><a href="#">2</a></li>--%>
-<%--        <li><a href="#">3</a></li>--%>
-<%--        <li><a href="#">4</a></li>--%>
-<%--        <li class="disabled"><a href="#">5</a></li>--%>
-<%--        <li><a href="#">&raquo;</a></li>--%>
     </ul></div>
     <fieldset>
         <div class="">
@@ -232,26 +225,26 @@
         $("#pageChoose").append(str);
     }
     //设置搜索后的分页选择栏
-    function setSearchedPageChoose() {
-        var str;
-        str = "";
-        $("#pageChoose").html("");
-        for (let i = 1;i <= pageInfo.pages; i++){
-            if(pageInfo.pageNum == i){
-                str += "<li class=\"active\"><a onclick='getPageN(" + i + ")'>" + i + "</a></li>";
-            }else {
-                str += "<li><a onclick='getSearchedPageN(" + i + ")'>" + i + "</a></li>";
-            }
-        }
-        $("#pageChoose").append(str);
-    }
+    // function setSearchedPageChoose() {
+    //     var str;
+    //     str = "";
+    //     $("#pageChoose").html("");
+    //     for (let i = 1;i <= pageInfo.pages; i++){
+    //         if(pageInfo.pageNum == i){
+    //             str += "<li class=\"active\"><a onclick='getSearchedPageN(" + i + ")'>" + i + "</a></li>";
+    //         }else {
+    //             str += "<li><a onclick='getSearchedPageN(" + i + ")'>" + i + "</a></li>";
+    //         }
+    //     }
+    //     $("#pageChoose").append(str);
+    // }
     //获取带有第N页用户信息的pageInfo
     var pageInfo = null;
     function getPageN(pageN) {
         $.ajax({
             type: "POST",
             url: "user/listWithPageHelper",
-            data: {pageNum : pageN,pageCount : 3},
+            data: {pageNum : pageN,pageSize : 3},
             success: function (result) {
                 pageInfo = result;
                 console.log(pageInfo);
@@ -265,24 +258,24 @@
         });
     }
     //获取查询过后的带有第N页用户信息的pageInfo
-    var pageInfo = null;
-    function getSearchedPageN(pageN) {
-        $.ajax({
-            type: "POST",
-            url: "user/findbyattributeWithPageHelper",
-            data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val(),pageNum : pageN,pageCount : 3},
-            success: function (result) {
-                pageInfo = result;
-                console.log(pageInfo);//调试用
-                users = pageInfo.list;
-                setTableBody();
-                setSearchedPageChoose();
-            },
-            error: function () {
-                alert("分页信息错误");
-            }
-        });
-    }
+    // var pageInfo = null;
+    // function getSearchedPageN(pageN) {
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "user/findbyattributeWithPageHelper",
+    //         data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val(),pageNum : pageN,pageSize : 3},
+    //         success: function (result) {
+    //             pageInfo = result;
+    //             console.log(pageInfo);//调试用
+    //             users = pageInfo.list;
+    //             setTableBody();
+    //             setSearchedPageChoose();
+    //         },
+    //         error: function () {
+    //             alert("分页信息错误");
+    //         }
+    //     });
+    // }
     //设置用户表格信息
     function setTableBody() {
         var str;
@@ -390,13 +383,16 @@
         });
         //设置查找功能按钮
         $("#search").click(function(){
+            // getSearchedPageN(1);
             $.ajax({
                 type: "POST",
                 url: "user/findbyattribute",
                 data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val()},
                 success: function (result) {
                     users = result;
+                    console.log(users);
                     setTableBody();
+                    $("#pageChoose").html("");
                 //    TODO
                 }
             });
