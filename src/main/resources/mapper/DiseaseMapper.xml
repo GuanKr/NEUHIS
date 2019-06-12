@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="neu.his.dao.DiseaseMapper" >
 
-  <select id="selectWithName" parameterType="neu.his.bean.DiseaseQuery"  resultMap="Diseases">
+  <select id="selectWithName" parameterType="String"  resultMap="Diseases">
    SELECT
    disease.id as diseaseId, diagnose_directory_id, international_icd_code, disease_name, disease_mnemonic_code ,diagnose_directory.disease_category_name
     from disease left join diagnose_directory
     on disease.diagnose_directory_id = diagnose_directory.id
     where diagnose_directory.disease_category_name = #{attritube}
 </select>
-  <select id="query" parameterType="String"  resultMap="Diseases" statementType="STATEMENT">
+  <select id="query" parameterType="neu.his.bean.DiseaseQuery"  resultMap="Diseases" statementType="STATEMENT">
    SELECT
    disease.id as diseaseId, diagnose_directory_id, international_icd_code, disease_name, disease_mnemonic_code ,diagnose_directory.disease_category_name
     from disease left join diagnose_directory
