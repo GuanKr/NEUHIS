@@ -3,6 +3,239 @@
 <mapper namespace="neu.his.dao.UserMapper" >
 
 
+  <select id="queryByRole" parameterType="java.lang.String" resultMap="Users">
+SELECT
+    USER.id as userId,
+    title.id as titleId,
+    department.id as departmentId,
+    registration_level.id as levelId,
+    role.id as roleID,
+	name,
+	login_name,
+	password,
+	department_name,
+	role_name,
+	level_name,
+	title_name
+
+FROM
+	user LEFT JOIN department
+	ON user.department_id = department.id
+	LEFT JOIN role
+	ON user.role_id = role.id
+	LEFT JOIN registration_level
+	on user.registration_level_id = registration_level.id
+	LEFT JOIN title
+	on user.title_id = title.id
+WHERE user.role_id != 0 and role_name like CONCAT('%',#{attribute},'%')
+</select>
+  <select id="queryByTitle" parameterType="java.lang.String" resultMap="Users">
+SELECT
+    USER.id as userId,
+    title.id as titleId,
+    department.id as departmentId,
+    registration_level.id as levelId,
+    role.id as roleID,
+	name,
+	login_name,
+	password,
+	department_name,
+	role_name,
+	level_name,
+	title_name
+
+FROM
+	user LEFT JOIN department
+	ON user.department_id = department.id
+	LEFT JOIN role
+	ON user.role_id = role.id
+	LEFT JOIN registration_level
+	on user.registration_level_id = registration_level.id
+	LEFT JOIN title
+	on user.title_id = title.id
+WHERE user.role_id != 0 and title_name like CONCAT('%',#{attribute},'%')
+</select>
+  <select id="queryByDepartment" parameterType="java.lang.String" resultMap="Users">
+SELECT
+    USER.id as userId,
+    title.id as titleId,
+    department.id as departmentId,
+    registration_level.id as levelId,
+    role.id as roleID,
+	name,
+	login_name,
+	password,
+	department_name,
+	role_name,
+	level_name,
+	title_name
+
+FROM
+	user LEFT JOIN department
+	ON user.department_id = department.id
+	LEFT JOIN role
+	ON user.role_id = role.id
+	LEFT JOIN registration_level
+	on user.registration_level_id = registration_level.id
+	LEFT JOIN title
+	on user.title_id = title.id
+WHERE user.role_id != 0 and department_name like CONCAT('%',#{attribute},'%')
+</select>
+  <select id="queryByName" parameterType="java.lang.String" resultMap="Users">
+SELECT
+    USER.id as userId,
+    title.id as titleId,
+    department.id as departmentId,
+    registration_level.id as levelId,
+    role.id as roleID,
+	name,
+	login_name,
+	password,
+	department_name,
+	role_name,
+	level_name,
+	title_name
+
+FROM
+	user LEFT JOIN department
+	ON user.department_id = department.id
+	LEFT JOIN role
+	ON user.role_id = role.id
+	LEFT JOIN registration_level
+	on user.registration_level_id = registration_level.id
+	LEFT JOIN title
+	on user.title_id = title.id
+WHERE user.role_id != 0 and name like CONCAT('%',#{attribute},'%')
+</select>
+  <select id="queryByLoginName" parameterType="java.lang.String" resultMap="Users">
+SELECT
+    USER.id as userId,
+    title.id as titleId,
+    department.id as departmentId,
+    registration_level.id as levelId,
+    role.id as roleID,
+	name,
+	login_name,
+	password,
+	department_name,
+	role_name,
+	level_name,
+	title_name
+
+FROM
+	user LEFT JOIN department
+	ON user.department_id = department.id
+	LEFT JOIN role
+	ON user.role_id = role.id
+	LEFT JOIN registration_level
+	on user.registration_level_id = registration_level.id
+	LEFT JOIN title
+	on user.title_id = title.id
+WHERE user.role_id != 0 and login_name like CONCAT('%',#{attribute},'%')
+</select>
+  <select id="queryByReLevel" parameterType="java.lang.String" resultMap="Users">
+SELECT
+    USER.id as userId,
+    title.id as titleId,
+    department.id as departmentId,
+    registration_level.id as levelId,
+    role.id as roleID,
+	name,
+	login_name,
+	password,
+	department_name,
+	role_name,
+	level_name,
+	title_name
+
+FROM
+	user LEFT JOIN department
+	ON user.department_id = department.id
+	LEFT JOIN role
+	ON user.role_id = role.id
+	LEFT JOIN registration_level
+	on user.registration_level_id = registration_level.id
+	LEFT JOIN title
+	on user.title_id = title.id
+WHERE user.role_id != 0 and level_name like CONCAT('%',#{attribute},'%')
+</select>
+  <select id="selectWithName" resultMap="Users">
+SELECT
+    USER.id as userId,
+    title.id as titleId,
+    department.id as departmentId,
+    registration_level.id as levelId,
+    role.id as roleID,
+	name,
+	login_name,
+	password,
+	department_name,
+	role_name,
+	level_name,
+	title_name
+
+FROM
+	user LEFT JOIN department
+	ON user.department_id = department.id
+	LEFT JOIN role
+	ON user.role_id = role.id
+	LEFT JOIN registration_level
+	on user.registration_level_id = registration_level.id
+	LEFT JOIN title
+	on user.title_id = title.id
+WHERE user.role_id != 0
+</select>
+  <resultMap id="Users" type="neu.his.bean.User">
+    <id property="id" column="userId"/>
+    <result property="titleId" column="titleId"/>
+    <result property="departmentId" column="departmentId"/>
+    <result property="registrationLevelId" column="levelId"/>
+    <result property="roleId" column="roleId"/>
+    <result property="name" column="name"/>
+    <result property="loginName" column="login_name"/>
+    <result property="password" column="password"/>
+    <result property="departmentname" column="department_name"/>
+    <result property="rolename" column="role_name"/>
+    <result property="registrationLevelname" column="level_name"/>
+    <result property="titlename" column="title_name"/>
+  </resultMap>
+  <insert id="insertUser" parameterType="neu.his.bean.User">
+    INSERT  INTO User (role_id,department_id,name,login_name,password,title_id,registration_level_id)
+    SELECT role.id,department.id,#{name},#{loginName},#{password},title.id,registration_level.id
+    FROM role,department,title,registration_level
+    WHERE role.role_name = #{rolename} and department_name = #{departmentname} and title.title_name = #{titlename} and registration_level.level_name = #{registrationLevelname}
+  </insert>
+
+  <update id="updateUser" parameterType="neu.his.bean.User">
+  UPDATE user
+  SET role_id=
+  (SELECT role.id
+  FROM role
+  WHERE role_name = #{rolename}),
+
+  department_id =
+  (SELECT department.id
+  FROM department
+  WHERE department_name = #{departmentname}),
+
+  name = #{name},
+
+  login_name = #{loginName},
+
+  password = #{password},
+
+  title_id =
+  (SELECT title.id
+  FROM title
+  WHERE title_name = #{titlename}),
+
+  registration_level_id =
+  (SELECT registration_level.id
+  FROM registration_level
+  WHERE level_name = #{registrationLevelname})
+  where user.id = #{id}
+  </update>
+
   <resultMap id="BaseResultMap" type="neu.his.bean.User" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
