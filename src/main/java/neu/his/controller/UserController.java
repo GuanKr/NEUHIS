@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import neu.his.bean.User;
 import neu.his.dto.UserDTO;
 import neu.his.service.UserService;
+import neu.his.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,11 +62,13 @@ public class UserController {
         List<User> list = userService.findbyattribute_name(attribute_name,attribute);
         return list;
     }
-//    @RequestMapping("findbyattributeWithPageHelper")
-//    public  @ResponseBody PageInfo findByAttributeWithPageHelper(String attribute_name,String attribute,int pageNum,int pageSize){
-//        PageHelper.startPage(pageNum,pageSize);
-//        List<User> list = userService.findbyattribute_name(attribute_name,attribute);
-//        PageInfo pageInfo = new PageInfo(list);
-//        return pageInfo;
-//    }
+    @RequestMapping("findbyattributeWithPageHelper")
+    public  @ResponseBody PageInfo findByAttributeWithPageHelper(String attribute_name,String attribute,int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<User> list = userService.findbyattribute_name(attribute_name,attribute);
+        PageInfo pageInfo = new PageInfo(list);
+        UserServiceImpl userService = new UserServiceImpl();
+        pageInfo.setList(userService.effectiveness(pageInfo.getList()));
+        return pageInfo;
+    }
 }

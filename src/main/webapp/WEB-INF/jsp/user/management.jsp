@@ -21,6 +21,10 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
 <body style="margin-top: 50px">
+    <ol class="breadcrumb container">
+        <li><a href="#">首页</a></li>
+        <li class="active">用户信息管理</li>
+    </ol>
     <div align="center">
         <h2>医院用户管理</h2>
     </div>
@@ -215,7 +219,7 @@
         var str;
         str = "";
         $("#pageChoose").html("");
-        for (let i = 1;i <= pageInfo.pages; i++){
+        for (var i = 1;i <= pageInfo.pages; i++){
             if(pageInfo.pageNum == i){
                 str += "<li class=\"active\"><a onclick='getPageN(" + i + ")'>" + i + "</a></li>";
             }else {
@@ -225,19 +229,19 @@
         $("#pageChoose").append(str);
     }
     //设置搜索后的分页选择栏
-    // function setSearchedPageChoose() {
-    //     var str;
-    //     str = "";
-    //     $("#pageChoose").html("");
-    //     for (let i = 1;i <= pageInfo.pages; i++){
-    //         if(pageInfo.pageNum == i){
-    //             str += "<li class=\"active\"><a onclick='getSearchedPageN(" + i + ")'>" + i + "</a></li>";
-    //         }else {
-    //             str += "<li><a onclick='getSearchedPageN(" + i + ")'>" + i + "</a></li>";
-    //         }
-    //     }
-    //     $("#pageChoose").append(str);
-    // }
+    function setSearchedPageChoose() {
+        var str;
+        str = "";
+        $("#pageChoose").html("");
+        for (var i = 1;i <= pageInfo.pages; i++){
+            if(pageInfo.pageNum == i){
+                str += "<li class=\"active\"><a onclick='getSearchedPageN(" + i + ")'>" + i + "</a></li>";
+            }else {
+                str += "<li><a onclick='getSearchedPageN(" + i + ")'>" + i + "</a></li>";
+            }
+        }
+        $("#pageChoose").append(str);
+    }
     //获取带有第N页用户信息的pageInfo
     var pageInfo = null;
     function getPageN(pageN) {
@@ -258,30 +262,30 @@
         });
     }
     //获取查询过后的带有第N页用户信息的pageInfo
-    // var pageInfo = null;
-    // function getSearchedPageN(pageN) {
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "user/findbyattributeWithPageHelper",
-    //         data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val(),pageNum : pageN,pageSize : 3},
-    //         success: function (result) {
-    //             pageInfo = result;
-    //             console.log(pageInfo);//调试用
-    //             users = pageInfo.list;
-    //             setTableBody();
-    //             setSearchedPageChoose();
-    //         },
-    //         error: function () {
-    //             alert("分页信息错误");
-    //         }
-    //     });
-    // }
+    var pageInfo = null;
+    function getSearchedPageN(pageN) {
+        $.ajax({
+            type: "POST",
+            url: "user/findbyattributeWithPageHelper",
+            data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val(),pageNum : pageN,pageSize : 3},
+            success: function (result) {
+                pageInfo = result;
+                console.log(pageInfo);//调试用
+                users = pageInfo.list;
+                setTableBody();
+                setSearchedPageChoose();
+            },
+            error: function () {
+                alert("分页信息错误");
+            }
+        });
+    }
     //设置用户表格信息
     function setTableBody() {
         var str;
         str = "";
         $("#tableBody").html("");
-        for (let i = 0;i < users.length;i++){
+        for (var i = 0;i < users.length;i++){
             str += "<tr>" +
                 "<td><input type='text' class=\"form-control\" value=\"" + users[i].id + "\" name=\"users[" + i + "].id\" readonly/></td>\n" +
                 "<td><input type=\"text\" class=\"form-control\" value=\"" + users[i].name + "\" name=\"users[" + i + "].name\"/></td>\n";
@@ -331,22 +335,22 @@
     }
     function setAddUser(){
         var setDepartment = null;
-        for (let i = 0; i < departments.length; i++) {
+        for (var i = 0; i < departments.length; i++) {
             setDepartment += "<option value=" + departments[i].departmentName + ">" + departments[i].departmentName + "</option>\n";
         }
         $("#departmentInput").html(setDepartment);
         var setRoleName = null;
-        for (let i = 1; i < roles.length; i++) {
+        for (var i = 1; i < roles.length; i++) {
             setRoleName += "<option value=" + roles[i].roleName + ">" + roles[i].roleName + "</option>\n";
         }
         $("#roleNameInput").html(setRoleName);
         var setTitleName = null;
-        for (let i = 0; i < titles.length; i++) {
+        for (var i = 0; i < titles.length; i++) {
             setTitleName += "<option value=" + titles[i].titleName + ">" + titles[i].titleName + "</option>\n";
         }
         $("#titleNameInput").html(setTitleName);
         var setRegistrationLevelName = null;
-        for (let i = 0; i < registrationLevels.length; i++) {
+        for (var i = 0; i < registrationLevels.length; i++) {
             setRegistrationLevelName += "<option value=" + registrationLevels[i].levelName + ">" + registrationLevels[i].levelName + "</option>\n";
         }
         $("#registrationLevelNameInput").html(setRegistrationLevelName);
@@ -363,18 +367,7 @@
                 data: $('#usersForm').serialize(),
                 success: function () {
                     alert("保存成功");
-                    $.ajax({
-                        type: "POST",
-                        url: "user/list",
-                        async: false,
-                        success: function (result) {
-                            users = result;
-                            getPageN(1);
-                        },
-                        error :function () {
-                            alert("获取用户表失败");
-                        }
-                    });
+                    getPageN(1);//修改未测试 TODO
                 },
                 error: function () {
                     alert("保存失败");
@@ -383,19 +376,19 @@
         });
         //设置查找功能按钮
         $("#search").click(function(){
-            // getSearchedPageN(1);
-            $.ajax({
-                type: "POST",
-                url: "user/findbyattribute",
-                data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val()},
-                success: function (result) {
-                    users = result;
-                    console.log(users);
-                    setTableBody();
-                    $("#pageChoose").html("");
-                //    TODO
-                }
-            });
+            getSearchedPageN(1);
+            // $.ajax({
+            //     type: "POST",
+            //     url: "user/findbyattribute",
+            //     data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val()},
+            //     success: function (result) {
+            //         users = result;
+            //         console.log(users);
+            //         setTableBody();
+            //         $("#pageChoose").html("");
+            //     //    TODO
+            //     }
+            // });
         });
         //设置用户添加按钮
         $("#addUserButton").click(function () {
