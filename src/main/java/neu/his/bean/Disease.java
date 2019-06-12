@@ -29,7 +29,7 @@ public class Disease {
         this.diagnoseDirectoryName = diagnoseDirectoryName;
     }
 
-    public Disease(String internationalIcdCode, String diseaseName, String diseaseMnemonicCode, String diagnoseDirectoryName) {
+    public Disease(String internationalIcdCode, String diseaseName,String diseaseMnemonicCode, String diagnoseDirectoryName) {
         this.internationalIcdCode = internationalIcdCode;
         this.diseaseName = diseaseName;
         this.diseaseMnemonicCode = diseaseMnemonicCode;
@@ -96,6 +96,7 @@ public class Disease {
                 ", internationalIcdCode='" + internationalIcdCode + '\'' +
                 ", diseaseName='" + diseaseName + '\'' +
                 ", diseaseMnemonicCode='" + diseaseMnemonicCode + '\'' +
+                ", diagnoseDirectoryName='" + diagnoseDirectoryName + '\'' +
                 '}';
     }
 }

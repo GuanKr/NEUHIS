@@ -3,6 +3,7 @@ package neu.his.dao;
 import java.util.List;
 import neu.his.bean.Disease;
 import neu.his.bean.DiseaseExample;
+import neu.his.bean.DiseaseQuery;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -10,8 +11,38 @@ import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
-
+/**
+ * 处理疾病信息
+ * @author lsy
+ * @version 1.8
+ * @since 1.0
+ */
 public interface DiseaseMapper {
+
+    /**
+     * 查询疾病信息
+     * @param diseaseQuery 封装的查询信息
+     */
+    List<Disease> query(DiseaseQuery diseaseQuery);
+
+    /**
+     * 更新疾病信息
+     * @param disease 疾病信息
+     */
+    void updateDisease(Disease disease);
+
+
+    /**
+     * 插入疾病信息
+     * @param disease 疾病信息
+     */
+    void insertDisease(Disease disease);
+
+    /**
+     * 查询根据类别查询疾病
+     * @return 疾病信息列表
+     */
+    List<Disease> selectWithName(String attribute);
     int countByExample(DiseaseExample example);
 
     int deleteByExample(DiseaseExample example);

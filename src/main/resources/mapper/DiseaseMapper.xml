@@ -1,6 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="neu.his.dao.DiseaseMapper" >
+
+  <select id="selectWithName" parameterType="neu.his.bean.DiseaseQuery"  resultMap="Diseases">
+   SELECT
+   disease.id as diseaseId, diagnose_directory_id, international_icd_code, disease_name, disease_mnemonic_code ,diagnose_directory.disease_category_name
+    from disease left join diagnose_directory
+    on disease.diagnose_directory_id = diagnose_directory.id
+    where diagnose_directory.disease_category_name = #{attritube}
+</select>
+  <select id="query" parameterType="String"  resultMap="Diseases" statementType="STATEMENT">
+   SELECT
+   disease.id as diseaseId, diagnose_directory_id, international_icd_code, disease_name, disease_mnemonic_code ,diagnose_directory.disease_category_name
+    from disease left join diagnose_directory
+    on disease.diagnose_directory_id = diagnose_directory.id
+    where diagnose_directory.disease_category_name = '${directory_name}' and  ${attribute_name} like CONCAT('%','${attribute}','%')
+</select>
+  <resultMap id="Diseases" type="neu.his.bean.Disease">
+    <id property="id" column="diseaseId"/>
+    <result property="diagnoseDirectoryId" column="diagnose_directory_id"/>
+    <result property="internationalIcdCode" column="international_icd_code"/>
+    <result property="diseaseName" column="disease_name"/>
+    <result property="diseaseMnemonicCode" column="disease_mnemonic_code"/>
+    <result property="diagnoseDirectoryName" column="disease_category_name"/>
+  </resultMap>
+
+  <insert id="insertDisease" parameterType="neu.his.bean.Disease">
+    INSERT  INTO disease (diagnose_directory_id, international_icd_code, disease_name, disease_mnemonic_code)
+    SELECT diagnose_directory.id,#{internationalIcdCode},#{diseaseName},#{diseaseMnemonicCode}
+    FROM diagnose_directory
+    WHERE diagnose_directory.disease_category_name = #{diagnoseDirectoryName}
+  </insert>
+  <update id="updateDisease" parameterType="neu.his.bean.Disease">
+  UPDATE disease
+  SET diagnose_directory_id =
+  (SELECT diagnose_directory.id
+  FROM diagnose_directory
+  WHERE disease_category_name = #{diagnoseDirectoryName}),
+
+  international_icd_code = #{internationalIcdCode},
+
+  disease_name = #{diseaseName},
+
+  disease_mnemonic_code = #{diseaseMnemonicCode}
+
+  where disease.id = #{id}
+  </update>
+
+
   <resultMap id="BaseResultMap" type="neu.his.bean.Disease" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />

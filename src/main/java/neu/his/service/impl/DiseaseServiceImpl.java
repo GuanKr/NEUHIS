@@ -3,6 +3,7 @@ package neu.his.service.impl;
 import neu.his.bean.DiagnoseDirectory;
 import neu.his.bean.Disease;
 import neu.his.bean.DiseaseExample;
+import neu.his.bean.DiseaseQuery;
 import neu.his.dao.DiagnoseDirectoryMapper;
 import neu.his.dao.DiseaseMapper;
 import neu.his.dao.TranslateMapper;
@@ -24,13 +25,8 @@ public class DiseaseServiceImpl implements DiseaseService {
 
     @Override
     public List<Disease> findByDirectory(String directory_name) {
-        DiseaseExample diseaseExample = new DiseaseExample();
         List<Disease> list;
-        diseaseExample.or().andDiagnoseDirectoryIdEqualTo(translateMapper.de_translate_diagnose_directory(directory_name));
-        list = diseaseMapper.selectByExample(diseaseExample);
-        for(Disease disease : list){
-            disease.setDiagnoseDirectoryName(translateMapper.translate_diagnose_directory(disease.getDiagnoseDirectoryId()));
-        }
+        list = diseaseMapper.selectWithName(directory_name);
         return list;
     }
 
@@ -41,9 +37,10 @@ public class DiseaseServiceImpl implements DiseaseService {
 
     @Override
     public List<Disease> findByAttribute_name(String directory_name, String attribute_name, String attribute) {
-        List<Disease> listAll = findByDirectory(directory_name);
         List<Disease> list;
-
+        list = diseaseMapper.query(new DiseaseQuery(directory_name,attribute_name,attribute));
+/*        List<Disease> listAll = findByDirectory(directory_name);
+        List<Disease> list;
         DiseaseExample diseaseExample = new DiseaseExample();
         if (attribute_name.equals("disease_name")) {
             for (Disease disease : listAll) {
@@ -61,20 +58,20 @@ public class DiseaseServiceImpl implements DiseaseService {
             }
         }else
             return null;
-        list = diseaseMapper.selectByExample(diseaseExample);
+        list = diseaseMapper.selectByExample(diseaseExample);*/
         return list;
     }
 
     @Override
     public void insertDisease(Disease disease) {
-        disease.setDiagnoseDirectoryId(translateMapper.de_translate_diagnose_directory(disease.getDiagnoseDirectoryName()));
-        diseaseMapper.insertSelective(disease);
+        diseaseMapper.insertDisease(disease);
     }
 
     @Override
     public void updateDisease(Disease disease) {
-        disease.setDiagnoseDirectoryId(translateMapper.de_translate_diagnose_directory(disease.getDiagnoseDirectoryName()));
-        diseaseMapper.updateByPrimaryKey(disease);
+/*        disease.setDiagnoseDirectoryId(translateMapper.de_translate_diagnose_directory(disease.getDiagnoseDirectoryName()));
+        diseaseMapper.updateByPrimaryKey(disease);*/
+        diseaseMapper.updateDisease(disease);
     }
 
 }
