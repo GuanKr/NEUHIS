@@ -51,9 +51,10 @@ public class DepartmentController {
 //        PageInfo.setList(departmentService.)
         return pageInfo;
     }
-//    @RequestMapping("departmentCategory")
-//    public @ResponseBody
-//    List<String> departmentCategory(){
-//
-//    }
+    @RequestMapping("departmentCategory")
+    public @ResponseBody
+    List<String> departmentCategory(){
+        List<String> categorylist = departmentService.findCategory();
+        return categorylist;
+    }
 }
