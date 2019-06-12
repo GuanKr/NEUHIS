@@ -10,8 +10,74 @@ import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
-
+/**
+ * 处理用户信息
+ * @author lsy
+ * @version 1.8
+ * @since 1.0
+ */
 public interface UserMapper {
+    /**
+     * 更新用户信息
+     * @param user 用户信息
+     */
+    void updateUser(User user);
+
+
+    /**
+     * 插入用户信息
+     * @param user 用户信息
+     */
+    void insertUser(User user);
+
+    /**
+     * 通过角色名称查询
+     * @param attribute 属性内容
+     * @return 用户列表
+     */
+    List<User> queryByRole(String attribute);
+
+    /**
+     * 通过职称查询
+     * @param attribute 属性内容
+     * @return 用户列表
+     */
+    List<User> queryByTitle(String attribute);
+
+    /**
+     * 通过科室查询
+     * @param attribute 属性内容
+     * @return 用户列表
+     */
+    List<User> queryByDepartment(String attribute);
+
+    /**
+     * 通过姓名查询
+     * @param attribute 属性内容
+     * @return 用户列表
+     */
+    List<User> queryByName(String attribute);
+
+    /**
+     * 通过登陆名查询
+     * @param attribute 属性内容
+     * @return 用户列表
+     */
+    List<User> queryByLoginName(String attribute);
+
+    /**
+     * 通过挂号等级查询
+     * @param attribute 属性内容
+     * @return 用户列表
+     */
+    List<User> queryByReLevel(String attribute);
+
+    /**
+     * 查询所有用户
+     * @return 用户列表
+     */
+    List<User> selectWithName();
+
     int countByExample(UserExample example);
 
     int deleteByExample(UserExample example);

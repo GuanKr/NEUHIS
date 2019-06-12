@@ -12,18 +12,6 @@ import java.util.List;
  * @since 1.0
  */
 public interface UserService {
-   /* *//**
-     * 去除角色id为0，即离职的用户
-     * @param list 用户列表
-     * @return 用户列表
-     *//*
-    List<User> effectiveness(List<User> list);
-    *//**
-     * 去除角色id为0即离职的用户
-     * @param user 用户
-     * @return  用户
-     *//*
-    User effectiveness(User user);*/
 
     /**
      * 列出所有用户
