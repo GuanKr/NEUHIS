@@ -12,6 +12,9 @@ import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
 
 public interface DepartmentMapper {
+
+    List<String> findCategory();
+
     int countByExample(DepartmentExample example);
 
     int deleteByExample(DepartmentExample example);

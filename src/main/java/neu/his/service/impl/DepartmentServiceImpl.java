@@ -50,6 +50,10 @@ public class DepartmentServiceImpl implements DepartmentService {
         }
     }
 
+    public List<String> findCategory(){
+        return departmentMapper.findCategory();
+    }
+
     @Override
     public List<Department> findAll() {
         List<Department> list;

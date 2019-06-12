@@ -205,7 +205,6 @@ WHERE user.role_id != 0
     FROM role,department,title,registration_level
     WHERE role.role_name = #{rolename} and department_name = #{departmentname} and title.title_name = #{titlename} and registration_level.level_name = #{registrationLevelname}
   </insert>
-
   <update id="updateUser" parameterType="neu.his.bean.User">
   UPDATE user
   SET role_id=

@@ -24,6 +24,11 @@ public interface DepartmentService {
      */
     String de_translate(String type_name);
 
+    /**
+     * 查找所有科室分类
+     * @return 科室信息列表
+     */
+    public List<String> findCategory();
 
     /**
      * 列出所有科室
