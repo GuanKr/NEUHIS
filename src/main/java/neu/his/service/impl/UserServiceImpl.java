@@ -32,6 +32,22 @@ public class UserServiceImpl implements UserService {
     RegistrationLevelMapper registrationLevelMapper;
 
 
+    public List<User> effectiveness(List<User> list) {
+        int length = list.size();
+        int flag = 0;
+        List<User> sign = new ArrayList<>();
+        for (int i = 0; i < length; i++) {
+            if (list.get(i).getRoleId() == 0) {
+                sign.add(list.get(i));
+                flag++;
+            }
+        }
+        for (int i = 0; i < flag; i++) {
+            list.remove(sign.get(i));
+        }
+        return list;
+    }
+
     @Override
     public List<User> findAll() {
         List<User> list;
@@ -112,6 +128,7 @@ public class UserServiceImpl implements UserService {
         }else if(attribute_name.equals("level_name")){
             for(int i = 0;i<registrationLevels.size();i++){
                 if(registrationLevels.get(i).getLevelName().contains(attribute)){
+
                     example.or().andRegistrationLevelIdEqualTo(registrationLevels.get(i).getId());
                 }
             }
@@ -120,13 +137,14 @@ public class UserServiceImpl implements UserService {
         }
         list = userMapper.selectByExample(example);
 
+        list = effectiveness(list);
+
         for(User user : list){
             user.setDepartmentname(translateMapper.translate_department(user.getDepartmentId()));
             user.setRolename(translateMapper.translate_role(user.getRoleId()));
             user.setTitlename(translateMapper.translate_title(user.getTitleId()));
             user.setRegistrationLevelname(translateMapper.translate_registration_level(user.getRegistrationLevelId()));
         }
-
         return list;
     }
 
