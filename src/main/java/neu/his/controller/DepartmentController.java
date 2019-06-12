@@ -1,5 +1,7 @@
 package neu.his.controller;
 
+import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.PageHelper;
 import neu.his.bean.Department;
 import neu.his.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +20,16 @@ public class DepartmentController {
     List departmentList() {
         List<Department> departmentlist = departmentService.findAll();
         return departmentlist;
+
+    }
+    //@RequestMapping("updatedepartments")
+
+    @RequestMapping("listWithPageHelper")
+    public @ResponseBody
+    PageInfo listWithPageHelper(int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<Department> departmentlist = departmentService.findAll();
+        PageInfo pageInfo = new PageInfo(departmentlist);
+        return pageInfo;
     }
 }
