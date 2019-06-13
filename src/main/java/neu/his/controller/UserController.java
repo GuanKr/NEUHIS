@@ -67,8 +67,8 @@ public class UserController {
         PageHelper.startPage(pageNum,pageSize);
         List<User> list = userService.findbyattribute_name(attribute_name,attribute);
         PageInfo pageInfo = new PageInfo(list);
-        UserServiceImpl userService = new UserServiceImpl();
-        pageInfo.setList(userService.effectiveness(pageInfo.getList()));
+//        UserServiceImpl userService = new UserServiceImpl();
+//        pageInfo.setList(userService.effectiveness(pageInfo.getList()));
         return pageInfo;
     }
 }

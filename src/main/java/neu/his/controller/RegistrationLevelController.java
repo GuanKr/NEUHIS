@@ -37,7 +37,13 @@ public class RegistrationLevelController {
             registrationLevelService.updateRegistrationLevel(registrationLevel);
         }
     }
-
+    @RequestMapping("deleteRegistrationLevelsByID")
+    public @ResponseBody
+    void deleteRegistrationLevelsByID(int[] ids){
+        for(int id:ids){
+            registrationLevelService.deleteByID(id);
+        }
+    }
 
 }
 
