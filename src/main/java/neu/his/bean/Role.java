@@ -17,7 +17,7 @@ public class Role {
     /**
      *@Author:
      *@param: [id, roleName]
-     * 主键id，角色名称
+     * 主键id ，角色名称
      *@return:
      *@Description: 构造方法2
      */

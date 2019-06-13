@@ -14,7 +14,7 @@ public class RegistrationLevel {
     private BigDecimal registrationPrice;
 
     /**
-     *@Author: dell on 2019/6/13 16:25
+     *@Author:
      *@param: [id, code, levelName, isDefault, registrationPrice]
      * 主键id，号别编码，号别名称，是否默认，挂号费
      *@return:

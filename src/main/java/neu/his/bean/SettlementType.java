@@ -8,7 +8,7 @@ public class SettlementType {
     /**
      *@Author:
      *@param: [id, settlementTypeName]
-     * 主键id ，结算类型名称
+     * 主键id , 结算类型名称
      *@return:
      *@Description: 构造方法1
      */

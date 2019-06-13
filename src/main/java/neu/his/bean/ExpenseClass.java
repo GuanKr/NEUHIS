@@ -8,6 +8,7 @@ public class ExpenseClass {
     private String expenseName;
 
     /**
+     *@Author:
      *@param: [id, expenseCode, expenseName]
      *主键id，费用科目编码，费用科目名称
      *@return:

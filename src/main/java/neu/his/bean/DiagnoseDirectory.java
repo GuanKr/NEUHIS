@@ -14,7 +14,7 @@ public class DiagnoseDirectory {
     private String deseaseTypeName;
 
     /**
-     *@Author: dell on 2019/6/13 15:21
+     *@Author:
      *@param: [id, diseaseCategoryCode, diseaseCategoryName, sequenceNo, diseaseType]
      * 主键id，分类编码，分类名称，显示顺序号，疾病类型
      *@return:
@@ -43,7 +43,7 @@ public class DiagnoseDirectory {
     }
 
     /**
-     *@Author: dell on 2019/6/13 15:39
+     *@Author:
      *@param: [diseaseCategoryCode, diseaseCategoryName, sequenceNo, deseaseTypeName]
      *  分类编码，分类名称，显示顺序号，疾病类型名称
      *@return:

@@ -20,7 +20,6 @@ public class ScheduleInfo {
      *@return:
      *@Description: 构造方法
      */
-
     public ScheduleInfo(Integer id, Integer userId, Date schedulDate, String bisessionalOperation, Integer surplusQuota) {
         this.id = id;
         this.userId = userId;

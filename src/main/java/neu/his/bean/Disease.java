@@ -43,6 +43,7 @@ public class Disease {
     }
 
     /**
+     *@Author
      *@param: [internationalIcdCode, diseaseName, diseaseMnemonicCode, diagnoseDirectoryName]
      * 国际ICD编码，疾病名称，疾病助记编码，诊断目录名称
      *@return:

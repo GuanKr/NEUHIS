@@ -16,7 +16,7 @@ public class ScheduleRule {
     /**
      *@Author:
      *@param: [id, userId, time, bisessionalOperation, schedulQuota]
-     * 主键id，用户id，时间，午别，排班限额
+     * 主键id，用户id，时间，午别， 排班限额
      *@return:
      *@Description: 构造方法
      */

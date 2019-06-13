@@ -10,6 +10,7 @@ public class Title {
     private Integer id;
 
     private String titleName;
+
     /**
      *@Author:
      *@param: [id, titleName]
@@ -22,6 +23,7 @@ public class Title {
         this.id = id;
         this.titleName = titleName;
     }
+
     /**
      *@Author:
      *@param: [titleName]

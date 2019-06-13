@@ -57,7 +57,6 @@ public class NonDrugList {
      *@return:
      *@Description: 构造方法2
      */
-
     public NonDrugList(Integer id, String itemCode, String itemName, String format, BigDecimal price, String mnemonicCode, Date creationTime, String expenseClassName, String executivedepartmentName, String itemTypeName) {
         this.id = id;
         this.itemCode = itemCode;
