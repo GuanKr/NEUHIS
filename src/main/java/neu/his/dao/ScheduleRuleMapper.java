@@ -26,7 +26,7 @@ public interface ScheduleRuleMapper {
     void insertScheduleRule(ScheduleRule scheduleRule);
 
     /**
-     * 查询根据类别查询排班规则
+     * 查询排班规则
      * @return 排班规则信息列表
      */
     List<ScheduleRule> selectWithName();

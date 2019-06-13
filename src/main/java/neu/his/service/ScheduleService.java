@@ -1,7 +1,9 @@
 package neu.his.service;
 
+import neu.his.bean.ScheduleInfo;
 import neu.his.bean.ScheduleRule;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,6 +19,8 @@ public interface ScheduleService {
      * @return 名称
      */
     String translate(String type);
+
+
 
     /**
      * 列出所有排版规则
@@ -41,4 +45,27 @@ public interface ScheduleService {
      * @param scheduleRule 内容更新过的排版规则
      */
     void updateScheduleRule(ScheduleRule scheduleRule);
+
+    /**
+     * 查询所有排班信息
+     * @return 所有排班信息列表
+     */
+    List<ScheduleInfo> findAllInfo();
+
+    /**
+     * 生成排班计划
+     */
+    void creatInfo(String start, String end);
+
+    /**
+     * 删除排班信息
+     * @param id 主键
+     */
+    void deleteInfo(int id);
+
+    /**
+     * 修改排班信息
+     * @param scheduleInfo
+     */
+    void updateInfo(ScheduleInfo scheduleInfo);
 }

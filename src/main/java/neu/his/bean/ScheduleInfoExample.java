@@ -252,63 +252,63 @@ public class ScheduleInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andSchedulDateIsNull() {
-            addCriterion("schedul_date is null");
+        public Criteria andScheduleDateIsNull() {
+            addCriterion("schedule_date is null");
             return (Criteria) this;
         }
 
-        public Criteria andSchedulDateIsNotNull() {
-            addCriterion("schedul_date is not null");
+        public Criteria andScheduleDateIsNotNull() {
+            addCriterion("schedule_date is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSchedulDateEqualTo(Date value) {
-            addCriterionForJDBCDate("schedul_date =", value, "schedulDate");
+        public Criteria andScheduleDateEqualTo(Date value) {
+            addCriterionForJDBCDate("schedule_date =", value, "scheduleDate");
             return (Criteria) this;
         }
 
-        public Criteria andSchedulDateNotEqualTo(Date value) {
-            addCriterionForJDBCDate("schedul_date <>", value, "schedulDate");
+        public Criteria andScheduleDateNotEqualTo(Date value) {
+            addCriterionForJDBCDate("schedule_date <>", value, "scheduleDate");
             return (Criteria) this;
         }
 
-        public Criteria andSchedulDateGreaterThan(Date value) {
-            addCriterionForJDBCDate("schedul_date >", value, "schedulDate");
+        public Criteria andScheduleDateGreaterThan(Date value) {
+            addCriterionForJDBCDate("schedule_date >", value, "scheduleDate");
             return (Criteria) this;
         }
 
-        public Criteria andSchedulDateGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("schedul_date >=", value, "schedulDate");
+        public Criteria andScheduleDateGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("schedule_date >=", value, "scheduleDate");
             return (Criteria) this;
         }
 
-        public Criteria andSchedulDateLessThan(Date value) {
-            addCriterionForJDBCDate("schedul_date <", value, "schedulDate");
+        public Criteria andScheduleDateLessThan(Date value) {
+            addCriterionForJDBCDate("schedule_date <", value, "scheduleDate");
             return (Criteria) this;
         }
 
-        public Criteria andSchedulDateLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("schedul_date <=", value, "schedulDate");
+        public Criteria andScheduleDateLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("schedule_date <=", value, "scheduleDate");
             return (Criteria) this;
         }
 
-        public Criteria andSchedulDateIn(List<Date> values) {
-            addCriterionForJDBCDate("schedul_date in", values, "schedulDate");
+        public Criteria andScheduleDateIn(List<Date> values) {
+            addCriterionForJDBCDate("schedule_date in", values, "scheduleDate");
             return (Criteria) this;
         }
 
-        public Criteria andSchedulDateNotIn(List<Date> values) {
-            addCriterionForJDBCDate("schedul_date not in", values, "schedulDate");
+        public Criteria andScheduleDateNotIn(List<Date> values) {
+            addCriterionForJDBCDate("schedule_date not in", values, "scheduleDate");
             return (Criteria) this;
         }
 
-        public Criteria andSchedulDateBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("schedul_date between", value1, value2, "schedulDate");
+        public Criteria andScheduleDateBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("schedule_date between", value1, value2, "scheduleDate");
             return (Criteria) this;
         }
 
-        public Criteria andSchedulDateNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("schedul_date not between", value1, value2, "schedulDate");
+        public Criteria andScheduleDateNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("schedule_date not between", value1, value2, "scheduleDate");
             return (Criteria) this;
         }
 
@@ -439,6 +439,136 @@ public class ScheduleInfoExample {
 
         public Criteria andSurplusQuotaNotBetween(Integer value1, Integer value2) {
             addCriterion("surplus_quota not between", value1, value2, "surplusQuota");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNull() {
+            addCriterion("status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNotNull() {
+            addCriterion("status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusEqualTo(String value) {
+            addCriterion("status =", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotEqualTo(String value) {
+            addCriterion("status <>", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThan(String value) {
+            addCriterion("status >", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThanOrEqualTo(String value) {
+            addCriterion("status >=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThan(String value) {
+            addCriterion("status <", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThanOrEqualTo(String value) {
+            addCriterion("status <=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLike(String value) {
+            addCriterion("status like", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotLike(String value) {
+            addCriterion("status not like", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIn(List<String> values) {
+            addCriterion("status in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotIn(List<String> values) {
+            addCriterion("status not in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusBetween(String value1, String value2) {
+            addCriterion("status between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotBetween(String value1, String value2) {
+            addCriterion("status not between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleQuotaIsNull() {
+            addCriterion("schedule_quota is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleQuotaIsNotNull() {
+            addCriterion("schedule_quota is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleQuotaEqualTo(Integer value) {
+            addCriterion("schedule_quota =", value, "scheduleQuota");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleQuotaNotEqualTo(Integer value) {
+            addCriterion("schedule_quota <>", value, "scheduleQuota");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleQuotaGreaterThan(Integer value) {
+            addCriterion("schedule_quota >", value, "scheduleQuota");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleQuotaGreaterThanOrEqualTo(Integer value) {
+            addCriterion("schedule_quota >=", value, "scheduleQuota");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleQuotaLessThan(Integer value) {
+            addCriterion("schedule_quota <", value, "scheduleQuota");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleQuotaLessThanOrEqualTo(Integer value) {
+            addCriterion("schedule_quota <=", value, "scheduleQuota");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleQuotaIn(List<Integer> values) {
+            addCriterion("schedule_quota in", values, "scheduleQuota");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleQuotaNotIn(List<Integer> values) {
+            addCriterion("schedule_quota not in", values, "scheduleQuota");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleQuotaBetween(Integer value1, Integer value2) {
+            addCriterion("schedule_quota between", value1, value2, "scheduleQuota");
+            return (Criteria) this;
+        }
+
+        public Criteria andScheduleQuotaNotBetween(Integer value1, Integer value2) {
+            addCriterion("schedule_quota not between", value1, value2, "scheduleQuota");
             return (Criteria) this;
         }
     }
