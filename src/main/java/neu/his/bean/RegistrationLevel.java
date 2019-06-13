@@ -13,6 +13,13 @@ public class RegistrationLevel {
 
     private BigDecimal registrationPrice;
 
+    /**
+     *@Author: dell on 2019/6/13 16:25
+     *@param: [id, code, levelName, isDefault, registrationPrice]
+     * 主键id，号别编码，号别名称，是否默认，挂号费
+     *@return:
+     *@Description: 构造方法1
+     */
     public RegistrationLevel(Integer id, String code, String levelName, String isDefault, BigDecimal registrationPrice) {
         this.id = id;
         this.code = code;
@@ -21,6 +28,13 @@ public class RegistrationLevel {
         this.registrationPrice = registrationPrice;
     }
 
+    /**
+     *@Author:
+     *@param: [code, levelName, isDefault, registrationPrice]
+     * 号别编码，号别名称，是否默认，挂号费
+     *@return:
+     *@Description: 构造方法2
+     */
     public RegistrationLevel(String code, String levelName, String isDefault, BigDecimal registrationPrice) {
         this.code = code;
         this.levelName = levelName;

@@ -7,6 +7,12 @@ public class ExpenseClass {
 
     private String expenseName;
 
+    /**
+     *@param: [id, expenseCode, expenseName]
+     *主键id，费用科目编码，费用科目名称
+     *@return:
+     *@Description: 构造方法1
+     */
     public ExpenseClass(Integer id, String expenseCode, String expenseName) {
         this.id = id;
         this.expenseCode = expenseCode;

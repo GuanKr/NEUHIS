@@ -13,6 +13,14 @@ public class DiagnoseDirectory {
 
     private String deseaseTypeName;
 
+    /**
+     *@Author: dell on 2019/6/13 15:21
+     *@param: [id, diseaseCategoryCode, diseaseCategoryName, sequenceNo, diseaseType]
+     * 主键id，分类编码，分类名称，显示顺序号，疾病类型
+     *@return:
+     *@Description: 构造方法1
+     */
+
     public DiagnoseDirectory(Integer id, String diseaseCategoryCode, String diseaseCategoryName, Integer sequenceNo, String diseaseType) {
         this.id = id;
         this.diseaseCategoryCode = diseaseCategoryCode;
@@ -21,14 +29,26 @@ public class DiagnoseDirectory {
         this.diseaseType = diseaseType;
     }
 
+    /**
+     *@param: [diseaseCategoryCode, id, diseaseCategoryName, sequenceNo, deseaseTypeName]
+     * 主键id，分类编码，分类名称，显示顺序号，疾病类型名称
+     *@return:
+     *@Description: 构造方法2
+     */
     public DiagnoseDirectory(String diseaseCategoryCode, Integer id, String diseaseCategoryName, Integer sequenceNo, String deseaseTypeName) {
-        this.id = id;
         this.diseaseCategoryCode = diseaseCategoryCode;
         this.diseaseCategoryName = diseaseCategoryName;
         this.sequenceNo = sequenceNo;
         this.deseaseTypeName = deseaseTypeName;
     }
 
+    /**
+     *@Author: dell on 2019/6/13 15:39
+     *@param: [diseaseCategoryCode, diseaseCategoryName, sequenceNo, deseaseTypeName]
+     *  分类编码，分类名称，显示顺序号，疾病类型名称
+     *@return:
+     *@Description: 构造方法3
+     */
     public DiagnoseDirectory(String diseaseCategoryCode, String diseaseCategoryName, Integer sequenceNo, String deseaseTypeName) {
         this.diseaseCategoryCode = diseaseCategoryCode;
         this.diseaseCategoryName = diseaseCategoryName;

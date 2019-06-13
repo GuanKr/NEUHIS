@@ -13,6 +13,13 @@ public class ScheduleRule {
 
     private Integer schedulQuota;
 
+    /**
+     *@Author:
+     *@param: [id, userId, time, bisessionalOperation, schedulQuota]
+     * 主键id，用户id，时间，午别，排班限额
+     *@return:
+     *@Description: 构造方法
+     */
     public ScheduleRule(Integer id, Integer userId, Date time, String bisessionalOperation, Integer schedulQuota) {
         this.id = id;
         this.userId = userId;

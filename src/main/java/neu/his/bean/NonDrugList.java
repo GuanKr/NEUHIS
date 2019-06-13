@@ -30,6 +30,13 @@ public class NonDrugList {
 
     private String itemTypeName;
 
+    /**
+     *@Author:
+     *@param: [id, itemCode, itemName, format, price, expenseClassId, executivedepartmentId, mnemonicCode, itemType, creationTime]
+     *主键id，项目编码，项目名称，规格，单价，所属费用科目id，执行科室id，拼音助记码，项目类型，创建时间
+     *@return:
+     *@Description: 构造方法1
+     */
     public NonDrugList(Integer id, String itemCode, String itemName, String format, BigDecimal price, Integer expenseClassId, Integer executivedepartmentId, String mnemonicCode, String itemType, Date creationTime) {
         this.id = id;
         this.itemCode = itemCode;
@@ -42,6 +49,14 @@ public class NonDrugList {
         this.itemType = itemType;
         this.creationTime = creationTime;
     }
+
+    /**
+     *@Author:
+     *@param: [id, itemCode, itemName, format, price, mnemonicCode, creationTime, expenseClassName, executivedepartmentName, itemTypeName]
+     *主键id，项目编码，项目名称，规格，单价，拼音助记码，创建时间，所属费用科目名称，执行科室名称，项目类型名称
+     *@return:
+     *@Description: 构造方法2
+     */
 
     public NonDrugList(Integer id, String itemCode, String itemName, String format, BigDecimal price, String mnemonicCode, Date creationTime, String expenseClassName, String executivedepartmentName, String itemTypeName) {
         this.id = id;
@@ -56,6 +71,13 @@ public class NonDrugList {
         this.itemTypeName = itemTypeName;
     }
 
+    /**
+     *@Author:
+     *@param: [id, itemCode, itemName, format, price, mnemonicCode, creationTime, expenseClassName, executivedepartmentName, itemTypeName]
+     *项目编码，项目名称，规格，单价，拼音助记码，创建时间，所属费用科目名称，执行科室名称，项目类型名称
+     *@return:
+     *@Description: 构造方法3
+     */
     public NonDrugList(String itemCode, String itemName, String format, BigDecimal price, String mnemonicCode, Date creationTime, String expenseClassName, String executivedepartmentName, String itemTypeName) {
         this.itemCode = itemCode;
         this.itemName = itemName;

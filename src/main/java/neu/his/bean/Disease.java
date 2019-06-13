@@ -13,6 +13,12 @@ public class Disease {
 
     public String diagnoseDirectoryName;
 
+    /**
+     *@param: [id, diagnoseDirectoryId, internationalIcdCode, diseaseName, diseaseMnemonicCode]
+     * 主键id ，诊断目录id，国际ICD编码，疾病名称，疾病助记编码
+     *@return:
+     *@Description: 构造方法1
+     */
     public Disease(Integer id, Integer diagnoseDirectoryId, String internationalIcdCode, String diseaseName, String diseaseMnemonicCode) {
         this.id = id;
         this.diagnoseDirectoryId = diagnoseDirectoryId;
@@ -20,6 +26,13 @@ public class Disease {
         this.diseaseName = diseaseName;
         this.diseaseMnemonicCode = diseaseMnemonicCode;
     }
+
+    /**
+     *@param: [id, internationalIcdCode, diseaseName, diseaseMnemonicCode, diagnoseDirectoryName]
+     * 主键id ，国际ICD编码，疾病名称，疾病助记编码，诊断目录名称
+     *@return:
+     *@Description: 构造方法2
+     */
 
     public Disease(Integer id, String internationalIcdCode, String diseaseName, String diseaseMnemonicCode, String diagnoseDirectoryName) {
         this.id = id;
@@ -29,6 +42,12 @@ public class Disease {
         this.diagnoseDirectoryName = diagnoseDirectoryName;
     }
 
+    /**
+     *@param: [internationalIcdCode, diseaseName, diseaseMnemonicCode, diagnoseDirectoryName]
+     * 国际ICD编码，疾病名称，疾病助记编码，诊断目录名称
+     *@return:
+     *@Description: 构造方法3
+     */
     public Disease(String internationalIcdCode, String diseaseName,String diseaseMnemonicCode, String diagnoseDirectoryName) {
         this.internationalIcdCode = internationalIcdCode;
         this.diseaseName = diseaseName;

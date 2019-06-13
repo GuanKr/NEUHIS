@@ -13,6 +13,14 @@ public class ScheduleInfo {
 
     private Integer surplusQuota;
 
+    /**
+     *@Author:
+     *@param: [id, userId, schedulDate, bisessionalOperation, surplusQuota]
+     * 主键id，用户id，排班日期，午别，剩余限额
+     *@return:
+     *@Description: 构造方法
+     */
+
     public ScheduleInfo(Integer id, Integer userId, Date schedulDate, String bisessionalOperation, Integer surplusQuota) {
         this.id = id;
         this.userId = userId;

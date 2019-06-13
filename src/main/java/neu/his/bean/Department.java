@@ -13,6 +13,13 @@ public class Department {
 
     private String departmentTypeName;
 
+    /**
+     *@Author:
+     *@param: [id, departmentCode, departmentName, departmentCategory, departmentType]
+     * 主键id，部门编码，部门名称，部门分类，部门类型
+     *@return:
+     *@Description: 构造方法1
+     */
     public Department(Integer id, String departmentCode, String departmentName, String departmentCategory, String departmentType) {
         this.id = id;
         this.departmentCode = departmentCode;
@@ -21,6 +28,13 @@ public class Department {
         this.departmentType = departmentType;
     }
 
+    /**
+     * @Author:
+     * @param: [departmentCode, id, departmentName, departmentCategory, departmentTypeName]
+     * 部门编码，主键id，部门名称，部门分类，部门分类名称
+     *@return:
+     *@Description: 构造方法2
+     */
     public Department( String departmentCode, Integer id, String departmentName, String departmentCategory,String departmentTypeName) {
         this.id = id;
         this.departmentCode = departmentCode;
@@ -29,6 +43,13 @@ public class Department {
         this.departmentTypeName = departmentTypeName;
     }
 
+    /**
+     *@Author:
+     *@param: [departmentCode, departmentName, departmentCategory, departmentTypeName]
+     * 部门编码，部门名称，部门分类，部门分类名称
+     *@return:
+     *@Description: 构造方法3
+     */
     public Department(String departmentCode, String departmentName, String departmentCategory, String departmentTypeName){
         this.departmentCode = departmentCode;
         this.departmentName = departmentName;
