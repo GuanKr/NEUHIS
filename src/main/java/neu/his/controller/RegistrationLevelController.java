@@ -28,6 +28,7 @@ public class RegistrationLevelController {
     public @ResponseBody
     void addRegistrtionLevel(RegistrationLevel registrationLevel){
         registrationLevelService.insertRegistrationLevel(registrationLevel);
+
     }
     @RequestMapping("updateRegistrationLevels")
     public @ResponseBody
