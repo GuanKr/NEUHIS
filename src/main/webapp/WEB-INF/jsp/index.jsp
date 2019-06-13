@@ -15,7 +15,9 @@
     <br/><br/>
     <a class="h4" href="registrationLevel/registrationLevelManagement">挂号等级管理</a>
     <br/><br/>
-    <a href="registrationLevel/registrationLevelManagement">挂号等级管理</a>
+    <a href="settlementType/settlementTypeManagement">结算类别管理</a>
+    <br/><br/>
+    <a href="diagnoseDirectory/diagnoseDirectoryManagement">诊断目录管理</a>
     <br/><br/>
 
 </body>
