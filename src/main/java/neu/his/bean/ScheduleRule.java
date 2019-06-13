@@ -1,24 +1,81 @@
 package neu.his.bean;
 
-import java.util.Date;
-
 public class ScheduleRule {
     private Integer id;
 
     private Integer userId;
 
-    private Date time;
+    private String week;
 
     private String bisessionalOperation;
 
     private Integer schedulQuota;
 
-    public ScheduleRule(Integer id, Integer userId, Date time, String bisessionalOperation, Integer schedulQuota) {
+    private String status;
+
+    private String userName;
+
+    private String department_name;
+
+    private String registrationLevelName;
+
+    private String statusName;
+
+    public ScheduleRule(Integer id, Integer userId, String week, String bisessionalOperation, Integer schedulQuota, String status) {
         this.id = id;
         this.userId = userId;
-        this.time = time;
+        this.week = week;
         this.bisessionalOperation = bisessionalOperation;
         this.schedulQuota = schedulQuota;
+        this.status = status;
+    }
+
+    public ScheduleRule(String week, String bisessionalOperation, Integer schedulQuota, String statusName, String userName) {
+        this.week = week;
+        this.bisessionalOperation = bisessionalOperation;
+        this.schedulQuota = schedulQuota;
+        this.statusName = statusName;
+        this.userName = userName;
+    }
+
+    public ScheduleRule(Integer id, String week, String bisessionalOperation, Integer schedulQuota, String statusName) {
+        this.id = id;
+        this.week = week;
+        this.bisessionalOperation = bisessionalOperation;
+        this.schedulQuota = schedulQuota;
+        this.statusName = statusName;
+    }
+
+    public String getStatusName() {
+        return statusName;
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
+    }
+
+    public String getRegistrationLevelName() {
+        return registrationLevelName;
+    }
+
+    public void setRegistrationLevelName(String registrationLevelName) {
+        this.registrationLevelName = registrationLevelName;
+    }
+
+    public String getDepartment_name() {
+        return department_name;
+    }
+
+    public void setDepartment_name(String department_name) {
+        this.department_name = department_name;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public ScheduleRule() {
@@ -41,12 +98,12 @@ public class ScheduleRule {
         this.userId = userId;
     }
 
-    public Date getTime() {
-        return time;
+    public String getWeek() {
+        return week;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public void setWeek(String week) {
+        this.week = week == null ? null : week.trim();
     }
 
     public String getBisessionalOperation() {
@@ -63,5 +120,29 @@ public class ScheduleRule {
 
     public void setSchedulQuota(Integer schedulQuota) {
         this.schedulQuota = schedulQuota;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "ScheduleRule{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", week='" + week + '\'' +
+                ", bisessionalOperation='" + bisessionalOperation + '\'' +
+                ", schedulQuota=" + schedulQuota +
+                ", status='" + status + '\'' +
+                ", userName='" + userName + '\'' +
+                ", department_name='" + department_name + '\'' +
+                ", registrationLevelName='" + registrationLevelName + '\'' +
+                ", statusName='" + statusName + '\'' +
+                '}';
     }
 }
