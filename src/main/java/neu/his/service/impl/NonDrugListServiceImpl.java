@@ -50,16 +50,11 @@ public class NonDrugListServiceImpl implements NonDrugListService {
     @Override
     public List<NonDrugList> findAll() {
         List<NonDrugList> list;
-        list = nonDrugListMapper.selectByExample(new NonDrugListExample());
-
+        list = nonDrugListMapper.selectWithName();
         for(NonDrugList nonDrugList : list){
-            nonDrugList.setExecutivedepartmentName(translateMapper.translate_department(nonDrugList.getExecutivedepartmentId()));
-            nonDrugList.setExpenseClassName(translateMapper.translate_expense_class(nonDrugList.getExpenseClassId()));
             nonDrugList.setItemTypeName(translate(nonDrugList.getItemType()));
         }
-
         return list;
-
     }
 
     @Override
@@ -69,56 +64,23 @@ public class NonDrugListServiceImpl implements NonDrugListService {
 
     @Override
     public List<NonDrugList> findByAttribute_name(String attribute_name, String attribute) {
-        List<Department> departments;
-        List<ExpenseClass> expenseClasses;
-        List<NonDrugList> nonDrugLists;
         List<NonDrugList> list;
-
-        nonDrugLists = findAll();
-        expenseClasses = expenseClassMapper.selectByExample(new ExpenseClassExample());
-        departments = departmentMapper.selectByExample(new DepartmentExample());
-
-        NonDrugListExample nonDrugListExample = new NonDrugListExample();
-        if (attribute_name.equals("item_name")) {
-            for (NonDrugList nonDrugList : nonDrugLists) {
-                String name = nonDrugList.getItemName();
-                if (name.contains(attribute)) {
-                    nonDrugListExample.or().andItemNameEqualTo(attribute);
-                }
-            }
-        } else if (attribute_name.equals("expense_class_id")) {
-            for (ExpenseClass expenseClass : expenseClasses) {
-                String name = expenseClass.getExpenseName();
-                if (name.contains(attribute)) {
-                    nonDrugListExample.or().andExpenseClassIdEqualTo(expenseClass.getId());
-                }
-            }
-        }else if(attribute_name.equals("executivedepartment_id")) {
-            for (Department department : departments) {
-                String name = department.getDepartmentName();
-                if (name.contains(attribute)) {
-                    nonDrugListExample.or().andExecutivedepartmentIdEqualTo(department.getId());
-                }
-            }
-        }else
-            return null;
-        list = nonDrugListMapper.selectByExample(nonDrugListExample);
+        list =  nonDrugListMapper.query(new Query(attribute_name,attribute));
+        for(NonDrugList nonDrugList : list){
+            nonDrugList.setItemTypeName(translate(nonDrugList.getItemType()));
+        }
         return list;
     }
 
     @Override
     public void insertNonDrugList(NonDrugList nonDrugList) {
         nonDrugList.setItemType(de_translate(nonDrugList.getItemTypeName()));
-        nonDrugList.setExecutivedepartmentId(translateMapper.de_translate_department(nonDrugList.getExecutivedepartmentName()));
-        nonDrugList.setExpenseClassId(translateMapper.de_translate_expense_class(nonDrugList.getExpenseClassName()));
-        nonDrugListMapper.insertSelective(nonDrugList);
+        nonDrugListMapper.insertNonDrugList(nonDrugList);
     }
 
     @Override
     public void updateNonDrugList(NonDrugList nonDrugList) {
         nonDrugList.setItemType(de_translate(nonDrugList.getItemTypeName()));
-        nonDrugList.setExecutivedepartmentId(translateMapper.de_translate_department(nonDrugList.getExecutivedepartmentName()));
-        nonDrugList.setExpenseClassId(translateMapper.de_translate_expense_class(nonDrugList.getExpenseClassName()));
-        nonDrugListMapper.updateByPrimaryKey(nonDrugList);
+        nonDrugListMapper.updateNonDrugList(nonDrugList);
     }
 }

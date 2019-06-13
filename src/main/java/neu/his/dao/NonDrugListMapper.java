@@ -3,6 +3,7 @@ package neu.his.dao;
 import java.util.List;
 import neu.his.bean.NonDrugList;
 import neu.his.bean.NonDrugListExample;
+import neu.his.bean.Query;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -12,6 +13,29 @@ import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
 
 public interface NonDrugListMapper {
+    /**
+     * 查询非药品目录信息
+     * @param Query 封装的查询信息
+     */
+    List<NonDrugList> query(Query Query);
+
+    /**
+     * 更新非药品目录信息
+     * @param nonDrugList 非药品目录信息
+     */
+    void updateNonDrugList(NonDrugList nonDrugList);
+
+    /**
+     * 插入非药品目录信息
+     * @param nonDrugList 非药品目录信息
+     */
+    void insertNonDrugList(NonDrugList nonDrugList);
+    /**
+     * 查询根据类别查询非药品目录
+     * @return 非药品目录信息列表
+     */
+    List<NonDrugList> selectWithName();
+
     int countByExample(NonDrugListExample example);
 
     int deleteByExample(NonDrugListExample example);
