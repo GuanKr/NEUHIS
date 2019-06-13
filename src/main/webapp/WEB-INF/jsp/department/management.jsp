@@ -128,25 +128,14 @@
 <script type="text/javascript">
     //科室表
     var departments = null;
-    $.ajax({
-        type: "POST",
-        url: "department/list",
-        async: false,
-        success: function (result) {
-            departments = result;
-        },
-        error :function () {
-            alert("获取科室信息失败");
-        }
-    });
     //科室分类
-    var departmentCategory = null;
+    var departmentCategories = null;
     $.ajax({
         type: "POST",
         url: "department/departmentCategory",
         async: false,
         success: function (result) {
-            departmentCategory = result;
+            departmentCategories = result;
         },
         error: function () {
             alert("获取科室分类失败");
@@ -161,18 +150,57 @@
             str += "<tr>" +
                 "<td><input type='text' class=\"form-control\" value=\"" + departments[i].id + "\" name=\"departments[" + i + "].id\" readonly/></td>\n" +
                 "<td><input type=\"text\" class=\"form-control\" value=\"" + departments[i].departmentCode + "\" name=\"departments[" + i + "].departmentCode\"/></td>\n" +
-                "<td><input type=\"text\" class=\"form-control\" value=\"" + departments[i].departmentName + "\" name=\"departments[" + i + "].departmentName\"/></td>\n" +
-                "<td><input type=\"text\" class=\"form-control\" value=\"" + departments[i].departmentCategory + "\" name=\"departments[" + i + "].departmentName\"/></td>\n" +
-                "<td><input type=\"text\" class=\"form-control\" value=\"" + departments[i].departmentCategory + "\" name=\"departments[" + i + "].departmentName\"/></td>\n" +
-                "</tr>";
+                "<td><input type=\"text\" class=\"form-control\" value=\"" + departments[i].departmentName + "\" name=\"departments[" + i + "].departmentName\"/></td>\n";
+            str += "<td><select name=\"departments[" + i + "].departmentCategory\" class=\"form-control\">\n";
+            for(var departmentCategoriesI = 0;departmentCategoriesI < departmentCategories.length;departmentCategoriesI++){
+                if (departmentCategories[departmentCategoriesI] == departments[i].departmentCategory){
+                    str += "<option value=\"" + departmentCategories[departmentCategoriesI] + "\" selected>" + departmentCategories[departmentCategoriesI] + "</option>\n";
+                }else {
+                    str += "<option value=\"" + departmentCategories[departmentCategoriesI] + "\">" + departmentCategories[departmentCategoriesI] + "</option>\n";
+                }
+            }
+            str += "</select></td>";
+            str += "<td><select name=\"departments[" + i + "].departmentTypeName\" class=\"form-control\">\n";
+            if (departments[i].departmentTypeName == "临床科室"){
+                str += "<option value='临床科室' selected>临床科室</option>" +
+                    "<option value='医技科室' >医技科室</option>" +
+                    "<option value='财务科室' >财务科室</option>" +
+                    "<option value='行政科室' >行政科室</option>" +
+                    "<option value='其他科室' >其他科室</option>";
+            }else if (departments[i].departmentTypeName == "医技科室") {
+                str += "<option value='临床科室' >临床科室</option>" +
+                    "<option value='医技科室' selected>医技科室</option>" +
+                    "<option value='财务科室' >财务科室</option>" +
+                    "<option value='行政科室' >行政科室</option>" +
+                    "<option value='其他科室' >其他科室</option>";
+            }else if (departments[i].departmentTypeName == "财务科室") {
+                str += "<option value='临床科室' >临床科室</option>" +
+                    "<option value='医技科室' >医技科室</option>" +
+                    "<option value='财务科室' selected>财务科室</option>" +
+                    "<option value='行政科室' >行政科室</option>" +
+                    "<option value='其他科室' >其他科室</option>";
+            }else if (departments[i].departmentTypeName == "行政科室") {
+                str += "<option value='临床科室' >临床科室</option>" +
+                    "<option value='医技科室' >医技科室</option>" +
+                    "<option value='财务科室' >财务科室</option>" +
+                    "<option value='行政科室' selected>行政科室</option>" +
+                    "<option value='其他科室' >其他科室</option>";
+            }else {
+                str += "<option value='临床科室' >临床科室</option>" +
+                    "<option value='医技科室' >医技科室</option>" +
+                    "<option value='财务科室' >财务科室</option>" +
+                    "<option value='行政科室' >行政科室</option>" +
+                    "<option value='其他科室' selected>其他科室</option>";
+            }
+            str += "</select></td>";
+            str += "</tr>";
         }
         $("#tableBody").append(str);
     }
-    function setAddDepartment(){
+    function setDepartmentCategoryInput(){
         var setDepartmentCategory = null;
-        for (var i = 0; i < departments.length; i++) {
-            setDepartmentCategory += "<option value=" + departments[i].departmentName + ">" + departments[i].departmentName + "</option>\n";
-        //    TODO
+        for (var i = 0; i < departmentCategories.length; i++) {
+            setDepartmentCategory += "<option value=" + departmentCategories[i] + ">" + departmentCategories[i] + "</option>\n";
         }
         $("#departmentCategoryInput").html(setDepartmentCategory);
     }
@@ -190,7 +218,7 @@
         }
         $("#pageChoose").append(str);
     }
-    //获取指定页数据
+    //获取指定页科室数据
     var pageInfo = null;
     function getPageN(pageN) {
         $.ajax({
@@ -199,7 +227,6 @@
             data: {pageNum : pageN,pageSize : 10},
             success: function (result) {
                 pageInfo = result;
-                console.log(pageInfo);
                 departments = pageInfo.list;
                 setTableBody();
                 setPageChoose();
@@ -209,9 +236,27 @@
             }
         });
     }
+    //获取查询过后的带有第N页科室信息的pageInfo
+    var pageInfo = null;
+    function getSearchedPageN(pageN) {
+        $.ajax({
+            type: "POST",
+            url: "department/findByAttributeWithPageHelper",
+            data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val(),pageNum : pageN,pageSize : 10},
+            success: function (result) {
+                pageInfo = result;
+                departments = pageInfo.list;
+                setTableBody();
+                setSearchedPageChoose();
+            },
+            error: function () {
+                alert("分页信息错误");
+            }
+        });
+    }
     $(document).ready(function(){
         getPageN(1);
-        setAddDepartment();
+        setDepartmentCategoryInput();
         //设置保存按钮功能
         $("#updateDepartments").click(function () {
             $.ajax({
@@ -227,40 +272,18 @@
                 }
             });
         });
-
-
         //设置查找功能按钮
         $("#search").click(function(){
-            $.ajax({
-                type: "POST",
-                url: "user/findbyattribute",
-                data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val()},
-                success: function (result) {
-                    //    TODO result为departments 未测试
-                    departments = result;
-                    setTableBody();
-                }
-            });
+            getSearchedPageN(1);
         });
         //设置用户添加按钮
-        $("#addUserButton").click(function () {
+        $("#addDepartmentButton").click(function () {
             $.ajax({
                 type: "POST",
-                url: "user/insertuser",
-                data: $('#addUser').serialize(),
+                url: "department/updatedepartments",
+                data: $('#addDepartment').serialize(),
                 success: function () {
-                    $.ajax({
-                        type: "POST",
-                        url: "user/list",
-                        async: false,
-                        success: function (result) {
-                            departments = result;
-                            setTableBody();
-                        },
-                        error :function () {
-                            alert("获取用户表失败");
-                        }
-                    });
+                    getPageN(1);
                 }
             });
         });
