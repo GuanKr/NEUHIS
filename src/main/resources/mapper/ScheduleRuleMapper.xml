@@ -1,13 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="neu.his.dao.ScheduleRuleMapper" >
+
+  <select id="selectWithName" resultMap="ScheduleRules">
+    SELECT schedule_rule.id as sid,
+    user_id,
+    week,
+    bisessional_operation,
+    schedul_quota,
+    status,
+    level_name,
+    user.name,
+    department_name
+    FROM schedule_rule LEFT JOIN user
+    on schedule_rule.user_id = user.id
+    left JOIN department
+    on user.department_id = department.id
+    left join registration_level
+    on user.registration_level_id = registration_level.id
+  </select>
+
+  <insert id="insertScheduleRule" parameterType="neu.his.bean.ScheduleRule">
+    INSERT  INTO schedule_rule (week,bisessional_operation,schedul_quota,status,user_id)
+    SELECT #{week},#{bisessionalOperation},#{schedulQuota},#{status},user.id
+    FROM user
+    WHERE user.name = #{userName}
+  </insert>
+
+  <resultMap id="ScheduleRules" type="neu.his.bean.ScheduleRule">
+    <id property="id" column="sid"/>
+    <result property="userId" column="user_id"/>
+    <result property="week" column="week"/>
+    <result property="bisessionalOperation" column="bisessional_operation"/>
+    <result property="schedulQuota" column="schedul_quota"/>
+    <result property="status" column="status"/>
+    <result property="registrationLevelName" column="level_name"/>
+    <result property="userName" column="name"/>
+    <result property="department_name" column="department_name"/>
+  </resultMap>
+
+
+
   <resultMap id="BaseResultMap" type="neu.his.bean.ScheduleRule" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="week" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="bisessional_operation" jdbcType="CHAR" javaType="java.lang.String" />
       <arg column="schedul_quota" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="status" jdbcType="CHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -69,7 +110,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, user_id, time, bisessional_operation, schedul_quota
+    id, user_id, week, bisessional_operation, schedul_quota, status
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="neu.his.bean.ScheduleRuleExample" >
     select
@@ -101,8 +142,8 @@
       <if test="userId != null" >
         user_id,
       </if>
-      <if test="time != null" >
-        time,
+      <if test="week != null" >
+        week,
       </if>
       <if test="bisessionalOperation != null" >
         bisessional_operation,
@@ -110,20 +151,26 @@
       <if test="schedulQuota != null" >
         schedul_quota,
       </if>
+      <if test="status != null" >
+        status,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       #{id,jdbcType=INTEGER},
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
       </if>
-      <if test="time != null" >
-        #{time,jdbcType=TIMESTAMP},
+      <if test="week != null" >
+        #{week,jdbcType=VARCHAR},
       </if>
       <if test="bisessionalOperation != null" >
         #{bisessionalOperation,jdbcType=CHAR},
       </if>
       <if test="schedulQuota != null" >
         #{schedulQuota,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -142,14 +189,17 @@
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
-      <if test="record.time != null" >
-        time = #{record.time,jdbcType=TIMESTAMP},
+      <if test="record.week != null" >
+        week = #{record.week,jdbcType=VARCHAR},
       </if>
       <if test="record.bisessionalOperation != null" >
         bisessional_operation = #{record.bisessionalOperation,jdbcType=CHAR},
       </if>
       <if test="record.schedulQuota != null" >
         schedul_quota = #{record.schedulQuota,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=CHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -160,9 +210,10 @@
     update schedule_rule
     set id = #{record.id,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
-      time = #{record.time,jdbcType=TIMESTAMP},
+      week = #{record.week,jdbcType=VARCHAR},
       bisessional_operation = #{record.bisessionalOperation,jdbcType=CHAR},
-      schedul_quota = #{record.schedulQuota,jdbcType=INTEGER}
+      schedul_quota = #{record.schedulQuota,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=CHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -173,14 +224,17 @@
       <if test="userId != null" >
         user_id = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="time != null" >
-        time = #{time,jdbcType=TIMESTAMP},
+      <if test="week != null" >
+        week = #{week,jdbcType=VARCHAR},
       </if>
       <if test="bisessionalOperation != null" >
         bisessional_operation = #{bisessionalOperation,jdbcType=CHAR},
       </if>
       <if test="schedulQuota != null" >
         schedul_quota = #{schedulQuota,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

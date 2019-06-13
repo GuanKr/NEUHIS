@@ -33,7 +33,7 @@ public interface DiagnoseDirectoryService {
 
     /**
      * 根据输入内容进行查询
-     * @param attribute 查询内容
+     * @param attribute 疾病分类名称查询内容
      * @return 诊断目录信息列表
      */
     List<DiagnoseDirectory> findByAttribute_name(String attribute);

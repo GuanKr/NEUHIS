@@ -197,4 +197,23 @@ public class NonDrugList {
     public void setCreationTime(Date creationTime) {
         this.creationTime = creationTime;
     }
+
+    @Override
+    public String toString() {
+        return "NonDrugList{" +
+                "id=" + id +
+                ", itemCode='" + itemCode + '\'' +
+                ", itemName='" + itemName + '\'' +
+                ", format='" + format + '\'' +
+                ", price=" + price +
+                ", expenseClassId=" + expenseClassId +
+                ", executivedepartmentId=" + executivedepartmentId +
+                ", mnemonicCode='" + mnemonicCode + '\'' +
+                ", itemType='" + itemType + '\'' +
+                ", creationTime=" + creationTime +
+                ", expenseClassName='" + expenseClassName + '\'' +
+                ", executivedepartmentName='" + executivedepartmentName + '\'' +
+                ", itemTypeName='" + itemTypeName + '\'' +
+                '}';
+    }
 }

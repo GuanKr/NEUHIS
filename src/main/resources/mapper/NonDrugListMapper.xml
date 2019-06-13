@@ -2,6 +2,63 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="neu.his.dao.NonDrugListMapper" >
 
+  <select id="selectWithName" resultMap="NonDrugLists">
+      SELECT non_drug_list.id as nid,item_code,item_name,format,price,expense_class_id,executivedepartment_id,mnemonic_code,item_type,creation_time,expense_name,department_name
+    FROM non_drug_list LEFT JOIN expense_class
+      on non_drug_list.expense_class_id = expense_class.id
+    LEFT JOIN department
+     on non_drug_list.executivedepartment_id = department.id
+  </select>
+  <resultMap id="NonDrugLists" type="neu.his.bean.NonDrugList">
+    <id property="id" column="nid"/>
+    <result property="itemCode" column="item_code"/>
+    <result property="itemName" column="item_name"/>
+    <result property="format" column="format"/>
+    <result property="price" column="price"/>
+    <result property="expenseClassId" column="expense_class_id"/>
+    <result property="executivedepartmentId" column="executivedepartment_id"/>
+    <result property="mnemonicCode" column="mnemonic_code"/>
+    <result property="itemType" column="item_type"/>
+    <result property="creationTime" column="creation_time"/>
+    <result property="expenseClassName" column="expense_name"/>
+    <result property="executivedepartmentName" column="department_name"/>
+  </resultMap>
+  <insert id="insertNonDrugList" parameterType="neu.his.bean.NonDrugList">
+    INSERT  INTO non_drug_list (expense_class_id,executivedepartment_id,item_code,item_name,format,price,mnemonic_code,item_type,creation_time)
+    SELECT expense_class.id,department.id,#{itemCode},#{itemName},#{format},#{price},#{mnemonicCode},#{itemType},#{creationTime}
+    FROM expense_class,his.department
+    WHERE expense_name = #{expenseClassName} and department_name = #{executivedepartmentName}
+  </insert>
+
+  <update id="updateNonDrugList" parameterType="neu.his.bean.NonDrugList">
+  UPDATE his.non_drug_list
+  SET expense_class_id =
+  (SELECT expense_class.id
+  FROM expense_class
+  WHERE expense_name = #{expenseClassName}),
+
+  executivedepartment_id =
+  (SELECT department.id
+  FROM his.department
+  WHERE department_name = #{executivedepartmentName}),
+  de item_code = #{itemCode},
+  item_name = #{itemName},
+  format = #{format},
+  price = #{price},
+  mnemonic_code = #{mnemonicCode},
+  item_type = #{itemType},
+  creation_time = #{creationTime}
+  where non_drug_list.id = #{id}
+  </update>
+
+  <select id="query" parameterType="neu.his.bean.Query"  resultMap="NonDrugLists" statementType="STATEMENT">
+ SELECT non_drug_list.id as nid,item_code,item_name,format,price,expense_class_id,executivedepartment_id,mnemonic_code,item_type,creation_time,expense_name,department_name
+    FROM non_drug_list LEFT JOIN expense_class
+      on non_drug_list.expense_class_id = expense_class.id
+    LEFT JOIN department
+     on non_drug_list.executivedepartment_id = department.id
+    where ${attribute_name} like CONCAT('%','${attribute}','%')
+</select>
 
 
   <resultMap id="BaseResultMap" type="neu.his.bean.NonDrugList" >

@@ -42,7 +42,7 @@ public class DiagnoseDirectoryServiceImpl implements DiagnoseDirectoryService {
         List<DiagnoseDirectory> list;
         list = diagnoseDirectoryMapper.selectByExample(new DiagnoseDirectoryExample());
         for(DiagnoseDirectory diagnoseDirectory : list){
-
+            diagnoseDirectory.setDeseaseTypeName(translate(diagnoseDirectory.getDiseaseType()));
         }
         return list;
     }
@@ -62,7 +62,12 @@ public class DiagnoseDirectoryServiceImpl implements DiagnoseDirectoryService {
                 diagnoseDirectoryExample.or().andDiseaseCategoryNameEqualTo(name);
             }
         }
+
         list = diagnoseDirectoryMapper.selectByExample(diagnoseDirectoryExample);
+
+        for(DiagnoseDirectory diagnoseDirectory : list){
+            diagnoseDirectory.setDeseaseTypeName(translate(diagnoseDirectory.getDiseaseType()));
+        }
         return list;
 
     }
