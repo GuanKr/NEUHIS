@@ -4,6 +4,7 @@ import neu.his.bean.Department;
 
 import java.util.List;
 
+
 public class DepartmentDTO {
     private List<Department> departments;
 

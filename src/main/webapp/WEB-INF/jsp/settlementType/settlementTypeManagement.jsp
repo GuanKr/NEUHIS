@@ -1,7 +1,7 @@
 <%--
   Created by IntelliJ IDEA.
   User: GQ
-  Date: 2019/6/12
+  Date: 2019/6/13
   Time: 10:43
   To change this template use File | Settings | File Templates.
 --%>
@@ -15,18 +15,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
+<%--    该网页id名称未修改  --%>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
-    <title>挂号等级</title>
+    <title>结算类别</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
 <body style="margin-top: 50px">
 <ol class="breadcrumb container">
     <li><a href="#">首页</a></li>
-    <li class="active">挂号等级管理</li>
+    <li class="active">结算类别管理</li>
 </ol>
 <div align="center">
-    <h2>医院挂号等级管理</h2>
+    <h2>医院结算类别管理</h2>
 </div>
 <form class="container" id="registrationLevelForm">
     <div class="row">
@@ -41,10 +42,7 @@
         <tr>
             <th>删除</th>
             <th class="col-md-2">id</th>
-            <th >等级编码</th>
-            <th>等级名称</th>
-            <th class="col-md-2">是否默认</th>
-            <th class=>挂号费用</th>
+            <th >结算类别</th>
         </tr>
         </thead>
         <tbody id="tableBody">
@@ -55,38 +53,14 @@
 <form class="" role="form" id="addRegistrationLevel"><div class="container">
     <fieldset>
         <div id="legend" class="">
-            <legend class="">添加挂号等级</legend>
+            <legend class="">添加结算类别</legend>
         </div>
     </fieldset>
     <div class="row">
         <div class="form-group col-md-3">
-            <label class="col-md-4 control-label text-right" for="registrationLevelCodeInput">等级编码</label>
+            <label class="col-md-4 control-label text-right" for="settlementTypeInput">等级编码</label>
             <div class="col-md-8 input-group">
-                <input type="text" class="form-control" id="registrationLevelCodeInput" name="code"/>
-                <span class="input-group-addon" style="color: red">*</span>
-            </div>
-        </div>
-        <div class="form-group col-md-3">
-            <label class="col-md-4 control-label text-right" for="registrationLevelNameInput">等级名称</label>
-            <div class="col-md-8 input-group">
-                <input type="text" class="form-control" id="registrationLevelNameInput" name="levelName"/>
-                <span class="input-group-addon" style="color: red">*</span>
-            </div>
-        </div>
-        <div class="form-group col-md-3">
-            <label class="col-md-4 control-label text-right" for="registrationLevelIsDefaultInput">是否默认</label>
-            <div class="col-md-8 input-group">
-                <select class="show-tick form-control" id="registrationLevelIsDefaultInput" name="isDefault">
-                    <option value=0 >否</option>
-                    <option value=1 >默认</option>
-                </select>
-                <span class="input-group-addon" style="color: red">*</span>
-            </div>
-        </div>
-        <div class="form-group col-md-3">
-            <label class="col-md-4 control-label text-right" for="registrationLevelPriceInput">挂号价格</label>
-            <div class="col-md-8 input-group">
-                <input type="text" class="form-control" id="registrationLevelPriceInput" name="registrationPrice"/>
+                <input type="text" class="form-control" id="settlementTypeInput" name="settlementTypeName"/>
                 <span class="input-group-addon" style="color: red">*</span>
             </div>
         </div>
@@ -101,17 +75,17 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript">
-    //挂号等级表
-    var registrationLevels = null;
+    //结算类别表
+    var settlementTypes = null;
     $.ajax({
         type: "POST",
-        url: "registrationLevel/list",
+        url: "settlementType/list",
         async: false,
         success: function (result) {
-            registrationLevels = result;
+            settlementTypes = result;
         },
         error :function () {
-            alert("获取挂号等级表失败");
+            alert("获取结算类别表失败");
         }
     });
     //设置挂号等级信息表格
@@ -119,23 +93,12 @@
         var str;
         str = "";
         $("#tableBody").html("");
-        for (var i = 0;i < registrationLevels.length;i++){
+        for (var i = 0;i < settlementTypes.length;i++){
             str += "<tr>" +
-                "<td ><input type='checkbox' value='" + registrationLevels[i].id + "'/></td>" +
-                "<td class='col-md-2'><input type='text' class=\"form-control\" value=\"" + registrationLevels[i].id + "\" name=\"registrationLevels[" + i + "].id\" readonly/></td>\n" +
-                "<td><input type=\"text\" class=\"form-control\" value=\"" + registrationLevels[i].code + "\" name=\"registrationLevels[" + i + "].code\"/></td>\n" +
-                "<td><input type=\"text\" class=\"form-control\" value=\"" + registrationLevels[i].levelName + "\" name=\"registrationLevels[" + i + "].levelName\"/></td>\n";
-            str += "<td class='col-md-2'><select name=\"registrationLevels[" + i + "].isDefault\" class=\"form-control\">\n";
-            if (registrationLevels[i].isDefault == 0){
-                str += "<option value=0 selected>否</option>\n";
-                str += "<option value=1>默认</option>\n";
-            }else {
-                str += "<option value=0 >否</option>\n";
-                str += "<option value=1 selected>默认</option>\n";
-            }
-            str += "</select></td>";
-            str += "<td class='col-lg-2'><div class='input-group'><input type=\"text\" class=\"form-control\" value=\"" + registrationLevels[i].registrationPrice + "\" name=\"registrationLevels[" + i + "].registrationPrice\"/><span class=\"input-group-addon\">￥</span></div></td>\n" +
-                "</tr>";
+                "<td ><input type='checkbox' value='" + settlementTypes[i].id + "'/></td>" +
+                "<td class='col-md-2'><input type='text' class=\"form-control\" value=\"" + settlementTypes[i].id + "\" name=\"settlementTypes[" + i + "].id\" readonly/></td>\n" +
+                "<td><input type=\"text\" class=\"form-control\" value=\"" + settlementTypes[i].code + "\" name=\"settlementTypes[" + i + "].settlementTypeName\"/></td>\n";
+            str += "</tr>";
         }
         $("#tableBody").append(str);
     }
@@ -151,48 +114,46 @@
             });
             $.ajax({
                 type: "POST",
-                url: "registrationLevel/deleteRegistrationLevelsByID",
+                url: "settlementType/deleteSettlementTypesByID",
                 data: JSON.stringify(deleteIDs),
                 async: false,
                 success: function () {
                     //TODO 未测试
                     $.ajax({
                         type: "POST",
-                        url: "registrationLevel/list",
+                        url: "settlementType/list",
                         async: false,
                         success: function (result) {
-                            registrationLevels = result;
-                            setTableBody();
+                            settlementTypes = result;
                         },
                         error :function () {
-                            alert("获取挂号等级表失败");
+                            alert("获取结算类别表失败");
                         }
                     });
                 },
                 error :function () {
                     alert("删除失败");
                 }
-
             });
         });
         //设置保存按钮功能
         $("#updateRegistrationLevels").click(function () {
             $.ajax({
                 type: "POST",
-                url: "registrationLevel/updateRegistrationLevels",
+                url: "settlementType/updateSettlementTypes",
                 data: $('#registrationLevelForm').serialize(),
                 success: function () {
                     alert("保存成功");
                     $.ajax({
                         type: "POST",
-                        url: "registrationLevel/list",
+                        url: "settlementType/list",
                         async: false,
                         success: function (result) {
-                            registrationLevels = result;
+                            settlementTypes = result;
                             setTableBody();
                         },
                         error :function () {
-                            alert("获取挂号等级表失败");
+                            alert("获取结算类别表失败");
                         }
                     });
                 },
@@ -211,14 +172,14 @@
                     alert("添加成功");
                     $.ajax({
                         type: "POST",
-                        url: "registrationLevel/list",
+                        url: "settlementType/list",
                         async: false,
                         success: function (result) {
-                            registrationLevels = result;
+                            settlementTypes = result;
                             setTableBody();
                         },
                         error :function () {
-                            alert("获取挂号等级表失败");
+                            alert("获取结算类别表失败");
                         }
                     });
                 }

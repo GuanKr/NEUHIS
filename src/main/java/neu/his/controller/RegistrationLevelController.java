@@ -28,6 +28,7 @@ public class RegistrationLevelController {
     public @ResponseBody
     void addRegistrtionLevel(RegistrationLevel registrationLevel){
         registrationLevelService.insertRegistrationLevel(registrationLevel);
+
     }
     @RequestMapping("updateRegistrationLevels")
     public @ResponseBody
@@ -37,7 +38,13 @@ public class RegistrationLevelController {
             registrationLevelService.updateRegistrationLevel(registrationLevel);
         }
     }
-
+    @RequestMapping("deleteRegistrationLevelsByID")
+    public @ResponseBody
+    void deleteRegistrationLevelsByID(int[] ids){
+        for(int id:ids){
+            registrationLevelService.deleteByID(id);
+        }
+    }
 
 }
 

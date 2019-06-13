@@ -38,8 +38,8 @@
         <table class="table table-hover table-striped">
             <thead>
                 <tr>
-                    <th >id</th>
-                    <th >姓名</th>
+                    <th class="col-lg-1">id</th>
+                    <th class="col-lg-1">姓名</th>
                     <th>科室</th>
                     <th>角色</th>
                     <th>职称</th>
@@ -270,7 +270,7 @@
             data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val(),pageNum : pageN,pageSize : 3},
             success: function (result) {
                 pageInfo = result;
-                console.log(pageInfo);//调试用
+                console.log(pageInfo);//调试用 未测试 TODO
                 users = pageInfo.list;
                 setTableBody();
                 setSearchedPageChoose();
@@ -287,8 +287,8 @@
         $("#tableBody").html("");
         for (var i = 0;i < users.length;i++){
             str += "<tr>" +
-                "<td><input type='text' class=\"form-control\" value=\"" + users[i].id + "\" name=\"users[" + i + "].id\" readonly/></td>\n" +
-                "<td><input type=\"text\" class=\"form-control\" value=\"" + users[i].name + "\" name=\"users[" + i + "].name\"/></td>\n";
+                "<td><input type='text' class=\"form-control col-lg-1\" value=\"" + users[i].id + "\" name=\"users[" + i + "].id\" readonly/></td>\n" +
+                "<td><input type=\"text\" class=\"form-control col-lg-1\" value=\"" + users[i].name + "\" name=\"users[" + i + "].name\"/></td>\n";
             str += "<td><select name=\"users[" + i + "].departmentname\" class=\"form-control\">\n";
             for(var departmentI = 0;departmentI < departments.length;departmentI++){
                 if (departments[departmentI].departmentName == users[i].departmentname){
@@ -356,7 +356,6 @@
         $("#registrationLevelNameInput").html(setRegistrationLevelName);
     }
     $(document).ready(function(){
-        // setTableBody();
         getPageN(1);
         setAddUser();
         //设置保存按钮功能
@@ -377,18 +376,6 @@
         //设置查找功能按钮
         $("#search").click(function(){
             getSearchedPageN(1);
-            // $.ajax({
-            //     type: "POST",
-            //     url: "user/findbyattribute",
-            //     data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val()},
-            //     success: function (result) {
-            //         users = result;
-            //         console.log(users);
-            //         setTableBody();
-            //         $("#pageChoose").html("");
-            //     //    TODO
-            //     }
-            // });
         });
         //设置用户添加按钮
         $("#addUserButton").click(function () {
@@ -397,18 +384,7 @@
                 url: "user/insertuser",
                 data: $('#addUser').serialize(),
                 success: function () {
-                    $.ajax({
-                        type: "POST",
-                        url: "user/list",
-                        async: false,
-                        success: function (result) {
-                            users = result;
-                            getPageN(1);
-                        },
-                        error :function () {
-                            alert("获取用户表失败");
-                        }
-                    });
+                    getPageN(1);
                 }
             });
         });
