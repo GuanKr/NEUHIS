@@ -92,12 +92,11 @@
     </if>
   </delete>
   <insert id="insertSelective" parameterType="neu.his.bean.RegistrationLevel" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+<!--    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
       SELECT LAST_INSERT_ID()
-    </selectKey>
+    </selectKey>-->
     insert into registration_level
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      id,
       <if test="code != null" >
         code,
       </if>
@@ -112,7 +111,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      #{id,jdbcType=INTEGER},
+
       <if test="code != null" >
         #{code,jdbcType=VARCHAR},
       </if>

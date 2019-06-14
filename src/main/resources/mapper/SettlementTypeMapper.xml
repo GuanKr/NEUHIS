@@ -106,6 +106,7 @@
       </if>
     </trim>
   </insert>
+
   <select id="countByExample" parameterType="neu.his.bean.SettlementTypeExample" resultType="java.lang.Integer" >
     select count(*) from settlement_type
     <if test="_parameter != null" >
