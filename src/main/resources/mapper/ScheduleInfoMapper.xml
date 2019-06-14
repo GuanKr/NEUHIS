@@ -19,6 +19,7 @@
     on user.department_id = department.id
     left join registration_level
     on user.registration_level_id = registration_level.id
+    ORDER BY schedule_date
   </select>
 
   <resultMap id="ScheduleInfos" type="neu.his.bean.ScheduleInfo">
@@ -59,6 +60,7 @@
     left join registration_level
     on user.registration_level_id = registration_level.id
     where ${attribute_name} like CONCAT('%','${attribute}','%')
+    ORDER BY schedule_date
   </select>
 
 
