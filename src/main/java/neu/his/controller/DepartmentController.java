@@ -5,7 +5,7 @@ import com.github.pagehelper.PageHelper;
 import neu.his.bean.Department;
 import neu.his.dto.DepartmentDTO;
 import neu.his.service.DepartmentService;
-import neu.his.service.impl.DepartmentServiceImpl;
+//import neu.his.service.impl.DepartmentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -97,5 +97,16 @@ public class DepartmentController {
     List<String> departmentCategory(){
         List<String> categorylist = departmentService.findCategory();
         return categorylist;
+    }
+    /**
+     *@Author: dell on 2019/6/14 18:38
+     *@param: [department]
+     *@return: void
+     *@Description: insertDepartment
+     */
+    @RequestMapping("insertDepartment")
+    public @ResponseBody
+    void insertDepartment(Department department){
+        departmentService.insertDepartment(department);
     }
 }
