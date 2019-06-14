@@ -1,6 +1,7 @@
 package neu.his.dao;
 
 import java.util.List;
+
 import neu.his.bean.ScheduleRule;
 import neu.his.bean.ScheduleRuleExample;
 import org.apache.ibatis.annotations.Delete;

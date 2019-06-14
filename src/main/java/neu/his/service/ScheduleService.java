@@ -3,7 +3,6 @@ package neu.his.service;
 import neu.his.bean.ScheduleInfo;
 import neu.his.bean.ScheduleRule;
 
-import java.util.Date;
 import java.util.List;
 
 /**
