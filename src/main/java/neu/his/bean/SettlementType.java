@@ -1,16 +1,19 @@
 package neu.his.bean;
 
 public class SettlementType {
+    /**
+     * 主键id
+     */
     private Integer id;
-
+    /**
+     * 结算类型名称
+     */
     private String settlementTypeName;
 
     /**
-     *@Author:
-     *@param: [id, settlementTypeName]
-     * 主键id , 结算类型名称
-     *@return:
-     *@Description: 构造方法1
+     *构造方法1
+     *@param id 主键id
+     *@param settlementTypeName 结算类型名称
      */
     public SettlementType(Integer id, String settlementTypeName) {
         this.id = id;
@@ -18,11 +21,8 @@ public class SettlementType {
     }
 
     /**
-     *@Author:
-     *@param: [settlementTypeName]
-     * 结算类型名称
-     *@return:
-     *@Description: 构造方法2
+     *构造方法2
+     *@param settlementTypeName 结算类型名称
      */
     public SettlementType(String settlementTypeName) {
         this.settlementTypeName = settlementTypeName;

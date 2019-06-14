@@ -3,20 +3,37 @@ package neu.his.bean;
 import java.util.Date;
 
 public class ScheduleInfo {
+    /**
+     * 主键id
+     */
     private Integer id;
-
+    /**
+     * 用户id
+     */
     private Integer userId;
-
+    /**
+     * 排班日期
+     */
     private Date scheduleDate;
-
+    /**
+     *  午别
+     */
     private String bisessionalOperation;
-
+    /**
+     * 剩余名额
+     */
     private Integer surplusQuota;
-
+    /**
+     * 状态
+     */
     private String status;
-
+    /**
+     * 排班限额
+     */
     private Integer scheduleQuota;
-
+    /**
+     * 用户姓名
+     */
     private String userName;
 
     private String department_name;
@@ -24,6 +41,17 @@ public class ScheduleInfo {
     private String registrationLevelName;
 
     private String statusName;
+
+    /**
+     * 构造方法1
+     * @param id 主键id
+     * @param userId 用户id
+     * @param scheduleDate 排班日期
+     * @param bisessionalOperation 午别
+     * @param surplusQuota 剩余名额
+     * @param status 状态
+     * @param scheduleQuota 排班限额
+     */
 
     public ScheduleInfo(Integer id, Integer userId, Date scheduleDate, String bisessionalOperation, Integer surplusQuota, String status, Integer scheduleQuota) {
         this.id = id;
@@ -35,6 +63,15 @@ public class ScheduleInfo {
         this.scheduleQuota = scheduleQuota;
     }
 
+    /**
+     * 构造方法2
+     * @param userId 用户id
+     * @param scheduleDate 排班日期
+     * @param bisessionalOperation 午别
+     * @param surplusQuota 剩余名额
+     * @param status 状态
+     * @param scheduleQuota 排班限额
+     */
     public ScheduleInfo( Integer userId, Date scheduleDate, String bisessionalOperation, Integer surplusQuota, String status, Integer scheduleQuota) {
         this.userId = userId;
         this.scheduleDate = scheduleDate;
@@ -45,6 +82,15 @@ public class ScheduleInfo {
     }
 
 
+    /**
+     * 构造方法3
+     * @param scheduleDate 排班日期
+     * @param bisessionalOperation 午别
+     * @param surplusQuota 剩余名额
+     * @param status 状态
+     * @param scheduleQuota 排班限额
+     * @param userName 用户姓名
+     */
     public ScheduleInfo(Date scheduleDate, String bisessionalOperation, Integer surplusQuota, String status, Integer scheduleQuota, String userName) {
         this.scheduleDate = scheduleDate;
         this.bisessionalOperation = bisessionalOperation;

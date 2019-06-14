@@ -3,21 +3,18 @@ package neu.his.bean;
 
 public class Title {
     /**
-     *@Author:
-
+     * 主键id
      */
-
     private Integer id;
-
+    /**
+     * 职称名称
+     */
     private String titleName;
 
     /**
-     *@Author:
-     *@param: [id, titleName]
-     * 主键id，职称名称
-     *@return:
-     *@Description: 构造方法1
-     *
+     *构造方法1
+     *@param id, 主键id
+     *@param titleName 职称名称
      */
     public Title(Integer id, String titleName) {
         this.id = id;
@@ -25,11 +22,8 @@ public class Title {
     }
 
     /**
-     *@Author:
-     *@param: [titleName]
-     * 职称名称
-     *@return:
-     *@Description: 构造方法2
+     *构造方法2
+     *@param titleName 职称名称
      */
     public Title(String titleName) {
         this.titleName = titleName;

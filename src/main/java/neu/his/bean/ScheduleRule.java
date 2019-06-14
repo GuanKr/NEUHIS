@@ -1,18 +1,33 @@
 package neu.his.bean;
 
 public class ScheduleRule {
+    /**
+     * 主键id
+     */
     private Integer id;
-
+    /**
+     * 用户id
+     */
     private Integer userId;
-
+    /**
+     * 星期
+     */
     private String week;
-
+    /**
+     * 午别
+     */
     private String bisessionalOperation;
-
+    /**
+     * 排班限额
+     */
     private Integer schedulQuota;
-
+    /**
+     * 状态
+     */
     private String status;
-
+    /**
+     * 用户姓名
+     */
     private String userName;
 
     private String department_name;
@@ -21,6 +36,15 @@ public class ScheduleRule {
 
     private String statusName;
 
+    /**
+     * 构造方法1
+     * @param id 主键id
+     * @param userId 用户id
+     * @param week 星期
+     * @param bisessionalOperation 午别
+     * @param schedulQuota 排班限额
+     * @param status 状态
+     */
     public ScheduleRule(Integer id, Integer userId, String week, String bisessionalOperation, Integer schedulQuota, String status) {
         this.id = id;
         this.userId = userId;
@@ -30,6 +54,14 @@ public class ScheduleRule {
         this.status = status;
     }
 
+    /**
+     * 构造方法2
+     * @param week 星期
+     * @param bisessionalOperation 午别
+     * @param schedulQuota 排班限额
+     * @param status 状态
+     * @param userName 用户姓名
+     */
     public ScheduleRule(String week, String bisessionalOperation, Integer schedulQuota, String status, String userName) {
         this.week = week;
         this.bisessionalOperation = bisessionalOperation;

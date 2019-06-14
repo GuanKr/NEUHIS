@@ -1,23 +1,38 @@
 package neu.his.bean;
 
 public class Disease {
+    /**
+     * 主键id
+     */
     private Integer id;
-
+    /**
+     * 诊断目录id
+     */
     private Integer diagnoseDirectoryId;
-
+    /**
+     * 国际ICD编码
+     */
     private String internationalIcdCode;
-
+    /**
+     * 疾病名称
+     */
     private String diseaseName;
-
+    /**
+     * 疾病助记编码
+     */
     private String diseaseMnemonicCode;
-
+    /**
+     * 诊断目录名称
+     */
     public String diagnoseDirectoryName;
 
     /**
-     *@param: [id, diagnoseDirectoryId, internationalIcdCode, diseaseName, diseaseMnemonicCode]
-     * 主键id ，诊断目录id，国际ICD编码，疾病名称，疾病助记编码
-     *@return:
-     *@Description: 构造方法1
+     * 构造方法1
+     * @param id 主键id
+     * @param diagnoseDirectoryId 诊断目录id
+     * @param internationalIcdCode 国际ICD编码
+     * @param diseaseName 疾病名称
+     * @param diseaseMnemonicCode 疾病助记编码
      */
     public Disease(Integer id, Integer diagnoseDirectoryId, String internationalIcdCode, String diseaseName, String diseaseMnemonicCode) {
         this.id = id;
@@ -28,12 +43,13 @@ public class Disease {
     }
 
     /**
-     *@param: [id, internationalIcdCode, diseaseName, diseaseMnemonicCode, diagnoseDirectoryName]
-     * 主键id ，国际ICD编码，疾病名称，疾病助记编码，诊断目录名称
-     *@return:
-     *@Description: 构造方法2
+     * 构造方法2
+     * @param id 主键id
+     * @param internationalIcdCode 国际ICD编码
+     * @param diseaseName 疾病名称
+     * @param diseaseMnemonicCode 疾病助记编码
+     * @param diagnoseDirectoryName 诊断目录名称
      */
-
     public Disease(Integer id, String internationalIcdCode, String diseaseName, String diseaseMnemonicCode, String diagnoseDirectoryName) {
         this.id = id;
         this.internationalIcdCode = internationalIcdCode;
@@ -43,11 +59,11 @@ public class Disease {
     }
 
     /**
-     *@Author
-     *@param: [internationalIcdCode, diseaseName, diseaseMnemonicCode, diagnoseDirectoryName]
-     * 国际ICD编码，疾病名称，疾病助记编码，诊断目录名称
-     *@return:
-     *@Description: 构造方法3
+     * 构造方法3
+     * @param internationalIcdCode 国际ICD编码
+     * @param diseaseName 疾病名称
+     * @param diseaseMnemonicCode 疾病助记编码
+     * @param diagnoseDirectoryName 诊断目录名称
      */
     public Disease(String internationalIcdCode, String diseaseName,String diseaseMnemonicCode, String diagnoseDirectoryName) {
         this.internationalIcdCode = internationalIcdCode;

@@ -1,25 +1,25 @@
 package neu.his.bean;
 
 public class Role {
+    /**
+     * 主键id
+     */
     private Integer id;
-
+    /**
+     * 角色名称
+     */
     private String roleName;
 
     /**
-     *@Author:
-     *@param: [roleName]
-     * 角色名称
-     *@return:
-     *@Description: 构造方法1
+     * 构造方法1
+     * @param roleName 角色名称
      */
     public Role(String roleName) {  this.roleName = roleName; }
 
     /**
-     *@Author:
-     *@param: [id, roleName]
-     * 主键id ，角色名称
-     *@return:
-     *@Description: 构造方法2
+     * 构造方法2
+     * @param id 主键id
+     * @param roleName 角色名称
      */
     public Role(Integer id, String roleName) {
         this.id = id;

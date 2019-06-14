@@ -4,38 +4,71 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class NonDrugList {
+    /**
+     * 主键id
+     */
     private Integer id;
-
+    /**
+     * 项目编码
+     */
     private String itemCode;
-
+    /**
+     * 项目名称
+     */
     private String itemName;
-
+    /**
+     * 规格
+     */
     private String format;
-
+    /**
+     * 单价
+     */
     private BigDecimal price;
-
+    /**
+     * 所属费用科目id
+     */
     private Integer expenseClassId;
-
+    /**
+     * 执行科室id
+     */
     private Integer executivedepartmentId;
-
+    /**
+     * 拼音助记码
+     */
     private String mnemonicCode;
-
+    /**
+     * 项目类型
+     */
     private String itemType;
-
+    /**
+     * 创建时间
+     */
     private Date creationTime;
-
+    /**
+     * 所属费用科目名称
+     */
     private String expenseClassName;
-
+    /**
+     * 执行科室名称
+     */
     private String executivedepartmentName;
-
+    /**
+     * 项目类型名称
+     */
     private String itemTypeName;
 
     /**
-     *@Author:
-     *@param: [id, itemCode, itemName, format, price, expenseClassId, executivedepartmentId, mnemonicCode, itemType, creationTime]
-     *主键id，项目编码，项目名称，规格，单价，所属费用科目id，执行科室id，拼音助记码，项目类型，创建时间
-     *@return:
-     *@Description: 构造方法1
+     * 构造方法1
+     * @param id 主键id
+     * @param itemCode 项目编码
+     * @param itemName 项目名称
+     * @param format 规格
+     * @param price 单价
+     * @param expenseClassId 所属费用科目id
+     * @param executivedepartmentId 执行科室id
+     * @param mnemonicCode 拼音助记码
+     * @param itemType 项目类型
+     * @param creationTime 创建时间
      */
     public NonDrugList(Integer id, String itemCode, String itemName, String format, BigDecimal price, Integer expenseClassId, Integer executivedepartmentId, String mnemonicCode, String itemType, Date creationTime) {
         this.id = id;
@@ -51,11 +84,17 @@ public class NonDrugList {
     }
 
     /**
-     *@Author:
-     *@param: [id, itemCode, itemName, format, price, mnemonicCode, creationTime, expenseClassName, executivedepartmentName, itemTypeName]
-     *主键id，项目编码，项目名称，规格，单价，拼音助记码，创建时间，所属费用科目名称，执行科室名称，项目类型名称
-     *@return:
-     *@Description: 构造方法2
+     * 构造方法2
+     * @param id 主键id
+     * @param itemCode 项目编码
+     * @param itemName 项目名称
+     * @param format 规格
+     * @param price 单价
+     * @param mnemonicCode 拼音助记码
+     * @param creationTime 创建时间
+     * @param expenseClassName 所属费用科目名称
+     * @param executivedepartmentName 执行科室名称
+     * @param itemTypeName 项目类型名称
      */
     public NonDrugList(Integer id, String itemCode, String itemName, String format, BigDecimal price, String mnemonicCode, Date creationTime, String expenseClassName, String executivedepartmentName, String itemTypeName) {
         this.id = id;
@@ -71,11 +110,16 @@ public class NonDrugList {
     }
 
     /**
-     *@Author:
-     *@param: [id, itemCode, itemName, format, price, mnemonicCode, creationTime, expenseClassName, executivedepartmentName, itemTypeName]
-     *项目编码，项目名称，规格，单价，拼音助记码，创建时间，所属费用科目名称，执行科室名称，项目类型名称
-     *@return:
-     *@Description: 构造方法3
+     * 构造方法2
+     * @param itemCode 项目编码
+     * @param itemName 项目名称
+     * @param format 规格
+     * @param price 单价
+     * @param mnemonicCode 拼音助记码
+     * @param creationTime 创建时间
+     * @param expenseClassName 所属费用科目名称
+     * @param executivedepartmentName 执行科室名称
+     * @param itemTypeName 项目类型名称
      */
     public NonDrugList(String itemCode, String itemName, String format, BigDecimal price, String mnemonicCode, Date creationTime, String expenseClassName, String executivedepartmentName, String itemTypeName) {
         this.itemCode = itemCode;

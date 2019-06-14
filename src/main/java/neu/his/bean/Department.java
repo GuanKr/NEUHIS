@@ -1,26 +1,38 @@
 package neu.his.bean;
 
 public class Department {
+    /**
+     * 主键id
+     */
     private Integer id;
-
+    /**
+     * 部门编码
+     */
     private String departmentCode;
-
+    /**
+     * 部门名称
+     */
     private String departmentName;
-
+    /**
+     * 部门分类
+     */
     private String departmentCategory;
-
+    /**
+     * 部门类型
+     */
     private String departmentType;
-
+    /**
+     * 部门类型名称
+     */
     private String departmentTypeName;
 
     /**
-     *@param: id 主键id
-     *@param: departmentCode 部门编码
-     *@param: departmentName 部门名称
-     *@param: departmentCategory 部门分类
-     *@param: departmentType 部门类型
-     *@return:
-     *@Description: 构造方法1
+     *构造方法1
+     *@param id 主键id
+     *@param departmentCode 部门编码
+     *@param departmentName 部门名称
+     *@param departmentCategory 部门分类
+     *@param departmentType 部门类型
      */
     public Department(Integer id, String departmentCode, String departmentName, String departmentCategory, String departmentType) {
         this.id = id;
@@ -31,11 +43,12 @@ public class Department {
     }
 
     /**
-     * @Author:
-     * @param: [departmentCode, id, departmentName, departmentCategory, departmentTypeName]
-     * 部门编码，主键id，部门名称，部门分类，部门分类名称
-     *@return:
-     *@Description: 构造方法2
+     *构造方法2
+     *@param departmentCode 部门编码
+     *@param id 主键id
+     *@param departmentName 部门名称
+     *@param departmentCategory 部门分类
+     *@param departmentTypeName 部门类型名称
      */
     public Department( String departmentCode, Integer id, String departmentName, String departmentCategory,String departmentTypeName) {
         this.id = id;
@@ -46,11 +59,11 @@ public class Department {
     }
 
     /**
-     *@Author:
-     *@param: [departmentCode, departmentName, departmentCategory, departmentTypeName]
-     * 部门编码，部门名称，部门分类，部门分类名称
-     *@return:
-     *@Description: 构造方法3
+     *构造方法3
+     *@param departmentCode 部门编码
+     *@param departmentName 部门名称
+     *@param departmentCategory 部门分类
+     *@param departmentTypeName 部门类型名称
      */
     public Department(String departmentCode, String departmentName, String departmentCategory, String departmentTypeName){
         this.departmentCode = departmentCode;

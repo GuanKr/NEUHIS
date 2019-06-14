@@ -3,22 +3,34 @@ package neu.his.bean;
 import java.math.BigDecimal;
 
 public class RegistrationLevel {
+    /**
+     * 主键id
+     */
     private Integer id;
-
+    /**
+     * 号别编码
+     */
     private String code;
-
+    /**
+     * 号别名称
+     */
     private String levelName;
-
+    /**
+     * 是否默认
+     */
     private String isDefault;
-
+    /**
+     * 挂号费
+     */
     private BigDecimal registrationPrice;
 
     /**
-     *@Author:
-     *@param: [id, code, levelName, isDefault, registrationPrice]
-     * 主键id，号别编码，号别名称，是否默认，挂号费
-     *@return:
-     *@Description: 构造方法1
+     *构造方法1
+     *@param id 主键id
+     *@param code 号别编码
+     *@param levelName 号别名称
+     *@param isDefault 是否默认
+     *@param registrationPrice 挂号费
      */
     public RegistrationLevel(Integer id, String code, String levelName, String isDefault, BigDecimal registrationPrice) {
         this.id = id;
@@ -29,11 +41,11 @@ public class RegistrationLevel {
     }
 
     /**
-     *@Author:
-     *@param: [code, levelName, isDefault, registrationPrice]
-     * 号别编码，号别名称，是否默认，挂号费
-     *@return:
-     *@Description: 构造方法2
+     *构造方法2
+     *@param code 号别编码
+     *@param levelName 号别名称
+     *@param isDefault 是否默认
+     *@param registrationPrice 挂号费
      */
     public RegistrationLevel(String code, String levelName, String isDefault, BigDecimal registrationPrice) {
         this.code = code;

@@ -40,10 +40,9 @@ public class RegistrationLevelController {
     }
     @RequestMapping("deleteRegistrationLevelsByID")
     public @ResponseBody
-    void deleteRegistrationLevelsByID(int[] ids){
-        for(int id:ids){
-            registrationLevelService.deleteByID(id);
-        }
+    void deleteRegistrationLevelsByID(String idString){
+        int id=Integer.parseInt(idString);
+        registrationLevelService.deleteByID(id);
     }
 
 }

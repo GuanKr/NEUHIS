@@ -1,27 +1,40 @@
 package neu.his.bean;
 
 public class DiagnoseDirectory {
+    /**
+     * 主键id
+     */
     private Integer id;
-
+    /**
+     * 分类编码
+     */
     private String diseaseCategoryCode;
-
+    /**
+     * 分类名称
+     */
     private String diseaseCategoryName;
-
+    /**
+     * 显示顺序号
+     */
     private Integer sequenceNo;
-
+    /**
+     * 疾病类型
+     */
     private String diseaseType;
-
+    /**
+     * 疾病类型名称
+     */
     private String deseaseTypeName;
 
     /**
-     *@Author:
-     *@param: [id, diseaseCategoryCode, diseaseCategoryName, sequenceNo, diseaseType]
-     * 主键id，分类编码，分类名称，显示顺序号，疾病类型
-     *@return:
-     *@Description: 构造方法1
+     * 构造方法1
+     * @param id 主键id
+     * @param diseaseCategoryCode 分类编码
+     * @param diseaseCategoryName 分类名称
+     * @param sequenceNo 显示顺序号
+     * @param diseaseType 疾病类型
      */
-
-    public DiagnoseDirectory(Integer id, String diseaseCategoryCode, String diseaseCategoryName, Integer sequenceNo, String diseaseType) {
+       public DiagnoseDirectory(Integer id, String diseaseCategoryCode, String diseaseCategoryName, Integer sequenceNo, String diseaseType) {
         this.id = id;
         this.diseaseCategoryCode = diseaseCategoryCode;
         this.diseaseCategoryName = diseaseCategoryName;
@@ -30,12 +43,14 @@ public class DiagnoseDirectory {
     }
 
     /**
-     *@param: [diseaseCategoryCode, id, diseaseCategoryName, sequenceNo, deseaseTypeName]
-     * 主键id，分类编码，分类名称，显示顺序号，疾病类型名称
-     *@return:
-     *@Description: 构造方法2
+     * 构造方法2
+     * @param id 主键id
+     * @param diseaseCategoryCode 分类编码
+     * @param diseaseCategoryName 分类名称
+     * @param sequenceNo 显示顺序号
+     * @param diseaseTypeName 疾病类型名称
      */
-    public DiagnoseDirectory(String diseaseCategoryCode, Integer id, String diseaseCategoryName, Integer sequenceNo, String deseaseTypeName) {
+        public DiagnoseDirectory(String diseaseCategoryCode, Integer id, String diseaseCategoryName, Integer sequenceNo, String deseaseTypeName) {
         this.diseaseCategoryCode = diseaseCategoryCode;
         this.diseaseCategoryName = diseaseCategoryName;
         this.sequenceNo = sequenceNo;
@@ -43,11 +58,11 @@ public class DiagnoseDirectory {
     }
 
     /**
-     *@Author:
-     *@param: [diseaseCategoryCode, diseaseCategoryName, sequenceNo, deseaseTypeName]
-     *  分类编码，分类名称，显示顺序号，疾病类型名称
-     *@return:
-     *@Description: 构造方法3
+     * 构造方法3
+     * @param diseaseCategoryCode 分类编码
+     * @param diseaseCategoryName 分类名称
+     * @param sequenceNo 显示顺序号
+     * @param deseaseTypeName 疾病类型名称
      */
     public DiagnoseDirectory(String diseaseCategoryCode, String diseaseCategoryName, Integer sequenceNo, String deseaseTypeName) {
         this.diseaseCategoryCode = diseaseCategoryCode;

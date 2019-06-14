@@ -1,18 +1,24 @@
 package neu.his.bean;
 
 public class ExpenseClass {
+    /**
+     * 主键id
+     */
     private Integer id;
-
+    /**
+     * 费用科目编码
+     */
     private String expenseCode;
-
+    /**
+     * 费用科目名称
+     */
     private String expenseName;
 
     /**
-     *@Author:
-     *@param: [id, expenseCode, expenseName]
-     *主键id，费用科目编码，费用科目名称
-     *@return:
-     *@Description: 构造方法1
+     * 构造方法
+     * @param id 主键id
+     * @param expenseCode 费用科目编码
+     * @param expenseName 费用科目名称
      */
     public ExpenseClass(Integer id, String expenseCode, String expenseName) {
         this.id = id;
