@@ -15,14 +15,6 @@ public class NonDrugListServiceImpl implements NonDrugListService {
     @Autowired
     NonDrugListMapper nonDrugListMapper;
 
-    @Autowired
-    TranslateMapper translateMapper;
-
-    @Autowired
-    ExpenseClassMapper expenseClassMapper;
-
-    @Autowired
-    DepartmentMapper departmentMapper;
     @Override
     public String translate(String type) {
         if (type.equals("1")) {

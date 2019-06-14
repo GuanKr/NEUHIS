@@ -86,6 +86,16 @@ public class ScheduleRule {
         this.userName = userName;
     }
 
+    /**
+     * 构造方法，用于挂号时返回医生列表
+     * @param department_name 科室名称
+     * @param registrationLevelName 挂号级别名称
+     */
+    public ScheduleRule(String department_name, String registrationLevelName) {
+        this.department_name = department_name;
+        this.registrationLevelName = registrationLevelName;
+    }
+
     public String getUserName() {
         return userName;
     }

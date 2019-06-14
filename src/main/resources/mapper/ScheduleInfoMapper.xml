@@ -42,6 +42,22 @@
     WHERE user.name = #{userName}
   </insert>
 
+  <select id="selectDoctor"  parameterType="neu.his.bean.ScheduleInfo" resultType="String">
+  SELECT DISTINCT user.name
+  FROM schedule_info left join user
+  on schedule_info.user_id = user.id
+  left join department
+  on department.id = user.department_id
+  left join registration_level
+  on registration_level.id = user.registration_level_id
+  where  surplus_quota > 0
+  and department_name = #{department_name}
+  and level_name = #{registrationLevelName}
+  and status = '1'
+  and schedule_date like CONCAT('%',#{statusName},'%')
+  and (bisessional_operation like CONCAT('%',#{bisessionalOperation},'%') or bisessional_operation = '全天' )
+  </select>
+
   <select id="query" parameterType="neu.his.bean.Query" resultMap="ScheduleInfos"  statementType="STATEMENT">
     SELECT schedule_info.id as sid,
     user_id,

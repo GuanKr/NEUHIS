@@ -3,7 +3,11 @@ package neu.his.service;
 import neu.his.bean.NonDrugList;
 
 import java.util.List;
-
+/**处理非药品目录信息
+ * @author lsy
+ * @version 1.8
+ * @since 1.0
+ */
 public interface NonDrugListService {
     /**
      * 类型代码转换为类型名称
