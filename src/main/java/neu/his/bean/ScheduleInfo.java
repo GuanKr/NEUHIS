@@ -100,7 +100,21 @@ public class ScheduleInfo {
         this.userName = userName;
     }
 
-
+    /**
+     * 用于映射前端数据的构造方法
+     * @param id 主键
+     * @param bisessionalOperation 午别
+     * @param surplusQuota 剩余名额
+     * @param scheduleQuota 排班限额
+     * @param statusName 状态
+     */
+    public ScheduleInfo(Integer id, String bisessionalOperation, Integer surplusQuota, Integer scheduleQuota, String statusName) {
+        this.id = id;
+        this.bisessionalOperation = bisessionalOperation;
+        this.surplusQuota = surplusQuota;
+        this.scheduleQuota = scheduleQuota;
+        this.statusName = statusName;
+    }
 
     public String getUserName() {
         return userName;
