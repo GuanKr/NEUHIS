@@ -55,6 +55,22 @@ public class ScheduleRule {
     }
 
     /**
+     * 构造方法3
+     * @param id 主键
+     * @param week 星期
+     * @param bisessionalOperation 午别
+     * @param schedulQuota 限额
+     * @param statusName 状态名
+     */
+    public ScheduleRule(Integer id, String week, String bisessionalOperation, Integer schedulQuota, String statusName) {
+        this.id = id;
+        this.week = week;
+        this.bisessionalOperation = bisessionalOperation;
+        this.schedulQuota = schedulQuota;
+        this.statusName = statusName;
+    }
+
+    /**
      * 构造方法2
      * @param week 星期
      * @param bisessionalOperation 午别
