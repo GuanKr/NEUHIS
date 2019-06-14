@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 @Controller
-@RequestMapping("SettlementType")
+@RequestMapping("settlementType")
 public class SettlementTypeController {
     @Autowired
     SettlementTypeService settlementTypeService;
