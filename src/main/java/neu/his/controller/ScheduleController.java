@@ -3,6 +3,7 @@ package neu.his.controller;
  * 排班规则及信息管理
  */
 
+import neu.his.bean.ScheduleInfo;
 import neu.his.bean.ScheduleRule;
 import neu.his.dto.ScheduleRuleDTO;
 import neu.his.service.ScheduleService;
@@ -40,6 +41,19 @@ public class ScheduleController {
         List<ScheduleRule> scheduleRuleList = scheduleService.findAll();
         return scheduleRuleList;
     }
+    /**
+     *@Author: dell on 2019/6/14 16:10
+     *@param: []
+     *@return: java.util.List
+     *@Description: scheduleInfosList
+     */
+    @RequestMapping("scheduleInfosList")
+    public @ResponseBody
+    List scheduleInfosList(){
+        List<ScheduleInfo> scheduleInfoList = scheduleService.findAllInfo();
+        return scheduleInfoList;
+    }
+
     /**
      *@Author: dell on 2019/6/14 15:47
      *@param: [idString]
