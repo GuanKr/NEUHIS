@@ -2,6 +2,7 @@ package neu.his.dao;
 
 import java.util.List;
 
+import neu.his.bean.Query;
 import neu.his.bean.ScheduleInfo;
 import neu.his.bean.ScheduleInfoExample;
 import org.apache.ibatis.annotations.Delete;
@@ -31,6 +32,8 @@ public interface ScheduleInfoMapper {
     int countByExample(neu.his.bean.ScheduleInfoExample example);
 
     int deleteByExample(neu.his.bean.ScheduleInfoExample example);
+
+    List<ScheduleInfo> query(Query query);
 
 
     @Delete({

@@ -1,5 +1,6 @@
 package neu.his.service.impl;
 
+import neu.his.bean.Query;
 import neu.his.bean.ScheduleInfo;
 import neu.his.bean.ScheduleRule;
 import neu.his.converter.DateConverter;
@@ -115,5 +116,14 @@ public class ScheduleServiceImpl implements ScheduleService {
     public void updateInfo(ScheduleInfo scheduleInfo) {
         scheduleInfo.setStatus(translate(scheduleInfo.getStatusName()));
         scheduleInfoMapper.updateByPrimaryKey(scheduleInfo);
+    }
+
+    @Override
+    public List<ScheduleInfo> query(String attribute_name, String attribute) {
+        List<ScheduleInfo> list = scheduleInfoMapper.query(new Query(attribute_name,attribute));
+        for(ScheduleInfo scheduleInfo : list){
+            scheduleInfo.setStatusName(translate(scheduleInfo.getStatus()));
+        }
+        return list;
     }
 }

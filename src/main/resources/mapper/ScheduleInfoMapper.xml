@@ -41,6 +41,26 @@
     WHERE user.name = #{userName}
   </insert>
 
+  <select id="query" parameterType="neu.his.bean.Query" resultMap="ScheduleInfos"  statementType="STATEMENT">
+    SELECT schedule_info.id as sid,
+    user_id,
+    schedule_date,
+    bisessional_operation,
+    schedule_quota,
+    status,
+    level_name,
+    user.name,
+    department_name,
+    surplus_quota
+    FROM schedule_info LEFT JOIN user
+    on schedule_info.user_id = user.id
+    left JOIN department
+    on user.department_id = department.id
+    left join registration_level
+    on user.registration_level_id = registration_level.id
+    where ${attribute_name} like CONCAT('%','${attribute}','%')
+  </select>
+
 
   <resultMap id="BaseResultMap" type="neu.his.bean.ScheduleInfo" >
     <constructor >

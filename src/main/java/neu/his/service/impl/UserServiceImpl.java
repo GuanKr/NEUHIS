@@ -16,23 +16,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
 
-    @Autowired
-    TranslateMapper translateMapper;
-
-    @Autowired
-    RoleMapper roleMapper;
-
-    @Autowired
-    DepartmentMapper departmentMapper;
-
-    @Autowired
-    TitleMapper titleMapper;
-
-    @Autowired
-    RegistrationLevelMapper registrationLevelMapper;
-
-
-
     @Override
     public List<User> findAll() {
         List<User> list;

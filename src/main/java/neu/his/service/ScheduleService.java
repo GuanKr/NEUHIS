@@ -6,7 +6,7 @@ import neu.his.bean.ScheduleRule;
 import java.util.List;
 
 /**
- * 处理排版信息
+ * 处理排班信息
  * @author lsy
  * @version 1.8
  * @since 1.0
@@ -22,26 +22,26 @@ public interface ScheduleService {
 
 
     /**
-     * 列出所有排版规则
-     * @return 排版规则列表
+     * 列出所有排班规则
+     * @return 排班规则列表
      */
     List<ScheduleRule> findAll();
 
     /**
-     * 删除排版规则信息
+     * 删除排班规则信息
      * @param id 主键id
      */
     void deleteByID(int id);
 
     /**
-     * 插入排版规则信息
-     * @param scheduleRule 新的排版规则
+     * 插入排班规则信息
+     * @param scheduleRule 新的排班规则
      */
     void insertScheduleRule(ScheduleRule scheduleRule);
 
     /**
-     * 更新排版规则信息
-     * @param scheduleRule 内容更新过的排版规则
+     * 更新排班规则信息
+     * @param scheduleRule 内容更新过的排班规则
      */
     void updateScheduleRule(ScheduleRule scheduleRule);
 
@@ -67,4 +67,13 @@ public interface ScheduleService {
      * @param scheduleInfo
      */
     void updateInfo(ScheduleInfo scheduleInfo);
+
+    /**
+     * 根据内容查询
+     * @param attribute_name 属性名称
+     * @param attribute 属性内容
+     * @return 排班信息列表
+     */
+    List<ScheduleInfo> query(String attribute_name, String attribute);
+
 }
