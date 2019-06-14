@@ -14,9 +14,11 @@ public class Department {
     private String departmentTypeName;
 
     /**
-     *@Author:
-     *@param: [id, departmentCode, departmentName, departmentCategory, departmentType]
-     * 主键id，部门编码，部门名称，部门分类，部门类型
+     *@param: id 主键id
+     *@param: departmentCode 部门编码
+     *@param: departmentName 部门名称
+     *@param: departmentCategory 部门分类
+     *@param: departmentType 部门类型
      *@return:
      *@Description: 构造方法1
      */
