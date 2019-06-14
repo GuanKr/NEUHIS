@@ -126,4 +126,15 @@ public class ScheduleServiceImpl implements ScheduleService {
         }
         return list;
     }
+
+    @Override
+    public List<String> selectDoctor(ScheduleInfo scheduleInfo){
+        DateConverter dateConverter = new DateConverter();
+        List<String> list;
+        scheduleInfo.setBisessionalOperation(dateConverter.nowNoon());
+        scheduleInfo.setStatusName(dateConverter.nowDate());
+        list = scheduleInfoMapper.selectDoctor(scheduleInfo);
+        return list;
+    }
+
 }

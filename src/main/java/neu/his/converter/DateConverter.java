@@ -43,5 +43,40 @@ public class DateConverter implements Converter<String, Date> {
         Date tomorrow = c.getTime();
         return tomorrow;
     }
+
+    public String nowDate(){
+        String temp_str="";
+        Date dt = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        temp_str=sdf.format(dt);
+        return temp_str;
+    }
+
+    public String nowNoon(){
+        String temp_str="";
+        Date dt = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("aa");
+        temp_str=sdf.format(dt);
+        return temp_str;
+    }
+
+    public String nowYear(){
+        String temp_str="";
+        Date dt = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        temp_str=sdf.format(dt);
+        return temp_str;
+    }
+
+    public String serNumber(){
+        String temp_str="";
+        Date dt = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        temp_str=sdf.format(dt);
+        return temp_str;
+    }
+
+
+
 }
 

@@ -43,4 +43,6 @@ public interface RegistrationLevelService {
      * @param registrationLevel 内容更新过的挂号级别
      */
     void updateRegistrationLevel(RegistrationLevel registrationLevel);
+
+
 }

@@ -2,6 +2,7 @@ package neu.his.service.impl;
 
 import neu.his.bean.Department;
 import neu.his.bean.DepartmentExample;
+import neu.his.bean.Query;
 import neu.his.dao.DepartmentMapper;
 import neu.his.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,42 +73,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public List<Department> findByAttribute_name(String attribute_name, String attribute) {
         List<Department> list;
-        List<Department> listAll;
-
-        listAll = findAll();
-
-        DepartmentExample departmentExample = new DepartmentExample();
-        if(attribute_name.equals("department_code")){
-            for(int i = 0;i<listAll.size();i++){
-                if(listAll.get(i).getDepartmentCode().contains(attribute)){
-                    departmentExample.or().andDepartmentCodeEqualTo(listAll.get(i).getDepartmentCode());
-                }
-            }
-        }else if(attribute_name.equals("department_name")){
-            for(int i = 0;i<listAll.size();i++){
-                if(listAll.get(i).getDepartmentName().contains(attribute)){
-                    departmentExample.or().andDepartmentNameEqualTo(listAll.get(i).getDepartmentName());
-                }
-            }
-        }else if(attribute_name.equals("department_type")){
-            for(int i = 0;i<listAll.size();i++){
-                if(listAll.get(i).getDepartmentTypeName().contains(attribute)){
-                    departmentExample.or().andDepartmentTypeEqualTo(de_translate(listAll.get(i).getDepartmentTypeName()));
-                }
-            }
-        }else if(attribute_name.equals("department_category")){
-            for(int i = 0;i<listAll.size();i++){
-                if(listAll.get(i).getDepartmentCategory().contains(attribute)){
-                    departmentExample.or().andDepartmentCategoryEqualTo(listAll.get(i).getDepartmentCategory());
-                }
-            }
-        }else {
-            return null;
-        }
-        list =  departmentMapper.selectByExample(departmentExample);
-        for(Department department : list){
-            department.setDepartmentTypeName(translate(department.getDepartmentType()));
-        }
+        list =  departmentMapper.query(new Query(attribute_name,attribute));
         return list;
     }
 

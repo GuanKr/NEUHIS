@@ -10,7 +10,12 @@ import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
-
+/**
+ * 处理挂号级别
+ * @author lsy
+ * @version 1.8
+ * @since 1.0
+ */
 public interface RegistrationLevelMapper {
     int countByExample(RegistrationLevelExample example);
 

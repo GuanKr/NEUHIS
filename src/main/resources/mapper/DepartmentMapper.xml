@@ -6,6 +6,24 @@
     select distinct department.department_category from department
   </select>
 
+  <select id="query" parameterType="neu.his.bean.Query" resultMap="Departments" statementType="STATEMENT">
+    SELECT id, department_code, department_name, department_category, department_type
+    FROM department
+    where ${attribute_name} like CONCAT('%','${attribute}','%')
+  </select>
+
+
+
+  <resultMap id="Departments" type="neu.his.bean.Department">
+    <id property="id" column="id"/>
+    <result property="departmentCode" column="department_code"/>
+    <result property="departmentName" column="department_name"/>
+    <result property="departmentCategory" column="department_category"/>
+    <result property="departmentType" column="department_type"/>
+  </resultMap>
+
+
+
   <resultMap id="BaseResultMap" type="neu.his.bean.Department" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />

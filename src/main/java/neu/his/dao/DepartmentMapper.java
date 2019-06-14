@@ -3,6 +3,7 @@ package neu.his.dao;
 import java.util.List;
 import neu.his.bean.Department;
 import neu.his.bean.DepartmentExample;
+import neu.his.bean.Query;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -13,6 +14,16 @@ import org.apache.ibatis.annotations.Update;
 
 public interface DepartmentMapper {
 
+    /**
+     * 查询科室信息
+     * @param Query 封装的查询信息
+     */
+    List<Department> query(Query Query);
+
+    /**
+     * 获得所有分类
+     * @return 分类名称列表
+     */
     List<String> findCategory();
 
     int countByExample(DepartmentExample example);

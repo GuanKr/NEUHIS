@@ -76,4 +76,11 @@ public interface ScheduleService {
      */
     List<ScheduleInfo> query(String attribute_name, String attribute);
 
+    /**
+     * 根据挂号时输入信息查询符合条件的医生
+     * @param scheduleInfo 要查询的条件
+     * @return 返回符合条件的医生姓名
+     */
+     List<String> selectDoctor(ScheduleInfo scheduleInfo);
+
 }

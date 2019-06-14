@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="neu.his.dao.RegistrationInfoMapper" >
+
+  <select id="selectWithName" resultMap="RegInfos">
+   SELECT registration_info.id as riId,
+  medical_record_no,
+  registration_info.registration_level_id as rrlId,
+  see_doctor_date,
+  registration_info.department_id as ridId,
+  doctor_id,
+  registration_resource,
+  settlement_type_id,
+  is_need_medicalrecordbook,
+  is_seen_doctor,
+  expense,
+  payment_state,
+  payment_time,
+  registration_state,
+  is_completed,
+  patient_name,
+  patient_identity_number,
+  patient_age,
+  patient_sex,
+  patient_birthday,
+  address,
+  name,
+  department_name,
+  settlement_type_name,
+  level_name,
+  registration_price
+  from registration_info left JOIN user
+  on registration_info.doctor_id = user.id
+  LEFT JOIN department
+  on registration_info.department_id = department.id
+  LEFT JOIN settlement_type
+  on registration_info.settlement_type_id = settlement_type.id
+  left join registration_level
+  on registration_info.registration_level_id = registration_level.id
+  </select>
+
+  <resultMap id="RegInfos" type="neu.his.bean.RegistrationInfo">
+    <id property="id" column="riId"/>
+    <result property="medicalRecordNo" column="medical_record_no"/>
+    <result property="registrationLevelId" column="rrlId"/>
+    <result property="seeDoctorDate" column="see_doctor_date"/>
+    <result property="departmentId" column="ridId"/>
+    <result property="doctorId" column="doctor_id"/>
+    <result property="registrationResource" column="registration_resource"/>
+    <result property="settlementTypeId" column="settlement_type_id"/>
+    <result property="isNeedMedicalrecordbook" column="is_need_medicalrecordbook"/>
+    <result property="isSeenDoctor" column="is_seen_doctor"/>
+
+    <result property="expense" column="expense"/>
+    <result property="paymentState" column="payment_state"/>
+    <result property="paymentTime" column="payment_time"/>
+    <result property="registrationState" column="registration_state"/>
+    <result property="isCompleted" column="is_completed"/>
+    <result property="patientName" column="patient_name"/>
+    <result property="patientIdentityNumber" column="patient_identity_number"/>
+    <result property="patientAge" column="patient_age"/>
+    <result property="patientSex" column="patient_sex"/>
+
+    <result property="patientBirthday" column="patient_birthday"/>
+    <result property="address" column="address"/>
+    <result property="doctorName" column="name"/>
+    <result property="departmentName" column="department_name"/>
+    <result property="settlementTypeName" column="settlement_type_name"/>
+    <result property="registrationLevelName" column="level_name"/>
+    <result property="registrationLevelPrice" column="registration_price"/>
+  </resultMap>
+
+  <insert id="insertRegInfo" parameterType="neu.his.bean.RegistrationInfo">
+    INSERT  INTO registration_info (medical_record_no,
+  department_id,
+  registration_level_id,
+  see_doctor_date,
+  doctor_id,
+  registration_resource,
+  settlement_type_id,
+  is_need_medicalrecordbook,
+  is_seen_doctor,
+  expense,
+  payment_state,
+  payment_time,
+  registration_state,
+  is_completed,
+  patient_name,
+  patient_identity_number,
+  patient_age,
+  patient_sex,
+  patient_birthday,
+  address
+  )SELECT #{medicalRecordNo},
+  department.id,
+  registration_level.id,
+  #{seeDoctorDate},
+  user.id,
+  #{registrationResource},
+  settlement_type.id,
+  #{isNeedMedicalrecordbook},
+  #{isSeenDoctor},
+  #{expense},
+  #{paymentState},
+  #{paymentTime},
+  #{registrationState},
+  #{isCompleted},
+  #{patientName},
+  #{patientIdentityNumber},
+  #{patientAge},
+  #{patientSex},
+  #{patientBirthday},
+  #{address}
+    FROM user,registration_level,settlement_type,department
+    WHERE user.name = #{doctorName} and registration_level.level_name = #{registrationLevelName} and settlement_type_name = #{settlementTypeName} and department_name = #{departmentName}
+  </insert>
+
+  <select id="serNumber" resultType="String">
+   select medical_record_no
+   from registration_info
+   ORDER BY medical_record_no desc
+   limit 1
+  </select>
+
+
+  <resultMap id="BaseResultMap" type="neu.his.bean.RegistrationInfo" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="medical_record_no" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="registration_level_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="see_doctor_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="department_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="doctor_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="registration_resource" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="settlement_type_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="is_need_medicalrecordbook" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="is_seen_doctor" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="expense" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="payment_state" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="payment_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="registration_state" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="is_completed" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="patient_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="patient_identity_number" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="patient_age" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="patient_sex" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="patient_birthday" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="address" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, medical_record_no, registration_level_id, see_doctor_date, department_id, doctor_id, 
+    registration_resource, settlement_type_id, is_need_medicalrecordbook, is_seen_doctor, 
+    expense, payment_state, payment_time, registration_state, is_completed, patient_name, 
+    patient_identity_number, patient_age, patient_sex, patient_birthday, address
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="neu.his.bean.RegistrationInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from registration_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="neu.his.bean.RegistrationInfoExample" >
+    delete from registration_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertSelective" parameterType="neu.his.bean.RegistrationInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into registration_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="medicalRecordNo != null" >
+        medical_record_no,
+      </if>
+      <if test="registrationLevelId != null" >
+        registration_level_id,
+      </if>
+      <if test="seeDoctorDate != null" >
+        see_doctor_date,
+      </if>
+      <if test="departmentId != null" >
+        department_id,
+      </if>
+      <if test="doctorId != null" >
+        doctor_id,
+      </if>
+      <if test="registrationResource != null" >
+        registration_resource,
+      </if>
+      <if test="settlementTypeId != null" >
+        settlement_type_id,
+      </if>
+      <if test="isNeedMedicalrecordbook != null" >
+        is_need_medicalrecordbook,
+      </if>
+      <if test="isSeenDoctor != null" >
+        is_seen_doctor,
+      </if>
+      <if test="expense != null" >
+        expense,
+      </if>
+      <if test="paymentState != null" >
+        payment_state,
+      </if>
+      <if test="paymentTime != null" >
+        payment_time,
+      </if>
+      <if test="registrationState != null" >
+        registration_state,
+      </if>
+      <if test="isCompleted != null" >
+        is_completed,
+      </if>
+      <if test="patientName != null" >
+        patient_name,
+      </if>
+      <if test="patientIdentityNumber != null" >
+        patient_identity_number,
+      </if>
+      <if test="patientAge != null" >
+        patient_age,
+      </if>
+      <if test="patientSex != null" >
+        patient_sex,
+      </if>
+      <if test="patientBirthday != null" >
+        patient_birthday,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="medicalRecordNo != null" >
+        #{medicalRecordNo,jdbcType=INTEGER},
+      </if>
+      <if test="registrationLevelId != null" >
+        #{registrationLevelId,jdbcType=INTEGER},
+      </if>
+      <if test="seeDoctorDate != null" >
+        #{seeDoctorDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departmentId != null" >
+        #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="doctorId != null" >
+        #{doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="registrationResource != null" >
+        #{registrationResource,jdbcType=CHAR},
+      </if>
+      <if test="settlementTypeId != null" >
+        #{settlementTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="isNeedMedicalrecordbook != null" >
+        #{isNeedMedicalrecordbook,jdbcType=CHAR},
+      </if>
+      <if test="isSeenDoctor != null" >
+        #{isSeenDoctor,jdbcType=CHAR},
+      </if>
+      <if test="expense != null" >
+        #{expense,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentState != null" >
+        #{paymentState,jdbcType=CHAR},
+      </if>
+      <if test="paymentTime != null" >
+        #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registrationState != null" >
+        #{registrationState,jdbcType=CHAR},
+      </if>
+      <if test="isCompleted != null" >
+        #{isCompleted,jdbcType=CHAR},
+      </if>
+      <if test="patientName != null" >
+        #{patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="patientIdentityNumber != null" >
+        #{patientIdentityNumber,jdbcType=CHAR},
+      </if>
+      <if test="patientAge != null" >
+        #{patientAge,jdbcType=INTEGER},
+      </if>
+      <if test="patientSex != null" >
+        #{patientSex,jdbcType=CHAR},
+      </if>
+      <if test="patientBirthday != null" >
+        #{patientBirthday,jdbcType=DATE},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="neu.his.bean.RegistrationInfoExample" resultType="java.lang.Integer" >
+    select count(*) from registration_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update registration_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.medicalRecordNo != null" >
+        medical_record_no = #{record.medicalRecordNo,jdbcType=CHAR},
+      </if>
+      <if test="record.registrationLevelId != null" >
+        registration_level_id = #{record.registrationLevelId,jdbcType=INTEGER},
+      </if>
+      <if test="record.seeDoctorDate != null" >
+        see_doctor_date = #{record.seeDoctorDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.departmentId != null" >
+        department_id = #{record.departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.doctorId != null" >
+        doctor_id = #{record.doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.registrationResource != null" >
+        registration_resource = #{record.registrationResource,jdbcType=CHAR},
+      </if>
+      <if test="record.settlementTypeId != null" >
+        settlement_type_id = #{record.settlementTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isNeedMedicalrecordbook != null" >
+        is_need_medicalrecordbook = #{record.isNeedMedicalrecordbook,jdbcType=CHAR},
+      </if>
+      <if test="record.isSeenDoctor != null" >
+        is_seen_doctor = #{record.isSeenDoctor,jdbcType=CHAR},
+      </if>
+      <if test="record.expense != null" >
+        expense = #{record.expense,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paymentState != null" >
+        payment_state = #{record.paymentState,jdbcType=CHAR},
+      </if>
+      <if test="record.paymentTime != null" >
+        payment_time = #{record.paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.registrationState != null" >
+        registration_state = #{record.registrationState,jdbcType=CHAR},
+      </if>
+      <if test="record.isCompleted != null" >
+        is_completed = #{record.isCompleted,jdbcType=CHAR},
+      </if>
+      <if test="record.patientName != null" >
+        patient_name = #{record.patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientIdentityNumber != null" >
+        patient_identity_number = #{record.patientIdentityNumber,jdbcType=CHAR},
+      </if>
+      <if test="record.patientAge != null" >
+        patient_age = #{record.patientAge,jdbcType=INTEGER},
+      </if>
+      <if test="record.patientSex != null" >
+        patient_sex = #{record.patientSex,jdbcType=CHAR},
+      </if>
+      <if test="record.patientBirthday != null" >
+        patient_birthday = #{record.patientBirthday,jdbcType=DATE},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update registration_info
+    set id = #{record.id,jdbcType=INTEGER},
+      medical_record_no = #{record.medicalRecordNo,jdbcType=CHAR},
+      registration_level_id = #{record.registrationLevelId,jdbcType=INTEGER},
+      see_doctor_date = #{record.seeDoctorDate,jdbcType=TIMESTAMP},
+      department_id = #{record.departmentId,jdbcType=INTEGER},
+      doctor_id = #{record.doctorId,jdbcType=INTEGER},
+      registration_resource = #{record.registrationResource,jdbcType=CHAR},
+      settlement_type_id = #{record.settlementTypeId,jdbcType=INTEGER},
+      is_need_medicalrecordbook = #{record.isNeedMedicalrecordbook,jdbcType=CHAR},
+      is_seen_doctor = #{record.isSeenDoctor,jdbcType=CHAR},
+      expense = #{record.expense,jdbcType=DECIMAL},
+      payment_state = #{record.paymentState,jdbcType=CHAR},
+      payment_time = #{record.paymentTime,jdbcType=TIMESTAMP},
+      registration_state = #{record.registrationState,jdbcType=CHAR},
+      is_completed = #{record.isCompleted,jdbcType=CHAR},
+      patient_name = #{record.patientName,jdbcType=VARCHAR},
+      patient_identity_number = #{record.patientIdentityNumber,jdbcType=CHAR},
+      patient_age = #{record.patientAge,jdbcType=INTEGER},
+      patient_sex = #{record.patientSex,jdbcType=CHAR},
+      patient_birthday = #{record.patientBirthday,jdbcType=DATE},
+      address = #{record.address,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="neu.his.bean.RegistrationInfo" >
+    update registration_info
+    <set >
+      <if test="medicalRecordNo != null" >
+        medical_record_no = #{medicalRecordNo,jdbcType=CHAR},
+      </if>
+      <if test="registrationLevelId != null" >
+        registration_level_id = #{registrationLevelId,jdbcType=INTEGER},
+      </if>
+      <if test="seeDoctorDate != null" >
+        see_doctor_date = #{seeDoctorDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departmentId != null" >
+        department_id = #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="doctorId != null" >
+        doctor_id = #{doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="registrationResource != null" >
+        registration_resource = #{registrationResource,jdbcType=CHAR},
+      </if>
+      <if test="settlementTypeId != null" >
+        settlement_type_id = #{settlementTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="isNeedMedicalrecordbook != null" >
+        is_need_medicalrecordbook = #{isNeedMedicalrecordbook,jdbcType=CHAR},
+      </if>
+      <if test="isSeenDoctor != null" >
+        is_seen_doctor = #{isSeenDoctor,jdbcType=CHAR},
+      </if>
+      <if test="expense != null" >
+        expense = #{expense,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentState != null" >
+        payment_state = #{paymentState,jdbcType=CHAR},
+      </if>
+      <if test="paymentTime != null" >
+        payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registrationState != null" >
+        registration_state = #{registrationState,jdbcType=CHAR},
+      </if>
+      <if test="isCompleted != null" >
+        is_completed = #{isCompleted,jdbcType=CHAR},
+      </if>
+      <if test="patientName != null" >
+        patient_name = #{patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="patientIdentityNumber != null" >
+        patient_identity_number = #{patientIdentityNumber,jdbcType=CHAR},
+      </if>
+      <if test="patientAge != null" >
+        patient_age = #{patientAge,jdbcType=INTEGER},
+      </if>
+      <if test="patientSex != null" >
+        patient_sex = #{patientSex,jdbcType=CHAR},
+      </if>
+      <if test="patientBirthday != null" >
+        patient_birthday = #{patientBirthday,jdbcType=DATE},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
