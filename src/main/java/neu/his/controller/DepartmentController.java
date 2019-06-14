@@ -17,14 +17,35 @@ import java.util.List;
 @RequestMapping("department")
 public class DepartmentController {
     @Autowired
+    /**
+     *@Author: dell on 2019/6/14 16:44
+     *@param: []
+     *@return: java.lang.String
+     *@Description: toManagement
+     */
     DepartmentService departmentService;
+    @RequestMapping("management")
+    public String toManagement(){
+        return "department/management";
+    }
+    /**
+     *@Author: dell on 2019/6/14 16:44
+     *@param: []
+     *@return: java.util.List
+     *@Description: departmentList
+     */
     @RequestMapping("list")
     public @ResponseBody
     List departmentList() {
         List<Department> departmentlist = departmentService.findAll();
         return departmentlist;
-
     }
+    /**
+     *@Author: dell on 2019/6/14 16:45
+     *@param: [departments]
+     *@return: void
+     *@Description: updatedepartments
+     */
     @RequestMapping("updatedepartments")
     public @ResponseBody
     void updatedepartments(DepartmentDTO departments){
@@ -34,6 +55,12 @@ public class DepartmentController {
         }
     }
 
+    /**
+     *@Author: dell on 2019/6/14 16:45
+     *@param: [pageNum, pageSize]
+     *@return: com.github.pagehelper.PageInfo
+     *@Description: listDepartmentWithPageHelper
+     */
     @RequestMapping("listWithPageHelper")
     public @ResponseBody
     PageInfo listWithPageHelper(int pageNum,int pageSize){
@@ -42,6 +69,13 @@ public class DepartmentController {
         PageInfo pageInfo = new PageInfo(departmentlist);
         return pageInfo;
     }
+    /**
+     *@Author: dell on 2019/6/14 16:46
+     *@param: [attribute_name, attribute, pageNum, pageSize]
+     *@return: com.github.pagehelper.PageInfo
+     *@Description: find DepartmentByAttributeWithPageHelper
+     */
+
     @RequestMapping("findByAttributeWithPageHelper")
     public @ResponseBody
     PageInfo findByAttributeWithPageHelper(String attribute_name, String attribute,int pageNum,int pageSize){
@@ -52,6 +86,12 @@ public class DepartmentController {
 //        PageInfo.setList(departmentService.)
         return pageInfo;
     }
+    /**
+     *@Author: dell on 2019/6/14 16:46
+     *@param: []
+     *@return: java.util.List<java.lang.String>
+     *@Description: departmentCategory
+     */
     @RequestMapping("departmentCategory")
     public @ResponseBody
     List<String> departmentCategory(){
