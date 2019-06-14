@@ -16,6 +16,22 @@ import java.util.List;
 public class DiagnoseDirectoryController {
     @Autowired
     DiagnoseDirectoryService diagnoseDirectoryService;
+    /**
+     *@Author: dell on 2019/6/14 13:42
+     *@param: []
+     *@return: java.lang.String
+     *@Description: toTiagnoseDirectoryManagement
+     */
+    @RequestMapping("diagnoseDirectoryManagement")
+    public String toTiagnoseDirectoryManagement(){
+        return"diagnoseDirectory/diagnoseDirectoryManagement";
+    }
+    /**
+     *@Author: dell on 2019/6/14 13:42
+     *@param: [pageNum, pageSize]
+     *@return: com.github.pagehelper.PageInfo
+     *@Description: listWithPageHelper
+     */
     @RequestMapping("listWithPageHelper")
     public @ResponseBody
     PageInfo listWithPageHelper(int pageNum,int pageSize){

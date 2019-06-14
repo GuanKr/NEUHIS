@@ -2,6 +2,7 @@ package neu.his.controller;
 
 import neu.his.bean.DiagnoseDirectory;
 import neu.his.bean.Disease;
+import neu.his.dto.DiseaseDTO;
 import neu.his.service.DiseaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,11 +16,32 @@ import java.util.List;
 public class DiseaseController {
     @Autowired
     DiseaseService diseaseService;
+    /**
+     *@Author: dell on 2019/6/14 13:39
+     *@param: [directory]
+     *@return: java.util.List
+     *@Description: listFindByDirectory
+     */
     @RequestMapping("listFindByDirectory")
     public @ResponseBody
     List listFindByDirectory(String directory){
         List<Disease>  diseases = diseaseService.findByDirectory(directory);
         return diseases;
     }
+    /**
+     *@Author: dell on 2019/6/14 13:40
+     *@param: [diseases]
+     *@return: void
+     *@Description: updateDiseases
+     */
+    @RequestMapping("updateDiseases")
+    public @ResponseBody
+    void updateDiseases(DiseaseDTO diseases){
+        List<Disease> diseases1 = diseases.getDiseases();
+        for(Disease disease:diseases1){
+            diseaseService.updateDisease(disease);
+        }
+    }
+
 
 }

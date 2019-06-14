@@ -39,10 +39,13 @@ public class RegistrationLevelController {
         }
     }
     @RequestMapping("deleteRegistrationLevelsByID")
-    public @ResponseBody
-    void deleteRegistrationLevelsByID(String idString){
-        int id=Integer.parseInt(idString);
-        registrationLevelService.deleteByID(id);
+    public @ResponseBody void deleteRegistrationLevelsByID(String idString){
+        String[] IDs = idString.split(",");
+        int[] ids = new int[IDs.length];
+        for (int i = 0; i < IDs.length; i++) {
+            ids[i] = Integer.parseInt(IDs[i]);
+            registrationLevelService.deleteByID(ids[i]);
+        }
     }
 
 }
