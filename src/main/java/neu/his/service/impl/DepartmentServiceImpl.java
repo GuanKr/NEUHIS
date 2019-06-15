@@ -1,5 +1,6 @@
 package neu.his.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import neu.his.bean.Department;
 import neu.his.bean.DepartmentExample;
 import neu.his.bean.Query;
@@ -73,6 +74,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public List<Department> findByAttribute_name(String attribute_name, String attribute) {
         List<Department> list;
+
         list =  departmentMapper.query(new Query(attribute_name,attribute));
         for(Department department : list) {
             department.setDepartmentTypeName(translate(department.getDepartmentType()));

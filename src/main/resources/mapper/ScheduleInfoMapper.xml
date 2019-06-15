@@ -58,7 +58,7 @@
   and (bisessional_operation like CONCAT('%',#{bisessionalOperation},'%') or bisessional_operation = '全天' )
   </select>
 
-  <select id="query" parameterType="neu.his.bean.Query" resultMap="ScheduleInfos"  statementType="STATEMENT">
+  <select id="query" parameterType="neu.his.bean.Query" resultMap="ScheduleInfos" >
     SELECT schedule_info.id as sid,
     user_id,
     schedule_date,

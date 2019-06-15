@@ -6,7 +6,7 @@
     select distinct department.department_category from department
   </select>
 
-  <select id="query" parameterType="neu.his.bean.Query" resultMap="Departments" statementType="STATEMENT">
+  <select id="query" parameterType="neu.his.bean.Query" resultMap="Departments">
     SELECT id, department_code, department_name, department_category, department_type
     FROM department
     where ${attribute_name} like CONCAT('%','${attribute}','%')
