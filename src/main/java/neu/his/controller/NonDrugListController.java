@@ -36,7 +36,7 @@ public class NonDrugListController {
     @RequestMapping("listWithPageHelper")
     public @ResponseBody
     PageInfo listWithPageInfo(int pageNum,int pageSize){
-        PageHelper.startPage(pageNum,pageNum);
+        PageHelper.startPage(pageNum,pageSize);
         List<NonDrugList>  nonDrugLists = nonDrugListService.findAll();
         PageInfo pageInfo = new PageInfo(nonDrugLists);
         return pageInfo;
