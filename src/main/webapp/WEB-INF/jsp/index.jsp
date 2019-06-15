@@ -19,6 +19,10 @@
     <br/><br/>
     <a href="diagnoseDirectory/diagnoseDirectoryManagement">诊断目录管理</a>
     <br/><br/>
+    <a href="nonDrugList/nonDrugListManagement">非药品目录管理</a>
+    <br/><br/>
+    <a href="schedule/scheduleManagement">排班管理</a>
+    <br/><br/>
 
 </body>
 </html>

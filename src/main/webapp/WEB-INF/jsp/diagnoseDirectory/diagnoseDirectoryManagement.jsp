@@ -34,13 +34,13 @@
         <button type="button" id="updateDepartments" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;保存&nbsp;&nbsp;&nbsp;&nbsp;</button>
     </div>
 </div>
-<div class="container">
-    <div class="col-md-2">
-        <ul class="nav nav-tab vertical-tab" role="tablist" id="diagnoseDirectoryTab">
+<div class="container" style="padding-left: 1px;padding-right: 1px;margin-left: 70px;margin-right: 50px">
+    <div class="col-md-2" style="padding-left: 5px;padding-right: 5px;width: 120px;">
+        <ul class="nav nav-tab vertical-tab" style="padding-left: 0px;padding-right: 0px;width: 110px;" role="tablist" id="diagnoseDirectoryTab">
         </ul>
     </div>
     <div class="tab-content vertical-tab-content col-md-10">
-        <form class="container" id="diagnoseTab">
+        <form class="container" style="" id="diagnoseTab">
             <table class="table table-hover table-striped">
                 <thead>
                 <tr>
@@ -116,7 +116,7 @@
         $("#diseaseTableBody").html("");
         for (var i = 0;i < diseases.length;i++){
             str += "<tr>" +
-                "<td class='col-md-2'><input type='text' class=\"form-control\" value=\"" + diseases[i].id + "\" name=\"diseases[" + i + "].id\" readonly/></td>\n" +
+                "<td class='col-md-1'><input type='text' class=\"form-control\" value=\"" + diseases[i].id + "\" name=\"diseases[" + i + "].id\" readonly/></td>\n" +
                 "<td><input type=\"text\" class=\"form-control\" value=\"" + diseases[i].internationalIcdCode + "\" name=\"diseases[" + i + "].internationalIcdCode\"/></td>\n" +
                 "<td><input type=\"text\" class=\"form-control\" value=\"" + diseases[i].diseaseName + "\" name=\"diseases[" + i + "].diseaseName\"/></td>\n" +
                 "<td><input type=\"text\" class=\"form-control\" value=\"" + diseases[i].diseaseMnemonicCode + "\" name=\"diseases[" + i + "].diseaseMnemonicCode\"/></td>\n" +
@@ -128,7 +128,7 @@
 
     $(document).ready(function(){
         getDiagnoseDirectoryPageN(1);
-        setDepartmentCategoryInput();
+        // setDepartmentCategoryInput();
 
         //设置保存按钮功能
         $("#updateDepartments").click(function () {

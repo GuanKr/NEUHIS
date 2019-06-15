@@ -218,6 +218,20 @@
         }
         $("#pageChoose").append(str);
     }
+    //设置搜索后的分页选择栏
+    function setSearchedPageChoose() {
+        var str;
+        str = "";
+        $("#pageChoose").html("");
+        for (var i = 1;i <= pageInfo.pages; i++){
+            if(pageInfo.pageNum == i){
+                str += "<li class=\"active\"><a onclick='getSearchedPageN(" + i + ")'>" + i + "</a></li>";
+            }else {
+                str += "<li><a onclick='getSearchedPageN(" + i + ")'>" + i + "</a></li>";
+            }
+        }
+        $("#pageChoose").append(str);
+    }
     //获取指定页科室数据
     var pageInfo = null;
     function getPageN(pageN) {
@@ -280,7 +294,7 @@
         $("#addDepartmentButton").click(function () {
             $.ajax({
                 type: "POST",
-                url: "department/updatedepartments",
+                url: "department/insertDepartment",
                 data: $('#addDepartment').serialize(),
                 success: function () {
                     getPageN(1);

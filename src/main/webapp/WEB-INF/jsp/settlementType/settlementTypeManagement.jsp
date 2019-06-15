@@ -58,7 +58,7 @@
     </fieldset>
     <div class="row">
         <div class="form-group col-md-3">
-            <label class="col-md-4 control-label text-right" for="settlementTypeInput">等级编码</label>
+            <label class="col-md-4 control-label text-right" for="settlementTypeInput">结算类别</label>
             <div class="col-md-8 input-group">
                 <input type="text" class="form-control" id="settlementTypeInput" name="settlementTypeName"/>
                 <span class="input-group-addon" style="color: red">*</span>
@@ -97,28 +97,25 @@
             str += "<tr>" +
                 "<td ><input type='checkbox' value='" + settlementTypes[i].id + "'/></td>" +
                 "<td class='col-md-2'><input type='text' class=\"form-control\" value=\"" + settlementTypes[i].id + "\" name=\"settlementTypes[" + i + "].id\" readonly/></td>\n" +
-                "<td><input type=\"text\" class=\"form-control\" value=\"" + settlementTypes[i].code + "\" name=\"settlementTypes[" + i + "].settlementTypeName\"/></td>\n";
+                "<td><input type=\"text\" class=\"form-control\" value=\"" + settlementTypes[i].settlementTypeName + "\" name=\"settlementTypes[" + i + "].settlementTypeName\"/></td>\n";
             str += "</tr>";
         }
         $("#tableBody").append(str);
     }
-
-    //获取被选择的CheckBox
-    var deleteIDs = [];
     $(document).ready(function(){
         setTableBody();
         //设置删除按钮功能
         $("#deleteRegistrationsButton").click(function () {
+            var deleteIDs = [];
             $.each($('input:checkbox:checked'),function(){
                 deleteIDs.push($(this).val());
             });
             $.ajax({
                 type: "POST",
                 url: "settlementType/deleteSettlementTypesByID",
-                data: JSON.stringify(deleteIDs),
+                data: {idString:deleteIDs.join(',')},
                 async: false,
                 success: function () {
-                    //TODO 未测试
                     $.ajax({
                         type: "POST",
                         url: "settlementType/list",
@@ -144,18 +141,6 @@
                 data: $('#registrationLevelForm').serialize(),
                 success: function () {
                     alert("保存成功");
-                    $.ajax({
-                        type: "POST",
-                        url: "settlementType/list",
-                        async: false,
-                        success: function (result) {
-                            settlementTypes = result;
-                            setTableBody();
-                        },
-                        error :function () {
-                            alert("获取结算类别表失败");
-                        }
-                    });
                 },
                 error: function () {
                     alert("保存失败");
@@ -166,7 +151,7 @@
         $("#addRegistrationLevelButton").click(function () {
             $.ajax({
                 type: "POST",
-                url: "registrationLevel/addRegistrationLevel",
+                url: "settlementType/addSettlementType",
                 data: $('#addRegistrationLevel').serialize(),
                 success: function () {
                     alert("添加成功");

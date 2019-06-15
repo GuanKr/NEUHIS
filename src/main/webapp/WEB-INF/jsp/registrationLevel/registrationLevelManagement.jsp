@@ -30,7 +30,7 @@
 </div>
 <form class="container" id="registrationLevelForm">
     <div class="row">
-        <div class="col-md-4 pull-right">
+        <div class="col-md-3 pull-right">
             <button type="button" id="deleteRegistrationsButton" class="btn btn-primary">删除已选</button>&nbsp;&nbsp;
             <input type="reset" class="btn btn-default" value="取消" />&nbsp;&nbsp;
             <button type="button" id="updateRegistrationLevels" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;保存&nbsp;&nbsp;&nbsp;&nbsp;</button>
@@ -121,7 +121,7 @@
         $("#tableBody").html("");
         for (var i = 0;i < registrationLevels.length;i++){
             str += "<tr>" +
-                "<td ><input type='checkbox' value='" + registrationLevels[i].id + "'/></td>" +
+                "<td ><input type='checkbox' value=" + registrationLevels[i].id + " /></td>" +
                 "<td class='col-md-2'><input type='text' class=\"form-control\" value=\"" + registrationLevels[i].id + "\" name=\"registrationLevels[" + i + "].id\" readonly/></td>\n" +
                 "<td><input type=\"text\" class=\"form-control\" value=\"" + registrationLevels[i].code + "\" name=\"registrationLevels[" + i + "].code\"/></td>\n" +
                 "<td><input type=\"text\" class=\"form-control\" value=\"" + registrationLevels[i].levelName + "\" name=\"registrationLevels[" + i + "].levelName\"/></td>\n";
@@ -139,23 +139,21 @@
         }
         $("#tableBody").append(str);
     }
-
     //获取被选择的CheckBox
-    var deleteIDs = [];
     $(document).ready(function(){
         setTableBody();
         //设置删除按钮功能
         $("#deleteRegistrationsButton").click(function () {
+            var deleteIDs = [];
             $.each($('input:checkbox:checked'),function(){
                 deleteIDs.push($(this).val());
             });
             $.ajax({
                 type: "POST",
                 url: "registrationLevel/deleteRegistrationLevelsByID",
-                data: JSON.stringify(deleteIDs),
+                data: {idString:deleteIDs.join(',')},
                 async: false,
                 success: function () {
-                    //TODO 未测试
                     $.ajax({
                         type: "POST",
                         url: "registrationLevel/list",
@@ -208,7 +206,6 @@
                 url: "registrationLevel/addRegistrationLevel",
                 data: $('#addRegistrationLevel').serialize(),
                 success: function () {
-                    alert("添加成功");
                     $.ajax({
                         type: "POST",
                         url: "registrationLevel/list",

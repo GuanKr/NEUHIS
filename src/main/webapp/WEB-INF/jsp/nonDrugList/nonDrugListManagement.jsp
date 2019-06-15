@@ -20,7 +20,7 @@
     <title>非药品收费目录</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 <%--    日期选择控件    --%>
-    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<%--    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">--%>
 </head>
 <body style="margin-top: 50px">
 <ol class="breadcrumb container">
@@ -134,12 +134,9 @@
     </div>
     <div class="row">
         <div class="form-group col-md-3">
-            <label class="col-md-4 control-label text-right" for="registrationLevelIsDefaultInput">创建时间</label>
-            <div class="col-md-8 input-group date">
-                <input type="text" class="form-control" name="creationTime"/>
-                <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+            <label class="col-md-3 control-label text-left" for="registrationLevelIsDefaultInput">创建时间</label>
+            <div class="col-md-8 input-group left">
+                <input type="date" class="form-control" name="creationTime"/>
                 <span class="input-group-addon" style="color: red">*</span>
             </div>
         </div>
@@ -151,15 +148,15 @@
 </div></form>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<%--<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>--%>
 <script type="text/javascript">
-    //日期选择框 TODO 未测试
-    $(function () {
-        $('#datetimepicker1').datetimepicker({
-            format: 'YYYY-MM-DD',
-            locale: moment.locale('zh-cn')
-        });
-    });
+    // //日期选择框 TODO 未测试
+    // $(function () {
+    //     $('#datetimepicker1').datetimepicker({
+    //         format: 'YYYY-MM-DD',
+    //         locale: moment.locale('zh-cn')
+    //     });
+    // });
 
     //挂号等级表
     var nonDrugLists = null;
@@ -220,7 +217,7 @@
                 "<td><input type=\"text\" class=\"form-control\" value=\"" + nonDrugLists[i].itemCode + "\" name=\"nonDrugLists[" + i + "].itemCode\"/></td>\n" +
                 "<td><input type=\"text\" class=\"form-control\" value=\"" + nonDrugLists[i].itemName + "\" name=\"nonDrugLists[" + i + "].itemName\"/></td>\n" +
                 "<td><input type=\"text\" class=\"form-control\" value=\"" + nonDrugLists[i].format + "\" name=\"nonDrugLists[" + i + "].format\"/></td>\n" +
-                "<td class='col-lg-1'><div class='input-group'><input type=\"text\" class=\"form-control\" value=\"" + nonDrugLists[i].price + "\" name=\"nonDrugLists[" + i + "].price\"/><span class=\"input-group-addon\">￥</span></div></td>\n" +
+                "<td><div class='input-group'><input type=\"text\" class=\"form-control\" value=\"" + nonDrugLists[i].price + "\" name=\"nonDrugLists[" + i + "].price\"/><span class=\"input-group-addon\">￥</span></div></td>\n" +
                 "<td><input type=\"text\" class=\"form-control\" value=\"" + nonDrugLists[i].expenseClassName + "\" name=\"nonDrugLists[" + i + "].expenseClassName\"/></td>\n" +
                 "<td><input type=\"text\" class=\"form-control\" value=\"" + nonDrugLists[i].executivedepartmentName + "\" name=\"nonDrugLists[" + i + "].executivedepartmentName\"/></td>\n" +
                 "<td><input type=\"text\" class=\"form-control\" value=\"" + nonDrugLists[i].mnemonicCode + "\" name=\"nonDrugLists[" + i + "].mnemonicCode\"/></td>\n" +
@@ -230,22 +227,20 @@
         }
         $("#tableBody").append(str);
     }
-    //获取被选择的CheckBox
-    var deleteIDs = [];
     $(document).ready(function(){
         getPageN(1);
         //设置删除按钮功能
         $("#deleteRegistrationsButton").click(function () {
+            var deleteIDs = [];
             $.each($('input:checkbox:checked'),function(){
                 deleteIDs.push($(this).val());
             });
             $.ajax({
                 type: "POST",
                 url: "nonDrugList/deleteNonDrugListsByID",
-                data: JSON.stringify(deleteIDs),
+                data: {idString:deleteIDs.join(',')},
                 async: false,
                 success: function () {
-                    //TODO 未测试 根据IDs删除
                     getPageN(1);
                 },
                 error :function () {
