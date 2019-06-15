@@ -74,6 +74,9 @@ public class DepartmentServiceImpl implements DepartmentService {
     public List<Department> findByAttribute_name(String attribute_name, String attribute) {
         List<Department> list;
         list =  departmentMapper.query(new Query(attribute_name,attribute));
+        for(Department department : list) {
+            department.setDepartmentTypeName(translate(department.getDepartmentType()));
+        }
         return list;
     }
 

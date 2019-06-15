@@ -115,12 +115,8 @@
     </if>
   </delete>
   <insert id="insertSelective" parameterType="neu.his.bean.Department" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into department
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      id,
       <if test="departmentCode != null" >
         department_code,
       </if>
@@ -135,7 +131,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      #{id,jdbcType=INTEGER},
       <if test="departmentCode != null" >
         #{departmentCode,jdbcType=VARCHAR},
       </if>
