@@ -1,10 +1,12 @@
 package neu.his.controller;
 /**
+ *
  * 排班规则及信息管理
  */
 
 import neu.his.bean.ScheduleInfo;
 import neu.his.bean.ScheduleRule;
+import neu.his.dto.ScheduleInfoDTO;
 import neu.his.dto.ScheduleRuleDTO;
 import neu.his.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,4 +89,49 @@ public class ScheduleController {
             scheduleService.updateScheduleRule(scheduleRule);
         }
     }
+//    @RequestMapping("addScheduleInfo")
+//    public @ResponseBody
+//    void addScheduleInfo(ScheduleInfo scheduleInfo){
+//        scheduleService.
+//    }
+
+    /**
+     *
+     * addScheduleRule
+     * @param scheduleRule
+     */
+    @RequestMapping("addScheduleRule")
+    public @ResponseBody
+    void addScheduleRule(ScheduleRule scheduleRule){
+        scheduleService.insertScheduleRule(scheduleRule);
+    }
+
+    /**
+     *
+     * deleteScheduleInfosByID
+     * @param idString
+     */
+    @RequestMapping("deleteScheduleInfosByID")
+    public @ResponseBody
+    void deleteScheduleInfosByID(String idString){
+        String ids[] = idString.split(",");
+        for(String id:ids){
+            scheduleService.deleteInfo(Integer.parseInt(id));
+        }
+    }
+
+    /**
+     *
+     * updateScheduleInfos
+     * @param scheduleInfoList
+     */
+    @RequestMapping("updateScheduleInfos")
+    public @ResponseBody
+    void updateScheduleInfos(ScheduleInfoDTO scheduleInfoList){
+        List<ScheduleInfo> scheduleInfoList1 = scheduleInfoList.getScheduleInfos();
+        for(ScheduleInfo scheduleInfo:scheduleInfoList1){
+            scheduleService.updateInfo(scheduleInfo);
+        }
+    }
+
 }

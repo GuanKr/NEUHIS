@@ -86,6 +86,11 @@ public class DepartmentController {
 //        PageInfo.setList(departmentService.)
         return pageInfo;
     }
+//    @RequestMapping("findByAttribute")
+//    public @ResponseBody
+//    List
+
+
     /**
      *@Author: dell on 2019/6/14 16:46
      *@param: []

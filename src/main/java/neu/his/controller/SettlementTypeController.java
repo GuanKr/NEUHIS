@@ -69,4 +69,11 @@ public class SettlementTypeController {
             settlementTypeService.updateSettlementType(settlementType);
         }
     }
+    @RequestMapping("addSettlementType")
+    public @ResponseBody
+    void addSettlementType(SettlementType settlementType){
+        settlementTypeService.insertSettlementType(settlementType);
+    }
+
+
 }
