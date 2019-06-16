@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Controller
@@ -41,18 +42,22 @@ public class ScheduleController {
         List<ScheduleRule> scheduleRuleList = scheduleService.findAll();
         return scheduleRuleList;
     }
+
+
     /**
-     *@Author: dell on 2019/6/14 16:10
-     *@param: []
-     *@return: java.util.List
-     *@Description: scheduleInfosList
+     * scheduleInfosList
+     * @return: List
      */
     @RequestMapping("scheduleInfosList")
-    public @ResponseBody
-    List scheduleInfosList(){
+    public @ResponseBody List scheduleInfosList(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         List<ScheduleInfo> scheduleInfoList = scheduleService.findAllInfo();
+        for (ScheduleInfo scheduleInfo : scheduleInfoList) {
+            scheduleInfo.setScheduleDateString(simpleDateFormat.format(scheduleInfo.getScheduleDate()));
+        }
         return scheduleInfoList;
     }
+
 
     /**
      *@Author: dell on 2019/6/14 15:47
