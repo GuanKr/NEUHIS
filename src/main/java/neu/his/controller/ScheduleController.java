@@ -134,4 +134,16 @@ public class ScheduleController {
         }
     }
 
+    /**
+     *
+     * createScheduleInfos
+     * @param startTime
+     * @param endTime
+     */
+    @RequestMapping("createScheduleInfos")
+    public @ResponseBody
+    void createScheduleInfos(String startTime,String endTime){
+        scheduleService.creatInfo(startTime,endTime);
+    }
+
 }

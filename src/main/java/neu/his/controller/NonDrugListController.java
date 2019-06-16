@@ -17,21 +17,21 @@ import java.util.List;
 public class NonDrugListController {
     @Autowired
     NonDrugListService nonDrugListService;
+
     /**
-     *@Author: dell on 2019/6/14 13:52
-     *@param: []
-     *@return: java.lang.String
-     *@Description: toNonDrugListManagement
+     *
+     * @return
      */
     @RequestMapping("nonDrugListManagement")
     public String toNonDrugListManagement(){
         return "nonDrugList/nonDrugListManagement";
     }
+
     /**
-     *@Author: dell on 2019/6/14 13:58
-     *@param: [pageNum, pageSize]
-     *@return: com.github.pagehelper.PageInfo
-     *@Description:  listWithPageHelper
+     *
+     * @param pageNum
+     * @param pageSize
+     * @return
      */
     @RequestMapping("listWithPageHelper")
     public @ResponseBody
@@ -41,22 +41,20 @@ public class NonDrugListController {
         PageInfo pageInfo = new PageInfo(nonDrugLists);
         return pageInfo;
     }
+
     /**
-     *@Author: dell on 2019/6/14 14:00
-     *@param: [nonDrugList]
-     *@return: void
-     *@Description: addNonDrugList
+     *
+     * @param nonDrugList
      */
     @RequestMapping("addNonDrugList")
     public  @ResponseBody
     void addNonDrugList(NonDrugList nonDrugList){
         nonDrugListService.insertNonDrugList(nonDrugList);
     }
+
     /**
-     *@Author: dell on 2019/6/14 14:08
-     *@param: [idString]
-     *@return: void
-     *@Description: deleteNonDrugListsByID
+     *
+     * @param idString
      */
     @RequestMapping("deleteNonDrugListsByID")
     public @ResponseBody
@@ -66,11 +64,10 @@ public class NonDrugListController {
             nonDrugListService.deleteByID(Integer.parseInt(id));
         }
     }
+
     /**
-     *@Author: dell on 2019/6/14 14:13
-     *@param: [nonDrugLists]
-     *@return: void
-     *@Description: updateNonDrugLists
+     *
+     * @param nonDrugLists
      */
     @RequestMapping("updateNonDrugLists")
     public @ResponseBody
@@ -79,6 +76,22 @@ public class NonDrugListController {
         for(NonDrugList nonDrugList:nonDrugLists1){
             nonDrugListService.updateNonDrugList(nonDrugList);
         }
+    }
+
+    /**
+     *
+     * @param attribute_name
+     * @param attribute
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @RequestMapping("findbyattributeWithPageHelper")
+    public  @ResponseBody PageInfo findByAttributeWithPageHelper(String attribute_name,String attribute,int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<NonDrugList> nonDrugList = nonDrugListService.findByAttribute_name(attribute_name,attribute);
+        PageInfo pageInfo = new PageInfo(nonDrugList);
+        return pageInfo;
     }
 
 

@@ -114,4 +114,17 @@ public class DepartmentController {
     void insertDepartment(Department department){
         departmentService.insertDepartment(department);
     }
+
+    /**
+     *
+     * finddepartmentListByAttribute
+     * @param attribute_name
+     * @param attribute
+     * @return List
+     */
+    @RequestMapping("findByAttribute")
+    public @ResponseBody List findByAttribute(String attribute_name, String attribute){
+        List departmentList = departmentService.findByAttribute_name(attribute_name,attribute);
+        return departmentList;
+    }
 }

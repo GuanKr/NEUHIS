@@ -42,6 +42,14 @@ public class DiseaseController {
             diseaseService.updateDisease(disease);
         }
     }
+    @RequestMapping("deleteDiseaseByID")
+    public @ResponseBody
+    void deleteDiseaseByID(String idString){
+        String[] IDs =idString.split(",");
+        for(String id:IDs){
+            diseaseService.deleteByID(Integer.parseInt(id));
+        }
+    }
 
 
 }
