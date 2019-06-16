@@ -42,6 +42,8 @@ public class ScheduleInfo {
 
     private String statusName;
 
+    private String scheduleDateString;
+
     /**
      * 构造方法1
      * @param id 主键id
@@ -114,6 +116,14 @@ public class ScheduleInfo {
         this.surplusQuota = surplusQuota;
         this.scheduleQuota = scheduleQuota;
         this.statusName = statusName;
+    }
+
+    public String getScheduleDateString() {
+        return scheduleDateString;
+    }
+
+    public void setScheduleDateString(String scheduleDateString) {
+        this.scheduleDateString = scheduleDateString;
     }
 
     public String getUserName() {
