@@ -1,6 +1,5 @@
 package neu.his.controller;
 
-import neu.his.bean.DiagnoseDirectory;
 import neu.his.bean.Disease;
 import neu.his.dto.DiseaseDTO;
 import neu.his.service.DiseaseService;
@@ -42,6 +41,11 @@ public class DiseaseController {
             diseaseService.updateDisease(disease);
         }
     }
+
+    /**
+     *
+     * @param idString
+     */
     @RequestMapping("deleteDiseaseByID")
     public @ResponseBody
     void deleteDiseaseByID(String idString){
@@ -50,6 +54,17 @@ public class DiseaseController {
             diseaseService.deleteByID(Integer.parseInt(id));
         }
     }
+
+    /**
+     *
+     * @param disease
+     */
+    @RequestMapping("addDisease")
+    public @ResponseBody
+    void addDisease(Disease disease){
+        diseaseService.insertDisease(disease);
+    }
+
 
 
 }
