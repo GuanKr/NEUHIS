@@ -61,7 +61,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public void updateScheduleRule(ScheduleRule scheduleRule) {
         scheduleRule.setStatus(translate(scheduleRule.getStatusName()));
-        scheduleRuleMapper.updateByPrimaryKey(scheduleRule);
+        scheduleRuleMapper.updateByPrimaryKeySelective(scheduleRule);
     }
 
     @Override
@@ -115,7 +115,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public void updateInfo(ScheduleInfo scheduleInfo) {
         scheduleInfo.setStatus(translate(scheduleInfo.getStatusName()));
-        scheduleInfoMapper.updateByPrimaryKey(scheduleInfo);
+        scheduleInfoMapper.updateByPrimaryKeySelective(scheduleInfo);
     }
 
     @Override
