@@ -50,21 +50,9 @@ public class DiagnoseDirectoryServiceImpl implements DiagnoseDirectoryService {
     @Override
     public List<DiagnoseDirectory> findByAttribute_name(String attribute) {
         List<DiagnoseDirectory> list;
-        List<DiagnoseDirectory> listAll;
-
         DiagnoseDirectoryExample diagnoseDirectoryExample = new DiagnoseDirectoryExample();
-
-        listAll = diagnoseDirectoryMapper.selectByExample(new DiagnoseDirectoryExample());
-
-        for(DiagnoseDirectory diagnoseDirectory : listAll){
-            String name = diagnoseDirectory.getDiseaseCategoryName();
-            if(name.contains(attribute)){
-                diagnoseDirectoryExample.or().andDiseaseCategoryNameEqualTo(name);
-            }
-        }
-
+        diagnoseDirectoryExample.or().andDiseaseCategoryNameLike("%"+attribute+"%");
         list = diagnoseDirectoryMapper.selectByExample(diagnoseDirectoryExample);
-
         for(DiagnoseDirectory diagnoseDirectory : list){
             diagnoseDirectory.setDeseaseTypeName(translate(diagnoseDirectory.getDiseaseType()));
         }
