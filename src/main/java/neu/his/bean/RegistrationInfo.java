@@ -56,6 +56,13 @@ public class RegistrationInfo {
 
     private String settlementTypeName;
 
+    public RegistrationInfo(Date seeDoctorDate, Integer doctorId, String isSeenDoctor, String paymentState, String registrationState) {
+        this.seeDoctorDate = seeDoctorDate;
+        this.doctorId = doctorId;
+        this.isSeenDoctor = isSeenDoctor;
+        this.paymentState = paymentState;
+        this.registrationState = registrationState;
+    }
 
     public RegistrationInfo(Integer id, String medicalRecordNo, Integer registrationLevelId, Date seeDoctorDate, Integer departmentId, Integer doctorId, String registrationResource, Integer settlementTypeId, String isNeedMedicalrecordbook, String isSeenDoctor, BigDecimal expense, String paymentState, Date paymentTime, String registrationState, String isCompleted, String patientName, String patientIdentityNumber, Integer patientAge, String patientSex, Date patientBirthday, String address) {
         this.id = id;

@@ -3,6 +3,7 @@ package neu.his.dao;
 import java.util.List;
 
 import neu.his.bean.Query;
+import neu.his.bean.RegistrationInfo;
 import neu.his.bean.ScheduleInfo;
 import neu.his.bean.ScheduleInfoExample;
 import org.apache.ibatis.annotations.Delete;
@@ -24,10 +25,10 @@ public interface ScheduleInfoMapper {
 
     /**
      * 根据挂号时输入信息查询符合条件的医生
-     * @param scheduleInfo 要查询的条件
+     * @param registrationInfo 要查询的条件
      * @return 返回符合条件的医生姓名
      */
-    List<String> selectDoctor(ScheduleInfo scheduleInfo);
+    List<String> selectDoctor(RegistrationInfo registrationInfo);
 
     /**
      * 查询排班信息

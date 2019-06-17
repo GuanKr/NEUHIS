@@ -1,6 +1,7 @@
 package neu.his.service.impl;
 
 import neu.his.bean.Query;
+import neu.his.bean.RegistrationInfo;
 import neu.his.bean.ScheduleInfo;
 import neu.his.bean.ScheduleRule;
 import neu.his.converter.DateConverter;
@@ -128,12 +129,11 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public List<String> selectDoctor(ScheduleInfo scheduleInfo){
+    public List<String> selectDoctor(RegistrationInfo registrationInfo){
         DateConverter dateConverter = new DateConverter();
         List<String> list;
-        scheduleInfo.setBisessionalOperation(dateConverter.nowNoon());
-        scheduleInfo.setStatusName(dateConverter.nowDate());
-        list = scheduleInfoMapper.selectDoctor(scheduleInfo);
+        registrationInfo.setRegistrationResource(dateConverter.nowNoon(registrationInfo.getSeeDoctorDate()));
+        list = scheduleInfoMapper.selectDoctor(registrationInfo);
         return list;
     }
 

@@ -17,6 +17,22 @@ import org.apache.ibatis.annotations.Update;
  * @since 1.0
  */
 public interface RegistrationInfoMapper {
+
+
+    /**
+     * 查找待诊病人的信息
+     * @param id 医生id
+     * @return 待诊病人信息
+     */
+    List<RegistrationInfo> queryMissedByDoctorId(Integer id);
+
+    /**
+     * 查找已诊病人的信息
+     * @param id 医生id
+     * @return 已诊病人信息
+     */
+    List<RegistrationInfo> queryAlreadyByDoctorId(Integer id);
+
     /**
      * 查询挂号信息
      * @return 挂号信息列表
