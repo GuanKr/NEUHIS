@@ -25,13 +25,21 @@ public interface DiseaseService {
     void deleteByID(int id);
 
     /**
-     * 根据诊断目录铭恒，属性名称及内容来查找
+     * 根据诊断目录名称，属性名称及内容来查找
      * @param directory_name 诊断目录名称
      * @param attribute_name 属性名称
      * @param attribute 查找内容
      * @return 疾病列表
      */
     List<Disease> findByAttribute_name(String directory_name,String attribute_name, String attribute);
+
+    /**
+     * 根据属性名称及内容来查找
+     * @param attribute_name 属性名称
+     * @param attribute 查找内容
+     * @return 疾病列表
+     */
+    List<Disease> findAllByAttribute_name(String attribute_name, String attribute);
 
     /**
      * 插入疾病信息

@@ -1,5 +1,6 @@
 package neu.his.service;
 
+import neu.his.bean.Diagnose;
 import neu.his.bean.MedicalRecord;
 
 import java.util.List;
@@ -40,11 +41,46 @@ public interface MedicalRecordService {
      * @param id 医生id
      * @return 病历模板
      */
-    List<MedicalRecord> referenceTemplatDep(Integer id);
+    List<MedicalRecord> referenceTemplateDep(Integer id);
 
     /**
      * 引用个人病历模板
+     * @param id 医生id
      * @return 病历模板
      */
-    List<MedicalRecord> referenceTemplatDoc();
+    List<MedicalRecord> referenceTemplateDoc(Integer id);
+
+    /**
+     * 查询该病人历史病历
+     * @param idCard 身份证号
+     * @return
+     */
+    List<MedicalRecord> historyMed(String idCard);
+
+    /**
+     * 提交病历首页
+     * @param medicalRecord  病历首页信息
+     * @param diagnoses 诊断信息列表
+     * @return ‘请输入XXX’或‘成功’
+     */
+    String Submission(MedicalRecord medicalRecord, List<Diagnose> diagnoses);
+
+    /**
+     * 获得常用诊断
+     * @param id 医生id
+     * @return 常用诊断列表
+     */
+    List<Diagnose> findCommonDiagnose(Integer id);
+
+    /**
+     * 上传常用诊断
+     * @param diagnose
+     */
+    void CommonDiagnose(Diagnose diagnose);
+
+    /**
+     * 删除常用诊断
+     * @param id 常用诊断主键id
+     */
+    void deleteCommonDiagnose(Integer id);
 }

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="neu.his.dao.DiagnoseMapper" >
+  <resultMap id="BaseResultMap" type="neu.his.bean.Diagnose" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="disease_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="medical_record_no" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="major_diagnose_sign" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="suspected_sign" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="disease_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="doctor_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="disease_type" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="is_common" jdbcType="CHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, disease_id, medical_record_no, major_diagnose_sign, suspected_sign, disease_time, 
+    doctor_id, disease_type, is_common
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="neu.his.bean.DiagnoseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from diagnose
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="neu.his.bean.DiagnoseExample" >
+    delete from diagnose
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertSelective" parameterType="neu.his.bean.Diagnose" >
+    insert into diagnose
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="diseaseId != null" >
+        disease_id,
+      </if>
+      <if test="medicalRecordNo != null" >
+        medical_record_no,
+      </if>
+      <if test="majorDiagnoseSign != null" >
+        major_diagnose_sign,
+      </if>
+      <if test="suspectedSign != null" >
+        suspected_sign,
+      </if>
+      <if test="diseaseTime != null" >
+        disease_time,
+      </if>
+      <if test="doctorId != null" >
+        doctor_id,
+      </if>
+      <if test="diseaseType != null" >
+        disease_type,
+      </if>
+      <if test="isCommon != null" >
+        is_common,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="diseaseId != null" >
+        #{diseaseId,jdbcType=INTEGER},
+      </if>
+      <if test="medicalRecordNo != null" >
+        #{medicalRecordNo,jdbcType=INTEGER},
+      </if>
+      <if test="majorDiagnoseSign != null" >
+        #{majorDiagnoseSign,jdbcType=CHAR},
+      </if>
+      <if test="suspectedSign != null" >
+        #{suspectedSign,jdbcType=CHAR},
+      </if>
+      <if test="diseaseTime != null" >
+        #{diseaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="doctorId != null" >
+        #{doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="diseaseType != null" >
+        #{diseaseType,jdbcType=CHAR},
+      </if>
+      <if test="isCommon != null" >
+        #{isCommon,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="neu.his.bean.DiagnoseExample" resultType="java.lang.Integer" >
+    select count(*) from diagnose
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update diagnose
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.diseaseId != null" >
+        disease_id = #{record.diseaseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.medicalRecordNo != null" >
+        medical_record_no = #{record.medicalRecordNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.majorDiagnoseSign != null" >
+        major_diagnose_sign = #{record.majorDiagnoseSign,jdbcType=CHAR},
+      </if>
+      <if test="record.suspectedSign != null" >
+        suspected_sign = #{record.suspectedSign,jdbcType=CHAR},
+      </if>
+      <if test="record.diseaseTime != null" >
+        disease_time = #{record.diseaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.doctorId != null" >
+        doctor_id = #{record.doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.diseaseType != null" >
+        disease_type = #{record.diseaseType,jdbcType=CHAR},
+      </if>
+      <if test="record.isCommon != null" >
+        is_common = #{record.isCommon,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update diagnose
+    set id = #{record.id,jdbcType=INTEGER},
+      disease_id = #{record.diseaseId,jdbcType=INTEGER},
+      medical_record_no = #{record.medicalRecordNo,jdbcType=INTEGER},
+      major_diagnose_sign = #{record.majorDiagnoseSign,jdbcType=CHAR},
+      suspected_sign = #{record.suspectedSign,jdbcType=CHAR},
+      disease_time = #{record.diseaseTime,jdbcType=TIMESTAMP},
+      doctor_id = #{record.doctorId,jdbcType=INTEGER},
+      disease_type = #{record.diseaseType,jdbcType=CHAR},
+      is_common = #{record.isCommon,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="neu.his.bean.Diagnose" >
+    update diagnose
+    <set >
+      <if test="diseaseId != null" >
+        disease_id = #{diseaseId,jdbcType=INTEGER},
+      </if>
+      <if test="medicalRecordNo != null" >
+        medical_record_no = #{medicalRecordNo,jdbcType=INTEGER},
+      </if>
+      <if test="majorDiagnoseSign != null" >
+        major_diagnose_sign = #{majorDiagnoseSign,jdbcType=CHAR},
+      </if>
+      <if test="suspectedSign != null" >
+        suspected_sign = #{suspectedSign,jdbcType=CHAR},
+      </if>
+      <if test="diseaseTime != null" >
+        disease_time = #{diseaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="doctorId != null" >
+        doctor_id = #{doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="diseaseType != null" >
+        disease_type = #{diseaseType,jdbcType=CHAR},
+      </if>
+      <if test="isCommon != null" >
+        is_common = #{isCommon,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

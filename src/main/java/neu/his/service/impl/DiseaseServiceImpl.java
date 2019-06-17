@@ -1,9 +1,6 @@
 package neu.his.service.impl;
 
-import neu.his.bean.DiagnoseDirectory;
-import neu.his.bean.Disease;
-import neu.his.bean.DiseaseExample;
-import neu.his.bean.DiseaseQuery;
+import neu.his.bean.*;
 import neu.his.dao.DiagnoseDirectoryMapper;
 import neu.his.dao.DiseaseMapper;
 import neu.his.dao.TranslateMapper;
@@ -34,6 +31,13 @@ public class DiseaseServiceImpl implements DiseaseService {
     public List<Disease> findByAttribute_name(String directory_name, String attribute_name, String attribute) {
         List<Disease> list;
         list = diseaseMapper.query(new DiseaseQuery(directory_name,attribute_name,attribute));
+        return list;
+    }
+
+    @Override
+    public List<Disease> findAllByAttribute_name(String attribute_name, String attribute) {
+        List<Disease> list;
+        list = diseaseMapper.queryAll(new Query(attribute_name,attribute));
         return list;
     }
 
