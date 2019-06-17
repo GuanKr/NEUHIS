@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Controller
@@ -36,8 +37,12 @@ public class NonDrugListController {
     @RequestMapping("listWithPageHelper")
     public @ResponseBody
     PageInfo listWithPageInfo(int pageNum,int pageSize){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         PageHelper.startPage(pageNum,pageSize);
         List<NonDrugList>  nonDrugLists = nonDrugListService.findAll();
+        for(NonDrugList nonDrugList:nonDrugLists){
+            nonDrugList.setCreationdateString(simpleDateFormat.format(nonDrugList.getCreationTime()));
+        }
         PageInfo pageInfo = new PageInfo(nonDrugLists);
         return pageInfo;
     }

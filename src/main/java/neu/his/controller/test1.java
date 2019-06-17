@@ -93,7 +93,7 @@ public class test1 {
     @RequestMapping("update")
     public void m10() {
         List<User> list = userService.findAll();
-        list = new UserServiceImpl().effectiveness(list);
+        //list = new UserServiceImpl().effectiveness(list);
         for(User user: list){
             userService.updateuser(user);
         }

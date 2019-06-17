@@ -57,6 +57,9 @@ public class NonDrugList {
      */
     private String itemTypeName;
 
+    private String creationdateString;
+
+
     /**
      * 构造方法1
      * @param id 主键id
@@ -241,6 +244,13 @@ public class NonDrugList {
         this.creationTime = creationTime;
     }
 
+    public String getCreationdateString() {
+        return creationdateString;
+    }
+
+    public void setCreationdateString(String creationdateString) {
+        this.creationdateString = creationdateString;
+    }
     @Override
     public String toString() {
         return "NonDrugList{" +

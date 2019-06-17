@@ -2,8 +2,8 @@ package neu.his.bean;
 /**
  * 存储用户信息
  * @author lsy
- * @version 1.8
- * @since 1.0
+ * @version 1.0
+ * @since 1.8
  */
 public class User {
     /**
