@@ -39,6 +39,82 @@
   on registration_info.registration_level_id = registration_level.id
   </select>
 
+  <select id="queryMissedByDoctorId" parameterType="java.lang.Integer" resultMap="RegInfos">
+   SELECT registration_info.id as riId,
+  medical_record_no,
+  registration_info.registration_level_id as rrlId,
+  see_doctor_date,
+  registration_info.department_id as ridId,
+  doctor_id,
+  registration_resource,
+  settlement_type_id,
+  is_need_medicalrecordbook,
+  is_seen_doctor,
+  expense,
+  payment_state,
+  payment_time,
+  registration_state,
+  is_completed,
+  patient_name,
+  patient_identity_number,
+  patient_age,
+  patient_sex,
+  patient_birthday,
+  address,
+  name,
+  department_name,
+  settlement_type_name,
+  level_name,
+  registration_price
+  from registration_info left JOIN user
+  on registration_info.doctor_id = user.id
+  LEFT JOIN department
+  on registration_info.department_id = department.id
+  LEFT JOIN settlement_type
+  on registration_info.settlement_type_id = settlement_type.id
+  left join registration_level
+  on registration_info.registration_level_id = registration_level.id
+  where doctor_id = #{id}  and is_seen_doctor = '0' and see_doctor_date = CURRENT_DATE and payment_state = '1' and registration_state = '1'
+  </select>
+
+  <select id="queryAlreadyByDoctorId" parameterType="java.lang.Integer" resultMap="RegInfos">
+   SELECT registration_info.id as riId,
+  medical_record_no,
+  registration_info.registration_level_id as rrlId,
+  see_doctor_date,
+  registration_info.department_id as ridId,
+  doctor_id,
+  registration_resource,
+  settlement_type_id,
+  is_need_medicalrecordbook,
+  is_seen_doctor,
+  expense,
+  payment_state,
+  payment_time,
+  registration_state,
+  is_completed,
+  patient_name,
+  patient_identity_number,
+  patient_age,
+  patient_sex,
+  patient_birthday,
+  address,
+  name,
+  department_name,
+  settlement_type_name,
+  level_name,
+  registration_price
+  from registration_info left JOIN user
+  on registration_info.doctor_id = user.id
+  LEFT JOIN department
+  on registration_info.department_id = department.id
+  LEFT JOIN settlement_type
+  on registration_info.settlement_type_id = settlement_type.id
+  left join registration_level
+  on registration_info.registration_level_id = registration_level.id
+  where doctor_id = #{id}  and is_seen_doctor = '1' and see_doctor_date = CURRENT_DATE and registration_state = '1'
+  </select>
+
   <resultMap id="RegInfos" type="neu.his.bean.RegistrationInfo">
     <id property="id" column="riId"/>
     <result property="medicalRecordNo" column="medical_record_no"/>
@@ -115,7 +191,7 @@
     WHERE user.name = #{doctorName} and registration_level.level_name = #{registrationLevelName} and settlement_type_name = #{settlementTypeName} and department_name = #{departmentName}
   </insert>
 
-  <select id="serNumber" resultType="String">
+  <select id="serNumber" resultType="java.lang.String">
    select medical_record_no
    from registration_info
    ORDER BY medical_record_no desc

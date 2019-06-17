@@ -20,36 +20,42 @@ public interface RegistrationInfoService {
      * @return 名称/名称
      */
     String translateResource(String type);
+
     /**
      * 转换是否需要病历本
      * @param type 类型/名称
      * @return 名称/名称
      */
     String translateMedicalrecordbook(String type);
+
     /**
      * 转换是否看诊
      * @param type 类型/名称
      * @return 名称/名称
      */
     String translateIsSeen(String type);
+
     /**
      * 转换缴费状态
      * @param type 类型/名称
      * @return 名称/名称
      */
     String translatePaymentState(String type);
+
     /**
      * 转换挂号状态
      * @param type 类型/名称
      * @return 名称/名称
      */
     String translateRegistrationState(String type);
+
     /**
      * 转换是否诊断完毕
      * @param type 类型/名称
      * @return 名称/名称
      */
     String translateIsCompleted(String type);
+
     /**
      * 转换性别
      * @param type 类型/名称
@@ -89,4 +95,18 @@ public interface RegistrationInfoService {
      * @param registrationInfo 挂号信息
      */
     void registration(RegistrationInfo registrationInfo);
+
+    /**
+     * 查找待诊病人的信息
+     * @param id 医生id
+     * @return 待诊病人信息
+     */
+    List<RegistrationInfo> queryMissedByDoctorId(Integer id);
+
+    /**
+     * 查找已诊病人的信息
+     * @param id 医生id
+     * @return 已诊病人信息
+     */
+    List<RegistrationInfo> queryAlreadyByDoctorId(Integer id);
 }

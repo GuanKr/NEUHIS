@@ -4,6 +4,7 @@ import java.util.List;
 import neu.his.bean.Disease;
 import neu.his.bean.DiseaseExample;
 import neu.his.bean.DiseaseQuery;
+import neu.his.bean.Query;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -20,10 +21,16 @@ import org.apache.ibatis.annotations.Update;
 public interface DiseaseMapper {
 
     /**
-     * 查询疾病信息
+     * 查询疾病信息(有诊断目录信息)
      * @param diseaseQuery 封装的查询信息
      */
     List<Disease> query(DiseaseQuery diseaseQuery);
+
+     /**
+     * 查询疾病信息(无诊断目录信息)
+     * @param Query 封装的查询信息
+     */
+    List<Disease> queryAll(Query Query);
 
     /**
      * 更新疾病信息

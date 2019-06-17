@@ -1,6 +1,7 @@
 package neu.his.service.impl;
 
 import neu.his.bean.RegistrationInfo;
+import neu.his.bean.RegistrationInfoExample;
 import neu.his.bean.RegistrationLevel;
 import neu.his.bean.RegistrationLevelExample;
 import neu.his.converter.DateConverter;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -200,5 +202,16 @@ public class RegistrationInfoServiceImpl implements RegistrationInfoService {
         registrationInfo = translate(registrationInfo);
         registrationInfoMapper.insertRegInfo(registrationInfo);
     }
+
+    @Override
+    public List<RegistrationInfo> queryMissedByDoctorId(Integer id) {
+        return registrationInfoMapper.queryMissedByDoctorId(id);
+    }
+
+    @Override
+    public List<RegistrationInfo> queryAlreadyByDoctorId(Integer id) {
+        return registrationInfoMapper.queryAlreadyByDoctorId(id);
+    }
+
 
 }

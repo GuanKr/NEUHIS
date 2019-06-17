@@ -1,8 +1,11 @@
 package neu.his.service;
 
+import com.mysql.cj.exceptions.DataReadException;
+import neu.his.bean.RegistrationInfo;
 import neu.his.bean.ScheduleInfo;
 import neu.his.bean.ScheduleRule;
 
+import javax.xml.crypto.Data;
 import java.util.List;
 
 /**
@@ -78,9 +81,9 @@ public interface ScheduleService {
 
     /**
      * 根据挂号时输入信息查询符合条件的医生
-     * @param scheduleInfo 要查询的条件
+     * @param registrationInfo 要查询的条件
      * @return 返回符合条件的医生姓名
      */
-     List<String> selectDoctor(ScheduleInfo scheduleInfo);
+     List<String> selectDoctor(RegistrationInfo registrationInfo);
 
 }
