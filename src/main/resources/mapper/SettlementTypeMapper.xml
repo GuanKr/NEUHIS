@@ -89,18 +89,13 @@
     </if>
   </delete>
   <insert id="insertSelective" parameterType="neu.his.bean.SettlementType" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into settlement_type
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      id,
       <if test="settlementTypeName != null" >
         settlement_type_name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      #{id,jdbcType=INTEGER},
       <if test="settlementTypeName != null" >
         #{settlementTypeName,jdbcType=VARCHAR},
       </if>
