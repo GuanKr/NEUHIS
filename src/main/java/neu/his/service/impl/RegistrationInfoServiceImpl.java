@@ -1,12 +1,10 @@
 package neu.his.service.impl;
 
-import neu.his.bean.RegistrationInfo;
-import neu.his.bean.RegistrationInfoExample;
-import neu.his.bean.RegistrationLevel;
-import neu.his.bean.RegistrationLevelExample;
+import neu.his.bean.*;
 import neu.his.converter.DateConverter;
 import neu.his.dao.RegistrationInfoMapper;
 import neu.his.dao.RegistrationLevelMapper;
+import neu.his.dao.ScheduleInfoMapper;
 import neu.his.service.RegistrationInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +21,9 @@ public class RegistrationInfoServiceImpl implements RegistrationInfoService {
 
     @Autowired
     RegistrationLevelMapper registrationLevelMapper;
+
+    @Autowired
+    ScheduleInfoMapper scheduleInfoMapper;
 
     @Override
     public String translateResource(String type) {
@@ -201,6 +202,17 @@ public class RegistrationInfoServiceImpl implements RegistrationInfoService {
         registrationInfo.setIsCompleted("未诊毕");
         registrationInfo = translate(registrationInfo);
         registrationInfoMapper.insertRegInfo(registrationInfo);
+
+        ScheduleInfoExample scheduleInfoExample = new ScheduleInfoExample();
+        ScheduleInfoExample.Criteria criteria = scheduleInfoExample.createCriteria();
+        criteria.andUserIdEqualTo(registrationInfo.getDoctorId());
+        criteria.andScheduleDateEqualTo(registrationInfo.getSeeDoctorDate());
+        scheduleInfoExample.or(criteria);
+        List<ScheduleInfo> list = scheduleInfoMapper.selectByExample(scheduleInfoExample);
+        for(ScheduleInfo scheduleInfo : list){
+            scheduleInfo.setSurplusQuota(scheduleInfo.getSurplusQuota() - 1);
+            scheduleInfoMapper.updateByPrimaryKey(scheduleInfo);
+        }
     }
 
     @Override

@@ -53,7 +53,7 @@ public interface MedicalRecordService {
     /**
      * 查询该病人历史病历
      * @param idCard 身份证号
-     * @return
+     * @return 病历列表
      */
     List<MedicalRecord> historyMed(String idCard);
 
