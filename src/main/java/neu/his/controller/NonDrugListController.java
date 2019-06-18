@@ -91,7 +91,7 @@ public class NonDrugListController {
      * @param pageSize
      * @return
      */
-    @RequestMapping("findbyattributeWithPageHelper")
+    @RequestMapping("findByAttributeWithPageHelper")
     public  @ResponseBody PageInfo findByAttributeWithPageHelper(String attribute_name,String attribute,int pageNum,int pageSize){
         PageHelper.startPage(pageNum,pageSize);
         List<NonDrugList> nonDrugList = nonDrugListService.findByAttribute_name(attribute_name,attribute);

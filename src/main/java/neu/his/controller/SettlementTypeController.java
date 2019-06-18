@@ -49,8 +49,8 @@ public class SettlementTypeController {
      */
     @RequestMapping("deleteSettlementTypesByID")
     public @ResponseBody
-    void deleteSettlementTypesByID(String idStirng ){
-        String[] IDs =idStirng.split(",");
+    void deleteSettlementTypesByID(String idString ){
+        String[] IDs =idString.split(",");
         for(String id:IDs){
             settlementTypeService.deleteByID(Integer.parseInt(id));
         }
