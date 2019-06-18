@@ -96,6 +96,14 @@ public class DiseaseController {
         diagnoseDirectoryList = diagnoseDirectoryService.findByAttribute_name(attribute);
         return diagnoseDirectoryList;
     }
+    @RequestMapping("findByAttributeWithTwoParameters")
+    public @ResponseBody
+    List findByAttributeWithTwoParameters(String attribute_name, String attribute){
+        List<Disease> diseaseList;
+        diseaseList = diseaseService.findAllByAttribute_name(attribute_name,attribute);
+        return diseaseList;
+    }
+
 
 
 
