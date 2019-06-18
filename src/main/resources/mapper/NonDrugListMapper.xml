@@ -41,7 +41,7 @@
   (SELECT department.id
   FROM his.department
   WHERE department_name = #{executivedepartmentName}),
-  de item_code = #{itemCode},
+  item_code = #{itemCode},
   item_name = #{itemName},
   format = #{format},
   price = #{price},
