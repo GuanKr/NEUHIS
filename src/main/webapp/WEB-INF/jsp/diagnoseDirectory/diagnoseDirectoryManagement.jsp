@@ -29,12 +29,14 @@
     <h2>医院诊断目录管理</h2>
 </div>
 <div class="row" style="padding-left: 20px;padding-right: 1px;margin-left: 3px;margin-right: 3px">
-    <div class="col-md-2" style="border: solid 1px #2aabd2;height: 600px;display: block;overflow: auto;padding-left: 5px;padding-right: 5px;width: 150px;">
+    <div class="col-md-2" style="border: solid 1px #2aabd2;height: 600px;display: block;overflow: auto;padding-left: 5px;padding-right: 5px;width: 180px;">
         <div>
-            <label class="text-left">分类查询</label>
+<%--            <label class="text-left">分类查询</label>--%>
+
             <input type="text" id="executiveDepartmentNameInput" class="form-control"/>
+            <button type="button" id="searchBut" class="btn btn-primary">分类查询</button>
 <%--            动态查询--%>
-            <ul id="executiveDepartmentNameInputUl" style="height: 200px;overflow: auto" class="dropdown-menu">
+            <ul id="executiveDepartmentNameInputUl" style="height: 175px;overflow: auto" class="dropdown-menu">
             </ul>
         </div>
         <ul class="nav nav-tab vertical-tab" style="padding-left: 0px;padding-right: 0px;width: 110px;" role="tablist" id="diagnoseDirectoryTab">
@@ -236,10 +238,8 @@
 
                 $("#executiveDepartmentNameInputUl li").click(function(){
                     $("#executiveDepartmentNameInput").val($(this).html());
-
-                    getDiagnose($("#executiveDepartmentNameInput").val());
-
                     $("#executiveDepartmentNameInputUl").hide(0);
+                    getDiagnose($("#executiveDepartmentNameInput").val());
                 });
             }
         });
@@ -374,14 +374,16 @@
 
     $(document).ready(function(){
         getDiagnoseDirectoryPageN(1);
-        // setDepartmentCategoryInput();
-
+        //设置分类查询功能
+        $("#searchBut").click(function () {
+            getDiagnose($("#executiveDepartmentNameInput").val());
+        });
         //设置保存按钮功能
         $("#updateDepartments").click(function () {
             $.ajax({
                 type: "POST",
                 url: "disease/updateDiseases",
-                data: $('#diseaseTableBody').serialize(),
+                data: $('#diagnoseTab').serialize(),
                 success: function () {
                     alert("保存成功");
                 },
@@ -398,7 +400,7 @@
             });
             $.ajax({
                 type: "POST",
-                url: "disease/deleteDiseasesByID",
+                url: "disease/deleteDiseaseByID",
                 data: {idString:deleteIDs.join(',')},
                 async: false,
                 success: function () {
@@ -452,18 +454,33 @@
         });
         //设置查找功能按钮
         $("#search").click(function(){
-            $.ajax({
-                type: "POST",
-                url: "disease/findByAttribute",
-                data: {directory_name : $("#diagnoseDirectoryNameInput").val(),attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val()},
-                success: function (result) {
-                    diseases = result;
-                    setDiseaseTableBody();
-                },
-                error: function () {
-                    alert("查找出错");
-                }
-            });
+            if ($("#diagnoseDirectoryNameInput").val() == "") {
+                $.ajax({
+                    type: "POST",
+                    url: "disease/findByAttributeWithTwoParameters",
+                    data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val()},
+                    success: function (result) {
+                        diseases = result;
+                        setDiseaseTableBody();
+                    },
+                    error: function () {
+                        alert("查找出错");
+                    }
+                });
+            }else {
+                $.ajax({
+                    type: "POST",
+                    url: "disease/findByAttribute",
+                    data: {directory_name : $("#diagnoseDirectoryNameInput").val(),attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val()},
+                    success: function (result) {
+                        diseases = result;
+                        setDiseaseTableBody();
+                    },
+                    error: function () {
+                        alert("查找出错");
+                    }
+                });
+            }
         });
     });
 </script>

@@ -23,6 +23,8 @@
     <br/><br/>
     <a href="schedule/scheduleManagement">排班管理 未测试 调整宽度</a>
     <br/><br/>
+    <a href="medicalRecord/medicalRecord">病例首页</a>
+    <br/><br/>
 
 </body>
 </html>
