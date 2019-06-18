@@ -17,6 +17,7 @@ import java.util.List;
 public class DiseaseController {
     @Autowired
     DiseaseService diseaseService;
+    @Autowired
     DiagnoseDirectoryService diagnoseDirectoryService;
     /**
      *@Author: dell on 2019/6/14 13:39
