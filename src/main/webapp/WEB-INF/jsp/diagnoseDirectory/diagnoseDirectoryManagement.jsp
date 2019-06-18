@@ -239,7 +239,7 @@
                 $("#executiveDepartmentNameInputUl li").click(function(){
                     $("#executiveDepartmentNameInput").val($(this).html());
                     $("#executiveDepartmentNameInputUl").hide(0);
-                    getDiagnose($("#executiveDepartmentNameInput").val());
+                    // getDiagnose($("#executiveDepartmentNameInput").val());
                 });
             }
         });
