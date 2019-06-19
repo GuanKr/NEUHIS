@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="neu.his.dao.InspectionSetDetailMapper" >
+
+  <select id="selectBySet" parameterType="Integer" resultMap="Detail">
+    select inspection_set_detail.id as ISId ,inspection_set_id,non_drug_list_id,non_drug_list.item_name
+    from inspection_set_detail left join non_drug_list
+    on inspection_set_detail.non_drug_list_id = non_drug_list.id
+    where inspection_set_detail.inspection_set_id = #{setId}
+  </select>
+
+  <insert id="insertDetail" parameterType="neu.his.bean.InspectionSetDetail">
+    INSERT  INTO inspection_set_detail (inspection_set_id,non_drug_list_id)
+    SELECT #{inspectionSetId},non_drug_list.id
+    FROM non_drug_list
+    WHERE non_drug_list.item_name = #{itemName}
+  </insert>
+
+
+  <resultMap id="Detail" type="neu.his.bean.InspectionSetDetail">
+    <id property="id" column="ISId"/>
+    <result property="inspectionSetId" column="inspection_set_id"/>
+    <result property="nonDrugListId" column="non_drug_list_id"/>
+    <result property="itemName" column="item_name"/>
+  </resultMap>
+
+
+  <resultMap id="BaseResultMap" type="neu.his.bean.InspectionSetDetail" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="inspection_set_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="non_drug_list_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, inspection_set_id, non_drug_list_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="neu.his.bean.InspectionSetDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from inspection_set_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="neu.his.bean.InspectionSetDetailExample" >
+    delete from inspection_set_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertSelective" parameterType="neu.his.bean.InspectionSetDetail" >
+    insert into inspection_set_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="inspectionSetId != null" >
+        inspection_set_id,
+      </if>
+      <if test="nonDrugListId != null" >
+        non_drug_list_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="inspectionSetId != null" >
+        #{inspectionSetId,jdbcType=INTEGER},
+      </if>
+      <if test="nonDrugListId != null" >
+        #{nonDrugListId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="neu.his.bean.InspectionSetDetailExample" resultType="java.lang.Integer" >
+    select count(*) from inspection_set_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update inspection_set_detail
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.inspectionSetId != null" >
+        inspection_set_id = #{record.inspectionSetId,jdbcType=INTEGER},
+      </if>
+      <if test="record.nonDrugListId != null" >
+        non_drug_list_id = #{record.nonDrugListId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update inspection_set_detail
+    set id = #{record.id,jdbcType=INTEGER},
+      inspection_set_id = #{record.inspectionSetId,jdbcType=INTEGER},
+      non_drug_list_id = #{record.nonDrugListId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="neu.his.bean.InspectionSetDetail" >
+    update inspection_set_detail
+    <set >
+      <if test="inspectionSetId != null" >
+        inspection_set_id = #{inspectionSetId,jdbcType=INTEGER},
+      </if>
+      <if test="nonDrugListId != null" >
+        non_drug_list_id = #{nonDrugListId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

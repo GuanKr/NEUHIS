@@ -51,7 +51,7 @@
   where non_drug_list.id = #{id}
   </update>
 
-  <select id="query" parameterType="neu.his.bean.Query"  resultMap="NonDrugLists" statementType="STATEMENT">
+  <select id="query" parameterType="neu.his.bean.Query"  resultMap="NonDrugLists" >
  SELECT non_drug_list.id as nid,item_code,item_name,format,price,expense_class_id,executivedepartment_id,mnemonic_code,item_type,creation_time,expense_name,department_name
     FROM non_drug_list LEFT JOIN expense_class
       on non_drug_list.expense_class_id = expense_class.id

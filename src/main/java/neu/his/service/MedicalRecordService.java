@@ -74,7 +74,7 @@ public interface MedicalRecordService {
 
     /**
      * 上传常用诊断
-     * @param diagnose
+     * @param diagnose 诊断
      */
     void CommonDiagnose(Diagnose diagnose);
 

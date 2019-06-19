@@ -75,4 +75,6 @@ public class NonDrugListServiceImpl implements NonDrugListService {
         nonDrugList.setItemType(de_translate(nonDrugList.getItemTypeName()));
         nonDrugListMapper.updateNonDrugList(nonDrugList);
     }
+
+
 }

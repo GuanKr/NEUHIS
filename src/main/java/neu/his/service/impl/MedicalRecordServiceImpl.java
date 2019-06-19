@@ -141,6 +141,12 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
                 temMedicalRecords.remove(mr);
             }
         }
+        RegistrationInfoExample registrationInfoExample = new RegistrationInfoExample();
+        registrationInfoExample.or().andMedicalRecordNoEqualTo(medicalRecord.getMedicalRecordNo());
+        List<RegistrationInfo> registrationInfos = registrationInfoMapper.selectByExample(registrationInfoExample);
+        for(RegistrationInfo registrationInfo : registrationInfos){
+            registrationInfo.setIsSeenDoctor("1");
+        }
             return "成功";
     }
 

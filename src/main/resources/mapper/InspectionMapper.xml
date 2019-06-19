@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="neu.his.dao.InspectionMapper" >
+
+  <select id="selectWithName" parameterType="String" resultMap="ins">
+      select inspection.id as iId,medical_record_no, non_drug_list_id,doctor_id,inspection_result_analysis, pay_state, pay_time,register_state, validity, cost,is_common,non_drug_list.item_name
+      from inspection left join non_drug_list
+      on inspection.non_drug_list_id = non_drug_list.id
+      where inspection.medical_record_no = #{medicalNo} and inspection.is_common = '0' and validity = '1'
+  </select>
+
+  <select id="selectCommon" parameterType="Integer" resultMap="ins">
+      select inspection.id as iId,medical_record_no, non_drug_list_id,doctor_id,inspection_result_analysis, pay_state, pay_time,register_state, validity, cost,is_common,non_drug_list.item_name
+      from inspection left join non_drug_list
+      on inspection.non_drug_list_id = non_drug_list.id
+      where inspection.doctor_id = #{id} and inspection.is_common = '1'
+  </select>
+
+  <resultMap id="ins" type="neu.his.bean.Inspection">
+    <id property="id" column="iId"/>
+    <result property="medicalRecordNo" column="medical_record_no"/>
+    <result property="nonDrugListId" column="non_drug_list_id"/>
+    <result property="doctorId" column="doctor_id"/>
+    <result property="inspectionResultAnalysis" column="inspection_result_analysis"/>
+    <result property="payState" column="pay_state"/>
+    <result property="payTime" column="pay_time"/>
+    <result property="registerState" column="register_state"/>
+    <result property="validity" column="validity"/>
+    <result property="cost" column="cost"/>
+    <result property="isCommon" column="is_common"/>
+    <result property="nonDrugListName" column="item_name"/>
+  </resultMap>
+
+
+  <resultMap id="BaseResultMap" type="neu.his.bean.Inspection" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="medical_record_no" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="non_drug_list_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="doctor_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="inspection_result_analysis" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pay_state" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="pay_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="register_state" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="validity" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="cost" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="is_common" jdbcType="CHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, medical_record_no, non_drug_list_id, doctor_id, inspection_result_analysis, pay_state, 
+    pay_time, register_state, validity, cost, is_common
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="neu.his.bean.InspectionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from inspection
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="neu.his.bean.InspectionExample" >
+    delete from inspection
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertSelective" parameterType="neu.his.bean.Inspection" >
+    insert into inspection
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="medicalRecordNo != null" >
+        medical_record_no,
+      </if>
+      <if test="nonDrugListId != null" >
+        non_drug_list_id,
+      </if>
+      <if test="doctorId != null" >
+        doctor_id,
+      </if>
+      <if test="inspectionResultAnalysis != null" >
+        inspection_result_analysis,
+      </if>
+      <if test="payState != null" >
+        pay_state,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="registerState != null" >
+        register_state,
+      </if>
+      <if test="validity != null" >
+        validity,
+      </if>
+      <if test="cost != null" >
+        cost,
+      </if>
+      <if test="isCommon != null" >
+        is_common,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="medicalRecordNo != null" >
+        #{medicalRecordNo,jdbcType=CHAR},
+      </if>
+      <if test="nonDrugListId != null" >
+        #{nonDrugListId,jdbcType=INTEGER},
+      </if>
+      <if test="doctorId != null" >
+        #{doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="inspectionResultAnalysis != null" >
+        #{inspectionResultAnalysis,jdbcType=VARCHAR},
+      </if>
+      <if test="payState != null" >
+        #{payState,jdbcType=CHAR},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerState != null" >
+        #{registerState,jdbcType=CHAR},
+      </if>
+      <if test="validity != null" >
+        #{validity,jdbcType=CHAR},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=DECIMAL},
+      </if>
+      <if test="isCommon != null" >
+        #{isCommon,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="neu.his.bean.InspectionExample" resultType="java.lang.Integer" >
+    select count(*) from inspection
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update inspection
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.medicalRecordNo != null" >
+        medical_record_no = #{record.medicalRecordNo,jdbcType=CHAR},
+      </if>
+      <if test="record.nonDrugListId != null" >
+        non_drug_list_id = #{record.nonDrugListId,jdbcType=INTEGER},
+      </if>
+      <if test="record.doctorId != null" >
+        doctor_id = #{record.doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.inspectionResultAnalysis != null" >
+        inspection_result_analysis = #{record.inspectionResultAnalysis,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payState != null" >
+        pay_state = #{record.payState,jdbcType=CHAR},
+      </if>
+      <if test="record.payTime != null" >
+        pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.registerState != null" >
+        register_state = #{record.registerState,jdbcType=CHAR},
+      </if>
+      <if test="record.validity != null" >
+        validity = #{record.validity,jdbcType=CHAR},
+      </if>
+      <if test="record.cost != null" >
+        cost = #{record.cost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isCommon != null" >
+        is_common = #{record.isCommon,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update inspection
+    set id = #{record.id,jdbcType=INTEGER},
+      medical_record_no = #{record.medicalRecordNo,jdbcType=CHAR},
+      non_drug_list_id = #{record.nonDrugListId,jdbcType=INTEGER},
+      doctor_id = #{record.doctorId,jdbcType=INTEGER},
+      inspection_result_analysis = #{record.inspectionResultAnalysis,jdbcType=VARCHAR},
+      pay_state = #{record.payState,jdbcType=CHAR},
+      pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+      register_state = #{record.registerState,jdbcType=CHAR},
+      validity = #{record.validity,jdbcType=CHAR},
+      cost = #{record.cost,jdbcType=DECIMAL},
+      is_common = #{record.isCommon,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="neu.his.bean.Inspection" >
+    update inspection
+    <set >
+      <if test="medicalRecordNo != null" >
+        medical_record_no = #{medicalRecordNo,jdbcType=CHAR},
+      </if>
+      <if test="nonDrugListId != null" >
+        non_drug_list_id = #{nonDrugListId,jdbcType=INTEGER},
+      </if>
+      <if test="doctorId != null" >
+        doctor_id = #{doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="inspectionResultAnalysis != null" >
+        inspection_result_analysis = #{inspectionResultAnalysis,jdbcType=VARCHAR},
+      </if>
+      <if test="payState != null" >
+        pay_state = #{payState,jdbcType=CHAR},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerState != null" >
+        register_state = #{registerState,jdbcType=CHAR},
+      </if>
+      <if test="validity != null" >
+        validity = #{validity,jdbcType=CHAR},
+      </if>
+      <if test="cost != null" >
+        cost = #{cost,jdbcType=DECIMAL},
+      </if>
+      <if test="isCommon != null" >
+        is_common = #{isCommon,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
