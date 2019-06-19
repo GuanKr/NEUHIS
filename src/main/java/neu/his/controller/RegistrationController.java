@@ -1,7 +1,9 @@
 package neu.his.controller;
 
 import neu.his.bean.RegistrationInfo;
+import neu.his.bean.User;
 import neu.his.service.RegistrationInfoService;
+import neu.his.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +16,8 @@ import java.util.List;
 public class RegistrationController {
     @Autowired
     RegistrationInfoService registrationInfoService;
+    @Autowired
+    ScheduleService scheduleService;
 
     /**
      *
@@ -37,9 +41,18 @@ public class RegistrationController {
         return serialNumber;
     }
 
-//    @RequestMapping("getDoctorList")
-////    public @Responsebody
-////    List getDoctorList(RegistrationInfo)
+    @RequestMapping("getDoctorList")
+    public @ResponseBody
+    List getDoctorList(RegistrationInfo registrationInfo){
+        List<String> doctorName;
+        List<User> doctorList = null;
+        doctorName= scheduleService.selectDoctor(registrationInfo);
+        for(String name :doctorName){
+            User user = new User(name,"","","","","","");
+            doctorList.add(user);
+        }
+        return  doctorList;
+    }
 
     /**
      * 挂号
@@ -52,16 +65,16 @@ public class RegistrationController {
     }
 
     /**
-     * 计算挂号费用
-     * @param level_name
-     * @param isNeed
+     *
+     * @param registrationInfo
      * @return
      */
     @RequestMapping("getExpense")
     public @ResponseBody
-    double getExpense(String level_name,String isNeed){
-        double expense;
-        expense = registrationInfoService.calculateCost(level_name,isNeed);
+    double getExpense(RegistrationInfo registrationInfo){
+        String level_name = registrationInfo.getRegistrationLevelName();
+        String isNeed = registrationInfo.getIsNeedMedicalrecordbook();
+        double expense = registrationInfoService.calculateCost(level_name,isNeed);
         return expense;
     }
 
@@ -84,7 +97,7 @@ public class RegistrationController {
     @RequestMapping("withdraw")
     public @ResponseBody
     String withdraw(int id){
-        String state = "未找到该病历";
+        String state = "u未找到该病历";
         List<RegistrationInfo> registrationInfoList = registrationInfoService.findAll();
         for(RegistrationInfo registrationInfo :registrationInfoList){
             if(registrationInfo.getId()==id) {
