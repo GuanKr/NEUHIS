@@ -42,6 +42,14 @@ public interface DiseaseService {
     List<Disease> findAllByAttribute_name(String attribute_name, String attribute);
 
     /**
+     * 根据属性名称及内容来查找(包含中，西医标志)
+     * @param attribute_name 属性名称
+     * @param attribute 查找内容
+     * @return 疾病列表
+     */
+    List<Disease> findWithType(String attribute_name, String attribute);
+
+    /**
      * 插入疾病信息
      * @param disease 新的疾病信息
      */

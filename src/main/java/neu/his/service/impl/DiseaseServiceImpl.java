@@ -15,6 +15,7 @@ public class DiseaseServiceImpl implements DiseaseService {
     @Autowired
     DiseaseMapper diseaseMapper;
 
+
     @Override
     public List<Disease> findByDirectory(String directory_name) {
         List<Disease> list;
@@ -38,6 +39,15 @@ public class DiseaseServiceImpl implements DiseaseService {
     public List<Disease> findAllByAttribute_name(String attribute_name, String attribute) {
         List<Disease> list;
         list = diseaseMapper.queryAll(new Query(attribute_name,attribute));
+        return list;
+    }
+
+    @Override
+    public List<Disease> findWithType(String attribute_name, String attribute) {
+        List<Disease> list = diseaseMapper.queryWithType(new Query(attribute_name,attribute));
+        for(Disease disease : list){
+            disease.setDiagnoseDirectoryName(new DiagnoseDirectoryServiceImpl().translate(disease.getDiagnoseDirectoryName()));
+        }
         return list;
     }
 

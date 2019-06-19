@@ -22,6 +22,12 @@ public interface DiseaseMapper {
 
     /**
      * 查询疾病信息(有诊断目录信息)
+     * @param query 封装的查询信息
+     */
+
+    List<Disease> queryWithType(Query query);
+    /**
+     * 查询疾病信息(有诊断目录信息)
      * @param diseaseQuery 封装的查询信息
      */
     List<Disease> query(DiseaseQuery diseaseQuery);
