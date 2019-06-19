@@ -56,6 +56,19 @@ public class RegistrationInfo {
 
     private String settlementTypeName;
 
+    /**
+     * 存放转为字符串的缴费时间
+     */
+    private String paymentTimeString;
+    /**
+     * 存放转为字符串的生日
+     */
+    private String patientBirthdayString;
+    /**
+     * 存放转为字符串的看诊日期
+     */
+    private String seeDoctorDateString;
+
     public RegistrationInfo(Date seeDoctorDate, Integer doctorId, String isSeenDoctor, String paymentState, String registrationState) {
         this.seeDoctorDate = seeDoctorDate;
         this.doctorId = doctorId;
@@ -100,6 +113,67 @@ public class RegistrationInfo {
         this.patientSex = patientSex;
         this.patientBirthday = patientBirthday;
         this.address = address;
+    }
+
+
+    /**
+     * 前端返回的挂号信息构造方法
+     * @param medicalRecordNo
+     * @param registrationResource
+     * @param isNeedMedicalrecordbook
+     * @param expense
+     * @param patientName
+     * @param patientIdentityNumber
+     * @param patientAge
+     * @param patientSex
+     * @param patientBirthday
+     * @param address
+     * @param registrationLevelName
+     * @param departmentName
+     * @param doctorName
+     * @param settlementTypeName
+     * @param seeDoctorDateString
+     */
+    public RegistrationInfo(String medicalRecordNo, String registrationResource, String isNeedMedicalrecordbook, BigDecimal expense, String patientName, String patientIdentityNumber, Integer patientAge, String patientSex, Date patientBirthday, String address, String registrationLevelName, String departmentName, String doctorName, String settlementTypeName, String seeDoctorDateString) {
+        this.medicalRecordNo = medicalRecordNo;
+        this.registrationResource = registrationResource;
+        this.isNeedMedicalrecordbook = isNeedMedicalrecordbook;
+        this.expense = expense;
+        this.patientName = patientName;
+        this.patientIdentityNumber = patientIdentityNumber;
+        this.patientAge = patientAge;
+        this.patientSex = patientSex;
+        this.patientBirthday = patientBirthday;
+        this.address = address;
+        this.registrationLevelName = registrationLevelName;
+        this.departmentName = departmentName;
+        this.doctorName = doctorName;
+        this.settlementTypeName = settlementTypeName;
+        this.seeDoctorDateString = seeDoctorDateString;
+    }
+
+    public String getPaymentTimeString() {
+        return paymentTimeString;
+    }
+
+    public void setPaymentTimeString(String paymentTimeString) {
+        this.paymentTimeString = paymentTimeString;
+    }
+
+    public String getPatientBirthdayString() {
+        return patientBirthdayString;
+    }
+
+    public void setPatientBirthdayString(String patientBirthdayString) {
+        this.patientBirthdayString = patientBirthdayString;
+    }
+
+    public String getSeeDoctorDateString() {
+        return seeDoctorDateString;
+    }
+
+    public void setSeeDoctorDateString(String seeDoctorDateString) {
+        this.seeDoctorDateString = seeDoctorDateString;
     }
 
     public String getRegistrationLevelName() {
