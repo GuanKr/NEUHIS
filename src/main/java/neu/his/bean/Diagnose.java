@@ -7,7 +7,7 @@ public class Diagnose {
 
     private Integer diseaseId;
 
-    private Integer medicalRecordNo;
+    private String medicalRecordNo;
 
     private String majorDiagnoseSign;
 
@@ -21,7 +21,7 @@ public class Diagnose {
 
     private String isCommon;
 
-    public Diagnose(Integer id, Integer diseaseId, Integer medicalRecordNo, String majorDiagnoseSign, String suspectedSign, Date diseaseTime, Integer doctorId, String diseaseType, String isCommon) {
+    public Diagnose(Integer id, Integer diseaseId, String medicalRecordNo, String majorDiagnoseSign, String suspectedSign, Date diseaseTime, Integer doctorId, String diseaseType, String isCommon) {
         this.id = id;
         this.diseaseId = diseaseId;
         this.medicalRecordNo = medicalRecordNo;
@@ -53,12 +53,12 @@ public class Diagnose {
         this.diseaseId = diseaseId;
     }
 
-    public Integer getMedicalRecordNo() {
+    public String getMedicalRecordNo() {
         return medicalRecordNo;
     }
 
-    public void setMedicalRecordNo(Integer medicalRecordNo) {
-        this.medicalRecordNo = medicalRecordNo;
+    public void setMedicalRecordNo(String medicalRecordNo) {
+        this.medicalRecordNo = medicalRecordNo == null ? null : medicalRecordNo.trim();
     }
 
     public String getMajorDiagnoseSign() {

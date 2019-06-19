@@ -151,6 +151,25 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
     }
 
     @Override
+    public List<Diagnose> findByMedNo(String medicalNo, String name) {
+        if(medicalNo == null||medicalNo.isEmpty()){
+
+        }else {
+            DiagnoseExample diagnoseExample = new DiagnoseExample();
+            DiagnoseExample.Criteria criteria = diagnoseExample.createCriteria();
+            criteria.andIsCommonEqualTo("0");
+            criteria.andMedicalRecordNoEqualTo(medicalNo);
+
+        }
+        return null;
+    }
+
+    @Override
+    public void SubmissionDiagnose(Diagnose diagnose) {
+
+    }
+
+    @Override
     public List<Diagnose> findCommonDiagnose(Integer id) {
         DiagnoseExample diagnoseExample = new DiagnoseExample();
         DiagnoseExample.Criteria criteria = diagnoseExample.createCriteria();

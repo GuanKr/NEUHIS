@@ -29,8 +29,8 @@ public interface DiagnoseMapper {
         "doctor_id, disease_type, ",
         "is_common)",
         "values (#{id,jdbcType=INTEGER}, #{diseaseId,jdbcType=INTEGER}, ",
-        "#{medicalRecordNo,jdbcType=INTEGER}, #{majorDiagnoseSign,jdbcType=CHAR}, ",
-        "#{suspectedSign,jdbcType=CHAR}, #{diseaseTime,jdbcType=TIMESTAMP}, ",
+        "#{medicalRecordNo,jdbcType=CHAR}, #{majorDiagnoseSign,jdbcType=CHAR}, ",
+        "#{suspectedSign,jdbcType=CHAR}, #{diseaseTime,jdbcType=DATE}, ",
         "#{doctorId,jdbcType=INTEGER}, #{diseaseType,jdbcType=CHAR}, ",
         "#{isCommon,jdbcType=CHAR})"
     })
@@ -60,10 +60,10 @@ public interface DiagnoseMapper {
     @Update({
         "update diagnose",
         "set disease_id = #{diseaseId,jdbcType=INTEGER},",
-          "medical_record_no = #{medicalRecordNo,jdbcType=INTEGER},",
+          "medical_record_no = #{medicalRecordNo,jdbcType=CHAR},",
           "major_diagnose_sign = #{majorDiagnoseSign,jdbcType=CHAR},",
           "suspected_sign = #{suspectedSign,jdbcType=CHAR},",
-          "disease_time = #{diseaseTime,jdbcType=TIMESTAMP},",
+          "disease_time = #{diseaseTime,jdbcType=DATE},",
           "doctor_id = #{doctorId,jdbcType=INTEGER},",
           "disease_type = #{diseaseType,jdbcType=CHAR},",
           "is_common = #{isCommon,jdbcType=CHAR}",

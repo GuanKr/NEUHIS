@@ -66,6 +66,20 @@ public interface MedicalRecordService {
     String Submission(MedicalRecord medicalRecord, List<Diagnose> diagnoses);
 
     /**
+     * 确诊用 ：获得某一病历号 入参二选一即可
+     * @param medicalNo 病历号
+     * @param name 病人姓名
+     * @return 诊断信息列表
+     */
+    List<Diagnose> findByMedNo(String medicalNo, String name);
+
+    /**
+     * 确诊用：上传诊断
+     * @param diagnose 诊断信息
+     */
+    void SubmissionDiagnose(Diagnose diagnose);
+
+    /**
      * 获得常用诊断
      * @param id 医生id
      * @return 常用诊断列表

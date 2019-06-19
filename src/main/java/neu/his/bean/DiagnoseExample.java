@@ -2,6 +2,7 @@ package neu.his.bean;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 public class DiagnoseExample {
@@ -103,6 +104,32 @@ public class DiagnoseExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+        }
+
+        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value.getTime()), property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
+            if (values == null || values.size() == 0) {
+                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
+            }
+            List<java.sql.Date> dateList = new ArrayList<java.sql.Date>();
+            Iterator<Date> iter = values.iterator();
+            while (iter.hasNext()) {
+                dateList.add(new java.sql.Date(iter.next().getTime()));
+            }
+            addCriterion(condition, dateList, property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
         }
 
         public Criteria andIdIsNull() {
@@ -235,52 +262,62 @@ public class DiagnoseExample {
             return (Criteria) this;
         }
 
-        public Criteria andMedicalRecordNoEqualTo(Integer value) {
+        public Criteria andMedicalRecordNoEqualTo(String value) {
             addCriterion("medical_record_no =", value, "medicalRecordNo");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalRecordNoNotEqualTo(Integer value) {
+        public Criteria andMedicalRecordNoNotEqualTo(String value) {
             addCriterion("medical_record_no <>", value, "medicalRecordNo");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalRecordNoGreaterThan(Integer value) {
+        public Criteria andMedicalRecordNoGreaterThan(String value) {
             addCriterion("medical_record_no >", value, "medicalRecordNo");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalRecordNoGreaterThanOrEqualTo(Integer value) {
+        public Criteria andMedicalRecordNoGreaterThanOrEqualTo(String value) {
             addCriterion("medical_record_no >=", value, "medicalRecordNo");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalRecordNoLessThan(Integer value) {
+        public Criteria andMedicalRecordNoLessThan(String value) {
             addCriterion("medical_record_no <", value, "medicalRecordNo");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalRecordNoLessThanOrEqualTo(Integer value) {
+        public Criteria andMedicalRecordNoLessThanOrEqualTo(String value) {
             addCriterion("medical_record_no <=", value, "medicalRecordNo");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalRecordNoIn(List<Integer> values) {
+        public Criteria andMedicalRecordNoLike(String value) {
+            addCriterion("medical_record_no like", value, "medicalRecordNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalRecordNoNotLike(String value) {
+            addCriterion("medical_record_no not like", value, "medicalRecordNo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMedicalRecordNoIn(List<String> values) {
             addCriterion("medical_record_no in", values, "medicalRecordNo");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalRecordNoNotIn(List<Integer> values) {
+        public Criteria andMedicalRecordNoNotIn(List<String> values) {
             addCriterion("medical_record_no not in", values, "medicalRecordNo");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalRecordNoBetween(Integer value1, Integer value2) {
+        public Criteria andMedicalRecordNoBetween(String value1, String value2) {
             addCriterion("medical_record_no between", value1, value2, "medicalRecordNo");
             return (Criteria) this;
         }
 
-        public Criteria andMedicalRecordNoNotBetween(Integer value1, Integer value2) {
+        public Criteria andMedicalRecordNoNotBetween(String value1, String value2) {
             addCriterion("medical_record_no not between", value1, value2, "medicalRecordNo");
             return (Criteria) this;
         }
@@ -436,52 +473,52 @@ public class DiagnoseExample {
         }
 
         public Criteria andDiseaseTimeEqualTo(Date value) {
-            addCriterion("disease_time =", value, "diseaseTime");
+            addCriterionForJDBCDate("disease_time =", value, "diseaseTime");
             return (Criteria) this;
         }
 
         public Criteria andDiseaseTimeNotEqualTo(Date value) {
-            addCriterion("disease_time <>", value, "diseaseTime");
+            addCriterionForJDBCDate("disease_time <>", value, "diseaseTime");
             return (Criteria) this;
         }
 
         public Criteria andDiseaseTimeGreaterThan(Date value) {
-            addCriterion("disease_time >", value, "diseaseTime");
+            addCriterionForJDBCDate("disease_time >", value, "diseaseTime");
             return (Criteria) this;
         }
 
         public Criteria andDiseaseTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("disease_time >=", value, "diseaseTime");
+            addCriterionForJDBCDate("disease_time >=", value, "diseaseTime");
             return (Criteria) this;
         }
 
         public Criteria andDiseaseTimeLessThan(Date value) {
-            addCriterion("disease_time <", value, "diseaseTime");
+            addCriterionForJDBCDate("disease_time <", value, "diseaseTime");
             return (Criteria) this;
         }
 
         public Criteria andDiseaseTimeLessThanOrEqualTo(Date value) {
-            addCriterion("disease_time <=", value, "diseaseTime");
+            addCriterionForJDBCDate("disease_time <=", value, "diseaseTime");
             return (Criteria) this;
         }
 
         public Criteria andDiseaseTimeIn(List<Date> values) {
-            addCriterion("disease_time in", values, "diseaseTime");
+            addCriterionForJDBCDate("disease_time in", values, "diseaseTime");
             return (Criteria) this;
         }
 
         public Criteria andDiseaseTimeNotIn(List<Date> values) {
-            addCriterion("disease_time not in", values, "diseaseTime");
+            addCriterionForJDBCDate("disease_time not in", values, "diseaseTime");
             return (Criteria) this;
         }
 
         public Criteria andDiseaseTimeBetween(Date value1, Date value2) {
-            addCriterion("disease_time between", value1, value2, "diseaseTime");
+            addCriterionForJDBCDate("disease_time between", value1, value2, "diseaseTime");
             return (Criteria) this;
         }
 
         public Criteria andDiseaseTimeNotBetween(Date value1, Date value2) {
-            addCriterion("disease_time not between", value1, value2, "diseaseTime");
+            addCriterionForJDBCDate("disease_time not between", value1, value2, "diseaseTime");
             return (Criteria) this;
         }
 

@@ -5,10 +5,10 @@
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="disease_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="medical_record_no" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="medical_record_no" jdbcType="CHAR" javaType="java.lang.String" />
       <arg column="major_diagnose_sign" jdbcType="CHAR" javaType="java.lang.String" />
       <arg column="suspected_sign" jdbcType="CHAR" javaType="java.lang.String" />
-      <arg column="disease_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="disease_time" jdbcType="DATE" javaType="java.util.Date" />
       <arg column="doctor_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="disease_type" jdbcType="CHAR" javaType="java.lang.String" />
       <arg column="is_common" jdbcType="CHAR" javaType="java.lang.String" />
@@ -97,8 +97,12 @@
     </if>
   </delete>
   <insert id="insertSelective" parameterType="neu.his.bean.Diagnose" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into diagnose
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
       <if test="diseaseId != null" >
         disease_id,
       </if>
@@ -125,11 +129,12 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
       <if test="diseaseId != null" >
         #{diseaseId,jdbcType=INTEGER},
       </if>
       <if test="medicalRecordNo != null" >
-        #{medicalRecordNo,jdbcType=INTEGER},
+        #{medicalRecordNo,jdbcType=CHAR},
       </if>
       <if test="majorDiagnoseSign != null" >
         #{majorDiagnoseSign,jdbcType=CHAR},
@@ -138,7 +143,7 @@
         #{suspectedSign,jdbcType=CHAR},
       </if>
       <if test="diseaseTime != null" >
-        #{diseaseTime,jdbcType=TIMESTAMP},
+        #{diseaseTime,jdbcType=DATE},
       </if>
       <if test="doctorId != null" >
         #{doctorId,jdbcType=INTEGER},
@@ -167,7 +172,7 @@
         disease_id = #{record.diseaseId,jdbcType=INTEGER},
       </if>
       <if test="record.medicalRecordNo != null" >
-        medical_record_no = #{record.medicalRecordNo,jdbcType=INTEGER},
+        medical_record_no = #{record.medicalRecordNo,jdbcType=CHAR},
       </if>
       <if test="record.majorDiagnoseSign != null" >
         major_diagnose_sign = #{record.majorDiagnoseSign,jdbcType=CHAR},
@@ -176,7 +181,7 @@
         suspected_sign = #{record.suspectedSign,jdbcType=CHAR},
       </if>
       <if test="record.diseaseTime != null" >
-        disease_time = #{record.diseaseTime,jdbcType=TIMESTAMP},
+        disease_time = #{record.diseaseTime,jdbcType=DATE},
       </if>
       <if test="record.doctorId != null" >
         doctor_id = #{record.doctorId,jdbcType=INTEGER},
@@ -196,10 +201,10 @@
     update diagnose
     set id = #{record.id,jdbcType=INTEGER},
       disease_id = #{record.diseaseId,jdbcType=INTEGER},
-      medical_record_no = #{record.medicalRecordNo,jdbcType=INTEGER},
+      medical_record_no = #{record.medicalRecordNo,jdbcType=CHAR},
       major_diagnose_sign = #{record.majorDiagnoseSign,jdbcType=CHAR},
       suspected_sign = #{record.suspectedSign,jdbcType=CHAR},
-      disease_time = #{record.diseaseTime,jdbcType=TIMESTAMP},
+      disease_time = #{record.diseaseTime,jdbcType=DATE},
       doctor_id = #{record.doctorId,jdbcType=INTEGER},
       disease_type = #{record.diseaseType,jdbcType=CHAR},
       is_common = #{record.isCommon,jdbcType=CHAR}
@@ -214,7 +219,7 @@
         disease_id = #{diseaseId,jdbcType=INTEGER},
       </if>
       <if test="medicalRecordNo != null" >
-        medical_record_no = #{medicalRecordNo,jdbcType=INTEGER},
+        medical_record_no = #{medicalRecordNo,jdbcType=CHAR},
       </if>
       <if test="majorDiagnoseSign != null" >
         major_diagnose_sign = #{majorDiagnoseSign,jdbcType=CHAR},
@@ -223,7 +228,7 @@
         suspected_sign = #{suspectedSign,jdbcType=CHAR},
       </if>
       <if test="diseaseTime != null" >
-        disease_time = #{diseaseTime,jdbcType=TIMESTAMP},
+        disease_time = #{diseaseTime,jdbcType=DATE},
       </if>
       <if test="doctorId != null" >
         doctor_id = #{doctorId,jdbcType=INTEGER},
