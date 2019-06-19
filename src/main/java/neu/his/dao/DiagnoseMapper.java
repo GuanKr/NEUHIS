@@ -12,6 +12,13 @@ import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
 
 public interface DiagnoseMapper {
+
+    /**
+     * 查询诊断
+     * @return 诊断信息列表
+     */
+    List<Diagnose> selectWithName(String medicalNo);
+
     int countByExample(DiagnoseExample example);
 
     int deleteByExample(DiagnoseExample example);

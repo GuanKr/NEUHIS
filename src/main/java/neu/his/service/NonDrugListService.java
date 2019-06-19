@@ -54,4 +54,13 @@ public interface NonDrugListService {
      * @param nonDrugList 内容更新过的非药品项目
      */
     void updateNonDrugList(NonDrugList nonDrugList);
+
+    /**
+     * 根据类别属性名称及内容来查找
+     * @param type 检查/检验/处置
+     * @param attribute_name 属性名称
+     * @param attribute 查找内容
+     * @return 非药品项目列表
+     */
+    List<NonDrugList> findByType(String type,String attribute_name, String attribute);
 }

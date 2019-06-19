@@ -66,12 +66,11 @@ public interface MedicalRecordService {
     String Submission(MedicalRecord medicalRecord, List<Diagnose> diagnoses);
 
     /**
-     * 确诊用 ：获得某一病历号 入参二选一即可
+     * 确诊用 ：获得某一病历号对应的诊断信息
      * @param medicalNo 病历号
-     * @param name 病人姓名
      * @return 诊断信息列表
      */
-    List<Diagnose> findByMedNo(String medicalNo, String name);
+    List<Diagnose> findByMedNo(String medicalNo);
 
     /**
      * 确诊用：上传诊断
@@ -93,8 +92,8 @@ public interface MedicalRecordService {
     void CommonDiagnose(Diagnose diagnose);
 
     /**
-     * 删除常用诊断
+     * 删除诊断
      * @param id 常用诊断主键id
      */
-    void deleteCommonDiagnose(Integer id);
+    void deleteDiagnose(Integer id);
 }

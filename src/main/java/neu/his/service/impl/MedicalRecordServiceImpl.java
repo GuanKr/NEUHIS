@@ -134,6 +134,7 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
         }
         for(Diagnose diagnose : diagnoses){
             diagnose.setIsCommon("0");
+            diagnose.setDiseaseType(new DiagnoseDirectoryServiceImpl().de_translate(diagnose.getDiseaseType()));
             diagnoseMapper.insertSelective(diagnose);
         }
         for(MedicalRecord mr : temMedicalRecords){
@@ -151,22 +152,25 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
     }
 
     @Override
-    public List<Diagnose> findByMedNo(String medicalNo, String name) {
-        if(medicalNo == null||medicalNo.isEmpty()){
-
-        }else {
-            DiagnoseExample diagnoseExample = new DiagnoseExample();
-            DiagnoseExample.Criteria criteria = diagnoseExample.createCriteria();
-            criteria.andIsCommonEqualTo("0");
-            criteria.andMedicalRecordNoEqualTo(medicalNo);
-
-        }
-        return null;
+    public List<Diagnose> findByMedNo(String medicalNo) {
+            List<Diagnose> diagnoses = diagnoseMapper.selectWithName(medicalNo);
+            for (Diagnose diagnose : diagnoses) {
+                diagnose.setDiseaseType(new DiagnoseDirectoryServiceImpl().translate(diagnose.getDiseaseType()));
+            }
+            return diagnoses;
     }
 
     @Override
     public void SubmissionDiagnose(Diagnose diagnose) {
-
+        DiseaseExample diseaseExample = new DiseaseExample();
+        diseaseExample.or().andDiseaseNameEqualTo(diagnose.getDiseaseName());
+        List<Disease> diseases = diseaseMapper.selectByExample(diseaseExample);
+        for(Disease disease : diseases){
+            diagnose.setDiseaseId(disease.getId());
+        }
+        diagnose.setIsCommon("0");
+        diagnose.setDiseaseType(new DiagnoseDirectoryServiceImpl().de_translate(diagnose.getDiseaseType()));
+        diagnoseMapper.insertSelective(diagnose);
     }
 
     @Override
@@ -192,7 +196,7 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
     }
 
     @Override
-    public void deleteCommonDiagnose(Integer id) {
+    public void deleteDiagnose(Integer id) {
         diagnoseMapper.deleteByPrimaryKey(id);
     }
 }

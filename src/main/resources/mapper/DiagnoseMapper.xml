@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="neu.his.dao.DiagnoseMapper" >
+  <select id="selectWithName" parameterType="String" resultMap="dia">
+    select diagnose.id as dId, disease_id, medical_record_no, major_diagnose_sign, suspected_sign, disease_time, doctor_id, disease_type, is_common, name,disease_name
+    from diagnose left join user
+    on diagnose.doctor_id = user.id
+    left join disease
+    on diagnose.disease_id = disease.id
+    where diagnose.medical_record_no = #{medicalNo} and is_common = '0'
+  </select>
+
+  <resultMap id="dia" type="neu.his.bean.Disease">
+    <id property="id" column="dId"/>
+    <result property="diseaseId" column="disease_id"/>
+    <result property="medicalRecordNo" column="medical_record_no"/>
+    <result property="majorDiagnoseSign" column="major_diagnose_sign"/>
+    <result property="suspectedSign" column="suspected_sign"/>
+    <result property="diseaseTime" column="disease_time"/>
+    <result property="doctorId" column="doctor_id"/>
+    <result property="diseaseType" column="disease_type"/>
+    <result property="isCommon" column="is_common"/>
+    <result property="doctorName" column="name"/>
+    <result property="diseaseName" column="disease_name"/>
+  </resultMap>
   <resultMap id="BaseResultMap" type="neu.his.bean.Diagnose" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />

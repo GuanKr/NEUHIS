@@ -9,6 +9,7 @@ import neu.his.service.NonDrugListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class NonDrugListServiceImpl implements NonDrugListService {
@@ -76,5 +77,30 @@ public class NonDrugListServiceImpl implements NonDrugListService {
         nonDrugListMapper.updateNonDrugList(nonDrugList);
     }
 
+    @Override
+    public List<NonDrugList> findByType(String type, String attribute_name, String attribute) {
+        List<NonDrugList> lista = findByAttribute_name(attribute_name,attribute);
+        List<NonDrugList> list = new ArrayList<>();
+        if(type.equals("检查")){
+            for(NonDrugList nonDrugList : lista){
+                if(nonDrugList.getItemType().equals("1")){
+                    list.add(nonDrugList);
+                }
+            }
+        }else if(type.equals("检验")) {
+            for (NonDrugList nonDrugList : lista) {
+                if (nonDrugList.getItemType().equals("2")) {
+                    list.add(nonDrugList);
+                }
+            }
+        }else{
+            for (NonDrugList nonDrugList : lista) {
+                if (nonDrugList.getItemType().equals("3")) {
+                    list.add(nonDrugList);
+                }
+            }
+        }
+        return list;
+    }
 
 }

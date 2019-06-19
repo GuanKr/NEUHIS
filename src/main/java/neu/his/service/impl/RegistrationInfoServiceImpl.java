@@ -5,6 +5,7 @@ import neu.his.converter.DateConverter;
 import neu.his.dao.RegistrationInfoMapper;
 import neu.his.dao.RegistrationLevelMapper;
 import neu.his.dao.ScheduleInfoMapper;
+import neu.his.dao.UserMapper;
 import neu.his.service.RegistrationInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,9 @@ public class RegistrationInfoServiceImpl implements RegistrationInfoService {
 
     @Autowired
     ScheduleInfoMapper scheduleInfoMapper;
+
+    @Autowired
+    UserMapper userMapper;
 
     @Override
     public String translateResource(String type) {
@@ -205,7 +209,11 @@ public class RegistrationInfoServiceImpl implements RegistrationInfoService {
 
         ScheduleInfoExample scheduleInfoExample = new ScheduleInfoExample();
         ScheduleInfoExample.Criteria criteria = scheduleInfoExample.createCriteria();
-        criteria.andUserIdEqualTo(registrationInfo.getDoctorId());
+        Integer doctorId = null;
+        for(User user : userMapper.queryByName(registrationInfo.getDoctorName())){
+            doctorId = user.getId();
+        }
+        criteria.andUserIdEqualTo(doctorId);
         criteria.andScheduleDateEqualTo(registrationInfo.getSeeDoctorDate());
         scheduleInfoExample.or(criteria);
         List<ScheduleInfo> list = scheduleInfoMapper.selectByExample(scheduleInfoExample);

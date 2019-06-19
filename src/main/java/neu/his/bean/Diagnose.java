@@ -21,6 +21,10 @@ public class Diagnose {
 
     private String isCommon;
 
+    private String diseaseName;
+
+    private String doctorName;
+
     public Diagnose(Integer id, Integer diseaseId, String medicalRecordNo, String majorDiagnoseSign, String suspectedSign, Date diseaseTime, Integer doctorId, String diseaseType, String isCommon) {
         this.id = id;
         this.diseaseId = diseaseId;
@@ -31,6 +35,22 @@ public class Diagnose {
         this.doctorId = doctorId;
         this.diseaseType = diseaseType;
         this.isCommon = isCommon;
+    }
+
+    public String getDiseaseName() {
+        return diseaseName;
+    }
+
+    public void setDiseaseName(String diseaseName) {
+        this.diseaseName = diseaseName;
+    }
+
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
     }
 
     public Diagnose() {
