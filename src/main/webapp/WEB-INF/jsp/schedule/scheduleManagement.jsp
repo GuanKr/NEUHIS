@@ -46,13 +46,13 @@
         <tr>
             <th width="50px">删除</th>
             <th style="display: none">id</th>
-            <th>星期</th>
-            <th>科室</th>
-            <th>排班医生</th>
-            <th>号别</th>
-            <th>有效状态</th>
-            <th>午别</th>
-            <th>排班限额</th>
+            <th style="text-align: center">星期</th>
+            <th style="text-align: center">科室</th>
+            <th style="text-align: center">排班医生</th>
+            <th style="text-align: center">号别</th>
+            <th style="text-align: center">有效状态</th>
+            <th style="text-align: center">午别</th>
+            <th style="text-align: center">排班限额</th>
         </tr>
         </thead>
         <tbody id="tableBody" data-offset="0" data-spy="scroll" style="padding: 0 10px;height: 600px;overflow: auto;position: relative;">
@@ -88,17 +88,17 @@
         </div>
     </div>
     <table class="table table-hover table-striped">
-        <thead style="display: block;width: 1080px;">
-            <tr style="display: block;width: 1000px;">
+        <thead style="display: block;width: 1120px;">
+            <tr style="display: block;width: 1100px;">
                 <th style="display: none">id</th>
                 <th style="width: 170px;text-align: center">时间</th>
                 <th style="width: 150px;text-align: center">排班医生</th>
                 <th style="width: 130px;text-align: center">科室</th>
-                <th style="width: 130px;text-align: center">号别</th>
-                <th>有效状态</th>
-                <th>午别</th>
-                <th>剩余名额</th>
-                <th>排班限额</th>
+                <th style="width: 140px;text-align: center">号别</th>
+                <th style="width: 130px;text-align: center">有效状态</th>
+                <th style="width: 130px;text-align: center">午别</th>
+                <th style="width: 130px;text-align: center">剩余名额</th>
+                <th style="width: 130px;text-align: center">排班限额</th>
             </tr>
         </thead>
         <tbody id="infoTableBody" data-offset="0" data-spy="scroll" style="padding: 0 10px;height: 600px;display: block;overflow: auto;position: relative;">

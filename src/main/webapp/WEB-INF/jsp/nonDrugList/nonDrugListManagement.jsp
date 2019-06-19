@@ -353,7 +353,7 @@
                     "<option value=\"处置\" selected>处置</option>";
             }
             str += "</select></td>";
-            str += "<td><input type=\"text\" class=\"form-control\" value=\"" + nonDrugLists[i].creationTime + "\" name=\"nonDrugLists[" + i + "].creationTime\" readonly/></td>\n" + "</tr>";
+            str += "<td><input type=\"text\" class=\"form-control\" value=\"" + nonDrugLists[i].creationdateString + "\" name=\"nonDrugLists[" + i + "].creationTime\" readonly/></td>\n" + "</tr>";
         }
         $("#tableBody").append(str);
     }
