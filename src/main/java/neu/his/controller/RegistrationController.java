@@ -9,6 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -24,8 +29,7 @@ public class RegistrationController {
      * @return
      */
     @RequestMapping("registrationInfo")
-    public @ResponseBody
-    String toRegistrationInfo(){
+    public String toRegistrationInfo(){
         return "registration/registrationInfo";
     }
 
@@ -43,9 +47,12 @@ public class RegistrationController {
 
     @RequestMapping("getDoctorList")
     public @ResponseBody
-    List getDoctorList(RegistrationInfo registrationInfo){
-        List<String> doctorName;
-        List<User> doctorList = null;
+    List getDoctorList(RegistrationInfo registrationInfo) throws ParseException {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        Date seeDoctorDate = dateFormat.parse(registrationInfo.getSeeDoctorDateString());
+        registrationInfo.setSeeDoctorDate(seeDoctorDate);
+        List<String> doctorName = null;
+        List<User> doctorList = new ArrayList<User>();
         doctorName= scheduleService.selectDoctor(registrationInfo);
         for(String name :doctorName){
             User user = new User(name,"","","","","","");
@@ -60,7 +67,10 @@ public class RegistrationController {
      */
     @RequestMapping("addRegistrationInfo")
     public @ResponseBody
-    void addRegistrationInfo(RegistrationInfo registrationInfo ){
+    void addRegistrationInfo(RegistrationInfo registrationInfo ) throws ParseException {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        Date seeDoctorDate = dateFormat.parse(registrationInfo.getSeeDoctorDateString());
+        registrationInfo.setSeeDoctorDate(seeDoctorDate);
         registrationInfoService.registration(registrationInfo);
     }
 
@@ -85,7 +95,14 @@ public class RegistrationController {
     @RequestMapping("registrationInfoList")
     public @ResponseBody
     List registrationInfoList(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         List<RegistrationInfo> registrationInfoList = registrationInfoService.findAll();
+        for (RegistrationInfo reg : registrationInfoList) {
+            if (reg.getSeeDoctorDate() != null)
+                reg.setSeeDoctorDateString(dateFormat.format(reg.getSeeDoctorDate()));
+            if (reg.getPatientBirthday() != null)
+                reg.setPatientBirthdayString(dateFormat.format(reg.getPatientBirthday()));
+        }
         return registrationInfoList;
     }
 
@@ -97,6 +114,7 @@ public class RegistrationController {
     @RequestMapping("withdraw")
     public @ResponseBody
     String withdraw(int id){
+//        TODO
         String state = "u未找到该病历";
         List<RegistrationInfo> registrationInfoList = registrationInfoService.findAll();
         for(RegistrationInfo registrationInfo :registrationInfoList){
@@ -135,6 +153,16 @@ public class RegistrationController {
         List<RegistrationInfo> registrationInfoList;
         registrationInfoList = registrationInfoService.queryAlreadyByDoctorId(id);
         return registrationInfoList;
+    }
+
+    /**
+     * 计算年龄
+     * @param birthdayString 年龄字符串
+     * @return 年龄
+     */
+    @RequestMapping("getPatientAge")
+    public @ResponseBody int getPatientAge(String birthdayString){
+        return registrationInfoService.age(birthdayString);
     }
 
 }

@@ -67,17 +67,17 @@
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-md-3">
-            <label class="col-md-4 control-label text-right">年龄</label>
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label text-right" for="patientBirthdayInput">出生日期</label>
             <div class="col-md-8 input-group">
-                <input class="show-tick form-control" id="patientAgeInput" name="patientAge"/>
+                <input type="date" class="form-control" onchange="setPatientAge()" id="patientBirthdayInput" name="patientBirthday"/>
                 <span class="input-group-addon" style="color: red">*</span>
             </div>
         </div>
-        <div class="form-group col-md-3">
-            <label class="col-md-4 control-label text-right" for="patientBirthdayInput">出生日期</label>
-            <div class="col-md-8 input-group">
-                <input type="date" class="form-control" id="patientBirthdayInput" name="patientBirthday"/>
+        <div class="form-group col-md-2">
+            <label class="col-md-5 control-label text-right">年龄</label>
+            <div class="col-md-7 input-group">
+                <input class="show-tick form-control" id="patientAgeInput" name="patientAge"/>
                 <span class="input-group-addon" style="color: red">*</span>
             </div>
         </div>
@@ -89,7 +89,7 @@
             </div>
         </div>
         <div class="form-group col-md-3">
-            <label class="col-md-3 control-label text-left">挂号来源</label>
+            <label class="col-md-4 control-label text-left">挂号来源</label>
             <div class="col-md-8 input-group left">
                 <select class="form-control" name="registrationResource">
                     <option value="医院挂号">医院挂号</option>
@@ -100,13 +100,6 @@
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-md-3">
-            <label class="col-md-4 control-label text-right">看诊日期</label>
-            <div class="col-md-8 input-group">
-                <input type="date" class="show-tick form-control" name="seeDoctorDate"/>
-                <span class="input-group-addon" style="color: red">*</span>
-            </div>
-        </div>
         <div class="form-group col-md-3">
             <label class="col-md-4 control-label text-right">号别</label>
             <div class="col-md-8 input-group">
@@ -123,6 +116,15 @@
                 <span class="input-group-addon" style="color: red">*</span>
             </div>
         </div>
+        <div class="form-group col-md-4">
+            <label class="col-md-4 control-label text-right">看诊日期</label>
+            <div class="col-md-8 input-group">
+                <input type="datetime-local" onchange="setUsableDoctors()" id="displaySeeDoctorDate" name="seeDoctorDateString" class="show-tick form-control"/>
+                <span class="input-group-addon" style="color: red">*</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="form-group col-md-3">
             <label class="col-md-4 control-label text-right">看诊医生</label>
             <div class="col-md-8 input-group">
@@ -131,10 +133,8 @@
                 <span class="input-group-addon" style="color: red">*</span>
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="form-group col-md-3">
-            <label class="col-md-3 control-label text-left">结算类别</label>
+            <label class="col-md-4 control-label text-left">结算类别</label>
             <div class="col-md-8 input-group left">
                 <select class="form-control" id="settlementTypeNameInput" name="settlementTypeName">
                 </select>
@@ -142,7 +142,7 @@
             </div>
         </div>
         <div class="form-group col-md-3">
-            <label class="col-md-3 control-label text-left">病历本</label>
+            <label class="col-md-4 control-label text-left">病历本</label>
             <div class="col-md-8 input-group left">
                 <select class="form-control" onchange="setExpenseInput()" name="isNeedMedicalrecordbook">
                     <option value=""></option>
@@ -153,9 +153,10 @@
             </div>
         </div>
         <div class="form-group col-md-3">
-            <label class="col-md-3 control-label text-left">金额</label>
+            <label class="col-md-4 control-label text-left">金额</label>
             <div class="col-md-8 input-group left">
                 <input class="form-control" id="expenseInput" name="expense" readonly/>
+                <span class="input-group-addon" style="color: black">￥</span>
             </div>
         </div>
         <div class="col-md-2 pull-right">
@@ -178,33 +179,36 @@
 <%--            <button type="button" id="updateRegistrationLevels" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;保存&nbsp;&nbsp;&nbsp;&nbsp;</button>--%>
 <%--        </div>--%>
 <%--    </div>--%>
-    <table class="table table-hover table-striped">
-        <thead>
-        <tr>
-            <th>id</th>
-            <th>病历号</th>
-            <th>姓名</th>
-            <th>性别</th>
-            <th>年龄</th>
-            <th>出生日期</th>
-            <th>身份证号</th>
-            <th>家庭住址</th>
-            <th>结算类别</th>
-            <th>挂号级别</th>
-            <th>看诊日期</th>
-            <th>是否已诊</th>
-            <th>是否收取病历本</th>
-            <th>挂号来源</th>
-            <th>状态</th>
-            <th>应收金额</th>
-            <th>缴费状态</th>
-            <th>挂号科室</th>
-            <th>挂号医生</th>
-        </tr>
-        </thead>
-        <tbody id="tableBody">
-        </tbody>
-    </table>
+    <div class="center-block" style="overflow: auto;width: 2000px;">
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>病历号</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>出生日期</th>
+                <th>身份证号</th>
+                <th>家庭住址</th>
+                <th>结算类别</th>
+                <th>挂号级别</th>
+                <th>看诊日期</th>
+                <th>是否已诊</th>
+                <th>病历本</th>
+                <th>挂号来源</th>
+                <th>状态</th>
+                <th>应收金额</th>
+                <th>缴费状态</th>
+                <th>挂号科室</th>
+                <th>挂号医生</th>
+            </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+        </table>
+    </div>
+
 </form>
 <div align="center"><ul id="pageChoose" class="pagination pagination-lg pageindex">
 </ul></div>
@@ -240,7 +244,7 @@
         url: "registration/getMedicalRecordNo",
         async: false,
         success: function (result) {
-            var medicalRecordNo = result;//TODO 测试
+            var medicalRecordNo = result;
             $("#medicalRecordNoInput").val(medicalRecordNo);
         },
         error :function () {
@@ -310,6 +314,38 @@
         }
         $("#doctorNameInput").html(str);
     }
+    // $("#departmentNameInput")
+    //获取医生
+    function setUsableDoctors(){
+        $.ajax({
+            type: "POST",
+            url: "registration/getDoctorList",
+            data:$('#registrationInfo').serialize(),
+            async: false,
+            success: function (result) {
+                doctors = result;
+                setDoctorNameInput();
+            },
+            error :function () {
+                alert("获取医生表失败");
+            }
+        });
+    }
+    //计算年龄
+    function setPatientAge(){
+        $.ajax({
+            type: "POST",
+            url: "registration/getPatientAge",
+            data:{birthdayString : $('#patientBirthdayInput').val()},
+            async: false,
+            success: function (result) {
+                $("#patientAgeInput").val(result);
+            },
+            error :function () {
+                alert("年龄计算失败失败");
+            }
+        });
+    }
     //根据科室助记码动态查询
     $(function(){
         //载入时隐藏下拉li
@@ -354,21 +390,6 @@
 
                 $("#departmentNameInputUl li").click(function(){
                     $("#departmentNameInput").val($(this).html());
-                    //TODO 设置医生选择框 测试
-                    $.ajax({
-                        type: "POST",
-                        url: "registration/getDoctorList",
-                        data:$('#registrationInfo').serialize(),
-                        async: false,
-                        success: function (result) {
-                            doctors = result;
-                            setDoctorNameInput();
-                        },
-                        error :function () {
-                            alert("获取医生表失败");
-                        }
-                    });
-
                     $("#departmentNameInputUl").hide(0);
                 });
             }
@@ -414,14 +435,12 @@
                 "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientName + "\" readonly/></td>\n" +
                 "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientSex + "\" readonly/></td>\n" +
                 "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientAge + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientBirthday + "\" readonly/></td>\n" +
-                //    TODO 转换类型
+                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientBirthdayString + "\" readonly/></td>\n" +
                 "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientIdentityNumber + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].address + "\" name=\"registrationInfoList[" + i + "].id\" readonly/></td>\n" +
-                "<td><input type=\"text\" class=\"form-control\" value=\"" + registrationInfoList[i].settlementTypeName + "\" name=\"registrationInfoList[" + i + "].itemCode\"/></td>\n" +
-                "<td><input type=\"text\" class=\"form-control\" value=\"" + registrationInfoList[i].registrationLevelName + "\" name=\"registrationInfoList[" + i + "].itemName\"/></td>\n" +
-                "<td><input type=\"text\" class=\"form-control\" value=\"" + registrationInfoList[i].seeDoctorDate + "\" name=\"registrationInfoList[" + i + "].format\"/></td>\n" +
-                //    TODO 转换类型
+                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].address + "\" readonly/></td>\n" +
+                "<td><input type=\"text\" class=\"form-control\" value=\"" + registrationInfoList[i].settlementTypeName + "\" readonly/></td>\n" +
+                "<td><input type=\"text\" class=\"form-control\" value=\"" + registrationInfoList[i].registrationLevelName + "\" readonly/></td>\n" +
+                "<td><input type=\"text\" class=\"form-control\" value=\"" + registrationInfoList[i].seeDoctorDateString + "\" readonly/></td>\n" +
                 "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].isSeenDoctor + "\" readonly/></td>\n" +
                 "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].isNeedMedicalrecordbook + "\" readonly/></td>\n" +
                 "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].registrationResource + "\" readonly/></td>\n" +
@@ -521,7 +540,7 @@
             $.ajax({
                 type: "POST",
                 url: "registration/addRegistrationInfo",
-                data: $('#registrationLevelForm').serialize(),
+                data: $('#registrationInfo').serialize(),
                 success: function () {
                     alert("挂号成功");
                     $.ajax({
@@ -539,6 +558,7 @@
                 },
                 error: function () {
                     alert("挂号失败");
+
                 }
             });
         });

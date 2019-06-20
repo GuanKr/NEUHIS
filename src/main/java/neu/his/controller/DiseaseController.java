@@ -97,15 +97,15 @@ public class DiseaseController {
         return diagnoseDirectoryList;
     }
     @RequestMapping("findByAttributeWithTwoParameters")
-    public @ResponseBody
-    List findByAttributeWithTwoParameters(String attribute_name, String attribute){
+    public @ResponseBody List findByAttributeWithTwoParameters(String attribute_name, String attribute){
         List<Disease> diseaseList;
         diseaseList = diseaseService.findAllByAttribute_name(attribute_name,attribute);
         return diseaseList;
     }
 
-
-
-
+    @RequestMapping("findWithType")
+    public @ResponseBody List<Disease> findWithType(String attribute_name, String attribute){
+        return diseaseService.findWithType(attribute_name,attribute);
+    }
 
 }

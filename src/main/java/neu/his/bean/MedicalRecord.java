@@ -40,6 +40,24 @@ public class MedicalRecord {
         this.category = category;
     }
 
+    /**
+     * 用于根据前端返回的数据构造病例对象
+     * @param chiefComplaint 主诉
+     * @param historyOfPresentIllness 现病史
+     * @param treatmentOfCurrentIllness 现病治疗情况
+     * @param pastHistory 既往史
+     * @param allergyHistory 过敏史
+     * @param physicalExamination 体格检查
+     */
+    public MedicalRecord(String chiefComplaint, String historyOfPresentIllness, String treatmentOfCurrentIllness, String pastHistory, String allergyHistory, String physicalExamination) {
+        this.chiefComplaint = chiefComplaint;
+        this.historyOfPresentIllness = historyOfPresentIllness;
+        this.treatmentOfCurrentIllness = treatmentOfCurrentIllness;
+        this.pastHistory = pastHistory;
+        this.allergyHistory = allergyHistory;
+        this.physicalExamination = physicalExamination;
+    }
+
     public MedicalRecord() {
         super();
     }

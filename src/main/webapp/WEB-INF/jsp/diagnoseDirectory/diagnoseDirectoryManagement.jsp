@@ -105,7 +105,7 @@
         <div class="form-group col-md-3">
             <label class="col-md-4 control-label text-right" for="nameOfP">国际ICD编码</label>
             <div class="col-md-8 input-group">
-                <input type="text" class="form-control" id="nameOfP" name="internationalIcdCode "/>
+                <input type="text" class="form-control" id="nameOfP" name="internationalIcdCode"/>
                 <span class="input-group-addon" style="color: red">*</span>
             </div>
         </div>

@@ -37,6 +37,24 @@ public class Diagnose {
         this.isCommon = isCommon;
     }
 
+    /**
+     * 用于根据前端返回的数据构造诊断对象
+     * @param diseaseId 疾病id
+     * @param majorDiagnoseSign 主诊
+     * @param diseaseTime 发病时间
+     * @param diseaseType 疾病类型
+     * @param isCommon 是否常用
+     * @param diseaseName 疾病名称
+     */
+    public Diagnose(Integer diseaseId, String majorDiagnoseSign, Date diseaseTime, String diseaseType, String isCommon, String diseaseName) {
+        this.diseaseId = diseaseId;
+        this.majorDiagnoseSign = majorDiagnoseSign;
+        this.diseaseTime = diseaseTime;
+        this.diseaseType = diseaseType;
+        this.isCommon = isCommon;
+        this.diseaseName = diseaseName;
+    }
+
     public String getDiseaseName() {
         return diseaseName;
     }
