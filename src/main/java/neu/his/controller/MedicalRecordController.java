@@ -17,6 +17,10 @@ public class MedicalRecordController {
     @Autowired
     MedicalRecordService medicalRecordService;
 
+    @RequestMapping("medicalRecord")
+    public String toMedicalRecord(){
+        return "medicalRecord/medicalRecord";
+    }
     /**
      *
      * @param doctorId 医生id
