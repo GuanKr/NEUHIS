@@ -1,6 +1,8 @@
 package neu.his.dao;
 
 import java.util.List;
+
+import neu.his.bean.Query;
 import neu.his.bean.RegistrationInfo;
 import neu.his.bean.RegistrationInfoExample;
 import org.apache.ibatis.annotations.Delete;
@@ -18,6 +20,13 @@ import org.apache.ibatis.annotations.Update;
  */
 public interface RegistrationInfoMapper {
 
+
+    /**
+     * 查找挂号的信息
+     * @param query 查询信息
+     * @return 挂号信息
+     */
+    List<RegistrationInfo> query(Query query);
 
     /**
      * 查找待诊病人的信息
@@ -73,7 +82,7 @@ public interface RegistrationInfoMapper {
         "patient_identity_number, patient_age, ",
         "patient_sex, patient_birthday, ",
         "address)",
-        "values (#{id,jdbcType=INTEGER}, #{medicalRecordNo,jdbcType=INTEGER}, ",
+        "values (#{id,jdbcType=INTEGER}, #{medicalRecordNo,jdbcType=CHAR}, ",
         "#{registrationLevelId,jdbcType=INTEGER}, #{seeDoctorDate,jdbcType=TIMESTAMP}, ",
         "#{departmentId,jdbcType=INTEGER}, #{doctorId,jdbcType=INTEGER}, ",
         "#{registrationResource,jdbcType=CHAR}, #{settlementTypeId,jdbcType=INTEGER}, ",
