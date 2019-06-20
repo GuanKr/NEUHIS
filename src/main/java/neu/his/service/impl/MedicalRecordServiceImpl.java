@@ -8,6 +8,7 @@ import org.springframework.beans.factory.support.ManagedList;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -49,6 +50,44 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
     public void saveAsTemplate(MedicalRecord medicalRecord) {
         medicalRecord.setIsCommon("1");
         medicalRecordMapper.insertSelective(medicalRecord);
+    }
+
+    @Override
+    public String updateTemplate(MedicalRecord medicalRecord, Integer doctorId) {
+        if (medicalRecord.getDoctorId() == doctorId){
+            medicalRecordMapper.updateByPrimaryKeySelective(medicalRecord);
+            return "成功";
+        }else {
+            return "您没有权限";
+        }
+    }
+
+    @Override
+    public String deleteTemplate(Integer temId, Integer doctorId) {
+        Integer createId = medicalRecordMapper.selectByPrimaryKey(temId).getDoctorId();
+        if (createId == doctorId){
+            medicalRecordMapper.deleteByPrimaryKey(temId);
+            return "成功";
+        }else {
+            return "您没有权限";
+        }
+    }
+
+    @Override
+    public List<MedicalRecord> query(String attribute_name, String attribute, Integer doctorId) {
+        if(attribute_name.equals("category")){
+            attribute = new InspectionSetServiceImpl().translate(attribute);
+        }
+        List<MedicalRecord> list = medicalRecordMapper.query(new SetQuery(attribute_name,attribute,doctorId));
+        for(MedicalRecord medicalRecord : list){
+            medicalRecord.setCategory(new InspectionSetServiceImpl().translate(medicalRecord.getCategory()));
+        }
+        return list;
+    }
+
+    @Override
+    public List<MedicalRecord> findAllTem(Integer doctorId) {
+        return medicalRecordMapper.selectWithName(doctorId);
     }
 
     @Override
@@ -130,6 +169,7 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
             return "请输入现病治疗情况";
         }else{
             medicalRecord.setIsCommon("0");
+            medicalRecord.setSeeTime(new Date());
             medicalRecordMapper.insertSelective(medicalRecord);
         }
         for(Diagnose diagnose : diagnoses){
@@ -147,6 +187,7 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
         List<RegistrationInfo> registrationInfos = registrationInfoMapper.selectByExample(registrationInfoExample);
         for(RegistrationInfo registrationInfo : registrationInfos){
             registrationInfo.setIsSeenDoctor("1");
+            registrationInfoMapper.updateByPrimaryKeySelective(registrationInfo);
         }
             return "成功";
     }

@@ -1,6 +1,7 @@
 package neu.his.bean;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MedicalRecordExample {
@@ -921,6 +922,66 @@ public class MedicalRecordExample {
 
         public Criteria andCategoryNotBetween(String value1, String value2) {
             addCriterion("category not between", value1, value2, "category");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeeTimeIsNull() {
+            addCriterion("see_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeeTimeIsNotNull() {
+            addCriterion("see_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeeTimeEqualTo(Date value) {
+            addCriterion("see_time =", value, "seeTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeeTimeNotEqualTo(Date value) {
+            addCriterion("see_time <>", value, "seeTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeeTimeGreaterThan(Date value) {
+            addCriterion("see_time >", value, "seeTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeeTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("see_time >=", value, "seeTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeeTimeLessThan(Date value) {
+            addCriterion("see_time <", value, "seeTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeeTimeLessThanOrEqualTo(Date value) {
+            addCriterion("see_time <=", value, "seeTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeeTimeIn(List<Date> values) {
+            addCriterion("see_time in", values, "seeTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeeTimeNotIn(List<Date> values) {
+            addCriterion("see_time not in", values, "seeTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeeTimeBetween(Date value1, Date value2) {
+            addCriterion("see_time between", value1, value2, "seeTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSeeTimeNotBetween(Date value1, Date value2) {
+            addCriterion("see_time not between", value1, value2, "seeTime");
             return (Criteria) this;
         }
     }

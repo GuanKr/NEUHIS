@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="neu.his.dao.MedicalRecordMapper" >
+
+
+  <select id="selectWithName" parameterType="Integer" resultMap="Med">
+    select medical_record.id  as mId, doctor_id, chief_complaint, history_of_present_illness, treatment_of_current_illness, past_history, allergy_history, physical_examination, medical_record_no, is_common, template_name, category, name
+    from medical_record left join user
+    on medical_record.doctor_id = user.id
+    where (category = '1') or
+    (category = '2' and department_id = (SELECT department_id from user where user.id = #{doctorId})) or
+	(category = '3' and doctor_id = #{doctorId})
+  </select>
+
+  <select id="query" parameterType="neu.his.bean.SetQuery" resultMap="Med">
+    select medical_record.id  as mId, doctor_id, chief_complaint, history_of_present_illness, treatment_of_current_illness, past_history, allergy_history, physical_examination, medical_record_no, is_common, template_name, category, name
+    from medical_record left join user
+    on medical_record.doctor_id = user.id
+    where ((category = '1') or
+    (category = '2' and department_id = (SELECT department_id from user where user.id = '${doctorId}')) or
+    (category = '3' and doctor_id = '${doctorId}'))
+    <choose>
+      <when test="attribute_name == 'doctor_id'.toString()">
+        and user.name like CONCAT('%','${attribute}','%')
+      </when>
+      <otherwise>
+        and ${attribute_name} like CONCAT('%','${attribute}','%')
+      </otherwise>
+    </choose>
+  </select>
+
+
+  <resultMap id="Med" type="neu.his.bean.MedicalRecord">
+    <id property="id" column="mId"/>
+    <result property="doctorId" column="doctor_id"/>
+    <result property="chiefComplaint" column="chief_complaint"/>
+    <result property="historyOfPresentIllness" column="history_of_present_illness"/>
+    <result property="treatmentOfCurrentIllness" column="treatment_of_current_illness"/>
+    <result property="pastHistory" column="past_history"/>
+    <result property="allergyHistory" column="allergy_history"/>
+    <result property="physicalExamination" column="physical_examination"/>
+    <result property="medicalRecordNo" column="medical_record_no"/>
+    <result property="isCommon" column="is_common"/>
+    <result property="templateName" column="template_name"/>
+    <result property="category" column="category"/>
+    <result property="doctorName" column="name"/>
+  </resultMap>
   <resultMap id="BaseResultMap" type="neu.his.bean.MedicalRecord" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -15,6 +59,7 @@
       <arg column="is_common" jdbcType="CHAR" javaType="java.lang.String" />
       <arg column="template_name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="category" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="see_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -78,7 +123,7 @@
   <sql id="Base_Column_List" >
     id, doctor_id, chief_complaint, history_of_present_illness, treatment_of_current_illness, 
     past_history, allergy_history, physical_examination, medical_record_no, is_common, 
-    template_name, category
+    template_name, category, see_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="neu.his.bean.MedicalRecordExample" >
     select
@@ -136,6 +181,9 @@
       <if test="category != null" >
         category,
       </if>
+      <if test="seeTime != null" >
+        see_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="doctorId != null" >
@@ -170,6 +218,9 @@
       </if>
       <if test="category != null" >
         #{category,jdbcType=CHAR},
+      </if>
+      <if test="seeTime != null" >
+        #{seeTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -218,6 +269,9 @@
       <if test="record.category != null" >
         category = #{record.category,jdbcType=CHAR},
       </if>
+      <if test="record.seeTime != null" >
+        see_time = #{record.seeTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -236,7 +290,8 @@
       medical_record_no = #{record.medicalRecordNo,jdbcType=CHAR},
       is_common = #{record.isCommon,jdbcType=CHAR},
       template_name = #{record.templateName,jdbcType=VARCHAR},
-      category = #{record.category,jdbcType=CHAR}
+      category = #{record.category,jdbcType=CHAR},
+      see_time = #{record.seeTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -276,6 +331,9 @@
       </if>
       <if test="category != null" >
         category = #{category,jdbcType=CHAR},
+      </if>
+      <if test="seeTime != null" >
+        see_time = #{seeTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

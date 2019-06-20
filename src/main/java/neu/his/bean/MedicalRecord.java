@@ -1,5 +1,7 @@
 package neu.his.bean;
 
+import java.util.Date;
+
 public class MedicalRecord {
     private Integer id;
 
@@ -25,7 +27,11 @@ public class MedicalRecord {
 
     private String category;
 
-    public MedicalRecord(Integer id, Integer doctorId, String chiefComplaint, String historyOfPresentIllness, String treatmentOfCurrentIllness, String pastHistory, String allergyHistory, String physicalExamination, String medicalRecordNo, String isCommon, String templateName, String category) {
+    private Date seeTime;
+
+    private String doctorName;
+
+    public MedicalRecord(Integer id, Integer doctorId, String chiefComplaint, String historyOfPresentIllness, String treatmentOfCurrentIllness, String pastHistory, String allergyHistory, String physicalExamination, String medicalRecordNo, String isCommon, String templateName, String category, Date seeTime) {
         this.id = id;
         this.doctorId = doctorId;
         this.chiefComplaint = chiefComplaint;
@@ -38,6 +44,7 @@ public class MedicalRecord {
         this.isCommon = isCommon;
         this.templateName = templateName;
         this.category = category;
+        this.seeTime = seeTime;
     }
 
     /**
@@ -56,6 +63,13 @@ public class MedicalRecord {
         this.pastHistory = pastHistory;
         this.allergyHistory = allergyHistory;
         this.physicalExamination = physicalExamination;
+    }
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
     }
 
     public MedicalRecord() {
@@ -158,6 +172,14 @@ public class MedicalRecord {
         this.category = category == null ? null : category.trim();
     }
 
+    public Date getSeeTime() {
+        return seeTime;
+    }
+
+    public void setSeeTime(Date seeTime) {
+        this.seeTime = seeTime;
+    }
+
     @Override
     public String toString() {
         return "MedicalRecord{" +
@@ -173,6 +195,8 @@ public class MedicalRecord {
                 ", isCommon='" + isCommon + '\'' +
                 ", templateName='" + templateName + '\'' +
                 ", category='" + category + '\'' +
+                ", seeTime=" + seeTime +
+                ", doctorName='" + doctorName + '\'' +
                 '}';
     }
 }

@@ -31,6 +31,37 @@ public interface MedicalRecordService {
     void saveAsTemplate(MedicalRecord medicalRecord);
 
     /**
+     * 修改模板
+     * @param medicalRecord 模板内容 类别为1,2,3   1-全院   2-科室  3-个人 需doctorId
+     * @param doctorId 操作的医生id
+     * @return "成功"/"您没有权限"
+     */
+    String updateTemplate(MedicalRecord medicalRecord,Integer doctorId);
+
+    /**
+     * 删除模板
+     * @param temId 模板id
+     * @param doctorId 操作的医生id
+     * @return "成功"/"您没有权限"
+     */
+    String deleteTemplate(Integer temId,Integer doctorId);
+
+    /**
+     * 查找符合条件的病历模板
+     * @param attribute_name 属性名称
+     * @param attribute 属性内容
+     * @param doctorId 操作的医生id
+     * @return 组套列表
+     */
+    List<MedicalRecord> query(String attribute_name,String attribute,Integer doctorId);
+
+    /**
+     * 查找有权限查看的所有病历模板(带name)
+     * @return 病历模板列表
+     */
+    List<MedicalRecord> findAllTem(Integer doctorId);
+
+    /**
      * 引用全院病历模板
      * @return 病历模板
      */
@@ -49,6 +80,7 @@ public interface MedicalRecordService {
      * @return 病历模板
      */
     List<MedicalRecord> referenceTemplateDoc(Integer id);
+
 
     /**
      * 查询该病人历史病历
