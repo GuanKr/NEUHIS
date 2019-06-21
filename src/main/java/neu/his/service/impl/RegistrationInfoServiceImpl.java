@@ -233,5 +233,20 @@ public class RegistrationInfoServiceImpl implements RegistrationInfoService {
         return registrationInfoMapper.queryAlreadyByDoctorId(id);
     }
 
+    @Override
+    public List<RegistrationInfo> query(String attribute_name, String attribute) {
+        List<RegistrationInfo> list = registrationInfoMapper.query(new Query(attribute_name,attribute));
+        for(RegistrationInfo registrationInfo : list){
+            registrationInfo = translate(registrationInfo);
+        }
+        return list;
+    }
+
+    @Override
+    public void completeRegistration(RegistrationInfo registrationInfo) {
+        registrationInfo.setIsCompleted("1");
+        registrationInfoMapper.updateByPrimaryKeySelective(registrationInfo);
+    }
+
 
 }

@@ -1,13 +1,15 @@
 package neu.his.service.impl;
 
-import neu.his.bean.Inspection;
-import neu.his.bean.InspectionExample;
+import neu.his.bean.*;
 import neu.his.dao.InspectionMapper;
+import neu.his.dao.InspectionRegisterMapper;
+import neu.his.dao.RegistrationInfoMapper;
 import neu.his.service.InspectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -15,6 +17,12 @@ public class InspectionServiceImpl implements InspectionService {
 
     @Autowired
     InspectionMapper inspectionMapper;
+
+    @Autowired
+    InspectionRegisterMapper inspectionRegisterMapper;
+
+    @Autowired
+    RegistrationInfoMapper registrationInfoMapper;
 
     private static List<Inspection> temList = new ArrayList<>();
     private static int temId = 1;
@@ -109,6 +117,51 @@ public class InspectionServiceImpl implements InspectionService {
     @Override
     public void updateCommon(Inspection inspection) {
         inspectionMapper.updateByPrimaryKeySelective(inspection);
+    }
+
+    @Override
+    public String register(Inspection inspection,Integer doctorId) {
+        if(inspection.getPayState().equals("0")){
+            return "未缴费！";
+        }else {
+            inspection.setRegisterState("1");
+            inspectionMapper.updateByPrimaryKeySelective(inspection);
+            RegistrationInfoExample registrationInfoExample = new RegistrationInfoExample();
+            registrationInfoExample.or().andMedicalRecordNoEqualTo(inspection.getMedicalRecordNo());
+            List<RegistrationInfo> list = registrationInfoMapper.selectByExample(registrationInfoExample);
+            InspectionRegister inspectionRegister = new InspectionRegister();
+            inspectionRegister.setCost(inspection.getCost());
+            inspectionRegister.setDoctorId(doctorId);
+            inspectionRegister.setMedicalRecordNo(inspection.getMedicalRecordNo());
+            inspectionRegister.setRegisterTime(new Date());
+            for(RegistrationInfo registrationInfo : list){
+                inspectionRegister.setPatientName(registrationInfo.getPatientName());
+            }
+            inspectionRegisterMapper.insertSelective(inspectionRegister);
+            return "成功";
+        }
+    }
+
+    @Override
+    public List<Inspection> selectByNameOrMedNo(String attribute_name, String attribute, Integer doctorId) {
+        return inspectionMapper.selectByNameOrMedNo(new SetQuery(attribute_name,attribute,doctorId));
+    }
+
+    @Override
+    public void inputResult(Integer id,String result) {
+        Inspection inspection = inspectionMapper.selectByPrimaryKey(id);
+        inspection.setInspectionResultAnalysis(result);
+        inspectionMapper.updateByPrimaryKeySelective(inspection);
+    }
+
+    @Override
+    public List<InspectionRegister> workloadStatistics(Date startTime, Date endTime, Integer doctorId) {
+        InspectionRegisterExample inspectionRegisterExample = new InspectionRegisterExample();
+        InspectionRegisterExample.Criteria criteria = inspectionRegisterExample.createCriteria();
+        criteria.andRegisterTimeBetween(startTime,endTime);
+        criteria.andDoctorIdEqualTo(doctorId);
+        inspectionRegisterExample.or(criteria);
+        return inspectionRegisterMapper.selectByExample(inspectionRegisterExample);
     }
 
 }

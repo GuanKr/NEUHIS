@@ -109,4 +109,19 @@ public interface RegistrationInfoService {
      * @return 已诊病人信息
      */
     List<RegistrationInfo> queryAlreadyByDoctorId(Integer id);
+
+
+
+    /**
+     * 查找挂号的信息
+     * @param attribute_name 属性名称(病历号/姓名)
+     * @param attribute 属性内容
+     * @return 挂号信息
+     */
+    List<RegistrationInfo> query(String attribute_name,String attribute);
+    /**
+     * 诊毕
+     * @param registrationInfo 病历号
+     */
+    void completeRegistration(RegistrationInfo registrationInfo);
 }

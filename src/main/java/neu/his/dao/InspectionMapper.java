@@ -3,6 +3,7 @@ package neu.his.dao;
 import java.util.List;
 import neu.his.bean.Inspection;
 import neu.his.bean.InspectionExample;
+import neu.his.bean.SetQuery;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -24,6 +25,14 @@ public interface InspectionMapper {
      * @return检查/检验/处置列表
      */
     List<Inspection> selectWithName(String medicalNo);
+
+
+    /**
+     * 登记时通过病历号或姓名查看检查/检验信息列表
+     * @param setQuery 封装的查询信息
+     * @return 检查/检验列表
+     */
+    List<Inspection> selectByNameOrMedNo(SetQuery setQuery);
 
 
     /**

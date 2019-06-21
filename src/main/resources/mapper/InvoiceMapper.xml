@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="neu.his.dao.InvoiceMapper" >
+  <resultMap id="BaseResultMap" type="neu.his.bean.Invoice" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="invoice_no" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="cost_type" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="cost_type_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="settlement_type_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="receivable" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="net receipt" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="chnge" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="invoice_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="toll_collector_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, invoice_no, cost_type, cost_type_id, settlement_type_id, receivable, "net receipt", 
+    chnge, invoice_time, toll_collector_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="neu.his.bean.InvoiceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from invoice
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="neu.his.bean.InvoiceExample" >
+    delete from invoice
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertSelective" parameterType="neu.his.bean.Invoice" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into invoice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="invoiceNo != null" >
+        invoice_no,
+      </if>
+      <if test="costType != null" >
+        cost_type,
+      </if>
+      <if test="costTypeId != null" >
+        cost_type_id,
+      </if>
+      <if test="settlementTypeId != null" >
+        settlement_type_id,
+      </if>
+      <if test="receivable != null" >
+        receivable,
+      </if>
+      <if test="netReceipt != null" >
+        "net receipt",
+      </if>
+      <if test="chnge != null" >
+        chnge,
+      </if>
+      <if test="invoiceTime != null" >
+        invoice_time,
+      </if>
+      <if test="tollCollectorId != null" >
+        toll_collector_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="invoiceNo != null" >
+        #{invoiceNo,jdbcType=CHAR},
+      </if>
+      <if test="costType != null" >
+        #{costType,jdbcType=CHAR},
+      </if>
+      <if test="costTypeId != null" >
+        #{costTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="settlementTypeId != null" >
+        #{settlementTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="receivable != null" >
+        #{receivable,jdbcType=DECIMAL},
+      </if>
+      <if test="netReceipt != null" >
+        #{netReceipt,jdbcType=DECIMAL},
+      </if>
+      <if test="chnge != null" >
+        #{chnge,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceTime != null" >
+        #{invoiceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tollCollectorId != null" >
+        #{tollCollectorId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="neu.his.bean.InvoiceExample" resultType="java.lang.Integer" >
+    select count(*) from invoice
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update invoice
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.invoiceNo != null" >
+        invoice_no = #{record.invoiceNo,jdbcType=CHAR},
+      </if>
+      <if test="record.costType != null" >
+        cost_type = #{record.costType,jdbcType=CHAR},
+      </if>
+      <if test="record.costTypeId != null" >
+        cost_type_id = #{record.costTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.settlementTypeId != null" >
+        settlement_type_id = #{record.settlementTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.receivable != null" >
+        receivable = #{record.receivable,jdbcType=DECIMAL},
+      </if>
+      <if test="record.netReceipt != null" >
+        "net receipt" = #{record.netReceipt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.chnge != null" >
+        chnge = #{record.chnge,jdbcType=DECIMAL},
+      </if>
+      <if test="record.invoiceTime != null" >
+        invoice_time = #{record.invoiceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tollCollectorId != null" >
+        toll_collector_id = #{record.tollCollectorId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update invoice
+    set id = #{record.id,jdbcType=INTEGER},
+      invoice_no = #{record.invoiceNo,jdbcType=CHAR},
+      cost_type = #{record.costType,jdbcType=CHAR},
+      cost_type_id = #{record.costTypeId,jdbcType=INTEGER},
+      settlement_type_id = #{record.settlementTypeId,jdbcType=INTEGER},
+      receivable = #{record.receivable,jdbcType=DECIMAL},
+      "net receipt" = #{record.netReceipt,jdbcType=DECIMAL},
+      chnge = #{record.chnge,jdbcType=DECIMAL},
+      invoice_time = #{record.invoiceTime,jdbcType=TIMESTAMP},
+      toll_collector_id = #{record.tollCollectorId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="neu.his.bean.Invoice" >
+    update invoice
+    <set >
+      <if test="invoiceNo != null" >
+        invoice_no = #{invoiceNo,jdbcType=CHAR},
+      </if>
+      <if test="costType != null" >
+        cost_type = #{costType,jdbcType=CHAR},
+      </if>
+      <if test="costTypeId != null" >
+        cost_type_id = #{costTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="settlementTypeId != null" >
+        settlement_type_id = #{settlementTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="receivable != null" >
+        receivable = #{receivable,jdbcType=DECIMAL},
+      </if>
+      <if test="netReceipt != null" >
+        "net receipt" = #{netReceipt,jdbcType=DECIMAL},
+      </if>
+      <if test="chnge != null" >
+        chnge = #{chnge,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceTime != null" >
+        invoice_time = #{invoiceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tollCollectorId != null" >
+        toll_collector_id = #{tollCollectorId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

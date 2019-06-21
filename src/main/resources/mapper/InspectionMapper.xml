@@ -2,6 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="neu.his.dao.InspectionMapper" >
 
+
+
+  <select id="selectByNameOrMedNo" parameterType="neu.his.bean.SetQuery" resultMap="ins">
+      select inspection.id as iId,inspection.medical_record_no as medical_record_no, non_drug_list_id,inspection.doctor_id as doctor_id,inspection_result_analysis,inspection.pay_state as pay_state, inspection.pay_time as pay_time,register_state, validity,inspection.cost as cost,is_common,non_drug_list.item_name
+      from inspection left join non_drug_list
+      on inspection.non_drug_list_id = non_drug_list.id
+      left join registration_info
+      on inspection.medical_record_no = registration_info.medical_record_no
+      where inspection.is_common = '0' and validity = '1' and register_state = '0'
+      and non_drug_list.executivedepartment_id = (select department_id from user where user.id = '${doctorId}')
+      and registration_info.${attribute_name} = '${attribute}'
+  </select>
+
   <select id="selectWithName" parameterType="String" resultMap="ins">
       select inspection.id as iId,medical_record_no, non_drug_list_id,doctor_id,inspection_result_analysis, pay_state, pay_time,register_state, validity, cost,is_common,non_drug_list.item_name
       from inspection left join non_drug_list

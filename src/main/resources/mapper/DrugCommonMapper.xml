@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="neu.his.dao.ExpenseClassMapper" >
-  <resultMap id="BaseResultMap" type="neu.his.bean.ExpenseClass" >
+<mapper namespace="neu.his.dao.DrugCommonMapper" >
+  <resultMap id="BaseResultMap" type="neu.his.bean.DrugCommon" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="expense_code" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="expense_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="drug_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="doctor_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="drug_format" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -67,15 +68,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, expense_code, expense_name
+    id, drug_name, doctor_id, drug_format
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="neu.his.bean.ExpenseClassExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="neu.his.bean.DrugCommonExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from expense_class
+    from drug_common
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -83,48 +84,57 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="neu.his.bean.ExpenseClassExample" >
-    delete from expense_class
+  <delete id="deleteByExample" parameterType="neu.his.bean.DrugCommonExample" >
+    delete from drug_common
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insertSelective" parameterType="neu.his.bean.ExpenseClass" >
-    insert into expense_class
+  <insert id="insertSelective" parameterType="neu.his.bean.DrugCommon" >
+    insert into drug_common
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="expenseCode != null" >
-        expense_code,
+      <if test="drugName != null" >
+        drug_name,
       </if>
-      <if test="expenseName != null" >
-        expense_name,
+      <if test="doctorId != null" >
+        doctor_id,
+      </if>
+      <if test="drugFormat != null" >
+        drug_format,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      #{id,jdbcType=INTEGER},
-      <if test="expenseCode != null" >
-        #{expenseCode,jdbcType=VARCHAR},
+      <if test="drugName != null" >
+        #{drugName,jdbcType=VARCHAR},
       </if>
-      <if test="expenseName != null" >
-        #{expenseName,jdbcType=VARCHAR},
+      <if test="doctorId != null" >
+        #{doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="drugFormat != null" >
+        #{drugFormat,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="neu.his.bean.ExpenseClassExample" resultType="java.lang.Integer" >
-    select count(*) from expense_class
+  <select id="countByExample" parameterType="neu.his.bean.DrugCommonExample" resultType="java.lang.Integer" >
+    select count(*) from drug_common
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update expense_class
+    update drug_common
     <set >
       <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.expenseCode != null" >
-        expense_code = #{record.expenseCode,jdbcType=VARCHAR},
+      <if test="record.drugName != null" >
+        drug_name = #{record.drugName,jdbcType=VARCHAR},
       </if>
-      <if test="record.expenseName != null" >
-        expense_name = #{record.expenseName,jdbcType=VARCHAR},
+      <if test="record.doctorId != null" >
+        doctor_id = #{record.doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.drugFormat != null" >
+        drug_format = #{record.drugFormat,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -132,22 +142,26 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update expense_class
+    update drug_common
     set id = #{record.id,jdbcType=INTEGER},
-      expense_code = #{record.expenseCode,jdbcType=VARCHAR},
-      expense_name = #{record.expenseName,jdbcType=VARCHAR}
+      drug_name = #{record.drugName,jdbcType=VARCHAR},
+      doctor_id = #{record.doctorId,jdbcType=INTEGER},
+      drug_format = #{record.drugFormat,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="neu.his.bean.ExpenseClass" >
-    update expense_class
+  <update id="updateByPrimaryKeySelective" parameterType="neu.his.bean.DrugCommon" >
+    update drug_common
     <set >
-      <if test="expenseCode != null" >
-        expense_code = #{expenseCode,jdbcType=VARCHAR},
+      <if test="drugName != null" >
+        drug_name = #{drugName,jdbcType=VARCHAR},
       </if>
-      <if test="expenseName != null" >
-        expense_name = #{expenseName,jdbcType=VARCHAR},
+      <if test="doctorId != null" >
+        doctor_id = #{doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="drugFormat != null" >
+        drug_format = #{drugFormat,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

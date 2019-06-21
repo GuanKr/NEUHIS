@@ -1,7 +1,10 @@
 package neu.his.service;
 
 import neu.his.bean.Inspection;
+import neu.his.bean.InspectionRegister;
+import neu.his.bean.MedicalRecord;
 
+import java.util.Date;
 import java.util.List;
 
 /**处理检查/检验/处置信息
@@ -87,4 +90,40 @@ public interface InspectionService {
      * @param inspection 常用诊断
      */
     void updateCommon(Inspection inspection);
+
+    /**
+     * 检查/检验登记
+     * @param inspection 检查/检验
+     * @param doctorId 检查/检验登记的医生id
+     * @return "成功"/"未缴费！"
+     */
+    String register(Inspection inspection,Integer doctorId);
+
+    /**
+     * 登记时通过病历号或姓名查看检查/检验信息列表
+     * @param attribute_name medical_record_no或patient_name
+     * @param attribute 内容
+     * @param doctorId 操作的医生id
+     * @return 检查/检验列表
+     */
+    List<Inspection> selectByNameOrMedNo(String attribute_name,String attribute,Integer doctorId);
+
+    /**
+     * 检查/检验结果录入
+     * @param id 检查/检验id
+     * @param result 结果
+     */
+    void inputResult(Integer id,String result);
+
+
+    /**
+     * 个人工作量统计
+     * @param doctorId 操作的医生id
+     * @param startTime 起始时间
+     * @param endTime 截止时间
+     * @return 检查/检验列表
+     */
+    List<InspectionRegister> workloadStatistics(Date startTime, Date endTime, Integer doctorId);
+
+
 }
