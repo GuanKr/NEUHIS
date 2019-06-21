@@ -112,4 +112,11 @@ public interface DrugPrescriptionService {
      */
      String drugReturn(DrugPrescription drugPrescription,Integer returnQuantity);
 
+    /**
+     * 全退
+     * @param list 退药处方列表
+     * @return 所有列表可退最大数量
+     */
+     List<Integer> returnAll(List<DrugPrescription> list);
+
 }
