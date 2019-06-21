@@ -125,5 +125,4 @@ public interface InspectionService {
      */
     List<InspectionRegister> workloadStatistics(Date startTime, Date endTime, Integer doctorId);
 
-
 }

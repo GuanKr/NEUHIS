@@ -2,6 +2,7 @@ package neu.his.service.impl;
 
 import neu.his.bean.*;
 import neu.his.dao.DrugCommonMapper;
+import neu.his.dao.DrugMapper;
 import neu.his.dao.DrugPrescriptionMapper;
 import neu.his.dao.DrugUsageDetailMapper;
 import neu.his.service.DrugPrescriptionService;
@@ -22,8 +23,31 @@ public class DrugPrescriptionServiceImpl implements DrugPrescriptionService {
     @Autowired
     DrugCommonMapper drugCommonMapper;
 
+    @Autowired
+    DrugMapper drugMapper;
+
     private static List<DrugPrescription> temDrugPre = new ArrayList<>();
     private static int temPreId = 1;
+
+
+    public String translate(String type) {
+        switch (type) {
+            case "0":
+                return "未发";
+            case "1":
+                return "已退";
+            case "2":
+                return "已发";
+            case "未发":
+                return "0";
+            case "已退":
+                return "1";
+            case "已发":
+                return "2";
+            default:
+                return null;
+        }
+    }
 
     @Override
     public List<DrugUsageDetail> findUsage() {
@@ -121,6 +145,49 @@ public class DrugPrescriptionServiceImpl implements DrugPrescriptionService {
         }
         Double cost = cost1.doubleValue();
         return cost;
+    }
+
+    @Override
+    public List<DrugPrescription> findByMedNo(String medicalNo, String state) {
+        DrugPrescriptionExample drugPrescriptionExample = new DrugPrescriptionExample();
+        DrugPrescriptionExample.Criteria criteria = drugPrescriptionExample.createCriteria();
+        criteria.andMedicalRecordNoEqualTo(medicalNo);
+        criteria.andStatusEqualTo("1");
+        criteria.andTakeMedicineStateEqualTo(translate(state));
+        drugPrescriptionExample.or(criteria);
+        List<DrugPrescription> list = drugPrescriptionMapper.selectByExample(drugPrescriptionExample);
+        for(DrugPrescription drugPrescription : list){
+            drugPrescription.setDrugName(drugMapper.selectByPrimaryKey(drugPrescription.getDrugId()).getDrugName());
+        }
+        return list;
+    }
+
+    @Override
+    public List<DrugPrescription> findDispense(String medicalNo) {
+        DrugPrescriptionExample drugPrescriptionExample = new DrugPrescriptionExample();
+        DrugPrescriptionExample.Criteria criteria = drugPrescriptionExample.createCriteria();
+        criteria.andMedicalRecordNoEqualTo(medicalNo);
+        criteria.andStatusEqualTo("1");
+        criteria.andTakeMedicineStateEqualTo("0");
+        criteria.andPaymentStateEqualTo("1");
+        drugPrescriptionExample.or(criteria);
+        List<DrugPrescription> list = drugPrescriptionMapper.selectByExample(drugPrescriptionExample);
+        for(DrugPrescription drugPrescription : list){
+            drugPrescription.setDrugName(drugMapper.selectByPrimaryKey(drugPrescription.getDrugId()).getDrugName());
+        }
+        return list;
+    }
+
+    @Override
+    public void dispense(DrugPrescription drugPrescription) {
+        drugPrescription.setTakeMedicineState("2");
+        drugPrescriptionMapper.updateByPrimaryKeySelective(drugPrescription);
+    }
+
+    @Override
+    public String drugReturn(DrugPrescription drugPrescription, Integer returnQuantity) {
+        DrugPrescription returnDrugPrescription = new DrugPrescription();
+        return null;
     }
 
 }

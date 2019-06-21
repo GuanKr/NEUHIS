@@ -81,4 +81,35 @@ public interface DrugPrescriptionService {
      * @return 总额
      */
     Double costAll(List<DrugPrescription> list);
+
+    /**
+     * 通过病历号查找及状态查找药品列表(查找患者在挂号表中)
+     * @param medicalNo 病历号
+     * @param state 状态(已发\未发\已退)
+     * @return 处方列表
+     */
+    List<DrugPrescription> findByMedNo(String medicalNo,String state);
+
+    /**
+     * 通过病历号查找可发药的列表
+     * @param medicalNo 病历号
+     * @return 处方列表
+     */
+    List<DrugPrescription> findDispense(String medicalNo);
+
+    /**
+     * 发药
+     * @param drugPrescription 发药的处方
+     */
+    void dispense(DrugPrescription drugPrescription);
+
+
+    /**
+     * 退药
+     * @param drugPrescription 退药的处方信息
+     * @param returnQuantity 退药数量
+     * @return "成功"/"退药数量超过可退数量！"
+     */
+     String drugReturn(DrugPrescription drugPrescription,Integer returnQuantity);
+
 }

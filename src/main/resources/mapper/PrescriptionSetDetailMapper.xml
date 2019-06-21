@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="neu.his.dao.PrescriptionSetDetailMapper" >
+
+
+  <select id="selectBySet" parameterType="Integer" resultMap="Detail">
+    select prescription_set_detail.id as psId ,prescription_set_id, drug_id, drug_format, drug_usage, drug_dosage, frequency, drug_name
+    from prescription_set_detail left join drug
+    on prescription_set_detail.drug_id = drug.id
+    where prescription_set_detail.prescription_set_id= #{setId}
+  </select>
+
+  <insert id="insertDetail" parameterType="neu.his.bean.InspectionSetDetail">
+    INSERT  INTO prescription_set_detail (prescription_set_id, drug_id, drug_format, drug_usage, drug_dosage, frequency)
+    SELECT #{prescriptionSetId},drug.id,#{drug_format},#{drug_usage},#{drug_dosage},#{frequency}
+    FROM drug
+    WHERE drug.drug_name = #{drugName}
+  </insert>
+
+  <resultMap id="Detail" type="neu.his.bean.PrescriptionSetDetail">
+    <id property="id" column="psId"/>
+    <result property="prescriptionSetId" column="prescription_set_id"/>
+    <result property="drugId" column="drug_id"/>
+    <result property="drugFormat" column="drug_format"/>
+    <result property="drugUsage" column="drug_usage"/>
+    <result property="drugDosage" column="drug_dosage"/>
+    <result property="frequency" column="frequency"/>
+    <result property="drugName" column="drug_name"/>
+  </resultMap>
+
+
+  <resultMap id="BaseResultMap" type="neu.his.bean.PrescriptionSetDetail" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="prescription_set_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="drug_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="drug_format" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="drug_usage" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="drug_dosage" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="frequency" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, prescription_set_id, drug_id, drug_format, drug_usage, drug_dosage, frequency
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="neu.his.bean.PrescriptionSetDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from prescription_set_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="neu.his.bean.PrescriptionSetDetailExample" >
+    delete from prescription_set_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertSelective" parameterType="neu.his.bean.PrescriptionSetDetail" >
+    insert into prescription_set_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="prescriptionSetId != null" >
+        prescription_set_id,
+      </if>
+      <if test="drugId != null" >
+        drug_id,
+      </if>
+      <if test="drugFormat != null" >
+        drug_format,
+      </if>
+      <if test="drugUsage != null" >
+        drug_usage,
+      </if>
+      <if test="drugDosage != null" >
+        drug_dosage,
+      </if>
+      <if test="frequency != null" >
+        frequency,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="prescriptionSetId != null" >
+        #{prescriptionSetId,jdbcType=INTEGER},
+      </if>
+      <if test="drugId != null" >
+        #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="drugFormat != null" >
+        #{drugFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="drugUsage != null" >
+        #{drugUsage,jdbcType=VARCHAR},
+      </if>
+      <if test="drugDosage != null" >
+        #{drugDosage,jdbcType=DECIMAL},
+      </if>
+      <if test="frequency != null" >
+        #{frequency,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="neu.his.bean.PrescriptionSetDetailExample" resultType="java.lang.Integer" >
+    select count(*) from prescription_set_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update prescription_set_detail
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.prescriptionSetId != null" >
+        prescription_set_id = #{record.prescriptionSetId,jdbcType=INTEGER},
+      </if>
+      <if test="record.drugId != null" >
+        drug_id = #{record.drugId,jdbcType=INTEGER},
+      </if>
+      <if test="record.drugFormat != null" >
+        drug_format = #{record.drugFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drugUsage != null" >
+        drug_usage = #{record.drugUsage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drugDosage != null" >
+        drug_dosage = #{record.drugDosage,jdbcType=DECIMAL},
+      </if>
+      <if test="record.frequency != null" >
+        frequency = #{record.frequency,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update prescription_set_detail
+    set id = #{record.id,jdbcType=INTEGER},
+      prescription_set_id = #{record.prescriptionSetId,jdbcType=INTEGER},
+      drug_id = #{record.drugId,jdbcType=INTEGER},
+      drug_format = #{record.drugFormat,jdbcType=VARCHAR},
+      drug_usage = #{record.drugUsage,jdbcType=VARCHAR},
+      drug_dosage = #{record.drugDosage,jdbcType=DECIMAL},
+      frequency = #{record.frequency,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="neu.his.bean.PrescriptionSetDetail" >
+    update prescription_set_detail
+    <set >
+      <if test="prescriptionSetId != null" >
+        prescription_set_id = #{prescriptionSetId,jdbcType=INTEGER},
+      </if>
+      <if test="drugId != null" >
+        drug_id = #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="drugFormat != null" >
+        drug_format = #{drugFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="drugUsage != null" >
+        drug_usage = #{drugUsage,jdbcType=VARCHAR},
+      </if>
+      <if test="drugDosage != null" >
+        drug_dosage = #{drugDosage,jdbcType=DECIMAL},
+      </if>
+      <if test="frequency != null" >
+        frequency = #{frequency,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

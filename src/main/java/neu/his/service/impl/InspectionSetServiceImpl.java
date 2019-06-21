@@ -75,13 +75,13 @@ public class InspectionSetServiceImpl implements InspectionSetService {
     @Override
     public String deleteSet(Integer id, Integer doctorId) {
         InspectionSet inspectionSet = inspectionSetMapper.selectByPrimaryKey(id);
-        if(inspectionSet.getDoctorId() == doctorId){
+        if (inspectionSet.getDoctorId() == doctorId) {
             inspectionSetMapper.deleteByPrimaryKey(id);
             InspectionSetDetailExample inspectionSetDetailExample = new InspectionSetDetailExample();
             inspectionSetDetailExample.or().andInspectionSetIdEqualTo(id);
             inspectionSetDetailMapper.deleteByExample(inspectionSetDetailExample);
             return "成功";
-        }else{
+        } else {
             return "您没有权限";
         }
 

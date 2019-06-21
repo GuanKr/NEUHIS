@@ -102,19 +102,10 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
 
     @Override
     public List<MedicalRecord> referenceTemplateDep(Integer id) {
-        List<MedicalRecord> list = new ArrayList<>();
-        int departmentId = userMapper.selectByPrimaryKey(id).getDepartmentId();
-        List<User> userList = userMapper.selectWithName();
-        MedicalRecordExample medicalRecordExample = new MedicalRecordExample();
-        for(User user : userList){
-            if(user.getDepartmentId() == departmentId){
-                medicalRecordExample.or().andDoctorIdEqualTo(user.getId());
-            }
-        }
-        List<MedicalRecord> listAll = medicalRecordMapper.selectByExample(medicalRecordExample);
-        for(MedicalRecord medicalRecord : listAll){
-            if(medicalRecord.getCategory().equals("2")&&medicalRecord.getIsCommon().equals("1")){
-                list.add(medicalRecord);
+        List<MedicalRecord> list = findAllTem(id);
+        for(MedicalRecord medicalRecord : list){
+            if(medicalRecord.getCategory().equals("1")||medicalRecord.getCategory().equals("3")){
+                list.remove(medicalRecord);
             }
         }
         return list;
