@@ -124,9 +124,13 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
     }
 
     @Override
-    public List<MedicalRecord> historyMed(String idCard) {
+    public List<MedicalRecord> historyMed(String medicalNo) {
+        //找到idcard
+        RegistrationInfoExample registrationInfoExample1 = new RegistrationInfoExample();
+        registrationInfoExample1.or().andMedicalRecordNoEqualTo(medicalNo);
+        String idCard = registrationInfoMapper.selectByExample(registrationInfoExample1).get(0).getPatientIdentityNumber();
+        //找到历史病历
         MedicalRecordExample medicalRecordExample = new MedicalRecordExample();
-
         RegistrationInfoExample registrationInfoExample = new RegistrationInfoExample();
         RegistrationInfoExample.Criteria criteria = registrationInfoExample.createCriteria();
         criteria.andPatientIdentityNumberEqualTo(idCard);

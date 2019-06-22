@@ -84,10 +84,10 @@ public interface MedicalRecordService {
 
     /**
      * 查询该病人历史病历
-     * @param idCard 身份证号
+     * @param medicalNo 病历号
      * @return 病历列表
      */
-    List<MedicalRecord> historyMed(String idCard);
+    List<MedicalRecord> historyMed(String medicalNo);
 
     /**
      * 提交病历首页
