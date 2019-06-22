@@ -218,6 +218,7 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
             Disease disease = diseaseMapper.selectByPrimaryKey(diagnose.getDiseaseId());
             diagnose.setMajorDiagnoseSign(disease.getDiseaseName());
             diagnose.setSuspectedSign(disease.getInternationalIcdCode());
+            diagnose.setDiseaseType(new DiagnoseDirectoryServiceImpl().translate(diagnose.getDiseaseType()));
         }
         return list;
     }
