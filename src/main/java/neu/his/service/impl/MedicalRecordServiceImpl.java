@@ -102,10 +102,11 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
 
     @Override
     public List<MedicalRecord> referenceTemplateDep(Integer id) {
-        List<MedicalRecord> list = findAllTem(id);
-        for(MedicalRecord medicalRecord : list){
-            if(medicalRecord.getCategory().equals("1")||medicalRecord.getCategory().equals("3")){
-                list.remove(medicalRecord);
+        List<MedicalRecord> list1 = findAllTem(id);
+        List<MedicalRecord> list = new ArrayList<>();
+        for(MedicalRecord medicalRecord : list1){
+            if(medicalRecord.getCategory().equals("2")){
+                list.add(medicalRecord);
             }
         }
         return list;
