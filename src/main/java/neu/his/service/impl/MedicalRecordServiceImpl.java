@@ -199,15 +199,27 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
 
     @Override
     public void SubmissionDiagnose(Diagnose diagnose) {
-        DiseaseExample diseaseExample = new DiseaseExample();
-        diseaseExample.or().andDiseaseNameEqualTo(diagnose.getDiseaseName());
-        List<Disease> diseases = diseaseMapper.selectByExample(diseaseExample);
-        for(Disease disease : diseases){
-            diagnose.setDiseaseId(disease.getId());
+        DiagnoseExample diagnoseExample = new DiagnoseExample();
+        DiagnoseExample.Criteria criteria = diagnoseExample.createCriteria();
+        criteria.andIsCommonEqualTo("0");
+        criteria.andDiseaseIdEqualTo(diagnose.getDiseaseId());
+        criteria.andMedicalRecordNoEqualTo(diagnose.getMedicalRecordNo());
+        diagnoseExample.or(criteria);
+        List<Diagnose> diagnoses = diagnoseMapper.selectByExample(diagnoseExample);
+        if(diagnoses.isEmpty()){
+            DiseaseExample diseaseExample = new DiseaseExample();
+            diseaseExample.or().andDiseaseNameEqualTo(diagnose.getDiseaseName());
+            List<Disease> diseases = diseaseMapper.selectByExample(diseaseExample);
+            for(Disease disease : diseases){
+                diagnose.setDiseaseId(disease.getId());
+            }
+            diagnose.setIsCommon("0");
+            diagnose.setDiseaseType(new DiagnoseDirectoryServiceImpl().de_translate(diagnose.getDiseaseType()));
+            diagnoseMapper.insertSelective(diagnose);
+        }else{
+            diagnose.setDiseaseType(new DiagnoseDirectoryServiceImpl().de_translate(diagnose.getDiseaseType()));
+            diagnoseMapper.updateByExample(diagnose,diagnoseExample);
         }
-        diagnose.setIsCommon("0");
-        diagnose.setDiseaseType(new DiagnoseDirectoryServiceImpl().de_translate(diagnose.getDiseaseType()));
-        diagnoseMapper.insertSelective(diagnose);
     }
 
     @Override
