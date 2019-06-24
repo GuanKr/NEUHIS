@@ -237,4 +237,16 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
     public void deleteDiagnose(Integer id) {
         diagnoseMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public MedicalRecord findByMedicalNo(String medicalNo) {
+        MedicalRecordExample medicalRecordExample = new MedicalRecordExample();
+        medicalRecordExample.or().andMedicalRecordNoEqualTo(medicalNo);
+        List<MedicalRecord> list = medicalRecordMapper.selectByExample(medicalRecordExample);
+        if(list.isEmpty()){
+            return null;
+        }else{
+            return list.get(0);
+        }
+    }
 }

@@ -128,4 +128,11 @@ public interface MedicalRecordService {
      * @param id 常用诊断主键id
      */
     void deleteDiagnose(Integer id);
+
+    /**
+     * 检查/检验用，是否存在病历
+     * @param medicalNo 病历号
+     * @return 病历
+     */
+    MedicalRecord findByMedicalNo(String medicalNo);
 }
