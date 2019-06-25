@@ -133,6 +133,9 @@
     </if>
   </delete>
   <insert id="insertSelective" parameterType="neu.his.bean.InspectionSet" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into inspection_set
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="doctorId != null" >

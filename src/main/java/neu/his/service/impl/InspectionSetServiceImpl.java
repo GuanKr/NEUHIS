@@ -54,8 +54,8 @@ public class InspectionSetServiceImpl implements InspectionSetService {
     public void saveAsSet(InspectionSet inspectionSet, List<String> list) {
         inspectionSet.setCategory(translate(inspectionSet.getCategory()));
         inspectionSet.setCreateTime(new Date());
-        inspectionSetMapper.insertSelective(inspectionSet);
-        InspectionSetExample inspectionSetExample = new InspectionSetExample();
+        Integer setId = inspectionSetMapper.insertSelective(inspectionSet);
+/*        InspectionSetExample inspectionSetExample = new InspectionSetExample();
         InspectionSetExample.Criteria criteria = inspectionSetExample.createCriteria();
         criteria.andDoctorIdEqualTo(inspectionSet.getDoctorId());
         criteria.andCreateTimeEqualTo(inspectionSet.getCreateTime());
@@ -63,7 +63,7 @@ public class InspectionSetServiceImpl implements InspectionSetService {
         Integer setId = null;
         for(InspectionSet inspectionSet1 : inspectionSetMapper.selectByExample(inspectionSetExample)){
             setId = inspectionSet1.getId();
-        }
+        }*/
         InspectionSetDetail inspectionSetDetail = new InspectionSetDetail();
         for(String name : list){
             inspectionSetDetail.setItemName(name);
