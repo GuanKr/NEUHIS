@@ -160,7 +160,7 @@
             </div>
         </div>
         <div class="col-md-2 pull-right">
-            <input type="reset" class="btn btn-default" value="清空" />&nbsp;&nbsp;
+            <input type="reset" id="registrationInfoReset" class="btn btn-default" value="清空" />&nbsp;&nbsp;
             <button type="button" id="registrationButton" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;挂号&nbsp;&nbsp;&nbsp;&nbsp;</button>
         </div>
     </div>
@@ -239,18 +239,20 @@
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript">
     //获取病历号
-    $.ajax({
-        type: "POST",
-        url: "registration/getMedicalRecordNo",
-        async: false,
-        success: function (result) {
-            var medicalRecordNo = result;
-            $("#medicalRecordNoInput").val(medicalRecordNo);
-        },
-        error :function () {
-            alert("获取病历号失败");
-        }
-    });
+    function getMedicalRecordNo(){
+        $.ajax({
+            type: "POST",
+            url: "registration/getMedicalRecordNo",
+            async: false,
+            success: function (result) {
+                var medicalRecordNo = result;
+                $("#medicalRecordNoInput").val(medicalRecordNo);
+            },
+            error :function () {
+                alert("获取病历号失败");
+            }
+        });
+    }
     //设置号别
     var registrationLevels = null;
     $.ajax({
@@ -295,18 +297,20 @@
     }
     //设置医生
     var doctors = null;
-    $.ajax({
-        type: "POST",
-        url: "user/list",
-        async: false,
-        success: function (result) {
-            doctors = result;
-            setDoctorNameInput();
-        },
-        error :function () {
-            alert("获取医生表失败");
-        }
-    });
+    function setDoctors(){
+        $.ajax({
+            type: "POST",
+            url: "user/list",
+            async: false,
+            success: function (result) {
+                doctors = result;
+                setDoctorNameInput();
+            },
+            error :function () {
+                alert("获取医生表失败");
+            }
+        });
+    }
     function setDoctorNameInput() {
         var str = "";
         for (let i = 0; i < doctors.length; i++) {
@@ -403,7 +407,6 @@
             data:$('#registrationInfo').serialize(),
             async: false,
             success: function (result) {
-                //TODO 测试
                 $("#expenseInput").val(result);
             },
             error :function () {
@@ -449,6 +452,7 @@
                 "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].paymentState + "\" readonly/></td>\n" +
                 "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].departmentName + "\" readonly/></td>\n" +
                 "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].doctorName + "\" readonly/></td>\n" +
+                //    TODO 退号
                 "<td><button type='button' class=\"form-control\" onclick='withdraw(" + registrationInfoList[i].id + ")' >退号</button></td>\n" +
                 "</tr>";
         }
@@ -479,69 +483,20 @@
             }
         });
     }
-    //获取查询过后的带有第N页科室信息的pageInfo
-    // var pageInfo = null;
-    // function getSearchedPageN(pageN) {
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "nonDrugList/findByAttributeWithPageHelper",
-    //         data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val(),pageNum : pageN,pageSize : 10},
-    //         success: function (result) {
-    //             pageInfo = result;
-    //             nonDrugLists = pageInfo.list;
-    //             setTableBody();
-    //             setSearchedPageChoose();
-    //         },
-    //         error: function () {
-    //             alert("分页信息错误");
-    //         }
-    //     });
-    // }
-    // //设置搜索后的分页选择栏
-    // function setSearchedPageChoose() {
-    //     var str;
-    //     str = "";
-    //     $("#pageChoose").html("");
-    //     for (var i = 1;i <= pageInfo.pages; i++){
-    //         if(pageInfo.pageNum == i){
-    //             str += "<li class=\"active\"><a onclick='getSearchedPageN(" + i + ")'>" + i + "</a></li>";
-    //         }else {
-    //             str += "<li><a onclick='getSearchedPageN(" + i + ")'>" + i + "</a></li>";
-    //         }
-    //     }
-    //     $("#pageChoose").append(str);
-    // }
     $(document).ready(function(){
-        // getPageN(1);
-        // setExpenseClassInput();
-        // //设置删除按钮功能
-        // $("#deleteRegistrationsButton").click(function () {
-        //     var deleteIDs = [];
-        //     $.each($('input:checkbox:checked'),function(){
-        //         deleteIDs.push($(this).val());
-        //     });
-        //     $.ajax({
-        //         type: "POST",
-        //         url: "nonDrugList/deleteNonDrugListsByID",
-        //         data: {idString:deleteIDs.join(',')},
-        //         async: false,
-        //         success: function () {
-        //             alert("已删除");
-        //             getPageN(1);
-        //         },
-        //         error :function () {
-        //             alert("删除失败");
-        //         }
-        //     });
-        // });
+        setDoctors();
+        getMedicalRecordNo();
         setTableBody();
         //设置挂号按钮功能
         $("#registrationButton").click(function () {
             $.ajax({
                 type: "POST",
                 url: "registration/addRegistrationInfo",
+                async: false,
                 data: $('#registrationInfo').serialize(),
                 success: function () {
+                    $("#registrationInfoReset").click();
+                    setDoctors()
                     alert("挂号成功");
                     $.ajax({
                         type:"POST",
@@ -558,26 +513,10 @@
                 },
                 error: function () {
                     alert("挂号失败");
-
                 }
             });
+            getMedicalRecordNo();
         });
-        // //设置挂号等级添加按钮
-        // $("#addRegistrationLevelButton").click(function () {
-        //     $.ajax({
-        //         type: "POST",
-        //         url: "nonDrugList/addNonDrugList",
-        //         data: $('#addRegistrationLevel').serialize(),
-        //         success: function () {
-        //             alert("添加成功");
-        //             getPageN(1);
-        //         }
-        //     });
-        // });
-        // //设置查找功能按钮
-        // $("#search").click(function(){
-        //     getSearchedPageN(1);
-        // });
     });
 </script>
 </body>

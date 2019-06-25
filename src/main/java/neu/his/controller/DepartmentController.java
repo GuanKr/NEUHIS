@@ -82,13 +82,8 @@ public class DepartmentController {
         PageHelper.startPage(pageNum,pageSize);
         List<Department> departmentlist = departmentService.findByAttribute_name(attribute_name,attribute);
         PageInfo pageInfo = new PageInfo(departmentlist);
-//        DepartmentServiceImpl departmentService = new DepartmentServiceImpl();
-//        PageInfo.setList(departmentService.)
         return pageInfo;
     }
-//    @RequestMapping("findByAttribute")
-//    public @ResponseBody
-//    List
 
 
     /**

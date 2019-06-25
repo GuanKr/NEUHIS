@@ -2,6 +2,7 @@ package neu.his.controller;
 
 import neu.his.bean.Diagnose;
 import neu.his.bean.MedicalRecord;
+import neu.his.bean.RegistrationInfo;
 import neu.his.dto.DiagnoseDTO;
 import neu.his.dto.ResultDTO;
 import neu.his.service.MedicalRecordService;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Controller
@@ -48,6 +51,25 @@ public class MedicalRecordController {
         ResultDTO resultDTO = new ResultDTO();
         resultDTO.setMsg(medicalRecordService.Submission(medicalRecord,diagnoses));
         return resultDTO;
+    }
+
+    /**
+     * 暂存病历首页
+     * @param medicalRecord 病历首页
+     */
+    @RequestMapping("temporaryStorage")
+    public @ResponseBody void temporaryStorage(MedicalRecord medicalRecord){
+        medicalRecordService.temporaryStorage(medicalRecord);
+    }
+
+    /**
+     * 读取暂存的病历首页
+     * @param medicalRecordNo 病历号
+     * @return 暂存的病历首页
+     */
+    @RequestMapping("readTemporaryStorage")
+    public @ResponseBody MedicalRecord readTemporaryStorage(String medicalRecordNo){
+        return medicalRecordService.readTemporaryStorage(medicalRecordNo);
     }
     /**
      * 保存病历首页模板
@@ -96,7 +118,6 @@ public class MedicalRecordController {
         resultDTO.setMsg(medicalRecordService.updateTemplate(medicalRecord,doctorID));
         return resultDTO;
     }
-
     /**
      * 删除模板
      * @param operatorDoctorId 操作医生ID
@@ -108,5 +129,71 @@ public class MedicalRecordController {
         ResultDTO resultDTO = new ResultDTO();
         resultDTO.setMsg(medicalRecordService.deleteTemplate(templateId,operatorDoctorId));
         return resultDTO;
+    }
+    /**
+     * 添加常用诊断
+     * @param diagnose 诊断
+     */
+    @RequestMapping("addCommonDiagnose")
+    public @ResponseBody void addCommonDiagnose(Diagnose diagnose){
+        medicalRecordService.CommonDiagnose(diagnose);
+    }
+
+    /**
+     * 获取常用诊断
+     * @param doctorID 医生id
+     * @return 该医生的常用诊断
+     */
+    @RequestMapping("getCommonDiagnoses")
+    public @ResponseBody List<Diagnose> getCommonDiagnoses(int doctorID){
+        return medicalRecordService.findCommonDiagnose(doctorID);
+    }
+
+    /**
+     * 删除常用诊断
+     * @param diagnoseID 诊断ID
+     */
+    @RequestMapping("deleteCommonDiagnoses")
+    public @ResponseBody void deleteCommonDiagnoses(int diagnoseID){
+        medicalRecordService.deleteDiagnose(diagnoseID);
+    }
+
+    /**
+     * 获取历史病例
+     * @param medicalRecordNo 病历号
+     * @return 历史病例
+     */
+    @RequestMapping("getHistoryMedicalRecord")
+    public @ResponseBody List<MedicalRecord> getHistoryMedicalRecord(String medicalRecordNo){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        List<MedicalRecord> medicalRecordList = medicalRecordService.historyMed(medicalRecordNo);
+        for (MedicalRecord medicalRecord : medicalRecordList) {
+            if (medicalRecord.getSeeTime() != null){
+                medicalRecord.setIsCommon(dateFormat.format(medicalRecord.getSeeTime()));
+            }else {
+                medicalRecord.setIsCommon("2019-5-5");
+            }
+        }
+        return medicalRecordList;
+    }
+    @RequestMapping("findByMedicalNo")
+    public @ResponseBody ResultDTO findByMedicalNo(String medicalRecordNo){
+        ResultDTO resultDTO = new ResultDTO();
+        resultDTO.setData(medicalRecordService.findByMedicalNo(medicalRecordNo));
+        return resultDTO;
+    }
+    @RequestMapping("confirmed")
+    public @ResponseBody void confirmed(int doctorId,String medicalRecordNo,DiagnoseDTO diagnoseDTO){
+        List<Diagnose> diagnoses = diagnoseDTO.getDiagnoses();
+        for (Diagnose diagnose : diagnoses) {
+            diagnose.setMedicalRecordNo(medicalRecordNo);
+            diagnose.setDoctorId(doctorId);
+            if (diagnose.getMajorDiagnoseSign().equals("0")){
+                diagnose.setSuspectedSign("1");
+            }else {
+                diagnose.setSuspectedSign("0");
+            }
+            medicalRecordService.SubmissionDiagnose(diagnose);
+        }
     }
 }
