@@ -122,6 +122,7 @@
                         async: false,
                         success: function (result) {
                             settlementTypes = result;
+                            setTableBody();
                         },
                         error :function () {
                             alert("获取结算类别表失败");

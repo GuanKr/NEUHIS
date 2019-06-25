@@ -213,14 +213,14 @@
 <nav id="nav" class="navbar navbar-default">
     <a href="#" class="navbar-brand">首页</a>
     <ul class="nav navbar-nav" style="width: 93%">
-        <li class="dropdown">
-            <a href="#" data-toggle="dropdown">信息管理 <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="user/management">用户管理</a></li>
-                <li><a href="#yui">Yui</a></li>
-                <li><a href="#extjs">ExtJS</a></li>
-            </ul>
-        </li>
+<%--        <li class="dropdown">--%>
+<%--            <a href="#" data-toggle="dropdown">信息管理 <span class="caret"></span></a>--%>
+<%--            <ul class="dropdown-menu">--%>
+<%--                <li><a href="user/management">用户管理</a></li>--%>
+<%--                <li><a href="#yui">Yui</a></li>--%>
+<%--                <li><a href="#extjs">ExtJS</a></li>--%>
+<%--            </ul>--%>
+<%--        </li>--%>
         <li class="active"><a>病例首页</a></li>
         <li class="dropdown pull-right" style="position: relative;right: 5px;">
             <select style="margin-top: 10px" class="form-control" onchange="update()" id="doctorID">
@@ -264,7 +264,7 @@
         <ul id="myTab" class="nav nav-tabs">
             <li class="active"><a href="#medicalRecordTab" data-toggle="tab">病历首页</a></li>
             <li><a href="#inspectionInfoTab" data-toggle="tab">检查</a></li>
-            <li><a href="#dingdan" data-toggle="tab">订单中心</a></li>
+            <li><a href="#dingdan" data-toggle="tab"></a></li>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade in active center-block" id="medicalRecordTab">
