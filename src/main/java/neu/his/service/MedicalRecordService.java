@@ -3,6 +3,7 @@ package neu.his.service;
 import neu.his.bean.Diagnose;
 import neu.his.bean.MedicalRecord;
 
+import java.util.Date;
 import java.util.List;
 
 /**处理病历信息
@@ -135,4 +136,5 @@ public interface MedicalRecordService {
      * @return 病历
      */
     MedicalRecord findByMedicalNo(String medicalNo);
+
 }

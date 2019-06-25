@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="neu.his.dao.InvoiceMapper" >
+
+
+  <select id="seeQuantity" parameterType="neu.his.bean.SeeQuantity" resultType="java.lang.Integer">
+   select COUNT(DISTINCT medical_record_no)
+   from invoice
+   where executive_department_name = #{departmentName} and invoice.invoice_time &gt; #{startTime} and #{endTime} &gt; invoice.invoice_time
+  </select>
+
+  <select id="seeQuantity2" parameterType="neu.his.bean.SeeQuantity" resultType="java.lang.Integer">
+   select COUNT(DISTINCT medical_record_no)
+   from invoice
+   where draw_bill_department_name = #{departmentName} and invoice.invoice_time &gt; #{startTime} and #{endTime} &gt; invoice.invoice_time
+  </select>
+
+  <select id="groupByEx" resultType="neu.his.bean.Invoice">
+   select sum(cost),executive_department_name,cost_type
+   from invoice
+   GROUP BY executive_department_name,cost_type
+  </select>
+
+  <select id="serNumber" resultType="java.lang.String">
+   select invoice_no
+   from invoice
+   ORDER BY invoice_no desc
+   limit 1
+  </select>
   <resultMap id="BaseResultMap" type="neu.his.bean.Invoice" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -8,11 +34,16 @@
       <arg column="cost_type" jdbcType="CHAR" javaType="java.lang.String" />
       <arg column="cost_type_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="settlement_type_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="receivable" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
-      <arg column="net receipt" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
-      <arg column="chnge" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="cost" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
       <arg column="invoice_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="toll_collector_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="patient_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="item_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="medical_record_no" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="doctor_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="executive_department_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="draw_bill_department_name" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -74,8 +105,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, invoice_no, cost_type, cost_type_id, settlement_type_id, receivable, "net receipt", 
-    chnge, invoice_time, toll_collector_id
+    id, invoice_no, cost_type, cost_type_id, settlement_type_id, cost, invoice_time, 
+    toll_collector_id, patient_name, status, item_name, medical_record_no, doctor_name, 
+    executive_department_name, draw_bill_department_name
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="neu.his.bean.InvoiceExample" >
     select
@@ -103,7 +135,6 @@
     </selectKey>
     insert into invoice
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      id,
       <if test="invoiceNo != null" >
         invoice_no,
       </if>
@@ -116,14 +147,8 @@
       <if test="settlementTypeId != null" >
         settlement_type_id,
       </if>
-      <if test="receivable != null" >
-        receivable,
-      </if>
-      <if test="netReceipt != null" >
-        "net receipt",
-      </if>
-      <if test="chnge != null" >
-        chnge,
+      <if test="cost != null" >
+        cost,
       </if>
       <if test="invoiceTime != null" >
         invoice_time,
@@ -131,9 +156,29 @@
       <if test="tollCollectorId != null" >
         toll_collector_id,
       </if>
+      <if test="patientName != null" >
+        patient_name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="itemName != null" >
+        item_name,
+      </if>
+      <if test="medicalRecordNo != null" >
+        medical_record_no,
+      </if>
+      <if test="doctorName != null" >
+        doctor_name,
+      </if>
+      <if test="executiveDepartmentName != null" >
+        executive_department_name,
+      </if>
+      <if test="drawBillDepartmentName != null" >
+        draw_bill_department_name,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      #{id,jdbcType=INTEGER},
       <if test="invoiceNo != null" >
         #{invoiceNo,jdbcType=CHAR},
       </if>
@@ -146,20 +191,35 @@
       <if test="settlementTypeId != null" >
         #{settlementTypeId,jdbcType=INTEGER},
       </if>
-      <if test="receivable != null" >
-        #{receivable,jdbcType=DECIMAL},
-      </if>
-      <if test="netReceipt != null" >
-        #{netReceipt,jdbcType=DECIMAL},
-      </if>
-      <if test="chnge != null" >
-        #{chnge,jdbcType=DECIMAL},
+      <if test="cost != null" >
+        #{cost,jdbcType=DECIMAL},
       </if>
       <if test="invoiceTime != null" >
         #{invoiceTime,jdbcType=TIMESTAMP},
       </if>
       <if test="tollCollectorId != null" >
         #{tollCollectorId,jdbcType=INTEGER},
+      </if>
+      <if test="patientName != null" >
+        #{patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalRecordNo != null" >
+        #{medicalRecordNo,jdbcType=CHAR},
+      </if>
+      <if test="doctorName != null" >
+        #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="executiveDepartmentName != null" >
+        #{executiveDepartmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="drawBillDepartmentName != null" >
+        #{drawBillDepartmentName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -187,20 +247,35 @@
       <if test="record.settlementTypeId != null" >
         settlement_type_id = #{record.settlementTypeId,jdbcType=INTEGER},
       </if>
-      <if test="record.receivable != null" >
-        receivable = #{record.receivable,jdbcType=DECIMAL},
-      </if>
-      <if test="record.netReceipt != null" >
-        "net receipt" = #{record.netReceipt,jdbcType=DECIMAL},
-      </if>
-      <if test="record.chnge != null" >
-        chnge = #{record.chnge,jdbcType=DECIMAL},
+      <if test="record.cost != null" >
+        cost = #{record.cost,jdbcType=DECIMAL},
       </if>
       <if test="record.invoiceTime != null" >
         invoice_time = #{record.invoiceTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.tollCollectorId != null" >
         toll_collector_id = #{record.tollCollectorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.patientName != null" >
+        patient_name = #{record.patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=CHAR},
+      </if>
+      <if test="record.itemName != null" >
+        item_name = #{record.itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medicalRecordNo != null" >
+        medical_record_no = #{record.medicalRecordNo,jdbcType=CHAR},
+      </if>
+      <if test="record.doctorName != null" >
+        doctor_name = #{record.doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.executiveDepartmentName != null" >
+        executive_department_name = #{record.executiveDepartmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drawBillDepartmentName != null" >
+        draw_bill_department_name = #{record.drawBillDepartmentName,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -214,11 +289,16 @@
       cost_type = #{record.costType,jdbcType=CHAR},
       cost_type_id = #{record.costTypeId,jdbcType=INTEGER},
       settlement_type_id = #{record.settlementTypeId,jdbcType=INTEGER},
-      receivable = #{record.receivable,jdbcType=DECIMAL},
-      "net receipt" = #{record.netReceipt,jdbcType=DECIMAL},
-      chnge = #{record.chnge,jdbcType=DECIMAL},
+      cost = #{record.cost,jdbcType=DECIMAL},
       invoice_time = #{record.invoiceTime,jdbcType=TIMESTAMP},
-      toll_collector_id = #{record.tollCollectorId,jdbcType=INTEGER}
+      toll_collector_id = #{record.tollCollectorId,jdbcType=INTEGER},
+      patient_name = #{record.patientName,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=CHAR},
+      item_name = #{record.itemName,jdbcType=VARCHAR},
+      medical_record_no = #{record.medicalRecordNo,jdbcType=CHAR},
+      doctor_name = #{record.doctorName,jdbcType=VARCHAR},
+      executive_department_name = #{record.executiveDepartmentName,jdbcType=VARCHAR},
+      draw_bill_department_name = #{record.drawBillDepartmentName,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -238,20 +318,35 @@
       <if test="settlementTypeId != null" >
         settlement_type_id = #{settlementTypeId,jdbcType=INTEGER},
       </if>
-      <if test="receivable != null" >
-        receivable = #{receivable,jdbcType=DECIMAL},
-      </if>
-      <if test="netReceipt != null" >
-        "net receipt" = #{netReceipt,jdbcType=DECIMAL},
-      </if>
-      <if test="chnge != null" >
-        chnge = #{chnge,jdbcType=DECIMAL},
+      <if test="cost != null" >
+        cost = #{cost,jdbcType=DECIMAL},
       </if>
       <if test="invoiceTime != null" >
         invoice_time = #{invoiceTime,jdbcType=TIMESTAMP},
       </if>
       <if test="tollCollectorId != null" >
         toll_collector_id = #{tollCollectorId,jdbcType=INTEGER},
+      </if>
+      <if test="patientName != null" >
+        patient_name = #{patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="itemName != null" >
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalRecordNo != null" >
+        medical_record_no = #{medicalRecordNo,jdbcType=CHAR},
+      </if>
+      <if test="doctorName != null" >
+        doctor_name = #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="executiveDepartmentName != null" >
+        executive_department_name = #{executiveDepartmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="drawBillDepartmentName != null" >
+        draw_bill_department_name = #{drawBillDepartmentName,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

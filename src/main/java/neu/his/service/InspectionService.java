@@ -3,6 +3,7 @@ package neu.his.service;
 import neu.his.bean.Inspection;
 import neu.his.bean.InspectionRegister;
 import neu.his.bean.MedicalRecord;
+import neu.his.bean.NonDrugList;
 
 import java.util.Date;
 import java.util.List;

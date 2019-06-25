@@ -2,10 +2,8 @@ package neu.his.service.impl;
 
 import neu.his.bean.*;
 import neu.his.converter.DateConverter;
-import neu.his.dao.RegistrationInfoMapper;
-import neu.his.dao.RegistrationLevelMapper;
-import neu.his.dao.ScheduleInfoMapper;
-import neu.his.dao.UserMapper;
+import neu.his.dao.*;
+import neu.his.service.InvoiceService;
 import neu.his.service.RegistrationInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +26,9 @@ public class RegistrationInfoServiceImpl implements RegistrationInfoService {
 
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    InvoiceMapper invoiceMapper;
 
     @Override
     public String translateResource(String type) {
@@ -183,10 +184,13 @@ public class RegistrationInfoServiceImpl implements RegistrationInfoService {
 
     @Override
     public String createSerialNumber() {
-        String lastSerNumber = registrationInfoMapper.serNumber();
-        String serNumber;
-        String behindSerNumber = lastSerNumber.substring(8,13);
+        String lastSerNumber =registrationInfoMapper.serNumber();
         String frontSerNumber = new DateConverter().serNumber();
+        String serNumber;
+        if(lastSerNumber == null || lastSerNumber.isEmpty()){
+            return frontSerNumber + "00001";
+        }
+        String behindSerNumber = lastSerNumber.substring(8,13);
         if(lastSerNumber.substring(0,8).equals(frontSerNumber)) {
             int number = Integer.parseInt(behindSerNumber);
             number++;
@@ -247,6 +251,7 @@ public class RegistrationInfoServiceImpl implements RegistrationInfoService {
         registrationInfo.setIsCompleted("1");
         registrationInfoMapper.updateByPrimaryKeySelective(registrationInfo);
     }
+
 
 
 }
