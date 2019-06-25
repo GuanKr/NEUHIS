@@ -42,6 +42,11 @@ public class Inspection {
         this.isCommon = isCommon;
     }
 
+    public Inspection(Integer nonDrugListId, BigDecimal cost) {
+        this.nonDrugListId = nonDrugListId;
+        this.cost = cost;
+    }
+
     public String getNonDrugListName() {
         return nonDrugListName;
     }
