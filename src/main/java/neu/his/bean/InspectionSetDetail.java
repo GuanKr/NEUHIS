@@ -1,5 +1,7 @@
 package neu.his.bean;
 
+import java.math.BigDecimal;
+
 public class InspectionSetDetail {
     private Integer id;
 
@@ -9,10 +11,30 @@ public class InspectionSetDetail {
 
     private String itemName;
 
+    private String itemCode;
+
+    private BigDecimal price;
+
     public InspectionSetDetail(Integer id, Integer inspectionSetId, Integer nonDrugListId) {
         this.id = id;
         this.inspectionSetId = inspectionSetId;
         this.nonDrugListId = nonDrugListId;
+    }
+
+    public String getItemCode() {
+        return itemCode;
+    }
+
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public String getItemName() {

@@ -54,7 +54,8 @@ public class InspectionSetServiceImpl implements InspectionSetService {
     public void saveAsSet(InspectionSet inspectionSet, List<String> list) {
         inspectionSet.setCategory(translate(inspectionSet.getCategory()));
         inspectionSet.setCreateTime(new Date());
-        Integer setId = inspectionSetMapper.insertSelective(inspectionSet);
+        inspectionSetMapper.insertSelective(inspectionSet);
+        Integer setId = inspectionSet.getId();
 /*        InspectionSetExample inspectionSetExample = new InspectionSetExample();
         InspectionSetExample.Criteria criteria = inspectionSetExample.createCriteria();
         criteria.andDoctorIdEqualTo(inspectionSet.getDoctorId());

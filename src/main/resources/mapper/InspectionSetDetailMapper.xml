@@ -3,7 +3,7 @@
 <mapper namespace="neu.his.dao.InspectionSetDetailMapper" >
 
   <select id="selectBySet" parameterType="Integer" resultMap="Detail">
-    select inspection_set_detail.id as ISId ,inspection_set_id,non_drug_list_id,non_drug_list.item_name
+    select inspection_set_detail.id as ISId ,inspection_set_id,non_drug_list_id,non_drug_list.item_name,item_code,price
     from inspection_set_detail left join non_drug_list
     on inspection_set_detail.non_drug_list_id = non_drug_list.id
     where inspection_set_detail.inspection_set_id = #{setId}
@@ -22,6 +22,8 @@
     <result property="inspectionSetId" column="inspection_set_id"/>
     <result property="nonDrugListId" column="non_drug_list_id"/>
     <result property="itemName" column="item_name"/>
+    <result property="itemCode" column="item_code"/>
+    <result property="price" column="price"/>
   </resultMap>
 
 
