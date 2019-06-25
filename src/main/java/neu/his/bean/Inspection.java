@@ -28,6 +28,10 @@ public class Inspection {
 
     private String nonDrugListName;
 
+    private String itemCode;
+
+    private String price;
+
     public Inspection(Integer id, String medicalRecordNo, Integer nonDrugListId, Integer doctorId, String inspectionResultAnalysis, String payState, Date payTime, String registerState, String validity, BigDecimal cost, String isCommon) {
         this.id = id;
         this.medicalRecordNo = medicalRecordNo;
@@ -45,6 +49,22 @@ public class Inspection {
     public Inspection(Integer nonDrugListId, BigDecimal cost) {
         this.nonDrugListId = nonDrugListId;
         this.cost = cost;
+    }
+
+    public String getItemCode() {
+        return itemCode;
+    }
+
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public String getNonDrugListName() {

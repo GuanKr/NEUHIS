@@ -3,6 +3,7 @@ package neu.his.service.impl;
 import neu.his.bean.*;
 import neu.his.dao.InspectionMapper;
 import neu.his.dao.InspectionRegisterMapper;
+import neu.his.dao.NonDrugListMapper;
 import neu.his.dao.RegistrationInfoMapper;
 import neu.his.service.InspectionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class InspectionServiceImpl implements InspectionService {
 
     @Autowired
     RegistrationInfoMapper registrationInfoMapper;
+
+    @Autowired
+    NonDrugListMapper nonDrugListMapper;
 
     private static List<Inspection> temList = new ArrayList<>();
     private static int temId = 1;

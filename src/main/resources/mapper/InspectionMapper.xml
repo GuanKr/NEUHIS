@@ -22,13 +22,29 @@
       where inspection.medical_record_no = #{medicalNo} and inspection.is_common = '0' and validity = '1'
   </select>
 
-  <select id="selectCommon" parameterType="Integer" resultMap="ins">
-      select inspection.id as iId,medical_record_no, non_drug_list_id,doctor_id,inspection_result_analysis, pay_state, pay_time,register_state, validity, cost,is_common,non_drug_list.item_name
+  <select id="selectCommon" parameterType="Integer" resultMap="ins1">
+      select inspection.id as iId,medical_record_no, non_drug_list_id,doctor_id,inspection_result_analysis, pay_state, pay_time,register_state, validity, cost,is_common,non_drug_list.item_name,item_code,price
       from inspection left join non_drug_list
       on inspection.non_drug_list_id = non_drug_list.id
       where inspection.doctor_id = #{id} and inspection.is_common = '1'
   </select>
 
+  <resultMap id="ins1" type="neu.his.bean.Inspection">
+    <id property="id" column="iId"/>
+    <result property="medicalRecordNo" column="medical_record_no"/>
+    <result property="nonDrugListId" column="non_drug_list_id"/>
+    <result property="doctorId" column="doctor_id"/>
+    <result property="inspectionResultAnalysis" column="inspection_result_analysis"/>
+    <result property="payState" column="pay_state"/>
+    <result property="payTime" column="pay_time"/>
+    <result property="registerState" column="register_state"/>
+    <result property="validity" column="validity"/>
+    <result property="cost" column="cost"/>
+    <result property="isCommon" column="is_common"/>
+    <result property="nonDrugListName" column="item_name"/>
+    <result property="itemCode" column="item_code"/>
+    <result property="price" column="price"/>
+  </resultMap>
   <resultMap id="ins" type="neu.his.bean.Inspection">
     <id property="id" column="iId"/>
     <result property="medicalRecordNo" column="medical_record_no"/>
