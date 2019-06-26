@@ -79,7 +79,7 @@ public class MedicalRecord {
     private String doctorName;
 
 
-/*    public MedicalRecord(Integer id, Integer doctorId, String chiefComplaint, String historyOfPresentIllness, String treatmentOfCurrentIllness, String pastHistory, String allergyHistory, String physicalExamination, String medicalRecordNo, String isCommon, String templateName, String category, Date seeTime) {
+    public MedicalRecord(Integer id, Integer doctorId, String chiefComplaint, String historyOfPresentIllness, String treatmentOfCurrentIllness, String pastHistory, String allergyHistory, String physicalExamination, String medicalRecordNo, String isCommon, String templateName, String category, Date seeTime) {
         this.id = id;
         this.doctorId = doctorId;
         this.chiefComplaint = chiefComplaint;
@@ -93,7 +93,7 @@ public class MedicalRecord {
         this.templateName = templateName;
         this.category = category;
         this.seeTime = seeTime;
-    }*/
+    }
 
     /**
      * 用于根据前端返回的数据构造病例对象

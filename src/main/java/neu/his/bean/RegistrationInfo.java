@@ -169,7 +169,7 @@ public class RegistrationInfo {
     }
 
 
-   /* public RegistrationInfo(Integer id, String medicalRecordNo, Integer registrationLevelId, Date seeDoctorDate, Integer departmentId, Integer doctorId, String registrationResource, Integer settlementTypeId, String isNeedMedicalrecordbook, String isSeenDoctor, BigDecimal expense, String paymentState, Date paymentTime, String registrationState, String isCompleted, String patientName, String patientIdentityNumber, Integer patientAge, String patientSex, Date patientBirthday, String address) {
+    public RegistrationInfo(Integer id, String medicalRecordNo, Integer registrationLevelId, Date seeDoctorDate, Integer departmentId, Integer doctorId, String registrationResource, Integer settlementTypeId, String isNeedMedicalrecordbook, String isSeenDoctor, BigDecimal expense, String paymentState, Date paymentTime, String registrationState, String isCompleted, String patientName, String patientIdentityNumber, Integer patientAge, String patientSex, Date patientBirthday, String address) {
         this.id = id;
         this.medicalRecordNo = medicalRecordNo;
         this.registrationLevelId = registrationLevelId;
@@ -191,7 +191,7 @@ public class RegistrationInfo {
         this.patientSex = patientSex;
         this.patientBirthday = patientBirthday;
         this.address = address;
-    }*/
+    }
 
     /**
      * 构造方法

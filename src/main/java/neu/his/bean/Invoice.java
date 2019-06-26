@@ -90,7 +90,6 @@ public class Invoice {
     private String settlementTypeName;
 
 
-/*
     public Invoice(Integer id, String invoiceNo, String costType, Integer costTypeId, Integer settlementTypeId, BigDecimal cost, Date invoiceTime, Integer tollCollectorId, String patientName, String status, String itemName, String medicalRecordNo, String doctorName, String executiveDepartmentName, String drawBillDepartmentName) {
         this.id = id;
         this.invoiceNo = invoiceNo;
@@ -108,7 +107,6 @@ public class Invoice {
         this.executiveDepartmentName = executiveDepartmentName;
         this.drawBillDepartmentName = drawBillDepartmentName;
     }
-*/
 
     public String getSettlementTypeName() {
         return settlementTypeName;
