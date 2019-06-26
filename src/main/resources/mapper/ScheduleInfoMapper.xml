@@ -19,7 +19,7 @@
     on user.department_id = department.id
     left join registration_level
     on user.registration_level_id = registration_level.id
-    ORDER BY schedule_date
+    ORDER BY schedule_date DESC
   </select>
 
   <resultMap id="ScheduleInfos" type="neu.his.bean.ScheduleInfo">
