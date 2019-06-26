@@ -105,6 +105,7 @@
             <div class="col-md-8 input-group">
                 <select class="show-tick form-control" id="registrationLevelNameInput" name="registrationLevelName">
                 </select>
+                <span class="input-group-addon" style="color: red">*</span>
             </div>
         </div>
         <div class="form-group col-md-3">
