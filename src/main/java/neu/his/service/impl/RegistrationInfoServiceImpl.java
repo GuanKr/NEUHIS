@@ -238,6 +238,15 @@ public class RegistrationInfoServiceImpl implements RegistrationInfoService {
     }
 
     @Override
+    public List<RegistrationInfo> query2(String attribute_name, String attribute) {
+        List<RegistrationInfo> list = registrationInfoMapper.query2(new Query(attribute_name,attribute));
+        for(RegistrationInfo registrationInfo : list){
+            registrationInfo = translate(registrationInfo);
+        }
+        return list;
+    }
+
+    @Override
     public List<RegistrationInfo> query(String attribute_name, String attribute) {
         List<RegistrationInfo> list = registrationInfoMapper.query(new Query(attribute_name,attribute));
         for(RegistrationInfo registrationInfo : list){

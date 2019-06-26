@@ -2,6 +2,7 @@ package neu.his.bean;
 
 import java.math.BigDecimal;
 
+
 public class Item {
     private String itemName;
     private String format;

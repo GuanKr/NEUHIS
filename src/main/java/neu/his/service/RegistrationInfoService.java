@@ -111,7 +111,15 @@ public interface RegistrationInfoService {
     List<RegistrationInfo> queryAlreadyByDoctorId(Integer id);
 
     /**
-     * 查找挂号的信息
+     * 查找挂号的信息：收费用
+     * @param attribute_name 属性名称(病历号/姓名)
+     * @param attribute 属性内容
+     * @return 挂号信息
+     */
+    List<RegistrationInfo> query2(String attribute_name,String attribute);
+
+    /**
+     * 查找挂号的信息:诊毕用
      * @param attribute_name 属性名称(病历号/姓名)
      * @param attribute 属性内容
      * @return 挂号信息

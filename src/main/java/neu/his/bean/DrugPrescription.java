@@ -2,46 +2,129 @@ package neu.his.bean;
 
 import java.math.BigDecimal;
 import java.util.Date;
-
+/**
+ * 存储处方信息
+ * @author lsy
+ * @version 1.0
+ * @since 1.8
+ */
 public class DrugPrescription {
+    /**
+     * 主键id
+     */
     private Integer id;
 
+    /**
+     * 病历号
+     */
     private String medicalRecordNo;
 
+    /**
+     * 药品id
+     */
     private Integer drugId;
 
+    /**
+     * 药品用法
+     */
     private String drugUsage;
 
+    /**
+     * 药品用量
+     */
     private BigDecimal drugDosage;
 
+    /**
+     * 频次
+     */
     private String frequency;
 
+    /**
+     * 使用天数
+     */
     private BigDecimal dayNumber;
 
+    /**
+     * 数量
+     */
     private Integer quantity;
 
+    /**
+     * 医嘱
+     */
     private String doctorAdvice;
 
+    /**
+     * 医生id
+     */
     private Integer doctorId;
 
+    /**
+     * 缴费标志
+     */
     private String paymentState;
 
+    /**
+     * 缴费时间
+     */
     private Date paymentTime;
 
+    /**
+     * 取药标志
+     */
     private String takeMedicineState;
 
+    /**
+     * 有效标志
+     */
     private String status;
 
+    /**
+     * 药品类型
+     */
     private String drugType;
 
+    /**
+     * 药品规格
+     */
     private String drugFormat;
 
+    /**
+     * 金额
+     */
     private BigDecimal cost;
 
+    /**
+     * 药品单价
+     */
     private BigDecimal drugPrice;
 
+    /**
+     * 药品名称
+     */
     private String drugName;
 
+    /**
+     * 构造方法：创建处方对象
+     * @param id 主键id
+     * @param medicalRecordNo 病历号
+     * @param drugId 药品id
+     * @param drugUsage 药品用法
+     * @param drugDosage 药品用量
+     * @param frequency 频次
+     * @param dayNumber 使用天数
+     * @param quantity 数量
+     * @param doctorAdvice 医嘱
+     * @param doctorId 医生id
+     * @param paymentState 缴费标志
+     * @param paymentTime 缴费时间
+     * @param takeMedicineState 取药标志
+     * @param status  有效标志
+     * @param drugType 药品类型
+     * @param drugFormat 药品规格
+     * @param cost 金额
+     * @param drugPrice 药品单价
+     */
     public DrugPrescription(Integer id, String medicalRecordNo, Integer drugId, String drugUsage, BigDecimal drugDosage, String frequency, BigDecimal dayNumber, Integer quantity, String doctorAdvice, Integer doctorId, String paymentState, Date paymentTime, String takeMedicineState, String status, String drugType, String drugFormat, BigDecimal cost, BigDecimal drugPrice) {
         this.id = id;
         this.medicalRecordNo = medicalRecordNo;

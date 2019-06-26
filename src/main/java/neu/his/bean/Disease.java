@@ -1,5 +1,10 @@
 package neu.his.bean;
-
+/**
+ * 存储疾病信息
+ * @author lsy
+ * @version 1.0
+ * @since 1.8
+ */
 public class Disease {
     /**
      * 主键id

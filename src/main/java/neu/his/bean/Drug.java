@@ -1,28 +1,76 @@
 package neu.his.bean;
 
 import java.math.BigDecimal;
-
+/**
+ * 存储药品信息
+ * @author lsy
+ * @version 1.0
+ * @since 1.8
+ */
 public class Drug {
+    /**
+     * 主键id
+     */
     private Integer id;
 
+    /**
+     * 药品编码
+     */
     private String drugCode;
 
+    /**
+     * 药品名称
+     */
     private String drugName;
 
+    /**
+     * 药品规格
+     */
     private String drugFormat;
 
+    /**
+     * 包装单位
+     */
     private String drugUnit;
 
+    /**
+     * 生产厂家
+     */
     private String manufacturer;
 
+    /**
+     * 药品剂型
+     */
     private String drugDosage;
 
+    /**
+     * 药品类型
+     */
     private String drugType;
 
+    /**
+     * 药品单价
+     */
     private BigDecimal drugPrice;
 
+    /**
+     * 拼音助记码
+     */
     private String mnemonicCode;
 
+    /**
+     * 构造方法
+     * @param id 主键id
+     * @param drugCode 药品编码
+     * @param drugName 药品名称
+     * @param drugFormat 药品规格
+     * @param drugUnit 包装单位
+     * @param manufacturer 生产厂家
+     * @param drugDosage 药品剂型
+     * @param drugType 药品类型
+     * @param drugPrice 药品单价
+     * @param mnemonicCode 拼音助记码
+     */
     public Drug(Integer id, String drugCode, String drugName, String drugFormat, String drugUnit, String manufacturer, String drugDosage, String drugType, BigDecimal drugPrice, String mnemonicCode) {
         this.id = id;
         this.drugCode = drugCode;

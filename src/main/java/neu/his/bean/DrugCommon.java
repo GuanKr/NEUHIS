@@ -1,14 +1,39 @@
 package neu.his.bean;
 
+/**
+ * 存储常用药品信息
+ * @author lsy
+ * @version 1.0
+ * @since 1.8
+ */
 public class DrugCommon {
+    /**
+     * 主键id
+     */
     private Integer id;
 
+    /**
+     * 药品名称
+     */
     private String drugName;
 
+    /**
+     * 医生id
+     */
     private Integer doctorId;
 
+    /**
+     * 药品规格
+     */
     private String drugFormat;
 
+    /**
+     * 构造方法
+     * @param id 主键id
+     * @param drugName 药品名称
+     * @param doctorId 医生id
+     * @param drugFormat 药品规格
+     */
     public DrugCommon(Integer id, String drugName, Integer doctorId, String drugFormat) {
         this.id = id;
         this.drugName = drugName;

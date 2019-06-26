@@ -1,24 +1,63 @@
 package neu.his.bean;
 
 import java.util.Date;
-
+/**
+ * 存储检查/检验/处置组套信息
+ * @author lsy
+ * @version 1.0
+ * @since 1.8
+ */
 public class InspectionSet {
+    /**
+     * 主键id
+     */
     private Integer id;
 
+    /**
+     * 医生id
+     */
     private Integer doctorId;
 
+    /**
+     * 组合编码
+     */
     private String combinatorialCode;
 
+    /**
+     * 组合名称
+     */
     private String combinatorialName;
 
+    /**
+     * 类别
+     */
     private String category;
 
+    /**
+     * 目的和要求
+     */
     private String requirement;
 
+    /**
+     * 创建时间
+     */
     private Date createTime;
 
+    /**
+     * 医生姓名
+     */
     private String doctorName;
 
+    /**
+     * 构造方法：创建组套
+     * @param id 主键id
+     * @param doctorId 医生id
+     * @param combinatorialCode 组合编码
+     * @param combinatorialName 组合名称
+     * @param category 类别
+     * @param requirement 目的和需求
+     * @param createTime 创建时间
+     */
     public InspectionSet(Integer id, Integer doctorId, String combinatorialCode, String combinatorialName, String category, String requirement, Date createTime) {
         this.id = id;
         this.doctorId = doctorId;

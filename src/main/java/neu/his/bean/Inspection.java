@@ -2,36 +2,97 @@ package neu.his.bean;
 
 import java.math.BigDecimal;
 import java.util.Date;
-
+/**
+ * 存储检查/检验/处置信息
+ * @author lsy
+ * @version 1.0
+ * @since 1.8
+ */
 public class Inspection {
+    /**
+     * 主键id
+     */
     private Integer id;
 
+    /**
+     * 病历号
+     */
     private String medicalRecordNo;
 
+    /**
+     * 非药品id
+     */
     private Integer nonDrugListId;
 
+    /**
+     * 医生id
+     */
     private Integer doctorId;
 
+    /**
+     * 结果分析
+     */
     private String inspectionResultAnalysis;
 
+    /**
+     * 缴费状态
+     */
     private String payState;
 
+    /**
+     * 缴费时间
+     */
     private Date payTime;
 
+    /**
+     * 登记状态
+     */
     private String registerState;
 
+    /**
+     * 有效标志
+     */
     private String validity;
 
+    /**
+     * 金额
+     */
     private BigDecimal cost;
 
+    /**
+     * 模板标志
+     */
     private String isCommon;
 
+    /**
+     * 非药品名称
+     */
     private String nonDrugListName;
 
+    /**
+     * 项目编码
+     */
     private String itemCode;
 
+    /**
+     * 价格
+     */
     private String price;
 
+    /**
+     * 构造方法 ：创建检查/检验/处置对象
+     * @param id 主键id
+     * @param medicalRecordNo 病历号
+     * @param nonDrugListId 非药品id
+     * @param doctorId 医生id
+     * @param inspectionResultAnalysis 结果分析
+     * @param payState 缴费状态
+     * @param payTime 缴费时间
+     * @param registerState 登记状态
+     * @param validity 有效状态
+     * @param cost 金额
+     * @param isCommon 模板标志
+     */
     public Inspection(Integer id, String medicalRecordNo, Integer nonDrugListId, Integer doctorId, String inspectionResultAnalysis, String payState, Date payTime, String registerState, String validity, BigDecimal cost, String isCommon) {
         this.id = id;
         this.medicalRecordNo = medicalRecordNo;

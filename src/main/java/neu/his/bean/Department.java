@@ -1,5 +1,10 @@
 package neu.his.bean;
-
+/**
+ * 存储科室
+ * @author lsy
+ * @version 1.0
+ * @since 1.8
+ */
 public class Department {
     /**
      * 主键id

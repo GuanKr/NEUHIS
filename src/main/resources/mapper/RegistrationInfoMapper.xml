@@ -115,6 +115,44 @@
   where  ${attribute_name} like CONCAT('%','${attribute}','%') and is_seen_doctor = '1' and registration_state = '1'
   </select>
 
+  <select id="query2" parameterType="neu.his.bean.Query" resultMap="RegInfos">
+   SELECT registration_info.id as riId,
+  medical_record_no,
+  registration_info.registration_level_id as rrlId,
+  see_doctor_date,
+  registration_info.department_id as ridId,
+  doctor_id,
+  registration_resource,
+  settlement_type_id,
+  is_need_medicalrecordbook,
+  is_seen_doctor,
+  expense,
+  payment_state,
+  payment_time,
+  registration_state,
+  is_completed,
+  patient_name,
+  patient_identity_number,
+  patient_age,
+  patient_sex,
+  patient_birthday,
+  address,
+  name,
+  department_name,
+  settlement_type_name,
+  level_name,
+  registration_price
+  from registration_info left JOIN user
+  on registration_info.doctor_id = user.id
+  LEFT JOIN department
+  on registration_info.department_id = department.id
+  LEFT JOIN settlement_type
+  on registration_info.settlement_type_id = settlement_type.id
+  left join registration_level
+  on registration_info.registration_level_id = registration_level.id
+  where  ${attribute_name} like CONCAT('%','${attribute}','%') and  registration_state = '1'
+  </select>
+
   <select id="queryAlreadyByDoctorId" parameterType="java.lang.Integer" resultMap="RegInfos">
    SELECT registration_info.id as riId,
   medical_record_no,
