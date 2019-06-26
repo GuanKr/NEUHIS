@@ -1,7 +1,12 @@
 package neu.his.bean;
 
 import java.util.Date;
-
+/**
+ * 存储排班信息
+ * @author lsy
+ * @version 1.0
+ * @since 1.8
+ */
 public class ScheduleInfo {
     /**
      * 主键id
@@ -36,12 +41,24 @@ public class ScheduleInfo {
      */
     private String userName;
 
+    /**
+     * 科室名称
+     */
     private String department_name;
 
+    /**
+     * 挂号级别名称
+     */
     private String registrationLevelName;
 
+    /**
+     * 有效标志名称
+     */
     private String statusName;
 
+    /**
+     * 排班日期字符串
+     */
     private String scheduleDateString;
 
     /**

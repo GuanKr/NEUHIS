@@ -1,7 +1,12 @@
 package neu.his.bean;
 
 import java.math.BigDecimal;
-
+/**
+ * 存储挂号级别信息
+ * @author lsy
+ * @version 1.0
+ * @since 1.8
+ */
 public class RegistrationLevel {
     /**
      * 主键id

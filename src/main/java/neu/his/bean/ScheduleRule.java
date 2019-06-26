@@ -1,5 +1,10 @@
 package neu.his.bean;
-
+/**
+ * 存储排班规则信息
+ * @author lsy
+ * @version 1.0
+ * @since 1.8
+ */
 public class ScheduleRule {
     /**
      * 主键id
@@ -30,10 +35,19 @@ public class ScheduleRule {
      */
     private String userName;
 
+    /**
+     * 科室名称
+     */
     private String department_name;
 
+    /**
+     * 挂号级别名称
+     */
     private String registrationLevelName;
 
+    /**
+     * 状态名称
+     */
     private String statusName;
 
     /**

@@ -2,58 +2,141 @@ package neu.his.bean;
 
 import java.math.BigDecimal;
 import java.util.Date;
-
+/**
+ * 存储挂号信息
+ * @author lsy
+ * @version 1.0
+ * @since 1.8
+ */
 public class RegistrationInfo {
+    /**
+     * 主键id
+     */
     private Integer id;
 
+    /**
+     * 病历号
+     */
     private String medicalRecordNo;
 
+    /**
+     * 挂号级别id
+     */
     private Integer registrationLevelId;
 
+    /**
+     * 看诊日期
+     */
     private Date seeDoctorDate;
 
+    /**
+     * 科室id
+     */
     private Integer departmentId;
 
+    /**
+     * 医生id
+     */
     private Integer doctorId;
 
+    /**
+     * 挂号来源
+     */
     private String registrationResource;
 
+    /**
+     * 结算类别id
+     */
     private Integer settlementTypeId;
 
+    /**
+     * 需要病历本标志
+     */
     private String isNeedMedicalrecordbook;
 
+    /**
+     * 看诊标志
+     */
     private String isSeenDoctor;
 
+    /**
+     * 费用
+     */
     private BigDecimal expense;
 
+    /**
+     * 缴费状态
+     */
     private String paymentState;
 
+    /**
+     * 缴费时间
+     */
     private Date paymentTime;
 
+    /**
+     * 挂号状态
+     */
     private String registrationState;
 
+    /**
+     * 诊毕标志
+     */
     private String isCompleted;
 
+    /**
+     * 患者姓名
+     */
     private String patientName;
 
+    /**
+     * 患者身份证号
+     */
     private String patientIdentityNumber;
 
+    /**
+     * 患者年龄
+     */
     private Integer patientAge;
 
+    /**
+     * 患者性别
+     */
     private String patientSex;
 
+    /**
+     * 患者出生日期
+     */
     private Date patientBirthday;
 
+    /**
+     * 患者地址
+     */
     private String address;
 
+    /**
+     * 挂号级别名称
+     */
     private String registrationLevelName;
 
+    /**
+     * 挂号级别价格
+     */
     private String registrationLevelPrice;
 
+    /**
+     * 科室名称
+     */
     private String departmentName;
 
+    /**
+     * 医生姓名
+     */
     private String doctorName;
 
+    /**
+     * 结算类别名称
+     */
     private String settlementTypeName;
 
     /**
@@ -69,6 +152,14 @@ public class RegistrationInfo {
      */
     private String seeDoctorDateString;
 
+    /**
+     * 构造方法
+     * @param seeDoctorDate 看诊日期
+     * @param doctorId 医生id
+     * @param isSeenDoctor 看诊标志
+     * @param paymentState 缴费状态
+     * @param registrationState 挂号状态
+     */
     public RegistrationInfo(Date seeDoctorDate, Integer doctorId, String isSeenDoctor, String paymentState, String registrationState) {
         this.seeDoctorDate = seeDoctorDate;
         this.doctorId = doctorId;
@@ -77,7 +168,8 @@ public class RegistrationInfo {
         this.registrationState = registrationState;
     }
 
-    public RegistrationInfo(Integer id, String medicalRecordNo, Integer registrationLevelId, Date seeDoctorDate, Integer departmentId, Integer doctorId, String registrationResource, Integer settlementTypeId, String isNeedMedicalrecordbook, String isSeenDoctor, BigDecimal expense, String paymentState, Date paymentTime, String registrationState, String isCompleted, String patientName, String patientIdentityNumber, Integer patientAge, String patientSex, Date patientBirthday, String address) {
+
+   /* public RegistrationInfo(Integer id, String medicalRecordNo, Integer registrationLevelId, Date seeDoctorDate, Integer departmentId, Integer doctorId, String registrationResource, Integer settlementTypeId, String isNeedMedicalrecordbook, String isSeenDoctor, BigDecimal expense, String paymentState, Date paymentTime, String registrationState, String isCompleted, String patientName, String patientIdentityNumber, Integer patientAge, String patientSex, Date patientBirthday, String address) {
         this.id = id;
         this.medicalRecordNo = medicalRecordNo;
         this.registrationLevelId = registrationLevelId;
@@ -99,8 +191,22 @@ public class RegistrationInfo {
         this.patientSex = patientSex;
         this.patientBirthday = patientBirthday;
         this.address = address;
-    }
+    }*/
 
+    /**
+     * 构造方法
+     * @param medicalRecordNo 病历号
+     * @param seeDoctorDate 看诊日期
+     * @param registrationResource 挂号来源
+     * @param isNeedMedicalrecordbook 需要病历本标志
+     * @param expense 费用
+     * @param patientName 患者姓名
+     * @param patientIdentityNumber 患者身份证号
+     * @param patientAge 患者年龄
+     * @param patientSex 患者性别
+     * @param patientBirthday 患者出生日期
+     * @param address 地址
+     */
     public RegistrationInfo(String medicalRecordNo, Date seeDoctorDate, String registrationResource, String isNeedMedicalrecordbook, BigDecimal expense, String patientName, String patientIdentityNumber, Integer patientAge, String patientSex, Date patientBirthday, String address) {
         this.medicalRecordNo = medicalRecordNo;
         this.seeDoctorDate = seeDoctorDate;
@@ -118,21 +224,21 @@ public class RegistrationInfo {
 
     /**
      * 前端返回的挂号信息构造方法
-     * @param medicalRecordNo
-     * @param registrationResource
-     * @param isNeedMedicalrecordbook
-     * @param expense
-     * @param patientName
-     * @param patientIdentityNumber
-     * @param patientAge
-     * @param patientSex
-     * @param patientBirthday
-     * @param address
-     * @param registrationLevelName
-     * @param departmentName
-     * @param doctorName
-     * @param settlementTypeName
-     * @param seeDoctorDateString
+     * @param medicalRecordNo 病历号
+     * @param registrationResource 挂号来源
+     * @param isNeedMedicalrecordbook 需要病历本标志
+     * @param expense 费用
+     * @param patientName 患者姓名
+     * @param patientIdentityNumber 患者身份证号
+     * @param patientAge 患者年龄
+     * @param patientSex 患者性别
+     * @param patientBirthday 患者出生日期
+     * @param address 地址
+     * @param registrationLevelName 挂号级别名称
+     * @param departmentName 科室名称
+     * @param doctorName 医生姓名
+     * @param settlementTypeName 结算类别名称
+     * @param seeDoctorDateString 转为字符串的看诊日期
      */
     public RegistrationInfo(String medicalRecordNo, String registrationResource, String isNeedMedicalrecordbook, BigDecimal expense, String patientName, String patientIdentityNumber, Integer patientAge, String patientSex, Date patientBirthday, String address, String registrationLevelName, String departmentName, String doctorName, String settlementTypeName, String seeDoctorDateString) {
         this.medicalRecordNo = medicalRecordNo;

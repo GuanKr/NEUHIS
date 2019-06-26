@@ -1,37 +1,85 @@
 package neu.his.bean;
 
 import java.util.Date;
-
+/**
+ * 存储病历信息
+ * @author lsy
+ * @version 1.0
+ * @since 1.8
+ */
 public class MedicalRecord {
+    /**
+     * 主键id
+     */
     private Integer id;
 
+    /**
+     * 医生id
+     */
     private Integer doctorId;
 
+    /**
+     * 主诉
+     */
     private String chiefComplaint;
 
+    /**
+     * 现病史
+     */
     private String historyOfPresentIllness;
 
+    /**
+     * 现病治疗情况
+     */
     private String treatmentOfCurrentIllness;
 
+    /**
+     * 既往史
+     */
     private String pastHistory;
 
+    /**
+     * 过敏史
+     */
     private String allergyHistory;
 
+    /**
+     * 体格检查
+     */
     private String physicalExamination;
 
+    /**
+     * 病历号
+     */
     private String medicalRecordNo;
 
+    /**
+     * 常用标志
+     */
     private String isCommon;
 
+    /**
+     * 模板名称
+     */
     private String templateName;
 
+    /**
+     * 模板类别
+     */
     private String category;
 
+    /**
+     * 看诊时间
+     */
     private Date seeTime;
 
+    /**
+     * 医生姓名
+     */
     private String doctorName;
 
-    public MedicalRecord(Integer id, Integer doctorId, String chiefComplaint, String historyOfPresentIllness, String treatmentOfCurrentIllness, String pastHistory, String allergyHistory, String physicalExamination, String medicalRecordNo, String isCommon, String templateName, String category, Date seeTime) {
+
+/*    public MedicalRecord(Integer id, Integer doctorId, String chiefComplaint, String historyOfPresentIllness, String treatmentOfCurrentIllness, String pastHistory, String allergyHistory, String physicalExamination, String medicalRecordNo, String isCommon, String templateName, String category, Date seeTime) {
         this.id = id;
         this.doctorId = doctorId;
         this.chiefComplaint = chiefComplaint;
@@ -45,7 +93,7 @@ public class MedicalRecord {
         this.templateName = templateName;
         this.category = category;
         this.seeTime = seeTime;
-    }
+    }*/
 
     /**
      * 用于根据前端返回的数据构造病例对象

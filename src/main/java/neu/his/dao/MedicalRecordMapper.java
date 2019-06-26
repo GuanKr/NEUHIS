@@ -12,7 +12,12 @@ import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
-
+/**
+ * 处理病历信息
+ * @author lsy
+ * @version 1.0
+ * @since 1.8
+ */
 public interface MedicalRecordMapper {
 
     /**

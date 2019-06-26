@@ -1,5 +1,10 @@
 package neu.his.bean;
-
+/**
+ * 存储角色具体信息
+ * @author lsy
+ * @version 1.0
+ * @since 1.8
+ */
 public class Role {
     /**
      * 主键id

@@ -1,24 +1,63 @@
 package neu.his.bean;
 
 import java.math.BigDecimal;
-
+/**
+ * 存储处方组套信息明细
+ * @author lsy
+ * @version 1.0
+ * @since 1.8
+ */
 public class PrescriptionSetDetail {
+    /***
+     * 主键id
+     */
     private Integer id;
 
+    /**
+     * 处方组套id
+     */
     private Integer prescriptionSetId;
 
+    /**
+     * 药品id
+     */
     private Integer drugId;
 
+    /**
+     * 药品规格
+     */
     private String drugFormat;
 
+    /**
+     * 药品用法
+     */
     private String drugUsage;
 
+    /**
+     * 药品用量
+     */
     private BigDecimal drugDosage;
 
+    /**
+     * 频次
+     */
     private String frequency;
 
+    /**
+     * 药品名称
+     */
     private String drugName;
 
+    /**
+     * 构造方法
+     * @param id 主键id
+     * @param prescriptionSetId 处方组套id
+     * @param drugId 药品id
+     * @param drugFormat 药品规格
+     * @param drugUsage 药品用法
+     * @param drugDosage 药品用量
+     * @param frequency 频次
+     */
     public PrescriptionSetDetail(Integer id, Integer prescriptionSetId, Integer drugId, String drugFormat, String drugUsage, BigDecimal drugDosage, String frequency) {
         this.id = id;
         this.prescriptionSetId = prescriptionSetId;

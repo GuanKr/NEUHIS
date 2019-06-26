@@ -2,7 +2,12 @@ package neu.his.bean;
 
 import java.math.BigDecimal;
 import java.util.Date;
-
+/**
+ * 存储非药品目录信息
+ * @author lsy
+ * @version 1.0
+ * @since 1.8
+ */
 public class NonDrugList {
     /**
      * 主键id
