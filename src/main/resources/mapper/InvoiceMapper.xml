@@ -15,6 +15,12 @@
    where draw_bill_department_name = #{departmentName} and invoice.invoice_time &gt; #{startTime} and #{endTime} &gt; invoice.invoice_time
   </select>
 
+  <select id="seeQuantity3" parameterType="neu.his.bean.SeeQuantity" resultType="java.lang.Integer">
+   select COUNT(DISTINCT medical_record_no)
+   from invoice
+   where doctor_name = #{departmentName} and invoice.invoice_time &gt; #{startTime} and #{endTime} &gt; invoice.invoice_time
+  </select>
+
   <select id="groupByEx" resultType="neu.his.bean.Invoice">
    select sum(cost),executive_department_name,cost_type
    from invoice

@@ -36,6 +36,11 @@ public class Workload {
         this.departmentName = departmentName;
     }
 
+    public Workload(String doctorName, String departmentName) {
+        this.doctorName = doctorName;
+        this.departmentName = departmentName;
+    }
+
     public Workload() {
 
     }

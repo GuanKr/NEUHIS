@@ -27,6 +27,13 @@ public interface InvoiceMapper {
      * @return 看诊人次
      */
     Integer seeQuantity2(SeeQuantity seeQuantity);
+
+    /**
+     * 根据门诊医生返回看诊人次
+     * @param seeQuantity 查找信息
+     * @return 看诊人次
+     */
+    Integer seeQuantity3(SeeQuantity seeQuantity);
     /**
      * 找到以执行科室，类别分组的信息
      * @return

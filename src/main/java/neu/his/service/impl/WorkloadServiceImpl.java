@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -217,7 +218,63 @@ public class WorkloadServiceImpl implements WorkloadService {
 
     @Override
     public List<Workload> allPersonWorkload(Date startTime, Date endTime) {
-
-        return null;
+        BigDecimal regCost = new BigDecimal("0");
+        BigDecimal drugCost = new BigDecimal("0");
+        BigDecimal checkoutCost = new BigDecimal("0");
+        BigDecimal inspectionCost = new BigDecimal("0");
+        BigDecimal handleCost = new BigDecimal("0");
+        List<Workload> workloads = new ArrayList<>();
+        List<User> users = userMapper.selectByExample(new UserExample());
+        InvoiceExample invoiceExample1 = new InvoiceExample();
+        invoiceExample1.or().andInvoiceTimeBetween(startTime,endTime);
+        List<Invoice> invoices = invoiceMapper.selectByExample(invoiceExample1);
+        for(User user:users){
+            workloads.add(new Workload(user.getName(),null));
+        }
+        for(Workload workload : workloads){
+            regCost = new BigDecimal("0");
+            drugCost = new BigDecimal("0");
+            inspectionCost = new BigDecimal("0");
+            checkoutCost = new BigDecimal("0");
+            handleCost = new BigDecimal("0");
+            for(Invoice invoice : invoices){
+                if(workload.getDoctorName().equals(invoice.getDoctorName())){
+                    switch (invoice.getCostType()){
+                        case "1":
+                            regCost = regCost.add(invoice.getCost());
+                            break;
+                        case "2":
+                            inspectionCost = inspectionCost.add(invoice.getCost());
+                            break;
+                        case "3":
+                            checkoutCost = checkoutCost.add(invoice.getCost());
+                            break;
+                        case "4":
+                            drugCost = drugCost.add(invoice.getCost());
+                            break;
+                        case "5":
+                            handleCost = handleCost.add(invoice.getCost());
+                            break;
+                    }
+                    //设置金额
+                    workload.setCheckoutCost(checkoutCost);
+                    workload.setRegCost(regCost);
+                    workload.setDrugCost(drugCost);
+                    workload.setInspectionCost(inspectionCost);
+                    workload.setHandleCost(handleCost);
+                    workload.setCost(regCost.add(checkoutCost.add(drugCost.add(handleCost.add(inspectionCost)))));
+                    //设置发票数量
+                    InvoiceExample invoiceExample = new InvoiceExample();
+                    InvoiceExample.Criteria criteria = invoiceExample.createCriteria();
+                    criteria.andInvoiceTimeBetween(startTime,endTime);
+                    criteria.andDoctorNameEqualTo(workload.getDoctorName());
+                    invoiceExample.or(criteria);
+                    workload.setInvoiceQuantity(invoiceMapper.countByExample(invoiceExample));
+                    //设置看诊人次
+                    workload.setSeeQuantity(invoiceMapper.seeQuantity3(new SeeQuantity(startTime,endTime,workload.getDoctorName())));
+                }
+            }
+        }
+        return workloads;
     }
 }
