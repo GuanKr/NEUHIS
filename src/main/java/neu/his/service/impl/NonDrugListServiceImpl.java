@@ -1,10 +1,7 @@
 package neu.his.service.impl;
 
 import neu.his.bean.*;
-import neu.his.dao.DepartmentMapper;
-import neu.his.dao.ExpenseClassMapper;
 import neu.his.dao.NonDrugListMapper;
-import neu.his.dao.TranslateMapper;
 import neu.his.service.NonDrugListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
