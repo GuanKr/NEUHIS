@@ -41,7 +41,7 @@
             <button type="button" id="updateRegistrationLevels" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;保存&nbsp;&nbsp;&nbsp;&nbsp;</button>
         </div>
     </div>
-    <table class="table table-hover table-striped">
+    <table class="table table-hover table-striped" >
         <thead>
         <tr>
             <th width="50px">删除</th>

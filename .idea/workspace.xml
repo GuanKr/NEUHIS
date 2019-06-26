@@ -2,12 +2,49 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="NEUHIS:war exploded" />
+      <artifact name="NEUHIS:war" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="491caaeb-74ce-4259-a116-4f82eef952a1" name="Default Changelist" comment="1">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/neu/his/controller/InspectionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/inspection/commonItems.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/inspection/inspectionManagement.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/85df8651-9378-4f31-9bc7-d025930811a4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/85df8651-9378-4f31-9bc7-d025930811a4.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/neu/his/service/RegistrationInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/neu/his/service/RegistrationInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/nonDrugList/nonDrugListManagement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/nonDrugList/nonDrugListManagement.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/schedule/scheduleManagement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/schedule/scheduleManagement.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/HIS/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/HIS/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/neu/his/bean/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/neu/his/bean/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/neu/his/bean/UserExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/neu/his/bean/UserExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/neu/his/bean/UserExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/neu/his/bean/UserExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/neu/his/bean/UserExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/neu/his/bean/UserExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/neu/his/bean/teat.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/neu/his/controller/test1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/neu/his/controller/test1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/neu/his/converter/DateConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/neu/his/converter/DateConverter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/neu/his/dao/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/neu/his/dao/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/neu/his/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/neu/his/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/neu/his/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/neu/his/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/neu/his/temp/test7.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/HIS/WEB-INF/classes/neu/his/temp/test7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/HIS/WEB-INF/jsp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/HIS/WEB-INF/jsp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/neu/his/bean/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/neu/his/bean/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/neu/his/bean/UserExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/neu/his/bean/UserExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/neu/his/bean/UserExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/neu/his/bean/UserExample$Criterion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/neu/his/bean/UserExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/neu/his/bean/UserExample$GeneratedCriteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/neu/his/bean/teat.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/neu/his/controller/test1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/neu/his/controller/test1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/neu/his/converter/DateConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/neu/his/converter/DateConverter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/neu/his/dao/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/neu/his/dao/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/neu/his/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/neu/his/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/neu/his/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/neu/his/service/impl/UserServiceImpl.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -16,6 +53,9 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="189" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -49,7 +89,49 @@
         <item name="jdbc:mysql://localhost:3306/his?characterEncoding=utf-8&amp;serverTimezone=GMT%2B8" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="his: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="user: table" type="285a2a93:MysqlImplModel$Table" />
+        <item name="inspection: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="jdbc:mysql://localhost:3306/his?characterEncoding=utf-8&amp;serverTimezone=GMT%2B8" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="his: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="inspection_set: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="jdbc:mysql://localhost:3306/his?characterEncoding=utf-8&amp;serverTimezone=GMT%2B8" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="his: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="inspection_set_detail: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="jdbc:mysql://localhost:3306/his?characterEncoding=utf-8&amp;serverTimezone=GMT%2B8" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="his: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="invoice: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="jdbc:mysql://localhost:3306/his?characterEncoding=utf-8&amp;serverTimezone=GMT%2B8" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="his: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="medical_record: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="jdbc:mysql://localhost:3306/his?characterEncoding=utf-8&amp;serverTimezone=GMT%2B8" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="his: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="non_drug_list: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="jdbc:mysql://localhost:3306/his?characterEncoding=utf-8&amp;serverTimezone=GMT%2B8" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="his: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="workload: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -60,99 +142,36 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/inspection/inspectionManagement.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1914">
-              <caret line="87" column="39" selection-start-line="87" selection-start-column="39" selection-end-line="87" selection-end-column="39" />
+            <state relative-caret-position="176">
+              <caret line="127" column="150" selection-start-line="127" selection-start-column="150" selection-end-line="127" selection-end-column="151" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/temp/test7.java">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/diagnoseDirectory/diagnoseDirectoryManagement.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="28" selection-start-line="28" selection-end-line="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/controller/test1.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+            <state relative-caret-position="25">
+              <caret line="430" selection-start-line="430" selection-end-line="430" />
               <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/dao/UserMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="37" column="50" selection-start-line="37" selection-start-column="50" selection-end-line="37" selection-end-column="50" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#552#640#1" />
-                <element signature="e#686#1023#0" />
+                <element signature="n#!!doc;n#jsp:root#0;n#!!top" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/bean/User.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/controller/InspectionController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="924">
-              <caret line="77" column="18" selection-start-line="77" selection-start-column="18" selection-end-line="77" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/bean/UserExample.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/ContributorValidationMessages.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/db.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
+            <state relative-caret-position="247">
+              <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#585#586#0" expanded="true" />
+                <element signature="e#641#642#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -163,12 +182,43 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit4 Test Class" />
+        <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>junit</find>
+      <find>executiveDepartmentNameInputUl</find>
+      <find>executiveDepartmentNameInput</find>
+      <find>diagnoseDirectoryTab</find>
+      <find>diseaseTableBody</find>
+      <find>ttribute</find>
+      <find>iseaseTableBody</find>
+      <find>listFindByDirectory</find>
+      <find>directoryName</find>
+      <find>directory</find>
+      <find>getDiagnose</find>
+      <find>findByAttributeWithTwoParameters</find>
+      <find>查找</find>
+      <find>button</find>
+      <find>getSearchedPageN</find>
+      <find>setTableBody</find>
+      <find>searchBy</find>
+      <find>set</find>
+      <find>setDiseaseTableBody</find>
+      <find>#inspectionTable</find>
+      <find>inspectionTable</find>
+      <find>search</find>
+      <find>inspectionList</find>
+      <find>diagnoseTableBody</find>
+      <find>diseases</find>
+      <find>检查</find>
+      <find>tableBody</find>
+      <find>regiter</find>
+      <find>register</find>
+      <find>findByMedicalNo</find>
+      <find>doctorId</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -177,22 +227,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/applicationContext.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/db.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/neu/his/service/test5.java" />
-        <option value="$PROJECT_DIR$/src/main/java/neu/his/service/UserServices.java" />
-        <option value="$PROJECT_DIR$/src/main/java/neu/his/dao/UserDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/neu/his/service/impl/UserServiceImplTest.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/neu/his/service/UserService.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/log4j.properties" />
         <option value="$PROJECT_DIR$/src/main/java/neu/his/service/impl/UserServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/neu/his/controller/test1.java" />
-        <option value="$PROJECT_DIR$/src/main/java/neu/his/bean/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/neu/his/temp/test7.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user/management.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/controller/departmentcontroller.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/controller/usercontroller.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/controller/RoleController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/controller/TitleController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/dto/RegistrationLevelDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/dto/SettlementTypeDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/dto/DepartmentDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/bean/Department.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/bean/DiagnoseDirectory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/bean/Disease.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/bean/ExpenseClass.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/bean/RegistrationLevel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/bean/Role.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/bean/ScheduleRule.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/bean/SettlementType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/bean/Title.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/bean/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/dto/DiseaseDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/controller/DiagnoseDirectoryController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/dto/NonDrugListDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/controller/RegistrationLevelController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/dto/ScheduleRuleDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/converter/DateConverter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/bean/ScheduleInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/dto/ScheduleInfoDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/controller/ScheduleController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/controller/DepartmentController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/controller/ExpenseClassController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/bean/NonDrugList.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/controller/test1.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/schedule/scheduleManagement.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/controller/SettlementTypeController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/controller/NonDrugListController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/controller/DiseaseController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/controller/RegistrationController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/settlementType/settlementTypeManagement.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/service/RegistrationInfoService.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/nonDrugList/nonDrugListManagement.jsp" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/InspectionMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/diagnoseDirectory/diagnoseDirectoryManagement.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/inspection/commonitems.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/inspection/commonItems.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/service/impl/InspectionServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/inspection/inspectionManagement.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/neu/his/controller/InspectionController.java" />
       </list>
     </option>
   </component>
@@ -206,8 +291,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
-        <option name="userSettingsFile" value="D:\Eclipse_jee\apache-maven-3.6.1\conf\settings.xml" />
+        <option name="mavenHome" value="E:/apache-maven-3.6.1/maven" />
       </MavenGeneralSettings>
     </option>
     <option name="importingSettings">
@@ -216,11 +300,21 @@
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="HIS Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="157" />
-    <option name="y" value="161" />
-    <option name="width" value="1400" />
-    <option name="height" value="939" />
+    <option name="x" value="676" />
+    <option name="width" value="697" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -304,6 +398,15 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="his" type="462c0819:PsiDirectoryNode" />
+              <item name="dto" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NEUHIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NEUHIS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="his" type="462c0819:PsiDirectoryNode" />
               <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -353,6 +456,52 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NEUHIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NEUHIS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NEUHIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NEUHIS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NEUHIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NEUHIS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="bootstrap.css" type="620a8d5e:NestingTreeNode" />
+            </path>
+            <path>
+              <item name="NEUHIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NEUHIS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NEUHIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NEUHIS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -363,6 +512,106 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
               <item name="jsp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NEUHIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NEUHIS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+              <item name="department" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NEUHIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NEUHIS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+              <item name="diagnoseDirectory" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NEUHIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NEUHIS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+              <item name="inspection" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NEUHIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NEUHIS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+              <item name="medicalRecord" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NEUHIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NEUHIS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+              <item name="nonDrugList" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NEUHIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NEUHIS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+              <item name="registration" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NEUHIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NEUHIS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+              <item name="registrationLevel" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NEUHIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NEUHIS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+              <item name="schedule" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NEUHIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NEUHIS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+              <item name="settlementType" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NEUHIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NEUHIS" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -381,11 +630,13 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="database.console.LAST_STATE" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="js.last.introduce.type" value="VAR" />
+    <property name="last_opened_file_path" value="F:/shixun/ssmpro.5.17.2" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -413,106 +664,19 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.2">
-    <configuration name="test7" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="neu.his.temp.test7" />
-      <module name="NEUHIS" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="neu.his.temp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="test7.delete" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="NEUHIS" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="neu.his.temp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="neu.his.temp" />
-      <option name="MAIN_CLASS_NAME" value="neu.his.temp.test7" />
-      <option name="METHOD_NAME" value="delete" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="test7.findall" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="NEUHIS" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="neu.his.temp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="neu.his.temp" />
-      <option name="MAIN_CLASS_NAME" value="neu.his.temp.test7" />
-      <option name="METHOD_NAME" value="findall" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="test7.testLog4j" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="NEUHIS" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="neu.his.temp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="neu.his.temp" />
-      <option name="MAIN_CLASS_NAME" value="neu.his.temp.test7" />
-      <option name="METHOD_NAME" value="testLog4j" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HIS [mybatis-generator:generate,-e,-X]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="mybatis-generator:generate" />
-                <option value="-e" />
-                <option value="-X" />
-              </list>
-            </option>
-            <option name="pomFileName" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
-    </configuration>
-    <configuration name="Tomcat 9.0.2" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.2" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration name="Tomcat 8.5.24" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.24" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8" nameIsGenerated="true">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/NEUHIS_war/" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="NEUHIS:war exploded">
+        <artifact name="NEUHIS:war">
           <settings>
-            <option name="CONTEXT_PATH" value="/NEUHIS_war_exploded" />
+            <option name="CONTEXT_PATH" value="/NEUHIS_war" />
           </settings>
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="Unnamed_NEUHIS" />
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_NEUHIS_2" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -520,7 +684,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="60052" />
+        <option name="DEBUG_PORT" value="56566" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -570,26 +734,10 @@
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="NEUHIS:war exploded" />
+          <artifact name="NEUHIS:war" />
         </option>
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Application.test7" />
-      <item itemvalue="JUnit.test7.findall" />
-      <item itemvalue="JUnit.test7.delete" />
-      <item itemvalue="JUnit.test7.testLog4j" />
-      <item itemvalue="Maven.HIS [mybatis-generator:generate,-e,-X]" />
-      <item itemvalue="Tomcat Server.Tomcat 9.0.2" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JUnit.test7.testLog4j" />
-        <item itemvalue="JUnit.test7.findall" />
-        <item itemvalue="JUnit.test7.delete" />
-        <item itemvalue="Application.test7" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -604,6 +752,35 @@
       <workItem from="1559702377292" duration="1286000" />
       <workItem from="1559703681631" duration="10702000" />
       <workItem from="1559720363669" duration="1394000" />
+      <workItem from="1559785934412" duration="6082000" />
+      <workItem from="1559825159122" duration="651000" />
+      <workItem from="1559878671948" duration="7704000" />
+      <workItem from="1559975757824" duration="10312000" />
+      <workItem from="1560073354277" duration="2485000" />
+      <workItem from="1560086795751" duration="3214000" />
+      <workItem from="1560129737203" duration="13819000" />
+      <workItem from="1560216166726" duration="8762000" />
+      <workItem from="1560302618267" duration="14235000" />
+      <workItem from="1560334106137" duration="4242000" />
+      <workItem from="1560397388431" duration="16780000" />
+      <workItem from="1560477607447" duration="15935000" />
+      <workItem from="1560497577919" duration="8833000" />
+      <workItem from="1560602447475" duration="2070000" />
+      <workItem from="1560662925096" duration="8457000" />
+      <workItem from="1560734757048" duration="6171000" />
+      <workItem from="1560750633388" duration="14809000" />
+      <workItem from="1560828084893" duration="15687000" />
+      <workItem from="1560862877545" duration="1176000" />
+      <workItem from="1560907321171" duration="14184000" />
+      <workItem from="1560993960824" duration="4893000" />
+      <workItem from="1561001645247" duration="14693000" />
+      <workItem from="1561080052362" duration="17879000" />
+      <workItem from="1561299103478" duration="1244000" />
+      <workItem from="1561339481053" duration="24259000" />
+      <workItem from="1561426098243" duration="7543000" />
+      <workItem from="1561440838170" duration="11250000" />
+      <workItem from="1561456003704" duration="11937000" />
+      <workItem from="1561512311200" duration="6014000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1559704018261</created>
@@ -612,7 +789,217 @@
       <option name="project" value="LOCAL" />
       <updated>1559704018261</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="1">
+      <created>1559986374044</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1559986374044</updated>
+    </task>
+    <task id="LOCAL-00003" summary="1">
+      <created>1560015120171</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1560015120171</updated>
+    </task>
+    <task id="LOCAL-00004" summary="1">
+      <created>1560133848406</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1560133848406</updated>
+    </task>
+    <task id="LOCAL-00005" summary="1">
+      <created>1560139517174</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1560139517190</updated>
+    </task>
+    <task id="LOCAL-00006" summary="1">
+      <created>1560152981068</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1560152981068</updated>
+    </task>
+    <task id="LOCAL-00007" summary="1">
+      <created>1560303697497</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1560303697512</updated>
+    </task>
+    <task id="LOCAL-00008" summary="1">
+      <created>1560328764424</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1560328764424</updated>
+    </task>
+    <task id="LOCAL-00009" summary="1">
+      <created>1560335877707</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1560335877707</updated>
+    </task>
+    <task id="LOCAL-00010" summary="1">
+      <created>1560397863089</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1560397863089</updated>
+    </task>
+    <task id="LOCAL-00011" summary="1">
+      <created>1560398379775</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1560398379775</updated>
+    </task>
+    <task id="LOCAL-00012" summary="1">
+      <created>1560420432640</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1560420432640</updated>
+    </task>
+    <task id="LOCAL-00013" summary="1">
+      <created>1560420990478</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1560420990478</updated>
+    </task>
+    <task id="LOCAL-00014" summary="1">
+      <created>1560485159804</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1560485159804</updated>
+    </task>
+    <task id="LOCAL-00015" summary="1">
+      <created>1560491027459</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1560491027459</updated>
+    </task>
+    <task id="LOCAL-00016" summary="1">
+      <created>1560492879955</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1560492879955</updated>
+    </task>
+    <task id="LOCAL-00017" summary="1">
+      <created>1560494138208</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1560494138208</updated>
+    </task>
+    <task id="LOCAL-00018" summary="1">
+      <created>1560498870630</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1560498870631</updated>
+    </task>
+    <task id="LOCAL-00019" summary="1">
+      <created>1560500013811</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1560500013811</updated>
+    </task>
+    <task id="LOCAL-00020" summary="1">
+      <created>1560502059035</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1560502059035</updated>
+    </task>
+    <task id="LOCAL-00021" summary="1">
+      <created>1560508866844</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1560508866844</updated>
+    </task>
+    <task id="LOCAL-00022" summary="1">
+      <created>1560668159796</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1560668159796</updated>
+    </task>
+    <task id="LOCAL-00023" summary="1">
+      <created>1560684857000</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1560684857000</updated>
+    </task>
+    <task id="LOCAL-00024" summary="1">
+      <created>1560705067438</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1560705067438</updated>
+    </task>
+    <task id="LOCAL-00025" summary="1">
+      <created>1560735843237</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1560735843237</updated>
+    </task>
+    <task id="LOCAL-00026" summary="1">
+      <created>1560740468977</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1560740468977</updated>
+    </task>
+    <task id="LOCAL-00027" summary="1">
+      <created>1560769025514</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1560769025514</updated>
+    </task>
+    <task id="LOCAL-00028" summary="1">
+      <created>1560851598163</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1560851598163</updated>
+    </task>
+    <task id="LOCAL-00029" summary="1">
+      <created>1560852431055</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1560852431055</updated>
+    </task>
+    <task id="LOCAL-00030" summary="1">
+      <created>1560855614916</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1560855614916</updated>
+    </task>
+    <task id="LOCAL-00031" summary="1">
+      <created>1560910434342</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1560910434342</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -639,7 +1026,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14275000" />
+    <option name="totallyTimeSpent" value="289595000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -651,10 +1038,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2533512" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2030303" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -664,7 +1051,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6776139" visible="true" weight="0.22521247" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6318182" visible="true" weight="0.3250825" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -672,23 +1059,24 @@
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.32238606" side_tool="true" weight="0.3286119" />
-      <window_info anchor="bottom" id="Java Enterprise" order="11" />
-      <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info anchor="bottom" id="Version Control" order="13" sideWeight="0.49932975" weight="0.24504249" />
-      <window_info anchor="bottom" id="Application Servers" order="14" weight="0.3286119" />
-      <window_info anchor="bottom" id="Database Console" order="15" weight="0.3286119" />
-      <window_info anchor="bottom" id="Messages" order="16" weight="0.33002833" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.36818182" side_tool="true" weight="0.25577557" />
+      <window_info anchor="bottom" id="Java Enterprise" order="11" weight="0.32838285" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.6068182" weight="0.20462047" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Application Servers" order="14" weight="0.32838285" />
+      <window_info anchor="bottom" id="Database Console" order="15" weight="0.32838285" />
+      <window_info anchor="bottom" id="Messages" order="16" weight="0.32838285" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Maven" order="3" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="Database" order="6" weight="0.25201073" />
+      <window_info anchor="right" id="Database" order="6" visible="true" weight="0.1310606" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
-      <window_info anchor="right" id="Bean Validation" order="9" />
+      <window_info anchor="right" id="Bean Validation" order="9" weight="0.32954547" />
+      <window_info anchor="right" id="Coverage" order="10" side_tool="true" weight="0.32954547" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -698,91 +1086,67 @@
     <MESSAGE value="1" />
     <option name="LAST_COMMIT_MESSAGE" value="1" />
   </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/NEUHIS$Tomcat_8_5_24.ic" NAME="Tomcat 8.5.24 Coverage Results" MODIFIED="1559895352179" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/registration/registrationInfo.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-662">
-          <caret line="63" column="30" selection-start-line="63" selection-start-column="30" selection-end-line="63" selection-end-column="30" />
+        <state relative-caret-position="10500">
+          <caret line="559" column="14" lean-forward="true" selection-start-line="559" selection-start-column="14" selection-end-line="559" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/dao/UserDao.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/service/impl/UserServiceImplTest.java" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/85df8651-9378-4f31-9bc7-d025930811a4/console.sql" />
-    <entry file="das://85df8651-9378-4f31-9bc7-d025930811a4/schema/his/table/user">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering>
-            <filter text="" />
-          </filtering>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/service/impl/RegistrationInfoServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-260">
+          <caret line="171" column="37" lean-forward="true" selection-start-line="171" selection-start-column="37" selection-end-line="171" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/controller/NonDrugListController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="211" column="41" lean-forward="true" selection-start-line="211" selection-start-column="41" selection-end-line="211" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="28" lean-forward="true" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+        <state relative-caret-position="1950">
+          <caret line="93" column="52" selection-start-line="93" selection-start-column="52" selection-end-line="93" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#resultMap#0;n#mapper#0;n#!!top" />
-            <element signature="n#sql#0;n#mapper#0;n#!!top" />
-            <element signature="n#sql#1;n#mapper#0;n#!!top" />
-            <element signature="n#sql#2;n#mapper#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/service/impl/UserServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+        <state relative-caret-position="475">
+          <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/service/RegistrationInfoService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="75" column="19" lean-forward="true" selection-start-line="75" selection-start-column="19" selection-end-line="75" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/controller/ExpenseClassController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#484#485#0" expanded="true" />
+            <element signature="e#607#608#0" expanded="true" />
+            <element signature="e#659#660#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1914">
-          <caret line="87" column="39" selection-start-line="87" selection-start-column="39" selection-end-line="87" selection-end-column="39" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/temp/test7.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/controller/ScheduleController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/controller/test1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+        <state relative-caret-position="800">
+          <caret line="57" column="11" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -791,55 +1155,355 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-        </state>
+        <state relative-caret-position="-1440" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/ContributorValidationMessages.properties">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/schedule/scheduleManagement.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/dao/UserMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="37" column="50" selection-start-line="37" selection-start-column="50" selection-end-line="37" selection-end-column="50" />
+        <state relative-caret-position="25">
+          <caret line="54" column="31" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#552#640#1" />
-            <element signature="e#686#1023#0" />
+            <element signature="n#style#0;n#td#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#td#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/bean/UserExample.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/bootstrap.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="125">
+          <caret line="5" column="80" selection-start-line="5" selection-start-column="80" selection-end-line="5" selection-end-column="80" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/bootstrap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="289" selection-start-line="289" selection-end-line="289" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/controller/RegistrationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="45" column="5" lean-forward="true" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/images/ui-icons_444444_256x240.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/images/ui-icons_555555_256x240.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/images/ui-icons_ffffff_256x240.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/images/ui-icons_cc0000_256x240.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="37" column="31" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#688#689#0" expanded="true" />
+            <element signature="e#735#736#0" expanded="true" />
+            <element signature="e#1290#1291#0" expanded="true" />
+            <element signature="e#1332#1333#0" expanded="true" />
+            <element signature="e#1423#1424#0" expanded="true" />
+            <element signature="e#1467#1468#0" expanded="true" />
+            <element signature="e#1790#1791#0" expanded="true" />
+            <element signature="e#1834#1835#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user/management.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8507">
+          <caret line="349" column="9" selection-start-line="349" selection-start-column="9" selection-end-line="349" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/controller/DiagnoseDirectoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-121">
+          <caret line="21" column="31" lean-forward="true" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/common.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="121" column="18" selection-start-line="121" selection-start-column="18" selection-end-line="121" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/controller/MedicalRecordController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-84">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/controller/RoleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/settlementType/settlementTypeManagement.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-382">
+          <caret line="86" column="28" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://85df8651-9378-4f31-9bc7-d025930811a4/schema/his/table/user">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true">
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://85df8651-9378-4f31-9bc7-d025930811a4/schema/his/table/workload">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true">
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/registrationLevel/registrationLevelManagement.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="129" column="63" lean-forward="true" selection-start-line="129" selection-start-column="63" selection-end-line="129" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/department/management.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2979">
+          <caret line="290" column="32" lean-forward="true" selection-start-line="290" selection-start-column="32" selection-end-line="290" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/medicalRecord/medicalRecord.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="644" column="81" selection-start-line="644" selection-start-column="81" selection-end-line="644" selection-end-column="81" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#267#273#0" expanded="true" />
+            <element signature="n#style#0;n#th#0;n#tr#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/inspection/commonItems.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="51" column="57" selection-start-line="51" selection-start-column="57" selection-end-line="51" selection-end-column="57" />
+          <folding>
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/bean/Query.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="35" lean-forward="true" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/bean/SetQuery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/nonDrugList/nonDrugListManagement.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="360" column="27" selection-start-line="360" selection-start-column="27" selection-end-line="360" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://85df8651-9378-4f31-9bc7-d025930811a4/schema/his/table/inspection_register">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true">
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://85df8651-9378-4f31-9bc7-d025930811a4/schema/his/table/inspection">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true">
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/dao/InspectionMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="34" column="45" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/InspectionMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1225">
+          <caret line="14" column="62" lean-forward="true" selection-start-line="14" selection-start-column="62" selection-end-line="14" selection-end-column="62" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/bean/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="924">
-          <caret line="77" column="18" selection-start-line="77" selection-start-column="18" selection-end-line="77" selection-end-column="18" />
+        <state relative-caret-position="-2273">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/service/InspectionService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="21" column="24" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/service/impl/NonDrugListServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="19" column="39" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/service/impl/DiseaseServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/bean/Inspection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/service/impl/InspectionServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#852#853#0" expanded="true" />
+            <element signature="e#916#917#0" expanded="true" />
+            <element signature="e#3193#3194#0" expanded="true" />
+            <element signature="e#3249#3250#0" expanded="true" />
+            <element signature="e#3307#3308#0" expanded="true" />
+            <element signature="e#3362#3363#0" expanded="true" />
+            <element signature="e#3431#3432#0" expanded="true" />
+            <element signature="e#3503#3504#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/controller/DiseaseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="804">
+          <caret line="100" column="34" selection-start-line="100" selection-start-column="34" selection-end-line="100" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/web-forms.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="470" column="33" lean-forward="true" selection-start-line="470" selection-start-column="33" selection-end-line="470" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/tables.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="216" column="16" selection-start-line="216" selection-start-column="16" selection-end-line="216" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/inspection/inspectionManagement.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="127" column="150" selection-start-line="127" selection-start-column="150" selection-end-line="127" selection-end-column="151" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/diagnoseDirectory/diagnoseDirectoryManagement.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="430" selection-start-line="430" selection-end-line="430" />
+          <folding>
+            <element signature="n#!!doc;n#jsp:root#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/neu/his/controller/InspectionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#585#586#0" expanded="true" />
+            <element signature="e#641#642#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -903,6 +1567,17 @@
         </settings>
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
         <settings>
           <splitter-proportions>
             <option name="proportions">

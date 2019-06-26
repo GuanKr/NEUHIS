@@ -41,17 +41,17 @@
     <table class="table table-hover table-striped">
         <thead>
         <tr>
-            <th>删除</th>
-            <th style="width: 30px">id</th>
-            <th>项目编码</th>
-            <th>项目名称</th>
-            <th>规格</th>
-            <th>单价</th>
-            <th width="140px">费用所属科目</th>
-            <th width="180px">执行科室</th>
-            <th>拼音助记码</th>
-            <th width="100px">项目类型</th>
-            <th>创建时间</th>
+            <th width="48px">删除</th>
+            <th>id</th>
+            <th width="120px">项目编码</th>
+            <th width="190px">项目名称</th>
+            <th width="40px">规格</th>
+            <th width="40px">单价</th>
+            <th width="135px">费用所属科目</th>
+            <th width="175px">执行科室</th>
+            <th width="190px">拼音助记码</th>
+            <th width="113px">项目类型</th>
+            <th width="125px">创建时间</th>
         </tr>
         </thead>
         <tbody id="tableBody">

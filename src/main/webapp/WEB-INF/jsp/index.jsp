@@ -27,6 +27,8 @@
     <br/><br/>
     <a href="registration/registrationInfo">挂号</a>
     <br/><br/>
+    <a href="inspection/inspectionManagement">医技</a>
+    <br/><br/>
 
 </body>
 </html>

@@ -71,7 +71,7 @@ public interface RegistrationInfoService {
 
     /**
      * 计算应收金额
-     * @param level_name 挂号级别名称
+     * @param level_name 挂号级别名称;;
      * @param isNeed 是否需要病历本
      * @return 应收金额
      */
