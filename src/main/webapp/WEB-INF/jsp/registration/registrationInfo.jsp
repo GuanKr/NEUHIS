@@ -209,7 +209,6 @@
             </tbody>
         </table>
     </div>
-
 </form>
 <div align="center"><ul id="pageChoose" class="pagination pagination-lg pageindex">
 </ul></div>
@@ -424,40 +423,44 @@
             registrationInfoList = result;
         },
         error :function () {
-            alert("获取挂号列表失败");
+            // alert("获取挂号列表失败");
+            alert("挂号列表为空");
         }
     });
     //设置挂号信息表格
     function setTableBody() {
-        var str;
-        str = "";
-        $("#tableBody").html("");
-        for (var i = 0;i < registrationInfoList.length;i++){
-            str += "<tr>" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].id + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].medicalRecordNo + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientName + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientSex + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientAge + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientBirthdayString + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientIdentityNumber + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].address + "\" readonly/></td>\n" +
-                "<td><input type=\"text\" class=\"form-control\" value=\"" + registrationInfoList[i].settlementTypeName + "\" readonly/></td>\n" +
-                "<td><input type=\"text\" class=\"form-control\" value=\"" + registrationInfoList[i].registrationLevelName + "\" readonly/></td>\n" +
-                "<td><input type=\"text\" class=\"form-control\" value=\"" + registrationInfoList[i].seeDoctorDateString + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].isSeenDoctor + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].isNeedMedicalrecordbook + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].registrationResource + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].registrationState + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].expense + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].paymentState + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].departmentName + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].doctorName + "\" readonly/></td>\n" +
-                //    TODO 退号
-                "<td><button type='button' class=\"form-control\" onclick='withdraw(" + registrationInfoList[i].id + ")' >退号</button></td>\n" +
-                "</tr>";
+        if (registrationInfoList != null){
+            var str;
+            str = "";
+            $("#tableBody").html("");
+            for (var i = 0;i < registrationInfoList.length;i++){
+                str += "<tr>" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].id + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].medicalRecordNo + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientName + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientSex + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientAge + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientBirthdayString + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientIdentityNumber + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].address + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].settlementTypeName + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].registrationLevelName + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].seeDoctorDateString + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].isSeenDoctor + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].isNeedMedicalrecordbook + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].registrationResource + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].registrationState + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].expense + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].paymentState + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].departmentName + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].doctorName + "\" readonly/></td>\n" +
+                    //    TODO 退号
+                    "<td><button type='button' class=\"form-control\" onclick='withdraw(" + registrationInfoList[i].id + ")' >退号</button></td>\n" +
+                    "</tr>";
+            }
+            $("#tableBody").append(str);
         }
-        $("#tableBody").append(str);
+
     }
     function withdraw(id){
         $.ajax({
