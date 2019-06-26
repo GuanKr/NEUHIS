@@ -68,6 +68,32 @@ public class Item {
         this.departmentName = departmentName;
     }
 
+    /**
+     * 映射前端数据的构造方法
+     * @param itemName 项目名称
+     * @param format 规格
+     * @param unitPrice 单价
+     * @param quantity 数量
+     * @param cost 总价
+     * @param departmentName 执行科室
+     * @param category 结算类别
+     * @param categoryId 结算id
+     * @param doctorName 开立医生
+     * @param drawBillDepartmentName 开立科室
+     */
+    public Item(String itemName, String format, BigDecimal unitPrice, Integer quantity, BigDecimal cost, String departmentName, String category, Integer categoryId, String doctorName, String drawBillDepartmentName) {
+        this.itemName = itemName;
+        this.format = format;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+        this.cost = cost;
+        this.departmentName = departmentName;
+        this.category = category;
+        this.categoryId = categoryId;
+        this.doctorName = doctorName;
+        this.drawBillDepartmentName = drawBillDepartmentName;
+    }
+
     public Item() {
         super();
     }
