@@ -22,11 +22,18 @@ public interface RegistrationInfoMapper {
 
 
     /**
-     * 查找挂号的信息
+     * 查找挂号的信息：诊毕用
      * @param query 查询信息
      * @return 挂号信息
      */
     List<RegistrationInfo> query(Query query);
+
+    /**
+     * 查找挂号的信息：收费用
+     * @param query 查询信息
+     * @return 挂号信息
+     */
+    List<RegistrationInfo> query2(Query query);
 
     /**
      * 查找待诊病人的信息

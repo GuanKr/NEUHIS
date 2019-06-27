@@ -173,69 +173,40 @@
             <legend class="">挂号信息列表</legend>
         </div>
     </fieldset>
-<%--    <div class="row">--%>
-<%--        <div class="col-md-4 pull-right">--%>
-<%--            <button type="button" id="deleteRegistrationsButton" class="btn btn-primary">删除已选</button>&nbsp;&nbsp;--%>
-<%--            <input type="reset" class="btn btn-default" value="取消" />&nbsp;&nbsp;--%>
-<%--            <button type="button" id="updateRegistrationLevels" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;保存&nbsp;&nbsp;&nbsp;&nbsp;</button>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-    <div class="center-block" style="overflow: auto;width: 2000px;">
+    <div class="center-block" style="overflow: auto;width: 1080px;">
         <table class="table table-hover table-striped">
             <thead>
             <tr>
-                <th>id</th>
-                <th>病历号</th>
-                <th>姓名</th>
-                <th>性别</th>
-                <th>年龄</th>
-                <th>出生日期</th>
-                <th>身份证号</th>
-                <th>家庭住址</th>
-                <th>结算类别</th>
-                <th>挂号级别</th>
-                <th>看诊日期</th>
-                <th>是否已诊</th>
-                <th>病历本</th>
-                <th>挂号来源</th>
-                <th>状态</th>
-                <th>应收金额</th>
-                <th>缴费状态</th>
-                <th>挂号科室</th>
-                <th>挂号医生</th>
+                <th style="min-width: 55px;max-width: 60px">id</th>
+                <th style="min-width: 150px;max-width: 180px">病历号</th>
+                <th style="min-width: 100px;max-width: 130px">姓名</th>
+                <th style="min-width: 60px;max-width: 65px">性别</th>
+                <th style="min-width: 60px;max-width: 65px">年龄</th>
+                <th style="min-width: 120px;max-width: 121px">出生日期</th>
+                <th style="min-width: 150px;max-width: 180px">身份证号</th>
+                <th style="min-width: 120px;max-width: 140px">家庭住址</th>
+                <th style="min-width: 100px;max-width: 130px">结算类别</th>
+                <th style="min-width: 100px;max-width: 130px">挂号级别</th>
+                <th style="min-width: 120px;max-width: 121px">看诊日期</th>
+                <th style="min-width: 100px;max-width: 130px">是否已诊</th>
+                <th style="min-width: 100px;max-width: 130px">病历本</th>
+                <th style="min-width: 100px;max-width: 130px">挂号来源</th>
+                <th style="min-width: 100px;max-width: 130px">状态</th>
+                <th style="min-width: 100px;max-width: 130px">应收金额</th>
+                <th style="min-width: 100px;max-width: 130px">缴费状态</th>
+                <th style="min-width: 120px;max-width: 180px">挂号科室</th>
+                <th style="min-width: 100px;max-width: 130px">挂号医生</th>
+                <th style="min-width: 100px;max-width: 130px">退号</th>
             </tr>
             </thead>
             <tbody id="tableBody">
             </tbody>
         </table>
     </div>
-
 </form>
 <div align="center"><ul id="pageChoose" class="pagination pagination-lg pageindex">
 </ul></div>
 <br/>
-<%--TODO 删除注释--%>
-<%--<fieldset>--%>
-<%--    <div class="">--%>
-<%--        <legend class="container">查询非药品项目</legend>--%>
-<%--    </div>--%>
-<%--</fieldset>--%>
-<%--<div class="container">--%>
-<%--    <div class="col-md-4 container">--%>
-<%--        <select class="form-control" id="searchBy" onchange="setSearchValS()" name="searchBy">--%>
-<%--            <option value="item_code">项目编码</option>--%>
-<%--            <option value="item_name">项目名称</option>--%>
-<%--            <option value="item_type">项目类型</option>--%>
-<%--        </select>--%>
-<%--    </div>--%>
-<%--    <div class="col-md-4" id="searchValS">--%>
-<%--        <input type='text' id='searchVal' class='form-control'/>--%>
-<%--    </div>--%>
-<%--    <div class="col-md-4">--%>
-<%--        <button type="button" id="search" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;查询&nbsp;&nbsp;&nbsp;&nbsp;</button>--%>
-<%--    </div>--%>
-<%--</div>--%>
-<%--<br/><br/><br/>--%>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript">
@@ -424,48 +395,56 @@
             registrationInfoList = result;
         },
         error :function () {
-            alert("获取挂号列表失败");
+            // alert("获取挂号列表失败");
+            alert("挂号列表为空");
         }
     });
     //设置挂号信息表格
     function setTableBody() {
-        var str;
-        str = "";
-        $("#tableBody").html("");
-        for (var i = 0;i < registrationInfoList.length;i++){
-            str += "<tr>" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].id + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].medicalRecordNo + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientName + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientSex + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientAge + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientBirthdayString + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientIdentityNumber + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].address + "\" readonly/></td>\n" +
-                "<td><input type=\"text\" class=\"form-control\" value=\"" + registrationInfoList[i].settlementTypeName + "\" readonly/></td>\n" +
-                "<td><input type=\"text\" class=\"form-control\" value=\"" + registrationInfoList[i].registrationLevelName + "\" readonly/></td>\n" +
-                "<td><input type=\"text\" class=\"form-control\" value=\"" + registrationInfoList[i].seeDoctorDateString + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].isSeenDoctor + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].isNeedMedicalrecordbook + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].registrationResource + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].registrationState + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].expense + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].paymentState + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].departmentName + "\" readonly/></td>\n" +
-                "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].doctorName + "\" readonly/></td>\n" +
-                //    TODO 退号
-                "<td><button type='button' class=\"form-control\" onclick='withdraw(" + registrationInfoList[i].id + ")' >退号</button></td>\n" +
-                "</tr>";
+        if (registrationInfoList != null){
+            var str;
+            str = "";
+            $("#tableBody").html("");
+            for (var i = 0;i < registrationInfoList.length;i++){
+                str += "<tr>" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].id + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].medicalRecordNo + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientName + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientSex + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientAge + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientBirthdayString + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].patientIdentityNumber + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].address + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].settlementTypeName + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].registrationLevelName + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].seeDoctorDateString + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].isSeenDoctor + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].isNeedMedicalrecordbook + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].registrationResource + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].registrationState + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].expense + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].paymentState + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].departmentName + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + registrationInfoList[i].doctorName + "\" readonly/></td>\n";
+                    //    TODO 退号
+                if (registrationInfoList[i].registrationState == "退号"){
+                    str += "<td><input type='text' class=\"form-control\" value='已退号' readonly/></td>\n";
+                } else {
+                    str += "<td><button type='button' class='btn btn-danger' onclick='withdraw(" + registrationInfoList[i].medicalRecordNo + ")' >退号</button></td>\n";
+                }
+                str += "</tr>";
+            }
+            $("#tableBody").append(str);
         }
-        $("#tableBody").append(str);
+
     }
-    function withdraw(id){
+    function withdraw(medicalRecordNo){
         $.ajax({
             type: "POST",
-            url: "registration/withdraw",
-            data: {id : id},
+            url: "charge/withdraw",
+            data: {medicalRecordNo : medicalRecordNo},
             success: function (result) {
-                alert(result);
+                alert(result.msg);
                 $.ajax({
                     type:"POST",
                     url: "registration/registrationInfoList",

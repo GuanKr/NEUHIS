@@ -2,6 +2,7 @@ package neu.his.controller;
 
 import neu.his.bean.RegistrationInfo;
 import neu.his.bean.User;
+import neu.his.dto.ResultDTO;
 import neu.his.service.RegistrationInfoService;
 import neu.his.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -163,6 +164,25 @@ public class RegistrationController {
     @RequestMapping("getPatientAge")
     public @ResponseBody int getPatientAge(String birthdayString){
         return registrationInfoService.age(birthdayString);
+    }
+
+    /**
+     * 查找挂号记录
+     * @param attribute_name 属性名
+     * @param attribute 属性值
+     * @return 找到的挂号信息
+     */
+    @RequestMapping("findByAttribute")
+    public  @ResponseBody ResultDTO findByAttribute(String attribute_name,String attribute){
+        ResultDTO resultDTO = new ResultDTO();
+        List<RegistrationInfo> registrationInfoList = registrationInfoService.query2(attribute_name,attribute);
+        if (!registrationInfoList.isEmpty()){
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            if (registrationInfoList.get(0).getPatientBirthday() != null)
+                registrationInfoList.get(0).setPatientBirthdayString(dateFormat.format(registrationInfoList.get(0).getPatientBirthday()));
+            resultDTO.setData(registrationInfoList.get(0));
+        }
+        return resultDTO;
     }
 
 }

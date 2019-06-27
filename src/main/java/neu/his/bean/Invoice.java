@@ -2,38 +2,91 @@ package neu.his.bean;
 
 import java.math.BigDecimal;
 import java.util.Date;
-
+/**
+ * 存储缴费记录信息
+ * @author lsy
+ * @version 1.0
+ * @since 1.8
+ */
 public class Invoice {
+    /**
+     * 主键id
+     */
     private Integer id;
 
+    /**
+     * 发票号
+     */
     private String invoiceNo;
 
+    /**
+     * 费用类别 1-挂号 2-检查 3-检验 4-处方 5-处置
+     */
     private String costType;
 
+    /**
+     * 费用类别对应id
+     */
     private Integer costTypeId;
 
+    /**
+     * 支付方式id
+     */
     private Integer settlementTypeId;
 
+    /**
+     * 金额
+     */
     private BigDecimal cost;
 
+    /**
+     * 缴费记录创建时间
+     */
     private Date invoiceTime;
 
+    /**
+     * 收费员id
+     */
     private Integer tollCollectorId;
 
+    /**
+     * 患者姓名
+     */
     private String patientName;
 
+    /**
+     * 有效状态
+     */
     private String status;
 
+    /**
+     * 项目名称
+     */
     private String itemName;
 
+    /**
+     * 病历号
+     */
     private String medicalRecordNo;
 
+    /**
+     * 医生姓名
+     */
     private String doctorName;
 
+    /**
+     * 执行科室名称
+     */
     private String executiveDepartmentName;
 
+    /**
+     * 开立科室名称
+     */
     private String drawBillDepartmentName;
 
+    /**
+     * 支付方式名称
+     */
     private String settlementTypeName;
 
 

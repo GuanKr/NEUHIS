@@ -1,30 +1,80 @@
 package neu.his.bean;
 
 import java.util.Date;
-
+/**
+ * 存储诊断信息
+ * @author lsy
+ * @version 1.0
+ * @since 1.8
+ */
 public class Diagnose {
+    /**
+     * 主键id
+     */
     private Integer id;
 
+    /**
+     * 疾病id
+     */
     private Integer diseaseId;
 
+    /**
+     * 病历号
+     */
     private String medicalRecordNo;
 
+    /**
+     * 主诊标志
+     */
     private String majorDiagnoseSign;
 
+    /**
+     * 疑似标志
+     */
     private String suspectedSign;
 
+    /**
+     * 发病时间
+     */
     private Date diseaseTime;
 
+    /**
+     * 诊断医生id
+     */
     private Integer doctorId;
 
+    /**
+     * 疾病类型
+     */
     private String diseaseType;
 
+    /**
+     * 模板标志
+     */
     private String isCommon;
 
+    /**
+     * 疾病名称
+     */
     private String diseaseName;
 
+    /**
+     * 诊断医生姓名
+     */
     private String doctorName;
 
+    /**
+     * 诊断
+     * @param id 主键id
+     * @param diseaseId 疾病id
+     * @param medicalRecordNo 病历号
+     * @param majorDiagnoseSign 主诊标志
+     * @param suspectedSign 疑似标志
+     * @param diseaseTime 发病时间
+     * @param doctorId 医生id
+     * @param diseaseType 疾病类型
+     * @param isCommon 模板标志
+     */
     public Diagnose(Integer id, Integer diseaseId, String medicalRecordNo, String majorDiagnoseSign, String suspectedSign, Date diseaseTime, Integer doctorId, String diseaseType, String isCommon) {
         this.id = id;
         this.diseaseId = diseaseId;
@@ -143,5 +193,22 @@ public class Diagnose {
 
     public void setIsCommon(String isCommon) {
         this.isCommon = isCommon == null ? null : isCommon.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Diagnose{" +
+                "id=" + id +
+                ", diseaseId=" + diseaseId +
+                ", medicalRecordNo='" + medicalRecordNo + '\'' +
+                ", majorDiagnoseSign='" + majorDiagnoseSign + '\'' +
+                ", suspectedSign='" + suspectedSign + '\'' +
+                ", diseaseTime=" + diseaseTime +
+                ", doctorId=" + doctorId +
+                ", diseaseType='" + diseaseType + '\'' +
+                ", isCommon='" + isCommon + '\'' +
+                ", diseaseName='" + diseaseName + '\'' +
+                ", doctorName='" + doctorName + '\'' +
+                '}';
     }
 }

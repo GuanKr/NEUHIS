@@ -1,5 +1,10 @@
 package neu.his.bean;
-
+/**
+ * 存储结算类别信息
+ * @author lsy
+ * @version 1.0
+ * @since 1.8
+ */
 public class SettlementType {
     /**
      * 主键id

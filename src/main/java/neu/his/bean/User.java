@@ -16,36 +16,66 @@ public class User {
      */
     private Integer roleId;
 
+    /**
+     * 科室id
+     */
     private Integer departmentId;
 
+    /**
+     * 姓名
+     */
     private String name;
 
+    /**
+     * 登陆名
+     */
     private String loginName;
 
+    /**
+     * 密码
+     */
     private String password;
 
+    /**
+     * 职称id
+     */
     private Integer titleId;
 
+    /**
+     * 挂号级别id
+     */
     private Integer registrationLevelId;
 
+    /**
+     * 角色名称
+     */
     public String rolename;
 
+    /**
+     * 科室名称
+     */
     public String departmentname;
 
+    /**
+     * 职称名称
+     */
     public String titlename;
 
+    /**
+     * 挂号级别名称
+     */
     public String registrationLevelname;
 
     /**
      * 构造方法1
      * @param id 主键id
      * @param roleId 角色id
-     * @param departmentId
-     * @param name
-     * @param loginName
-     * @param password
-     * @param titleId
-     * @param registrationLevelId
+     * @param departmentId 科室id
+     * @param name 姓名
+     * @param loginName 登陆名
+     * @param password 密码
+     * @param titleId 职称id
+     * @param registrationLevelId 挂号级别id
      */
     public User(Integer id, Integer roleId, Integer departmentId, String name, String loginName, String password, Integer titleId, Integer registrationLevelId) {
         this.id = id;
@@ -61,12 +91,12 @@ public class User {
     /**
      * 构造方法2
      * @param name 姓名
-     * @param loginName
-     * @param password
-     * @param registrationLevelname
-     * @param rolename
-     * @param departmentname
-     * @param titlename
+     * @param loginName 登录名
+     * @param password 密码
+     * @param registrationLevelname 挂号级别名称
+     * @param rolename 角色名称
+     * @param departmentname 科室名称
+     * @param titlename 职称名称
      */
     public User(String name, String loginName, String password, String registrationLevelname, String rolename, String departmentname, String titlename) {
         this.name = name;
@@ -81,13 +111,13 @@ public class User {
     /**
      * 构造方法3
      * @param id 主键id
-     * @param name
-     * @param loginName
-     * @param password
-     * @param rolename
-     * @param departmentname
-     * @param titlename
-     * @param registrationLevelname
+     * @param name 姓名
+     * @param loginName 登陆名
+     * @param password 密码
+     * @param rolename 角色名称
+     * @param departmentname 科室名称
+     * @param titlename 职称名称
+     * @param registrationLevelname 挂号级别名称
      */
     public User(Integer id, String name, String loginName, String password, String rolename, String departmentname, String titlename, String registrationLevelname) {
         this.id = id;

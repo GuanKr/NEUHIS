@@ -1,20 +1,49 @@
 package neu.his.bean;
 
 import java.math.BigDecimal;
-
+/**
+ * 存储检查/检验/处置组套详细信息
+ * @author lsy
+ * @version 1.0
+ * @since 1.8
+ */
 public class InspectionSetDetail {
+    /**
+     * 主键id
+     */
     private Integer id;
 
+    /**
+     * 组套id
+     */
     private Integer inspectionSetId;
 
+    /**
+     * 非药品id
+     */
     private Integer nonDrugListId;
 
+    /**
+     * 项目名称
+     */
     private String itemName;
 
+    /**
+     * 项目编码
+     */
     private String itemCode;
 
+    /**
+     * 单价
+     */
     private BigDecimal price;
 
+    /**
+     * 构造方法
+     * @param id 主键id
+     * @param inspectionSetId 组套id
+     * @param nonDrugListId 非药品id
+     */
     public InspectionSetDetail(Integer id, Integer inspectionSetId, Integer nonDrugListId) {
         this.id = id;
         this.inspectionSetId = inspectionSetId;

@@ -1,9 +1,7 @@
 package neu.his.service.impl;
 
 import neu.his.bean.*;
-import neu.his.dao.DiagnoseDirectoryMapper;
 import neu.his.dao.DiseaseMapper;
-import neu.his.dao.TranslateMapper;
 import neu.his.service.DiseaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

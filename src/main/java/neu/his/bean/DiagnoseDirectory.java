@@ -1,5 +1,10 @@
 package neu.his.bean;
-
+/**
+ * 存储诊断目录信息
+ * @author lsy
+ * @version 1.0
+ * @since 1.8
+ */
 public class DiagnoseDirectory {
     /**
      * 主键id
@@ -48,7 +53,7 @@ public class DiagnoseDirectory {
      * @param diseaseCategoryCode 分类编码
      * @param diseaseCategoryName 分类名称
      * @param sequenceNo 显示顺序号
-     * @param diseaseTypeName 疾病类型名称
+     * @param deseaseTypeName 疾病类型名称
      */
         public DiagnoseDirectory(String diseaseCategoryCode, Integer id, String diseaseCategoryName, Integer sequenceNo, String deseaseTypeName) {
         this.diseaseCategoryCode = diseaseCategoryCode;

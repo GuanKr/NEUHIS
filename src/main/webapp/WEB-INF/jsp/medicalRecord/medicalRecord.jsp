@@ -22,6 +22,16 @@
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">
 </head>
 <body style="margin-top: 20px">
+<%--查看检查检验结果对话框--%>
+<div id="inspectionResultDialog" title="检查结果"  style="display: none" >
+    <form>
+        <p>结果：<textarea class="input-lg form-control" id="inspectionResultInput" rows="3" ></textarea></p>
+        <div style="float: right;">
+            <input type="button" class="btn btn-primary" value="确定" onclick="addInspectionResultAnalyze()"/>
+            <input style="display: none" type="reset" id="inspectionResultDialogReset"/>
+        </div>
+    </form>
+</div>
 <%--添加常用项目对话框--%>
 <div id="commonInspectionDialog" title="添加常用项目"  style="display: none" >
     <form id="commonInspectionDialogForm">
@@ -260,6 +270,7 @@
             </div>
         </div>
     </div>
+    <%--右侧区域--%>
     <div class="col-md-8 center-block" style="border: solid 1px #2aabd2;width: 79.5%;height: 600px;overflow: auto">
         <ul id="myTab" class="nav nav-tabs">
             <li class="active"><a href="#medicalRecordTab" data-toggle="tab">病历首页</a></li>
@@ -622,6 +633,20 @@
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <script type="text/javascript">
 <%--    弹出的对话框  --%>
+    //检查检验结果分析弹出框
+    function showInspectionResultDialog() {
+        $('#inspectionResultDialog').dialog({
+            modal:true,
+            width:"600",
+            height:"480"
+        });
+        document.getElementById("inspectionResultDialog").style.display="block";
+    }
+        //检查检验结果分析弹出框的确定按钮
+    function addInspectionResultAnalyze() {
+        $('#inspectionResultDialog').dialog("close");
+        $("#inspectionResultDialogReset").click();
+    }
     //设为常用项目弹出框
     function showCommonInspectionDialog() {
         $('#commonInspectionDialog').dialog({

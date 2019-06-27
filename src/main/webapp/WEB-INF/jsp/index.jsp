@@ -27,8 +27,7 @@
     <br/><br/>
     <a href="registration/registrationInfo">挂号</a>
     <br/><br/>
-    <a href="inspection/inspectionManagement">医技</a>
+    <a href="charge/chargeManagement">门诊收费</a>
     <br/><br/>
-
 </body>
 </html>
