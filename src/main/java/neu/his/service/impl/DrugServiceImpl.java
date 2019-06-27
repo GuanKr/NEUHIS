@@ -36,16 +36,32 @@ public class DrugServiceImpl implements DrugService {
     public List<Drug> query(Drug drug) {
         DrugExample drugExample = new DrugExample();
         DrugExample.Criteria criteria = drugExample.createCriteria();
-        if(!(drug.getDrugDosage().isEmpty() || drug.getDrugDosage() == null)){
-            criteria.andDrugDosageLike(drug.getDrugDosage());
-        }else if(!(drug.getDrugCode().isEmpty() || drug.getDrugCode() == null)){
-            criteria.andDrugCodeLike(drug.getDrugCode());
-        }else  if(!(drug.getDrugName().isEmpty() || drug.getDrugName() == null)){
-            criteria.andDrugNameLike(drug.getDrugName());
-        }else if(!(drug.getMnemonicCode().isEmpty() || drug.getMnemonicCode() == null)){
-            criteria.andMnemonicCodeLike(drug.getMnemonicCode());
-        }else{
-            return null;
+
+        System.out.println(drug);
+        if(!(drug.getDrugDosage() == null)){
+            if(!drug.getDrugDosage().isEmpty()){
+                criteria.andDrugDosageLike("%" + drug.getDrugDosage() + "%");
+                System.out.println(drug);
+            }
+        }else if(!(drug.getDrugCode() == null)){
+            if(!drug.getDrugCode().isEmpty()){
+                criteria.andDrugCodeLike("%" +drug.getDrugCode()+ "%");
+                System.out.println(drug);
+            }
+
+        }else  if(!( drug.getDrugName() == null)){
+            if(!drug.getDrugName().isEmpty()){
+                criteria.andDrugNameLike("%" +drug.getDrugName()+ "%");
+                System.out.println(drug);
+            }
+
+        }else if(!( drug.getMnemonicCode() == null)){
+            if(!drug.getMnemonicCode().isEmpty()){
+                criteria.andMnemonicCodeLike("%" +drug.getMnemonicCode()+ "%");
+                System.out.println(drug);
+            }
+        }else {
+            criteria.andIdIsNotNull();
         }
         drugExample.or(criteria);
         return drugMapper.selectByExample(drugExample);
