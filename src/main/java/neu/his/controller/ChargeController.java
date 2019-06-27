@@ -2,6 +2,7 @@ package neu.his.controller;
 
 import neu.his.bean.Item;
 import neu.his.dto.ChargeDTO;
+import neu.his.dto.ResultDTO;
 import neu.his.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,5 +45,17 @@ public class ChargeController {
         Item[] items = chargeDTO.getItems();
         List<Item> itemList = new ArrayList<>(Arrays.asList(items));
         invoiceService.charge(itemList,chargeDTO.getSettlementType(),chargeDTO.getTollCollectorId(),chargeDTO.getPatientName(),chargeDTO.getMedicalNo());
+    }
+
+    /**
+     * 退号
+     * @param medicalRecordNo 病历号
+     * @return 是否成功
+     */
+    @RequestMapping("withdraw")
+    public @ResponseBody ResultDTO withdraw(String medicalRecordNo){
+        ResultDTO resultDTO = new ResultDTO();
+        resultDTO.setMsg(invoiceService.returnReg(medicalRecordNo));
+        return resultDTO;
     }
 }

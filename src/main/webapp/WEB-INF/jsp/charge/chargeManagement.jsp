@@ -22,6 +22,17 @@
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">
 </head>
 <body>
+<%--缴费对话框--%>
+<div id="chargeDialog" title="缴费"  style="display: none" >
+    <form>
+        <p>应收：<input type="text" class="form-control" id="shouldInput" readonly/></p>
+        <p>实收：<input type="text" class="form-control" id="realInput" /></p>
+        <div style="float: right;">
+            <input type="button" class="btn btn-primary" value="确定" onclick="closeDialog()"/>
+            <input style="display: none" type="reset" id="chargeDialogReset"/>
+        </div>
+    </form>
+</div>
 <%--导航栏--%>
 <nav id="nav" class="navbar navbar-default">
     <a href="#" class="navbar-brand">首页</a>
@@ -39,8 +50,6 @@
 <form class="" role="form" id="registrationInfo"><div class="container">
     <div class="col-md-2 pull-right">
         <button type="button" onclick="findRegistrationInfo()" class="btn btn-primary">查找</button>&nbsp;&nbsp;
-<%--        <input type="reset" class="btn btn-default" value="取消" />&nbsp;&nbsp;--%>
-<%--        <button type="button" id="updateRegistrationLevels" class="btn btn-primary">&nbsp;&nbsp;保存&nbsp;&nbsp;</button>--%>
     </div>
     <fieldset>
         <div id="legend" class="">
@@ -121,7 +130,7 @@
     <div class="col-md-3 pull-right">
         <b style="float: left">总金额：</b>
         <input type="text" class="form-control" style="width: 80px;float: left" id="totalCost" readonly/>&nbsp;&nbsp;
-        <button type="button" id="deleteRegistrationsButton" onclick="charge()" class="btn btn-primary">缴费</button>&nbsp;&nbsp;
+        <button type="button" id="deleteRegistrationsButton" onclick="showChargeDialog()" class="btn btn-primary">缴费</button>&nbsp;&nbsp;
     </div>
     <fieldset>
         <div class="">
@@ -152,7 +161,24 @@
 </form>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <script type="text/javascript">
+    //缴费弹出框
+    function showChargeDialog() {
+        $("#shouldInput").val(cost + "元");
+        $('#chargeDialog').dialog({
+            modal:true,
+            width:"500",
+            height:"400"
+        });
+        document.getElementById("chargeDialog").style.display="block";
+    }
+    //缴费弹出框的确定按钮
+    function closeDialog() {
+        $('#chargeDialog').dialog("close");
+        charge();
+        $("#chargeDialogReset").click();
+    }
     //病例查找
     function findRegistrationInfo() {
         if ($("#medicalRecordNoInput").val() == ""){
@@ -181,7 +207,7 @@
                     }
                 },
                 error :function () {
-                    alert("获取挂号列表失败");
+                    alert("获取挂号信息失败");
                 }
             });
         }
@@ -246,7 +272,8 @@
                 data: dataString,
                 contentType: 'application/json;charset=utf-8',
                 success: function () {
-                    alert("缴费成功");
+                    var money = Number($("#realInput").val()) - cost;
+                    alert("找零：" + money +"元，缴费成功");
                     $("#totalCost").val("");
                     $("#tableBody").html("");
                 }
@@ -267,7 +294,7 @@
     //设置登录选项
     function setDoctorIDBody(){
         var str;
-        str = "<option value=\"\">登录</option>";
+        str = "<option value=''>登录</option>";
         $("#doctorID").html("");
         for (let i = 0;i < doctors.length;i++){
             str += "<option value=\"" + doctors[i].id + "\">" + doctors[i].name + "</option>\n";
@@ -276,8 +303,7 @@
     }
 
     $(document).ready(function () {
-        //TODO 打开注释
-        // alert("请登录");
+        alert("请登录");
     });
 </script>
 </body>
