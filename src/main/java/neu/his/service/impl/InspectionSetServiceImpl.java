@@ -7,6 +7,7 @@ import neu.his.service.InspectionSetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 @Service
@@ -39,6 +40,33 @@ public class InspectionSetServiceImpl implements InspectionSetService {
     @Override
     public List<InspectionSet> findAllSet(Integer doctorId) {
         List<InspectionSet> list = inspectionSetMapper.selectWithName(doctorId);
+        for(InspectionSet inspectionSet : list){
+            inspectionSet.setCategory(translate(inspectionSet.getCategory()));
+        }
+        return list;
+    }
+
+    @Override
+    public List<InspectionSet> findAllInsSet(Integer doctorId) {
+        List<InspectionSet> list = inspectionSetMapper.findAllInsSet(doctorId);
+        for(InspectionSet inspectionSet : list){
+            inspectionSet.setCategory(translate(inspectionSet.getCategory()));
+        }
+        return list;
+    }
+
+    @Override
+    public List<InspectionSet> findAllCheckSet(Integer doctorId) {
+        List<InspectionSet> list = inspectionSetMapper.findAllCheckSet(doctorId);
+        for(InspectionSet inspectionSet : list){
+            inspectionSet.setCategory(translate(inspectionSet.getCategory()));
+        }
+        return list;
+    }
+
+    @Override
+    public List<InspectionSet> findAllHandleSet(Integer doctorId) {
+        List<InspectionSet> list = inspectionSetMapper.findAllHandleSet(doctorId);
         for(InspectionSet inspectionSet : list){
             inspectionSet.setCategory(translate(inspectionSet.getCategory()));
         }

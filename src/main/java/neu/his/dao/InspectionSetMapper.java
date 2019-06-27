@@ -27,6 +27,27 @@ public interface InspectionSetMapper {
     List<InspectionSet> query(SetQuery setQuery);
 
     /**
+     * 查找所有检查组套
+     * @param doctorId 操作的医生id
+     * @return 组套列表
+     */
+    List<InspectionSet> findAllInsSet(Integer doctorId);
+
+    /**
+     * 查找所有检验组套
+     * @param doctorId 操作的医生id
+     * @return 组套列表
+     */
+    List<InspectionSet> findAllCheckSet(Integer doctorId);
+
+    /**
+     * 查找所有处置组套
+     * @param doctorId 操作的医生id
+     * @return 组套列表
+     */
+    List<InspectionSet> findAllHandleSet(Integer doctorId);
+
+    /**
      * 查询组套信息
      * @param doctorId 操作的医生id
      * @return 组套列表

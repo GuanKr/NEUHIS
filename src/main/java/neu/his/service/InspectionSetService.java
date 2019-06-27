@@ -23,6 +23,27 @@ public interface InspectionSetService {
     List<InspectionSet> findAllSet(Integer doctorId);
 
     /**
+     * 查找所有检查组套
+     * @param doctorId 操作的医生id
+     * @return 组套列表
+     */
+    List<InspectionSet> findAllInsSet(Integer doctorId);
+
+    /**
+     * 查找所有检验组套
+     * @param doctorId 操作的医生id
+     * @return 组套列表
+     */
+    List<InspectionSet> findAllCheckSet(Integer doctorId);
+
+    /**
+     * 查找所有处置组套
+     * @param doctorId 操作的医生id
+     * @return 组套列表
+     */
+    List<InspectionSet> findAllHandleSet(Integer doctorId);
+
+    /**
      * 查找某组套下所有项目
      * @param setId 组套id
      * @return 项目列表
