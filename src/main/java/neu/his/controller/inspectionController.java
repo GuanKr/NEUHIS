@@ -26,6 +26,11 @@ public class inspectionController {
     @Autowired
     InspectionSetService inspectionSetService;
 
+    @RequestMapping("inspectionManagement")
+    public String toInspectionManagment(){
+        return "inspection/inspectionManagement";
+    }
+
     /**
      *查找检查项目
      * @param type 类型
@@ -38,6 +43,21 @@ public class inspectionController {
         List inspectionList = nonDrugListService.findByType(type,attribute_name,attribute);
         return inspectionList;
     }
+
+    /**
+     * 查找未登记检查项目
+     * @param attribute_name 属性名
+     * @param atrtibute 属性值
+     * @param doctorId 医生Id
+     * @return 检验
+     */
+    @RequestMapping("findInspectionByAttribute")
+    public @ResponseBody
+    List findInspectionByAttribute(String attribute_name,String atrtibute,String doctorId){
+        List<Inspection> inspectionList=inspectionService.selectByNameOrMedNo(attribute_name,atrtibute,Integer.parseInt(doctorId));
+        return inspectionList;
+    }
+
 
     /**
      * 开立项目
@@ -185,5 +205,52 @@ public class inspectionController {
     @RequestMapping("deleteCommonInspection")
     public @ResponseBody void deleteCommonInspection(int commonInspectionId){
         inspectionService.deleteCommon(commonInspectionId);
+    }
+
+    /**
+     *
+     * @param medicalNo
+     * @param inspectionId
+     * @param doctorId
+     * @return
+     */
+    @RequestMapping("register")
+    public @ResponseBody
+    String register(String medicalNo,String inspectionId,String doctorId){
+        String str="can't find";
+        List<Inspection> inspectionList=inspectionService.findByMedicalNo(medicalNo);
+        for(Inspection inspection:inspectionList){
+            if(inspection.getId().equals(inspectionId)){
+                inspectionService.register(inspection,Integer.parseInt(doctorId));
+                str="register success";
+            }
+        }
+        return str;
+    }
+
+    /**
+     * 查找需要录入结果的inspection
+     * @param medicalNo
+     * @return
+     */
+    @RequestMapping("findDoneRegister")
+    public @ResponseBody
+    List findRegested(String medicalNo){
+        List<Inspection> inspectionList=inspectionService.findByMedicalNo(medicalNo);
+        for(Inspection inspection:inspectionList){
+            if(!inspection.getInspectionResultAnalysis().equals("")){
+                inspectionList.remove(inspection);
+            }
+        }
+        return inspectionList;
+    }
+
+    /**
+     *
+     * @return
+     */
+    @RequestMapping("commonItems")
+    public String toCommonItems(){
+        return "inspection/commonItems";
     }
 }

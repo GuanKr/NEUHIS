@@ -50,7 +50,7 @@
                     <div class="collapse navbar-collapse" id="example-navbar-collapse">
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="inspection/inspectionManagement">检查检验</a></li>
-                            <li><a href="inspection/commonItems">常用项目维护</a></li>
+                            <li><a href="inspection/commonItems">录入结果</a></li>
                         </ul>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
         <div class="col-md-3 column">
             <select data-am-selected class="form-control"id = "searchBy" name="searchBy">
                 <option value="medical_record_no">病历号</option>
-                <option value="id" selected>id</option>
+                <option value="name" selected>姓名</option>
             </select>
         </div>
         <div class="col-md-6 column">
@@ -87,7 +87,7 @@
                 <th>处置名称</th>
                 <th>状态</th>
                 <th>登记</th>
-                <th>记录结果</th>
+<%--                <th>记录结果</th>--%>
             </tr>
             </thead>
             <tbody id="inspectionTable">
@@ -112,7 +112,7 @@
                 type:"POST",
                 data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val(),doctorId : $("#doctorId").val()},
                // data: {attribute : $("#searchVal").val()},
-                url :'inspection/findByAttribute',
+                url :'inspection/findInspectionByAttribute',
                 success:function(result){
                     inspectionList = result;
                     var str;
@@ -125,8 +125,8 @@
                             "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + inspectionList[i].nonDrugListName + "\" name=\"inspections[" + i + "].medicalRecordNo\"/></td>\n" +
                             "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + inspectionList[i].payState + "\" name=\"inspections[" + i + "].payState\"/></td>\n" +
                             //"<td class='col-md-2'><input type=\"button\" class=\"btn btn-primary\" id = \"register\" value=\"登记\"/></td>\n" +
-                            "<td class='col-md-2' ><button type=\"button\" class=\"btn btn-primary\" value=\"" + inspectionList[i].medicalRecordNo + ","+ inspectionList[i].id +"\"  id=\"register\" name=\"register\">登记</button></td>\n" +
-                            "<td class='col-md-2' ><button type=\"button\" class=\"btn btn-primary\" value=\"" + inspectionList[i].id + "\" id=\"result\">记录结果</button></td>\n" +
+                            "<td class='col-md-2' ><button type=\"button\" class=\"btn btn-primary\" value=\"" + inspectionList[i].medicalRecordNo +"\"  id=\"register\" name=\"register\">登记</button></td>\n" +
+                            //"<td class='col-md-2' ><button type=\"button\" class=\"btn btn-primary\" value=\"" + inspectionList[i].id + "\" id=\"result\">记录结果</button></td>\n" +
                             "</tr>";
                     }
                     $("#inspectionTable").append(str);
@@ -142,7 +142,7 @@
             //var currentEle = $(this);
             $.ajax({
                 type:"POST",
-                data:{medicalNoAndId : $("#register").val(), doctorId : $("#doctorId").val()},
+                data:{medicalNo : $("#register").val(), inspectionId:$("registerId").val(),doctorId : $("#doctorId").val()},
                 async: false,
                 url :'inspection/register',
                 success:function (result) {
