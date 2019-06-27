@@ -104,7 +104,9 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">录入结果</h4>
             </div>
-            <input value="" id="inputResult" />
+            <div class="modal-body">
+                <input value="" id="inputResult" />
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" class="btn btn-primary">保存结果</button>
@@ -112,7 +114,6 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
-
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
@@ -175,5 +176,5 @@
     // }
 
 </script>
-
+</body>
 </html>

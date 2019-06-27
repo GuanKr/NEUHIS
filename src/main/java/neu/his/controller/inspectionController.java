@@ -18,7 +18,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("inspection")
-public class inspectionController {
+public class InspectionController {
     @Autowired
     InspectionService inspectionService;
     @Autowired
@@ -244,7 +244,6 @@ public class inspectionController {
         }
         return inspectionList;
     }
-
     /**
      *
      * @return
