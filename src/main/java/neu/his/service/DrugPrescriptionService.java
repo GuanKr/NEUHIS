@@ -53,8 +53,9 @@ public interface DrugPrescriptionService {
     /**
      * 作废处方
      * @param id 处方id
+     * @return 结果
      */
-    void deletePrescription(Integer id);
+    String deletePrescription(Integer id);
 
     /**
      * 查找所有常用药
@@ -118,5 +119,13 @@ public interface DrugPrescriptionService {
      * @return 所有列表可退最大数量
      */
      List<Integer> returnAll(List<DrugPrescription> list);
+
+
+    /**
+     * 通过病历号查找未作废所有处方列表
+     * @param medicalNo 病历号
+     * @return 处方列表
+     */
+    List<DrugPrescription> findPrescription(String medicalNo);
 
 }

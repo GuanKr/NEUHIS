@@ -167,4 +167,20 @@ public class Drug {
     public void setMnemonicCode(String mnemonicCode) {
         this.mnemonicCode = mnemonicCode == null ? null : mnemonicCode.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Drug{" +
+                "id=" + id +
+                ", drugCode='" + drugCode + '\'' +
+                ", drugName='" + drugName + '\'' +
+                ", drugFormat='" + drugFormat + '\'' +
+                ", drugUnit='" + drugUnit + '\'' +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", drugDosage='" + drugDosage + '\'' +
+                ", drugType='" + drugType + '\'' +
+                ", drugPrice=" + drugPrice +
+                ", mnemonicCode='" + mnemonicCode + '\'' +
+                '}';
+    }
 }

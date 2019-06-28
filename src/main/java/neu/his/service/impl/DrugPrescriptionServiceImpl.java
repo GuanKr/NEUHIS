@@ -96,9 +96,12 @@ public class DrugPrescriptionServiceImpl implements DrugPrescriptionService {
         drugPrescription.setTakeMedicineState("0");
         drugPrescription.setStatus("1");
         drugPrescription.setCost(drugPrescription.getDrugPrice().multiply(new BigDecimal(drugPrescription.getQuantity())));
-        Drug drug = new Drug();
+/*        Drug drug = new Drug();
         drug.setDrugName(drugPrescription.getDrugName());
-        List<Drug> list = new DrugServiceImpl().query(drug);
+        List<Drug> list = new DrugServiceImpl().query(drug);*/
+        DrugExample drugExample = new DrugExample();
+        drugExample.or().andDrugNameEqualTo(drugPrescription.getDrugName());
+        List<Drug> list = drugMapper.selectByExample(drugExample);
         for(Drug drug1 : list){
             if(drug1.getDrugType().equals("中草药")){
                 drugPrescription.setDrugType("1");
@@ -110,8 +113,15 @@ public class DrugPrescriptionServiceImpl implements DrugPrescriptionService {
     }
 
     @Override
-    public void deletePrescription(Integer id) {
-        drugPrescriptionMapper.deleteByPrimaryKey(id);
+    public String deletePrescription(Integer id) {
+        DrugPrescription drugPrescription = drugPrescriptionMapper.selectByPrimaryKey(id);
+        if(drugPrescription.getPaymentState().equals("1")){
+            return "已缴费，不可作废";
+        }else{
+            drugPrescription.setStatus("0");
+            drugPrescriptionMapper.updateByPrimaryKeySelective(drugPrescription);
+            return "成功";
+        }
     }
 
     @Override
@@ -217,5 +227,19 @@ public class DrugPrescriptionServiceImpl implements DrugPrescriptionService {
             quantities.add(drugPrescription.getQuantity());
         }
         return quantities;
+    }
+
+    @Override
+    public List<DrugPrescription> findPrescription(String medicalNo) {
+        DrugPrescriptionExample drugPrescriptionExample = new DrugPrescriptionExample();
+        DrugPrescriptionExample.Criteria criteria = drugPrescriptionExample.createCriteria();
+        criteria.andStatusEqualTo("1");
+        criteria.andMedicalRecordNoEqualTo(medicalNo);
+        drugPrescriptionExample.or(criteria);
+        List<DrugPrescription> list = drugPrescriptionMapper.selectByExample(drugPrescriptionExample);
+        for(DrugPrescription drugPrescription : list){
+            drugPrescription.setDrugName(drugMapper.selectByPrimaryKey(drugPrescription.getDrugId()).getDrugName());
+        }
+        return list;
     }
 }

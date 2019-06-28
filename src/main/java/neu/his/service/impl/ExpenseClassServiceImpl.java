@@ -40,11 +40,12 @@ public class ExpenseClassServiceImpl implements ExpenseClassService {
         ExpenseClassExample.Criteria criteria = expenseClassExample.createCriteria();
         if(!(expenseclass.getExpenseCode() == null||expenseclass.getExpenseCode().isEmpty())){
             criteria.andExpenseCodeLike(expenseclass.getExpenseCode());
-        }else if(!(expenseclass.getExpenseName() == null || expenseclass.getExpenseName().isEmpty())){
-            criteria.andExpenseNameLike(expenseclass.getExpenseName());
-        }else {
-            return null;
         }
+
+        if(!(expenseclass.getExpenseName() == null || expenseclass.getExpenseName().isEmpty())){
+            criteria.andExpenseNameLike(expenseclass.getExpenseName());
+        }
+
         expenseClassExample.or(criteria);
         return expenseClassMapper.selectByExample(expenseClassExample);
     }

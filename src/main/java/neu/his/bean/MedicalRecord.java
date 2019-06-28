@@ -79,6 +79,22 @@ public class MedicalRecord {
     private String doctorName;
 
 
+    /**
+     *
+     * @param id 主键id
+     * @param doctorId 医生id
+     * @param chiefComplaint 主诉
+     * @param historyOfPresentIllness 现病史
+     * @param treatmentOfCurrentIllness 现病治疗情况
+     * @param pastHistory 既往史
+     * @param allergyHistory 过敏史
+     * @param physicalExamination 体格检查
+     * @param medicalRecordNo 病历号
+     * @param isCommon 常用标志
+     * @param templateName 模板名称
+     * @param category 模板类别
+     * @param seeTime 看诊时间
+     */
     public MedicalRecord(Integer id, Integer doctorId, String chiefComplaint, String historyOfPresentIllness, String treatmentOfCurrentIllness, String pastHistory, String allergyHistory, String physicalExamination, String medicalRecordNo, String isCommon, String templateName, String category, Date seeTime) {
         this.id = id;
         this.doctorId = doctorId;

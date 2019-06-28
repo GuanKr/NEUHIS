@@ -1,5 +1,6 @@
 package neu.his.bean;
 
+import java.math.BigDecimal;
 import java.util.Date;
 /**
  * 存储处方组套
@@ -47,6 +48,9 @@ public class PrescriptionSet {
      * 医生姓名
      */
     private String doctorName;
+
+
+
 
     /**
      * 构造方法

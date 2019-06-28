@@ -31,7 +31,5 @@
     <br/><br/>
     <a href="inspection/inspectionManagement">医技</a>
     <br/><br/>
-    <a href="pharmacy/drugManagement">药房</a>
-    <br/><br/>
 </body>
 </html>

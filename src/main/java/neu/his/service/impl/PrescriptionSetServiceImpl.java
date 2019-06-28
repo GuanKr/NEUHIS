@@ -6,10 +6,11 @@ import neu.his.dao.PrescriptionSetDetailMapper;
 import neu.his.dao.PrescriptionSetMapper;
 import neu.his.service.PrescriptionSetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-
+@Service
 public class PrescriptionSetServiceImpl implements PrescriptionSetService {
     @Autowired
     DrugPrescriptionMapper drugPrescriptionMapper;
@@ -31,7 +32,8 @@ public class PrescriptionSetServiceImpl implements PrescriptionSetService {
 
     @Override
     public List<PrescriptionSetDetail> findDetailBySet(Integer setId) {
-        return prescriptionSetDetailMapper.selectBySet(setId);
+        List<PrescriptionSetDetail> list = prescriptionSetDetailMapper.selectBySet(setId);
+        return list;
     }
 
     @Override
