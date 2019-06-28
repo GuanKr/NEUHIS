@@ -49,6 +49,16 @@ public class PrescriptionSetDetail {
     private String drugName;
 
     /**
+     * 价格
+     */
+    private BigDecimal price;
+
+    /**
+     * 类型
+     */
+    private String type;
+
+    /**
      * 构造方法
      * @param id 主键id
      * @param prescriptionSetId 处方组套id
@@ -66,6 +76,22 @@ public class PrescriptionSetDetail {
         this.drugUsage = drugUsage;
         this.drugDosage = drugDosage;
         this.frequency = frequency;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getDrugName() {

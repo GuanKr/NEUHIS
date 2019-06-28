@@ -32,7 +32,8 @@ public class PrescriptionSetServiceImpl implements PrescriptionSetService {
 
     @Override
     public List<PrescriptionSetDetail> findDetailBySet(Integer setId) {
-        return prescriptionSetDetailMapper.selectBySet(setId);
+        List<PrescriptionSetDetail> list = prescriptionSetDetailMapper.selectBySet(setId);
+        return list;
     }
 
     @Override
