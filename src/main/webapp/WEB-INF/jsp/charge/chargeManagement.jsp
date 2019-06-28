@@ -126,39 +126,82 @@
     </div>
 </div></form>
 <br/>
-<form class="container" id="chargeInfosForm">
-    <div class="col-md-3 pull-right">
-        <b style="float: left">总金额：</b>
-        <input type="text" class="form-control" style="width: 80px;float: left" id="totalCost" readonly/>&nbsp;&nbsp;
-        <button type="button" id="deleteRegistrationsButton" onclick="showChargeDialog()" class="btn btn-primary">缴费</button>&nbsp;&nbsp;
-    </div>
-    <fieldset>
-        <div class="">
-            <legend class="">收费项目列表</legend>
-        </div>
-    </fieldset>
-    <div class="center-block" style="overflow: auto;width: 100%;">
-        <form id="itemsForm">
-            <table class="table table-hover table-striped">
-                <thead>
-                <tr>
-                    <th>项目</th>
-                    <th>规格</th>
-                    <th>单价</th>
-                    <th>数量</th>
-                    <th>费用</th>
-                    <th>执行科室</th>
-                    <th>类型</th>
-                    <th>开立医生</th>
-                    <th>所属科室</th>
-                </tr>
-                </thead>
-                <tbody id="tableBody">
-                </tbody>
-            </table>
+<!-- 导航区 -->
+<ul class="container nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab">未缴费项目</a></li>
+    <li role="presentation"><a href="#profile" role="tab" data-toggle="tab">已缴费项目</a></li>
+</ul>
+<!-- 面板区 -->
+<div class="container tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">
+        <br>
+        <form class="container" id="chargeInfosForm">
+            <div class="col-md-3 pull-right">
+                <b style="float: left">总金额：</b>
+                <input type="text" class="form-control" style="width: 80px;float: left" id="totalCost" readonly/>&nbsp;&nbsp;
+                <button type="button" id="deleteRegistrationsButton" onclick="showChargeDialog()" class="btn btn-primary">缴费</button>&nbsp;&nbsp;
+            </div>
+            <fieldset>
+                <div class="">
+                    <legend class="">未缴费项目列表</legend>
+                </div>
+            </fieldset>
+            <div class="center-block" style="overflow: auto;width: 100%;">
+                <form id="itemsForm">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                        <tr>
+                            <th>项目</th>
+                            <th>规格</th>
+                            <th>单价</th>
+                            <th>数量</th>
+                            <th>费用</th>
+                            <th>执行科室</th>
+                            <th>类型</th>
+                            <th>开立医生</th>
+                            <th>所属科室</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                        </tbody>
+                    </table>
+                </form>
+            </div>
         </form>
     </div>
-</form>
+    <div role="tabpanel" class="tab-pane" id="profile">
+        <br>
+        <div class="col-md-2 pull-right">
+            <b style="float: left">总金额：</b>
+            <input type="text" class="form-control" style="width: 80px;float: left" id="paymentTotalCost" readonly/>
+        </div>
+        <fieldset>
+            <div class="">
+                <legend class="">已缴费项目列表</legend>
+            </div>
+        </fieldset>
+        <div class="center-block" style="overflow: auto;width: 100%;">
+            <form id="paymentItemsForm">
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>发票号</th>
+                        <th>项目</th>
+                        <th>金额</th>
+                        <th>类型</th>
+                        <th>结算方式</th>
+                        <th>开立科室</th>
+                        <th>执行科室</th>
+                        <th>缴费时间</th>
+                    </tr>
+                    </thead>
+                    <tbody id="paymentTableBody">
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
@@ -203,7 +246,9 @@
                         $("#registrationLevelNameInput").val(registrationInfo.registrationLevelName);
                         $("#settlementTypeNameInput").val(registrationInfo.settlementTypeName);
                         $("#isNeedMedicalRecordBookInput").val(registrationInfo.isNeedMedicalrecordbook);
+                        //查找未缴费与已缴费项目
                         findItemsAndCost();
+                        findPaymentItems();
                     }
                 },
                 error :function () {
@@ -212,7 +257,7 @@
             });
         }
     }
-    //收费项目列表
+    //未收费收费项目列表
     var items = null;
     //应收金额
     var cost = 0;
@@ -259,6 +304,46 @@
         }
         $("#tableBody").append(str);
     }
+    //已收费项目列表
+    var paymentItems = null;
+    //已收金额
+    var paymentCost = 0;
+    //已收费项目查找
+    function findPaymentItems() {
+        $.ajax({
+            type: "POST",
+            url: "charge/findByMedNo",
+            async: false,
+            data: {medicalNo : $("#medicalRecordNoInput").val()},
+            success: function (result) {
+                if (result.status == "OK"){
+                    paymentItems = result.data;
+                    setPaymentTableBody();
+                }
+            }
+        });
+    }
+    //生成已收费项目表
+    function setPaymentTableBody() {
+        var str = "";
+        $("#paymentTableBody").html("");
+        for (let i = 0; i < paymentItems.length; i++) {
+            str += "<tr>\n" +
+                "<th><input  type=\"text\" class='form-control' value='" + paymentItems[i].invoiceNo + "' readonly/></th>\n" +
+                "<th><input  type=\"text\" class='form-control' value='" + paymentItems[i].itemName + "' readonly/></th>\n" +
+                "<th><input  type=\"text\" class='form-control' value='" + paymentItems[i].cost + "元' readonly/></th>\n" +
+                "<th><input  type=\"text\" class='form-control' value='" + paymentItems[i].costType + "' readonly/></th>\n" +
+                "<th><input  type=\"text\" class='form-control' value='" + paymentItems[i].settlementTypeName + "' readonly/></th>\n" +
+                "<th><input  type=\"text\" class='form-control' value='" + paymentItems[i].drawBillDepartmentName + "' readonly/></th>\n" +
+                "<th><input  type=\"text\" class='form-control' value='" + paymentItems[i].executiveDepartmentName + "' readonly/></th>\n" +
+                "<th><input  type=\"text\" class='form-control' value='" + paymentItems[i].patientName + "' readonly/></th>\n" +
+                "</tr>";
+            paymentCost += paymentItems[i].cost;
+        }
+        $("#paymentTableBody").append(str);
+        $("#paymentTotalCost").val(paymentCost + "元");
+    }
+
     //缴费
     function charge() {
         if($("#doctorID").val() == ""){

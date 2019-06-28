@@ -112,8 +112,10 @@ public class InspectionController {
         String result = inspectionService.findResult(id);
         ResultDTO resultDTO = new ResultDTO();
         if (result == null){
+            resultDTO.setStatus("NG");
             resultDTO.setMsg("目前未出结果");
         }else {
+            resultDTO.setStatus("OK");
             resultDTO.setMsg(result);
         }
         return resultDTO;
@@ -141,6 +143,36 @@ public class InspectionController {
     @RequestMapping("getAllSets")
     public @ResponseBody List<InspectionSet> getAllSets(int doctorId){
         return inspectionSetService.findAllSet(doctorId);
+    }
+
+    /**
+     * 获取检查组套
+     * @param doctorId 医生id
+     * @return 检查组套
+     */
+    @RequestMapping("getSetsOne")
+    public @ResponseBody List<InspectionSet> getSetsOne(int doctorId){
+        return inspectionSetService.findAllInsSet(doctorId);
+    }
+
+    /**
+     * 获取检验组套
+     * @param doctorId 医生id
+     * @return 检验组套
+     */
+    @RequestMapping("getSetsTwo")
+    public @ResponseBody List<InspectionSet> getSetsTwo(int doctorId){
+        return inspectionSetService.findAllCheckSet(doctorId);
+    }
+
+    /**
+     * 获取处置组套
+     * @param doctorId 医生id
+     * @return 处置组套
+     */
+    @RequestMapping("getSetsThree")
+    public @ResponseBody List<InspectionSet> getSetsThree(int doctorId){
+        return inspectionSetService.findAllHandleSet(doctorId);
     }
 
     /**
