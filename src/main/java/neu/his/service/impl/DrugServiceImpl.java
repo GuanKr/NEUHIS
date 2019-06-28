@@ -36,7 +36,6 @@ public class DrugServiceImpl implements DrugService {
     public List<Drug> query(Drug drug) {
         DrugExample drugExample = new DrugExample();
         DrugExample.Criteria criteria = drugExample.createCriteria();
-        System.out.println(drug);
         if(!(drug.getDrugDosage() == null)){
             if(!drug.getDrugDosage().isEmpty()){
                 criteria.andDrugDosageLike("%" + drug.getDrugDosage() + "%");
