@@ -26,7 +26,20 @@ public class DrugController {
     public String toDrugManagement(){
         return "pharmacy/drugManagement";
     }
+    @RequestMapping("deliverDrug")
+    public String toDeliverDrug(){
+        return "pharmacy/deliverDrug";
+    }
 
+    /**
+     *
+     * @return
+     */
+    @RequestMapping("findAll")
+    public @ResponseBody
+    List findAll(){
+        return drugService.findAll();
+    }
     /**
      * 寻找药品
      * @param code 药品编码
@@ -37,10 +50,8 @@ public class DrugController {
      */
 
     @RequestMapping("searchBy")
-
     public @ResponseBody
-
-    List searchBy(@RequestParam String code, @RequestParam String name, @RequestParam String dosage, @RequestParam String mnemonic){
+    List searchBy( String code,  String name, String dosage, String mnemonic){
         Drug drug =new Drug(null,code,name,"","","",dosage,"",null,mnemonic);
         List<Drug> drugList = drugService.query(drug);
         return drugList;

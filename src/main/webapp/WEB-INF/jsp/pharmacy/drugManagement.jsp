@@ -50,7 +50,7 @@
                     <div class="collapse navbar-collapse" id="example-navbar-collapse">
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="pharmacy/drugManagement">药品信息维护</a></li>
-                            <li><a href=#>发药</a></li>
+                            <li><a href="pharmacy/deliverDrug" >发药</a></li>
                         </ul>
                     </div>
                 </div>
@@ -90,13 +90,13 @@
                                     <div class="col-md-4 pull-right">
                                         <div class="btn-group">
                                             <button class="btn btn-default" type="button" id="deleteDrugButton" style="text-align: center">
-                                                <em class="glyphicon glyphicon-align-left"></em>删除</button>
+                                                删除</button>
                                             <button class="btn btn-default" type="button" id="updateDrug" style="text-align: center">
-                                                <em class="glyphicon glyphicon-align-center"></em>保存</button>
+                                                保存</button>
                                             <button class="btn btn-default" data-toggle="modal" data-target="#insertDrugDialog" type="button" id="newDrug" style="text-align: center">
-                                                <em class="glyphicon glyphicon-align-right"></em>添加</button>
-                                            <button class="btn btn-default" type="button" style="text-align: center">
-                                                <em class="glyphicon glyphicon-align-justify"></em>4</button>
+                                                添加</button>
+                                            <button class="btn btn-default" type="button"  id="allDrug" style="text-align: center">
+                                                4</button>
                                         </div>
                                     </div>
                                 </div>
@@ -205,7 +205,7 @@
                 manufacturer:$("#newManuFacturer").val(),dosage: $("#newDrug_dosage").val(),type:$("#newDrug_type").val(),price:$("#newDrug_price").val(),mnemonic:$("#newDrug_mnemonic").val()},
             contentType:"application/x-www-form-urlencoded;charset=utf-8",
             async: false,
-            success :function(result){
+            success :function(){
                 alert("添加成功");
             },
             error :function (){
@@ -214,6 +214,22 @@
         });
     }
     $(document).ready(function(){
+        //all
+        $("#allDrug").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "pharmacy/findAll",
+                data: {},
+                async: false,
+                success :function(result){
+                    drugList=result;
+                    setDrugTable();
+                },
+                error :function(){
+                    alert("search fail");
+                }
+            });
+        });
         //删除单选项
         $("#deleteDrugButton").click(function () {
             $.ajax({
@@ -223,7 +239,7 @@
                 async: false,
                 success: function () {
                     alert("已删除");
-                    getPageN(1);
+                    //getPageN(1);
                 },
                 error :function () {
                     alert("删除失败");
@@ -249,11 +265,10 @@
         //提交搜索条件表单
         $("#submit").click(function(){
             $.ajax({
-                type:"POST",
-                url :'pharmacy/searchBy',
-                data: {code: $("#drug_code").val(), name: $("#drug_name").val(), dosage: $("#drug_dosage").val(), mnemonic: $("#mnemonic_code").val()},
-                contentType:"application/x-www-form-urlencoded;charset=utf-8",
-                async:false,
+                type: "POST",
+                url: "pharmacy/searchBy",
+                data: {code: $("#drug_code").val(),name: $("#drug_name").val(),dosage: $("#drug_dosage").val(),mnemonic: $("#mnemonic_code").val()},
+                async: true,
                 success :function(result){
                     drugList=result;
                     setDrugTable();
@@ -261,17 +276,13 @@
                 error :function(){
                     alert("search fail");
                 }
-
             });
-
         });
         //点击添加弹出dialog
         $(document).on('click','#newDrug',function(){
             $('#insertDrugDialog').modal('show');
         });
     });
-
-
 
 </script>
 </body>
