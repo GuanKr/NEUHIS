@@ -6,10 +6,11 @@ import neu.his.dao.PrescriptionSetDetailMapper;
 import neu.his.dao.PrescriptionSetMapper;
 import neu.his.service.PrescriptionSetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-
+@Service
 public class PrescriptionSetServiceImpl implements PrescriptionSetService {
     @Autowired
     DrugPrescriptionMapper drugPrescriptionMapper;
