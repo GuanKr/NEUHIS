@@ -153,8 +153,6 @@ public class InspectionController {
         return inspectionSetService.findDetailBySet(setId);
     }
 
-
-
     /**
      * 删除组套
      * @param setId 组套id
