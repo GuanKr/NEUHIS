@@ -218,7 +218,7 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
             diagnoseMapper.insertSelective(diagnose);
         }else{
             diagnose.setDiseaseType(new DiagnoseDirectoryServiceImpl().de_translate(diagnose.getDiseaseType()));
-            diagnoseMapper.updateByExample(diagnose,diagnoseExample);
+            diagnoseMapper.updateByExampleSelective(diagnose,diagnoseExample);
         }
     }
 

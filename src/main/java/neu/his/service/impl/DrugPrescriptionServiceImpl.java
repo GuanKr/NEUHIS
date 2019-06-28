@@ -113,8 +113,15 @@ public class DrugPrescriptionServiceImpl implements DrugPrescriptionService {
     }
 
     @Override
-    public void deletePrescription(Integer id) {
-        drugPrescriptionMapper.deleteByPrimaryKey(id);
+    public String deletePrescription(Integer id) {
+        DrugPrescription drugPrescription = drugPrescriptionMapper.selectByPrimaryKey(id);
+        if(drugPrescription.getPaymentState().equals("1")){
+            return "已缴费，不可作废";
+        }else{
+            drugPrescription.setStatus("0");
+            drugPrescriptionMapper.updateByPrimaryKeySelective(drugPrescription);
+            return "成功";
+        }
     }
 
     @Override

@@ -53,8 +53,9 @@ public interface DrugPrescriptionService {
     /**
      * 作废处方
      * @param id 处方id
+     * @return 结果
      */
-    void deletePrescription(Integer id);
+    String deletePrescription(Integer id);
 
     /**
      * 查找所有常用药
