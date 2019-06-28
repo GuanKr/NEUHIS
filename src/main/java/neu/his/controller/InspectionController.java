@@ -47,14 +47,14 @@ public class InspectionController {
     /**
      * 查找未登记检查项目
      * @param attribute_name 属性名
-     * @param atrtibute 属性值
+     * @param attribute 属性值
      * @param doctorId 医生Id
      * @return 检验
      */
     @RequestMapping("findInspectionByAttribute")
     public @ResponseBody
-    List findInspectionByAttribute(String attribute_name,String atrtibute,String doctorId){
-        List<Inspection> inspectionList=inspectionService.selectByNameOrMedNo(attribute_name,atrtibute,Integer.parseInt(doctorId));
+    List findInspectionByAttribute(String attribute_name,String attribute,String doctorId){
+        List<Inspection> inspectionList=inspectionService.selectByNameOrMedNo(attribute_name,attribute,Integer.parseInt(doctorId));
         return inspectionList;
     }
 

@@ -93,7 +93,7 @@
                                                 <em class="glyphicon glyphicon-align-left"></em>删除</button>
                                             <button class="btn btn-default" type="button" id="updateDrug" style="text-align: center">
                                                 <em class="glyphicon glyphicon-align-center"></em>保存</button>
-                                            <button class="btn btn-default" type="button" id="newDrug" style="text-align: center">
+                                            <button class="btn btn-default" data-toggle="modal" data-target="#insertDrugDialog" type="button" id="newDrug" style="text-align: center">
                                                 <em class="glyphicon glyphicon-align-right"></em>添加</button>
                                             <button class="btn btn-default" type="button" style="text-align: center">
                                                 <em class="glyphicon glyphicon-align-justify"></em>4</button>
@@ -143,6 +143,9 @@
                         <label for="newDrug_format">规格</label><input class="form-control" id="newDrug_format" type="text" />
                     </div>
                     <div class="form-group">
+                        <label for="newDrug_unit">单位</label><input class="form-control" id="newDrug_unit" type="text" />
+                    </div>
+                    <div class="form-group">
                         <label for="newManuFacturer">生产厂家</label><input class="form-control" id="newManuFacturer" type="text" />
                     </div>
                     <div class="form-group">
@@ -167,7 +170,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" >确定</button>
+                <button type="button" class="btn btn-primary" onclick="showInsertDialog()" >确定</button>
             </div>
         </div>
     </div>
@@ -182,35 +185,36 @@
         $("#drugTable").html("");
         for (var i = 0;i <drugList.length;i++){
             str +="<tr style='height: 40px'>" +
-                "<td width=\'50px\'><input type='radio' value='"+drugList[i].id+"'/></td>"+
-                "<td width=\"140px\"><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugCode+"\" name=\"drug["+ i + "].drugNameCode\" readonly/></td>\n" +
-                "<td width=\"140px\"><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugName+"\" name=\"drug["+ i + "].drugName\" readonly/></td>\n" +
-                "<td width=\"140px\"><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugFormat+"\" name=\"drug["+ i + "].drugFormat\" readonly/></td>\n" +
-                "<td width=\"140px\"><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugDosage+"\" name=\"drug["+ i + "].drugDosage\" readonly/></td>\n" +
-                "<td width=\"140px\"><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugPrice+"\" name=\"drug["+ i + "].drugPrice\" readonly/></td>\n" +
-                "<td width=\"140px\"><input type=\"text\" class=\"form-control\" value=\""+drugList[i].manufacturer+"\" name=\"drug["+ i + "].manufacturer\" readonly/></td>\n" +
+                "<td style='width: 48px ;height: 40px ' ><input type='radio' value='"+drugList[i].id+"'/></td>"+
+                "<td style='width: 138px ;height: 40px ' ><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugCode+"\" name=\"drug["+ i + "].drugNameCode\" readonly/></td>\n" +
+                "<td style='width: 138px ;height: 40px '><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugName+"\" name=\"drug["+ i + "].drugName\" readonly/></td>\n" +
+                "<td style='width: 138px ;height: 40px '><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugFormat+"\" name=\"drug["+ i + "].drugFormat\" readonly/></td>\n" +
+                "<td style='width: 138px ;height: 40px '><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugDosage+"\" name=\"drug["+ i + "].drugDosage\" readonly/></td>\n" +
+                "<td style='width: 138px ;height: 40px '><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugPrice+"\" name=\"drug["+ i + "].drugPrice\" readonly/></td>\n" +
+                "<td style='width: 138px ;height: 40px '><input type=\"text\" class=\"form-control\" value=\""+drugList[i].manufacturer+"\" name=\"drug["+ i + "].manufacturer\" readonly/></td>\n" +
                 "</tr>";
         }
         $("#drugTable").append(str);
     }
-    $(document).ready(function(){
-        $("#newDrug").click(function () {
-            $.ajax({
-                type: "POST",
-                url: "pharmacy/insertDrug",
-                contentType:"application/x-www-form-urlencoded;charset=utf-8",
-                data: {},
-                async: false,
-                success: function (result) {
-                    drugList = result;
-                    setDrugTable();
-                },
-                error :function () {
-                    alert("获取失败");
-                }
-            });
+    //在dialog中确定添加按钮功能
+    function showInsertDialog(){
+        $.ajax({
+            type: "POST",
+            url: "pharmacy/insertDrug",
+            data: {code: $("#newDrug_code").val(),name: $("#newDrug_name").val(),format: $("#newDrug_format").val(),unit :$("#newDrug_unit").val(),
+                manufacturer:$("#newManuFacturer").val(),dosage: $("#newDrug_dosage").val(),type:$("#newDrug_type").val(),price:$("#newDrug_price").val(),mnemonic:$("#newDrug_mnemonic").val()},
+            contentType:"application/x-www-form-urlencoded;charset=utf-8",
+            async: false,
+            success :function(result){
+                alert("添加成功");
+            },
+            error :function (){
+                alert("添加失败");
+            }
         });
-        //设置删除按钮功能
+    }
+    $(document).ready(function(){
+        //删除单选项
         $("#deleteDrugButton").click(function () {
             $.ajax({
                 type: "POST",
@@ -226,7 +230,7 @@
                 }
             });
         });
-        // //设置保存按钮功能
+        //设置保存按钮功能
         // $("#updateDrug").click(function () {
         //     $.ajax({
         //         type: "POST",
@@ -241,12 +245,13 @@
         //         }
         //     });
         // });
-        //查找按钮
+
+        //提交搜索条件表单
         $("#submit").click(function(){
             $.ajax({
                 type:"POST",
                 url :'pharmacy/searchBy',
-                data: {code :$("#drug_code").val(),name:$("#drug_name").val(),dosage: $("#drug_dosage").val(),mnemonic:$("#mnemonic_code").val()},
+                data: {code: $("#drug_code").val(), name: $("#drug_name").val(), dosage: $("#drug_dosage").val(), mnemonic: $("#mnemonic_code").val()},
                 contentType:"application/x-www-form-urlencoded;charset=utf-8",
                 async:false,
                 success :function(result){
@@ -256,8 +261,11 @@
                 error :function(){
                     alert("search fail");
                 }
+
             });
+
         });
+        //点击添加弹出dialog
         $(document).on('click','#newDrug',function(){
             $('#insertDrugDialog').modal('show');
         });
