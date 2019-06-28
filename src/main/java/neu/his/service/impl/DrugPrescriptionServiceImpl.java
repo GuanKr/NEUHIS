@@ -218,4 +218,18 @@ public class DrugPrescriptionServiceImpl implements DrugPrescriptionService {
         }
         return quantities;
     }
+
+    @Override
+    public List<DrugPrescription> findPrescription(String medicalNo) {
+        DrugPrescriptionExample drugPrescriptionExample = new DrugPrescriptionExample();
+        DrugPrescriptionExample.Criteria criteria = drugPrescriptionExample.createCriteria();
+        criteria.andStatusEqualTo("1");
+        criteria.andMedicalRecordNoEqualTo(medicalNo);
+        drugPrescriptionExample.or(criteria);
+        List<DrugPrescription> list = drugPrescriptionMapper.selectByExample(drugPrescriptionExample);
+        for(DrugPrescription drugPrescription : list){
+            drugPrescription.setDrugName(drugMapper.selectByPrimaryKey(drugPrescription.getDrugId()).getDrugName());
+        }
+        return list;
+    }
 }

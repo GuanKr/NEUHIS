@@ -119,4 +119,12 @@ public interface DrugPrescriptionService {
      */
      List<Integer> returnAll(List<DrugPrescription> list);
 
+
+    /**
+     * 通过病历号查找未作废所有处方列表
+     * @param medicalNo 病历号
+     * @return 处方列表
+     */
+    List<DrugPrescription> findPrescription(String medicalNo);
+
 }
