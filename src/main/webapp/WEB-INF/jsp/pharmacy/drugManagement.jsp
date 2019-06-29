@@ -66,21 +66,19 @@
         <div class="col-md-12 column">
             <div class="row clearfix">
                 <div class="col-md-3 column">
-                    <form role="form">
-                        <div class="form-group">
-                            <label for="drug_code">编码</label><input class="form-control" id="drug_code" type="text" />
-                        </div>
-                        <div class="form-group">
-                            <label for="drug_name">名称</label><input class="form-control" id="drug_name" type="text"   />
-                        </div>
-                        <div class="form-group">
-                            <label for="drug_dosage">剂型</label><input id="drug_dosage" class="form-control" type="text" />
-                        </div>
-                        <div class="form-group">
-                            <label for="mnemonic_code">助记码</label><input id="mnemonic_code" type="text"  class="form-control"/>
-                        </div>
-                        <button type="button" class="btn btn-primary"  id="submit">Submit</button>
-                    </form>
+                    <div class="form-group">
+                        <label for="drug_code">编码</label><input class="form-control" id="drug_code" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label for="drug_name">名称</label><input class="form-control" id="drug_name" type="text"   />
+                    </div>
+                    <div class="form-group">
+                        <label for="drug_dosage">剂型</label><input id="drug_dosage" class="form-control" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label for="mnemonic_code">助记码</label><input id="mnemonic_code" type="text"  class="form-control"/>
+                    </div>
+                    <button type="button" class="btn btn-primary"  id="submit">Submit</button>
                 </div>
                 <div class="col-md-9 column" >
                     <div class="container" >

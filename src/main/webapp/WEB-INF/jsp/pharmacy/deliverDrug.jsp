@@ -62,6 +62,97 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-3 column">
+            <form role="form">
+                <label class="col-md-4 control-label text-right" for="medical-record-no">病历号</label>
+                <div class="col-md-8 form-group" >
+                    <input type="text" class="form-control" id="medical-record-no" name="medical-record-no"/>
+                </div>
 
+                <label class="col-md-4 control-label text-right" for="state">状态</label>
+                <div class="col-md-8 form-group" >
+                    <select data-am-selected class="form-control"id = "state" name="state">
+                        <option value="1" selected >未发</option>
+                        <option value="2"  >已退</option>
+                        <option value="3">已发</option>
+                    </select>
+                </div>
+                <button class="btn btn-default" type="button" id="searchBy">search</button>
+            </form>
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>病历号</th>
+                    <th>姓名</th>
+                    <th>id</th>
+                </tr>
+                </thead>
+                <tbody id="prescriptionTable">
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-9 column">
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript">
+    var patientName="";
+    var prescriptionList="";
+    //根据病历号在挂号表中寻找姓名
+    // $.ajax({
+    //     type: "POST",
+    //     url: "pharmacy/"
+    // });
+
+    function findName(){
+        $.ajax({
+            type: "POST",
+            url: "pharmacy/findNameByMedical",
+            data: {medicalNo: $("#medical-record-no").val()},
+            success: function (result) {
+                patientName=result;
+            },
+            error : function(){
+                alert("find name from registration fail");
+            }
+        });
+    }
+    function setPrescriptionTable(){
+        var str;
+        str = "";
+        $("#prescriptionTable").html("");
+        for (var i = 0;i <prescriptionList.length;i++){
+            str +="<tr>\n" +
+                "<td><input type=\"text\" class=\"form-control\" value=\""+prescriptionList[i].medicalRecordNo+"\" name=\"\" id=\"foundMedicalNo\"/></td>\n" +
+                "<td><input type=\"text\" class=\"form-control\" value=\""+patientName+"\" name=\"\" id=\"foundName\"/></td>\n" +
+                "<td><input type=\"text\" class=\"form-control\" value=\""+prescriptionList[i].takeMedicineState+"\" name=\"\" id=\"foundId\"/></td>\n" +
+                "</tr>"
+        }
+        $("#prescriptionTable").append(str);
+    }
+    $(document).ready(function () {
+        //searchBy按钮
+        $("#searchBy").click(function(){
+            $.ajax({
+                type: "POST",
+                url: "pharmacy/findAllDrugPrescriptionByMedical",
+                data: {medicalNo: $("#medical-record-no").val(),state: $("#")},
+                success: function (result){
+                    prescriptionList=result;
+                    findName();
+                    setPrescriptionTable();
+                },
+                error:function(){
+                    alert("findAllfail");
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
