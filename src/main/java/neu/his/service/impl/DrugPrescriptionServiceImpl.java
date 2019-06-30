@@ -163,7 +163,7 @@ public class DrugPrescriptionServiceImpl implements DrugPrescriptionService {
         DrugPrescriptionExample.Criteria criteria = drugPrescriptionExample.createCriteria();
         criteria.andMedicalRecordNoEqualTo(medicalNo);
         criteria.andStatusEqualTo("1");
-        criteria.andTakeMedicineStateEqualTo(translate(state));
+        criteria.andTakeMedicineStateEqualTo(state);
         drugPrescriptionExample.or(criteria);
         List<DrugPrescription> list = drugPrescriptionMapper.selectByExample(drugPrescriptionExample);
         for(DrugPrescription drugPrescription : list){

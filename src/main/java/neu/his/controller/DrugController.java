@@ -21,7 +21,9 @@ import java.util.List;
 public class DrugController {
     @Autowired
     DrugService drugService;
+    @Autowired
     DrugPrescriptionService drugPrescriptionService;
+    @Autowired
     RegistrationInfoService registrationInfoService;
 
     /**
@@ -38,8 +40,8 @@ public class DrugController {
     }
 
     /**
-     *
-     * @return
+     * 寻找全部药品
+     * @return 全部的药品列表
      */
     @RequestMapping("findAll")
     public @ResponseBody
@@ -59,8 +61,7 @@ public class DrugController {
     public @ResponseBody
     List searchBy( String code,  String name, String dosage, String mnemonic){
         Drug drug =new Drug(null,code,name,"","","",dosage,"",null,mnemonic);
-        List<Drug> drugs = drugService.query(drug);
-        return drugs;
+        return drugService.query(drug);
     }
 
     /**
@@ -120,33 +121,51 @@ public class DrugController {
 
     /**
      *
-     * @param medicalNo
-     * @param state
-     * @return
+     * @param medicalNo 病历号
+     * @param state 状态
+     * @return 返回DrugPrescription列表
      */
     @RequestMapping("findAllDrugPrescriptionByMedical")
     public @ResponseBody
     List findAllDrugPrescriptionByMedical(String medicalNo,String state){
-        List<DrugPrescription> drugPrescriptions= drugPrescriptionService.findByMedNo(medicalNo,state);
-        return drugPrescriptions;
+        return drugPrescriptionService.findByMedNo(medicalNo,state);
     }
 
     /**
-     *
-     * @param medicalNo
-     * @return
+     * 返回患者姓名
+     * @param medicalNo 病历号
+     * @return 姓名
      */
     @RequestMapping("findNameByMedical")
     public @ResponseBody
     String findNameByMedical(String medicalNo){
-        String str="";
-        List<RegistrationInfo> all = registrationInfoService.findAll();
-        for(RegistrationInfo registrationInfo:all){
-            if(registrationInfo.getMedicalRecordNo().equals(medicalNo)){
-                str=registrationInfo.getPatientName();
+        String str=medicalNo;
+//        List<RegistrationInfo> all = registrationInfoService.findAll();
+//        for(RegistrationInfo registrationInfo:all){
+//            if(Integer.parseInt(registrationInfo.getMedicalRecordNo())==Integer.parseInt(medicalNo)){
+//                str=registrationInfo.getPatientName();
+//            }
+//        }
+        return str;
+    }
+
+    /**
+     * 展示选中的prescription
+     * @param medicalNo 病历号
+     * @param prescriptionId id
+     * @return 发药单
+     */
+    @RequestMapping("showDetails")
+    public @ResponseBody
+    DrugPrescription showDetails(String medicalNo,String prescriptionId){
+        DrugPrescription dp =new DrugPrescription();
+        List<DrugPrescription> drugPrescriptions= drugPrescriptionService.findPrescription(medicalNo);
+        for(DrugPrescription drugPrescription:drugPrescriptions){
+            if(drugPrescription.getId()==Integer.parseInt(prescriptionId)){
+                dp=drugPrescription;
             }
         }
-        return str;
+        return dp;
     }
 
 }

@@ -74,9 +74,9 @@
                 <label class="col-md-4 control-label text-right" for="state">状态</label>
                 <div class="col-md-8 form-group" >
                     <select data-am-selected class="form-control"id = "state" name="state">
-                        <option value="1" selected >未发</option>
-                        <option value="2"  >已退</option>
-                        <option value="3">已发</option>
+                        <option value="0" selected >未发</option>
+                        <option value="1"  >已退</option>
+                        <option value="2">已发</option>
                     </select>
                 </div>
                 <button class="btn btn-default" type="button" id="searchBy">search</button>
@@ -94,26 +94,42 @@
             </table>
         </div>
         <div class="col-md-9 column">
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>病历号</th>
+                    <th>姓名</th>
+                    <th>id</th>
+                    <th>药品名称</th>
+                    <th>药品id</th>
+                    <th>数量</th>
+                    <th>缴费状态</th>
+<%--                    0，1--%>
+                    <th>取药状态</th>
+<%--                    0，1，2--%>
+                    <th>总价</th>
+                    <th>单价</th>
+                    <th>??</th>
+                </tr>
+                </thead>
+                <tbody id="detailTable">
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript">
     var patientName="";
     var prescriptionList="";
-    //根据病历号在挂号表中寻找姓名
-    // $.ajax({
-    //     type: "POST",
-    //     url: "pharmacy/"
-    // });
+    var certainPrescription;
 
     function findName(){
         $.ajax({
             type: "POST",
             url: "pharmacy/findNameByMedical",
-            data: {medicalNo: $("#medical-record-no").val()},
+            data: { medicalNo: $("#medical-record-no").val()},
             success: function (result) {
                 patientName=result;
             },
@@ -126,14 +142,44 @@
         var str;
         str = "";
         $("#prescriptionTable").html("");
+        //+ prescriptionList[i].medicalRecordNo ,prescriptionList[i].id +
         for (var i = 0;i <prescriptionList.length;i++){
-            str +="<tr>\n" +
+            str +="<tr  onclick=\"showDetails('"+prescriptionList[i].medicalRecordNo+"','"+prescriptionList[i].id+"')\"  >\n" +
                 "<td><input type=\"text\" class=\"form-control\" value=\""+prescriptionList[i].medicalRecordNo+"\" name=\"\" id=\"foundMedicalNo\"/></td>\n" +
                 "<td><input type=\"text\" class=\"form-control\" value=\""+patientName+"\" name=\"\" id=\"foundName\"/></td>\n" +
-                "<td><input type=\"text\" class=\"form-control\" value=\""+prescriptionList[i].takeMedicineState+"\" name=\"\" id=\"foundId\"/></td>\n" +
+                "<td><input type=\"text\" class=\"form-control\" value=\""+prescriptionList[i].id+"\" name=\"\" id=\"foundId\"/></td>\n" +
                 "</tr>"
         }
         $("#prescriptionTable").append(str);
+    }
+    function showDetails(medicalNo,prescriptionId){
+        $.ajax({
+            type: "POST",
+            url:"pharmacy/showDetails",
+            data:{medicalNo: medicalNo,prescriptionId: prescriptionId},
+            async:false,
+            success: function(result){
+                certainPrescription=result;
+                var str="";
+                str+="<tr>\n" +
+                    "<td><input class=\"form-group\" type=\"text\" value=\""+certainPrescription.medicalRecordNo+"\" /></td>\n" +
+                    "<td><input class=\"form-group\" type=\"text\" value=\""+certainPrescription.medicalRecordNo+"\" /></td>\n" +
+                    "<td><input class=\"form-group\" type=\"text\" value=\""+certainPrescription.id+"\" /></td>\n" +
+                    "<td><input class=\"form-group\" type=\"text\" value=\""+certainPrescription.drugName+"\" /></td>\n" +
+                    "<td><input class=\"form-group\" type=\"text\" value=\""+certainPrescription.drugId+"\" /></td>\n" +
+                    "<td><input class=\"form-group\" type=\"text\" value=\""+certainPrescription.quantity+"\" /></td>\n" +
+                    "<td><input class=\"form-group\" type=\"text\" value=\""+certainPrescription.paymentState+"\" /></td>\n" +
+                    "<td><input class=\"form-group\" type=\"text\" value=\""+certainPrescription.takeMedicineState+"\" /></td>\n" +
+                    "<td><input class=\"form-group\" type=\"text\" value=\""+certainPrescription.cost+"\" /></td>\n" +
+                    "<td><input class=\"form-group\" type=\"text\" value=\""+certainPrescription.drugPrice+"\" /></td>\n" +
+                    "<td><input type=button /></td>\n" +
+                    "</tr>"
+                $("#detailTable").append(str);
+            },
+            error:function(){
+                alert("show details fail");
+            }
+        });
     }
     $(document).ready(function () {
         //searchBy按钮
@@ -141,7 +187,7 @@
             $.ajax({
                 type: "POST",
                 url: "pharmacy/findAllDrugPrescriptionByMedical",
-                data: {medicalNo: $("#medical-record-no").val(),state: $("#")},
+                data: {medicalNo: $("#medical-record-no").val(),state: $("#state").val()},
                 success: function (result){
                     prescriptionList=result;
                     findName();
@@ -153,6 +199,7 @@
             });
         });
     });
+
 </script>
 </body>
 </html>
