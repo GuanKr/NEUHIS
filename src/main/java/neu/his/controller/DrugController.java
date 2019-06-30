@@ -176,5 +176,4 @@ public class DrugController {
     void takeMedicine(DrugPrescription drugPrescription){
         drugPrescriptionService.dispense(drugPrescription);
     }
-
 }

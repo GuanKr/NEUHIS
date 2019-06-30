@@ -160,6 +160,7 @@
             data:{medicalNo: medicalNo,prescriptionId: prescriptionId},
             async:false,
             success: function(result){
+                $("#detailTable").html("");
                 certainPrescription=result;
                 var str="";
                 str+="<tr>\n" +
