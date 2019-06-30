@@ -29,7 +29,6 @@ public class DrugPrescriptionServiceImpl implements DrugPrescriptionService {
     private static List<DrugPrescription> temDrugPre = new ArrayList<>();
     private static int temPreId = 1;
 
-
     public String translate(String type) {
         switch (type) {
             case "0":

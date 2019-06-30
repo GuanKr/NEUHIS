@@ -130,7 +130,6 @@ public class DrugController {
     List findAllDrugPrescriptionByMedical(String medicalNo,String state){
         return drugPrescriptionService.findByMedNo(medicalNo,state);
     }
-
     /**
      * 返回患者姓名
      * @param medicalNo 病历号

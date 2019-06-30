@@ -152,6 +152,7 @@
         }
         $("#prescriptionTable").append(str);
     }
+
     function showDetails(medicalNo,prescriptionId){
         $.ajax({
             type: "POST",
