@@ -167,4 +167,14 @@ public class DrugController {
         return dp;
     }
 
+    /**
+     * 发药
+     * @param drugPrescription 发药处方
+     */
+    @RequestMapping("takeMedicine")
+    public @ResponseBody
+    void takeMedicine(DrugPrescription drugPrescription){
+        drugPrescriptionService.dispense(drugPrescription);
+    }
+
 }

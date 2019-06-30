@@ -163,17 +163,18 @@
                 certainPrescription=result;
                 var str="";
                 str+="<tr>\n" +
-                    "<td><input class=\"form-group\" type=\"text\" value=\""+certainPrescription.medicalRecordNo+"\" /></td>\n" +
-                    "<td><input class=\"form-group\" type=\"text\" value=\""+certainPrescription.medicalRecordNo+"\" /></td>\n" +
-                    "<td><input class=\"form-group\" type=\"text\" value=\""+certainPrescription.id+"\" /></td>\n" +
-                    "<td><input class=\"form-group\" type=\"text\" value=\""+certainPrescription.drugName+"\" /></td>\n" +
-                    "<td><input class=\"form-group\" type=\"text\" value=\""+certainPrescription.drugId+"\" /></td>\n" +
-                    "<td><input class=\"form-group\" type=\"text\" value=\""+certainPrescription.quantity+"\" /></td>\n" +
-                    "<td><input class=\"form-group\" type=\"text\" value=\""+certainPrescription.paymentState+"\" /></td>\n" +
-                    "<td><input class=\"form-group\" type=\"text\" value=\""+certainPrescription.takeMedicineState+"\" /></td>\n" +
-                    "<td><input class=\"form-group\" type=\"text\" value=\""+certainPrescription.cost+"\" /></td>\n" +
-                    "<td><input class=\"form-group\" type=\"text\" value=\""+certainPrescription.drugPrice+"\" /></td>\n" +
-                    "<td><input type=button /></td>\n" +
+                    "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.medicalRecordNo+"\" /></td>\n" +
+                    "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.medicalRecordNo+"\" /></td>\n" +
+                    "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.id+"\" /></td>\n" +
+                    "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.drugName+"\" /></td>\n" +
+                    "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.drugId+"\" /></td>\n" +
+                    "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.quantity+"\" /></td>\n" +
+                    "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.paymentState+"\" /></td>\n" +
+                    "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.takeMedicineState+"\" /></td>\n" +
+                    "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.cost+"\" /></td>\n" +
+                    "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.drugPrice+"\" /></td>\n" +
+                    "<td><button class=\"btn-primary\" type=\"button\" id=\"takeMedicine\" value=\""+certainPrescription+"\"'/></td>\n" +
+                    //这个值不对，明天改一下
                     "</tr>"
                 $("#detailTable").append(str);
             },
@@ -196,6 +197,21 @@
                 },
                 error:function(){
                     alert("findAllfail");
+                }
+            });
+        });
+        //fayao按钮
+        $(document).on('click','#takeMedicine',function(){
+            $.ajax({
+                type: "POST",
+                url: "pharmacy/takeMedicine",
+                data: {drugPrescription: $("#takeMedicine").val()},
+                async: false,
+                success: function(){
+                    alert("take Medicine success");
+                },
+                error: function(){
+                    alert("take Medicine fail");
                 }
             });
         });
