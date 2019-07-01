@@ -107,7 +107,7 @@
     </if>
   </delete>
   <insert id="insertSelective" parameterType="neu.his.bean.DrugPrescription" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into drug_prescription
