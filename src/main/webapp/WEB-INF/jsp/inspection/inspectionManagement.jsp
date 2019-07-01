@@ -105,6 +105,21 @@
 <script type="text/javascript">
     var inspectionList = null;
 
+    function register(i){
+        $.ajax({
+            type:"POST",
+            data:{medicalNo :inspectionList[i].medicalRecordNo, inspectionId: inspectionList[i].id,doctorId : $("#doctorId").val()},
+            async: false,
+            url :'inspection/register',
+            success:function (result) {
+                str = result;
+                alert(str);
+            },
+            error :function () {
+                alert("登记失败");
+            }
+        });
+    }
     $(document).ready(function(){
         //设置查找功能按钮
         $("#search").click(function(){
@@ -125,7 +140,7 @@
                             "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + inspectionList[i].nonDrugListName + "\" name=\"inspections[" + i + "].medicalRecordNo\"/></td>\n" +
                             "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + inspectionList[i].payState + "\" name=\"inspections[" + i + "].payState\"/></td>\n" +
                             //"<td class='col-md-2'><input type=\"button\" class=\"btn btn-primary\" id = \"register\" value=\"登记\"/></td>\n" +
-                            "<td class='col-md-2' ><button type=\"button\" class=\"btn btn-primary\" value=\"" + inspectionList[i].medicalRecordNo +"\"  id=\"register\" name=\"register\">登记</button></td>\n" +
+                            "<td class='col-md-2' ><button type=\"button\" class=\"btn btn-primary\" value=\"" + inspectionList[i].medicalRecordNo +"\"  id=\"register\" name=\"register\" onclick=\"register("+i+")\" >登记</button></td>\n" +
                             //"<td class='col-md-2' ><button type=\"button\" class=\"btn btn-primary\" value=\"" + inspectionList[i].id + "\" id=\"result\">记录结果</button></td>\n" +
                             "</tr>";
                     }
@@ -138,22 +153,8 @@
             });
         });
         var str ="";
-        $(document).on('click','#register',function(){
-            //var currentEle = $(this);
-            $.ajax({
-                type:"POST",
-                data:{medicalNo : $("#register").val(), inspectionId: $("#registerId").val(),doctorId : $("#doctorId").val()},
-                async: false,
-                url :'inspection/register',
-                success:function (result) {
-                    str = result;
-                    alert(str);
-                },
-                error :function () {
-                    alert("登记失败");
-                }
-            });
-        });
+
+
     });
 
 
