@@ -176,12 +176,25 @@ public class MedicalRecordController {
         }
         return medicalRecordList;
     }
+
+    /**
+     * 获取病历首页
+     * @param medicalRecordNo 病历号
+     * @return 病历首页
+     */
     @RequestMapping("findByMedicalNo")
     public @ResponseBody ResultDTO findByMedicalNo(String medicalRecordNo){
         ResultDTO resultDTO = new ResultDTO();
         resultDTO.setData(medicalRecordService.findByMedicalNo(medicalRecordNo));
         return resultDTO;
     }
+
+    /**
+     * 确诊
+     * @param doctorId 医生id
+     * @param medicalRecordNo 病历号
+     * @param diagnoseDTO 诊断列表
+     */
     @RequestMapping("confirmed")
     public @ResponseBody void confirmed(int doctorId,String medicalRecordNo,DiagnoseDTO diagnoseDTO){
         List<Diagnose> diagnoses = diagnoseDTO.getDiagnoses();
@@ -195,5 +208,15 @@ public class MedicalRecordController {
             }
             medicalRecordService.SubmissionDiagnose(diagnose);
         }
+    }
+
+    /**
+     * 获取诊断信息
+     * @param medicalRecordNo 病历号
+     * @return 诊断列表
+     */
+    @RequestMapping("getDiagnose")
+    public @ResponseBody List<Diagnose> getDiagnose(String medicalRecordNo){
+        return medicalRecordService.findByMedNo(medicalRecordNo);
     }
 }

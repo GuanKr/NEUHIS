@@ -257,7 +257,7 @@
             });
         }
     }
-    //未收费收费项目列表
+    //未收费项目列表
     var items = null;
     //应收金额
     var cost = 0;
@@ -341,6 +341,7 @@
             paymentCost += paymentItems[i].cost;
         }
         $("#paymentTableBody").append(str);
+        paymentCost = paymentCost.toFixed(2);
         $("#paymentTotalCost").val(paymentCost + "元");
     }
 
@@ -357,10 +358,13 @@
                 data: dataString,
                 contentType: 'application/json;charset=utf-8',
                 success: function () {
-                    var money = Number($("#realInput").val()) - cost;
+                    // var money = Number($("#realInput").val()) - cost;
+                    var money = $("#realInput").val() - cost;
+                    money = money.toFixed(2);
                     alert("找零：" + money +"元，缴费成功");
                     $("#totalCost").val("");
                     $("#tableBody").html("");
+                    findPaymentItems()
                 }
             });
         }
