@@ -6,7 +6,7 @@ import neu.his.bean.Item;
 import java.util.Date;
 import java.util.List;
 
-/**处理发票信息
+/**处理发票/缴费记录信息
  * @author lsy
  * @version 1.8
  * @since 1.0
