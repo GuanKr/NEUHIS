@@ -84,7 +84,9 @@ public class InspectionServiceImpl implements InspectionService {
     @Override
     public String deleteInspection(Inspection inspection) {
         if(inspection.getRegisterState().equals("1")){
-            return "已开立，无法作废";
+            return "已登记，无法作废";
+        }else if(inspection.getPayState().equals("1")){
+            return "已缴费，无法作废";
         }else{
             inspection.setValidity("0");
             inspectionMapper.updateByPrimaryKeySelective(inspection);

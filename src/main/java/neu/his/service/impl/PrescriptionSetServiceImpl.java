@@ -42,12 +42,6 @@ public class PrescriptionSetServiceImpl implements PrescriptionSetService {
         prescriptionSet.setCreateTime(new Date());
         prescriptionSetMapper.insertSelective(prescriptionSet);
         Integer setId = prescriptionSet.getId();
-        /*PrescriptionSetExample prescriptionSetExample = new PrescriptionSetExample();
-        PrescriptionSetExample.Criteria criteria = prescriptionSetExample.createCriteria();
-        criteria.andDoctorIdEqualTo(prescriptionSet.getDoctorId());
-        criteria.andCreateTimeEqualTo(prescriptionSet.getCreateTime());
-        prescriptionSetExample.or(criteria);
-        Integer setId = prescriptionSetMapper.selectByExample(prescriptionSetExample).get(0).getId();*/
         PrescriptionSetDetail prescriptionSetDetail = new PrescriptionSetDetail();
         prescriptionSetDetail.setPrescriptionSetId(setId);
         for(DrugPrescription drugPrescription : list){
