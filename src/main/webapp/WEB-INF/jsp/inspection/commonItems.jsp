@@ -103,13 +103,14 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">录入结果</h4>
+                <input type="text" style="display: none" id="none-i">
             </div>
             <div class="modal-body">
                 <input class="form-control" id="inputResult" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" onclick="saveResult()">保存结果</button>
+                <button type="button" class="btn btn-primary" onclick="saveResult(i)">保存结果</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
@@ -122,7 +123,7 @@
     function saveResult(){
         $.ajax({
             type:"POST",
-            data: {inspectionId : $("#resultId").val(),result: $("#inputResult").val()},
+            data: {inspectionId : inspectionList[$("#none-i").val()].id,result: $("#inputResult").val()},
             url :'inspection/saveResult',
             async: false,
             success :function (result) {
@@ -132,6 +133,10 @@
                 alert("结果保存失败");
             }
         });
+    }
+    function rusultdia(i){
+        $('#myModal').modal('show');
+        $("#none-i").val(i);
     }
     $(document).ready(function(){
         //设置查找功能按钮
@@ -153,7 +158,7 @@
                             "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + inspectionList[i].payState + "\" name=\"inspections[" + i + "].payState\"/></td>\n" +
                             //"<td class='col-md-2'><input type=\"button\" class=\"btn btn-primary\" id = \"register\" value=\"登记\"/></td>\n" +
                             //"<td class='col-md-2' ><button type=\"button\" class=\"btn btn-primary\" value=\"" + inspectionList[i].medicalRecordNo +"\"  id=\"register\" name=\"register\">登记</button></td>\n" +
-                            "<td class='col-md-2' ><button type=\"button\" class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-target=\"#myModal\" value=\"" + inspectionList[i].id + "\" id=\"result\">记录结果</button></td>\n" +
+                            "<td class='col-md-2' ><button type=\"button\" class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-target=\"#myModal\" value=\"" + inspectionList[i].id + "\" id=\"result\" onclick='rusultdia("+i+")'>记录结果</button></td>\n" +
                             "</tr>";
                     }
                     $("#inspectionTable").append(str);
@@ -164,10 +169,7 @@
                 }
             });
         });
-        $(document).on('click','#result',function(){
-            $('#myModal').modal('show');
 
-        });
     });
 
 
