@@ -4,7 +4,7 @@
 
 
   <select id="selectBySet" parameterType="Integer" resultMap="Detail">
-    select prescription_set_detail.id as psId ,prescription_set_id, drug_id, drug_format, drug_usage, drug_dosage, frequency, drug_name,drug.drug_price,drug.drug_type
+    select prescription_set_detail.id as psId ,prescription_set_id, drug_id,drug.drug_format as drug_format, drug_usage, drug_dosage, frequency, drug_name,drug.drug_price,drug.drug_type
     from prescription_set_detail left join drug
     on prescription_set_detail.drug_id = drug.id
     where prescription_set_detail.prescription_set_id= #{setId}
