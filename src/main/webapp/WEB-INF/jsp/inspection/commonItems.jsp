@@ -104,21 +104,35 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">录入结果</h4>
             </div>
-            <input value="" id="inputResult" />
+            <div class="modal-body">
+                <input class="form-control" id="inputResult" />
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">保存结果</button>
+                <button type="button" class="btn btn-primary" onclick="saveResult()">保存结果</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
 
-
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript">
     var inspectionList = null;
-
+    function saveResult(){
+        $.ajax({
+            type:"POST",
+            data: {inspectionId : $("#resultId").val(),result: $("#inputResult").val()},
+            url :'inspection/saveResult',
+            async: false,
+            success :function (result) {
+                alert("结果保存成功");
+            },
+            error :function(){
+                alert("结果保存失败");
+            }
+        });
+    }
     $(document).ready(function(){
         //设置查找功能按钮
         $("#search").click(function(){
@@ -133,8 +147,8 @@
                     $("#inspectionTable").html("");
                     for (var i = 0;i < inspectionList.length;i++){
                         str += "<tr>" +
-                            "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + inspectionList[i].id + "\" id=\"registerId\" name=\"inspections[" + i + "].id\" readonly/></td>\n" +
-                            "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + inspectionList[i].medicalRecordNo + "\" id=\"registerNo\" name=\"inspections[" + i + "].medicalRecordNo\"/></td>\n" +
+                            "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + inspectionList[i].id + "\" id=\"resultId\" name=\"inspections[" + i + "].id\" readonly/></td>\n" +
+                            "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + inspectionList[i].medicalRecordNo + "\" id=\"resultNo\" name=\"inspections[" + i + "].medicalRecordNo\"/></td>\n" +
                             "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + inspectionList[i].nonDrugListName + "\" name=\"inspections[" + i + "].medicalRecordNo\"/></td>\n" +
                             "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + inspectionList[i].payState + "\" name=\"inspections[" + i + "].payState\"/></td>\n" +
                             //"<td class='col-md-2'><input type=\"button\" class=\"btn btn-primary\" id = \"register\" value=\"登记\"/></td>\n" +
@@ -175,5 +189,5 @@
     // }
 
 </script>
-
+</body>
 </html>

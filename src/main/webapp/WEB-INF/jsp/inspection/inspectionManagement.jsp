@@ -66,7 +66,7 @@
         <div class="col-md-3 column">
             <select data-am-selected class="form-control"id = "searchBy" name="searchBy">
                 <option value="medical_record_no">病历号</option>
-                <option value="name" selected>姓名</option>
+                <option value="id" selected>姓名</option>
             </select>
         </div>
         <div class="col-md-6 column">
@@ -142,7 +142,7 @@
             //var currentEle = $(this);
             $.ajax({
                 type:"POST",
-                data:{medicalNo : $("#register").val(), inspectionId:$("registerId").val(),doctorId : $("#doctorId").val()},
+                data:{medicalNo : $("#register").val(), inspectionId: $("#registerId").val(),doctorId : $("#doctorId").val()},
                 async: false,
                 url :'inspection/register',
                 success:function (result) {
