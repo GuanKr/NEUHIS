@@ -252,7 +252,7 @@ public class InspectionController {
         String str="can't find";
         List<Inspection> inspectionList=inspectionService.findByMedicalNo(medicalNo);
         for(Inspection inspection:inspectionList){
-            if(inspection.getId().equals(inspectionId)){
+            if(inspection.getId()==Integer.parseInt(inspectionId)){
                 inspectionService.register(inspection,Integer.parseInt(doctorId));
                 str="register success";
             }
