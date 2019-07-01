@@ -99,4 +99,16 @@ public class ChargeController {
         }
         return resultDTO;
     }
+
+    /**
+     * 费用明细查询
+     * @param medicalRecordNo 病历号
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @return 费用明细
+     */
+    @RequestMapping("costList")
+    public @ResponseBody List<Invoice> costList(String medicalRecordNo,Date startTime,Date endTime){
+        return invoiceService.query(medicalRecordNo,startTime,endTime);
+    }
 }
