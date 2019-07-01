@@ -112,7 +112,6 @@
     </selectKey>
     insert into drug_prescription
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      id,
       <if test="medicalRecordNo != null" >
         medical_record_no,
       </if>
@@ -166,7 +165,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      #{id,jdbcType=INTEGER},
       <if test="medicalRecordNo != null" >
         #{medicalRecordNo,jdbcType=CHAR},
       </if>
