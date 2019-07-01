@@ -267,11 +267,11 @@ public class InspectionController {
      */
     @RequestMapping("findDoneRegister")
     public @ResponseBody
-    List findRegested(String medicalNo){
+    List findDoneRegister(String medicalNo){
         List<Inspection> inspectionList=inspectionService.findByMedicalNo(medicalNo);
         List<Inspection> result = null;
         for(Inspection inspection:inspectionList){
-            if(inspection.getInspectionResultAnalysis().equals("")){
+            if(inspection.getInspectionResultAnalysis()==null){
                 result.add(inspection);
             }
         }
