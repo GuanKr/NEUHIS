@@ -298,7 +298,7 @@ public class InvoiceServiceImpl implements InvoiceService {
             if (inspection.getRegisterState().equals("1")) {
                 return "已登记，不可退费";
             }else {
-                inspection.setValidity("0");
+                inspection.setPayState("0");
                 inspectionMapper.updateByPrimaryKeySelective(inspection);
                 invoice.setStatus("0");
                 invoiceMapper.updateByPrimaryKeySelective(invoice);

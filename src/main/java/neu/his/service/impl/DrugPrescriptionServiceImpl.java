@@ -196,7 +196,7 @@ public class DrugPrescriptionServiceImpl implements DrugPrescriptionService {
     @Override
     public String drugReturn(DrugPrescription drugPrescription, Integer returnQuantity) {
         DrugPrescription returnDrugPrescription = drugPrescription;
-        if (drugPrescription.getQuantity() > returnQuantity) {
+        if (drugPrescription.getQuantity() >= returnQuantity) {
             drugPrescription.setQuantity(drugPrescription.getQuantity() - returnQuantity);
             drugPrescription.setCost(drugPrescription.getDrugPrice().multiply(new BigDecimal(drugPrescription.getQuantity())));
             drugPrescriptionMapper.updateByPrimaryKeySelective(drugPrescription);
@@ -204,9 +204,11 @@ public class DrugPrescriptionServiceImpl implements DrugPrescriptionService {
             returnDrugPrescription.setQuantity(returnQuantity);
             returnDrugPrescription.setCost(drugPrescription.getDrugPrice().multiply(new BigDecimal(drugPrescription.getQuantity())));
             returnDrugPrescription.setId(null);
+            returnDrugPrescription.setPaymentState("0");
+            returnDrugPrescription.setPaymentTime(null);
             drugPrescriptionMapper.insertSelective(returnDrugPrescription);
             return "成功";
-        } else if (drugPrescription.getQuantity() == returnQuantity) {
+        } /*else if (drugPrescription.getQuantity() == returnQuantity) {
             drugPrescriptionMapper.deleteByPrimaryKey(drugPrescription.getId());
             returnDrugPrescription.setTakeMedicineState("1");
             returnDrugPrescription.setQuantity(returnQuantity);
@@ -214,7 +216,7 @@ public class DrugPrescriptionServiceImpl implements DrugPrescriptionService {
             returnDrugPrescription.setId(null);
             drugPrescriptionMapper.insertSelective(returnDrugPrescription);
             return "成功";
-        } else {
+        }*/ else {
             return "退药数量超过可退数量";
         }
     }
