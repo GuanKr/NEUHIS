@@ -269,12 +269,13 @@ public class InspectionController {
     public @ResponseBody
     List findRegested(String medicalNo){
         List<Inspection> inspectionList=inspectionService.findByMedicalNo(medicalNo);
+        List<Inspection> result = null;
         for(Inspection inspection:inspectionList){
-            if(!inspection.getInspectionResultAnalysis().equals("")){
-                inspectionList.remove(inspection);
+            if(inspection.getInspectionResultAnalysis().equals("")){
+                result.add(inspection);
             }
         }
-        return inspectionList;
+        return result;
     }
 
     /**
