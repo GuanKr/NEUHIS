@@ -474,7 +474,7 @@
             if ($("#diagnoseDirectoryNameInput").val() == "") {
                 $.ajax({
                     type: "POST",
-                    url: "disease/findByAttributeWithTwoParameters",
+                    url: "disease/findByAttributeWithTwoParametersWithoutPageHelper",
                     data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val()},
                     success: function (result) {
                         diseases = result;

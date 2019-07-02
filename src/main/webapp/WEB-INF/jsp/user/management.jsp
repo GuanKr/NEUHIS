@@ -409,8 +409,8 @@
                 type: "POST",
                 url: "user/insertuser",
                 data: $('#addUser').serialize(),
-                success: function () {
-                    alert("添加成功");
+                success: function (data) {
+                    alert(data.msg);
                     getPageN(1);
                     $("#resetButton").click();
                 }

@@ -1,5 +1,7 @@
 package neu.his.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import neu.his.bean.DiagnoseDirectory;
 import neu.his.bean.Disease;
 import neu.his.dto.DiseaseDTO;
@@ -96,10 +98,19 @@ public class DiseaseController {
         diagnoseDirectoryList = diagnoseDirectoryService.findByAttribute_name(attribute);
         return diagnoseDirectoryList;
     }
-    @RequestMapping("findByAttributeWithTwoParameters")
-    public @ResponseBody List findByAttributeWithTwoParameters(String attribute_name, String attribute){
+    @RequestMapping("findByAttributeWithTwoParametersWithoutPageHelper")
+    public @ResponseBody List findByAttributeWithTwoParametersWithoutPageHelper(String attribute_name, String attribute){
         List<Disease> diseaseList;
         diseaseList = diseaseService.findAllByAttribute_name(attribute_name,attribute);
+        return diseaseList;
+    }
+
+    @RequestMapping("findByAttributeWithTwoParameters")
+    public @ResponseBody List findByAttributeWithTwoParameters(String attribute_name, String attribute){
+        PageHelper.startPage(1,30);
+        List<Disease> diseaseList = diseaseService.findAllByAttribute_name(attribute_name,attribute);
+        PageInfo<Disease> pageInfo = new PageInfo(diseaseList);
+        diseaseList = pageInfo.getList();
         return diseaseList;
     }
 

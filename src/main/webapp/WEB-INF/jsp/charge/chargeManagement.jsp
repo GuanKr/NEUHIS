@@ -339,6 +339,7 @@
     //生成已收费项目表
     function setPaymentTableBody() {
         var str = "";
+        paymentCost = 0;
         $("#paymentTableBody").html("");
         for (let i = 0; i < paymentItems.length; i++) {
             str += "<tr>\n" +
