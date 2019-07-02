@@ -54,8 +54,14 @@ public class InspectionController {
     @RequestMapping("findInspectionByAttribute")
     public @ResponseBody
     List findInspectionByAttribute(String attribute_name,String attribute,String doctorId){
+        List<Inspection> result =new ArrayList();
         List<Inspection> inspectionList=inspectionService.selectByNameOrMedNo(attribute_name,attribute,Integer.parseInt(doctorId));
-        return inspectionList;
+        for(Inspection inspection:inspectionList){
+            if(Integer.parseInt(inspection.getPayState())==1){
+                result.add(inspection);
+            }
+        }
+        return result;
     }
 
 
@@ -272,7 +278,7 @@ public class InspectionController {
         List<Inspection> result = new ArrayList();
         for(Inspection inspection:inspectionList){
             String s=inspection.getInspectionResultAnalysis();
-            if(s==null||s.isEmpty()) {
+            if(s==null||s.isEmpty()&&Integer.parseInt(inspection.getRegisterState())==1) {
                 result.add(inspection);
             }
         }
