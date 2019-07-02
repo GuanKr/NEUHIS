@@ -100,7 +100,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      #{id,jdbcType=INTEGER},
       <if test="expenseCode != null" >
         #{expenseCode,jdbcType=VARCHAR},
       </if>
