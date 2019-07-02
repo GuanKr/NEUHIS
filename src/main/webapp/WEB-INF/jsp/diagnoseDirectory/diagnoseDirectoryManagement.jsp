@@ -20,11 +20,24 @@
     <title>诊断目录</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
-<body>
-<ol class="breadcrumb container">
-    <li><a href="#">首页</a></li>
-    <li class="active">诊断目录管理</li>
-</ol>
+<body style="margin-top: 50px">
+<%--<div class="container"><div class="row clearfix"><div class="column">--%>
+    <nav id="nav" class="navbar navbar-default">
+        <a class="navbar-brand">HIS</a>
+        <ul class="nav navbar-nav" style="width: 93%">
+            <li><a href="user/management">用户管理</a></li>
+            <li><a href="department/management">科室管理</a></li>
+            <li><a href="registrationLevel/registrationLevelManagement">挂号等级管理</a></li>
+            <li><a href="settlementType/settlementTypeManagement">结算类别管理</a></li>
+            <li class="active"><a href="diagnoseDirectory/diagnoseDirectoryManagement">诊断目录管理</a></li>
+            <li><a href="nonDrugList/nonDrugListManagement">非药品目录管理</a></li>
+            <li><a href="schedule/scheduleManagement">排班管理</a></li>
+            <li class="active pull-right" style="top: 10px"><input style="top: 10px" class="btn btn-danger" type="button" id="logOutButton" value="退出"/></li>
+            <li class="pull-right" id="loginUser"></li>
+            <a style="display: none" id="logOut" href="${pageContext.request.contextPath}/logout">退出</a>
+        </ul>
+    </nav>
+<%--</div></div></div>--%>
 <div align="center">
     <h2>医院诊断目录管理</h2>
 </div>
@@ -373,6 +386,10 @@
     }
 
     $(document).ready(function(){
+        $("#loginUser").append("<a>" + "${USER_SESSION.loginName}" + "</a><input style=\"display: none\" id=\"userID\" value='" + ${USER_SESSION.id} + "'/>");
+        $("#logOutButton").click(function (){
+            document.getElementById("logOut").click();
+        });
         getDiagnoseDirectoryPageN(1);
         //设置分类查询功能
         $("#searchBut").click(function () {

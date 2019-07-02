@@ -38,7 +38,7 @@
 <%--<jsp:include page="head.jsp" ></jsp:include>--%>
 <!--使用模态框的方式模拟一个登陆框-->
 <div class = "modal-header">
-    <h1 class="text-center text-primary">东软云医院HIS系统</h1>
+    <h1 class="text-center text-primary" style="color: black">东软云医院HIS系统</h1>
 </div>
 
 <div class="modal show" style = "background-image:url('https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1561630327&di=f3daf214b2b68f55df4529bd63e5f0be&src=http://hbimg.b0.upaiyun.com/b1f76f2b2bc33abe60540577d4e8d872e4e0d40870fd6-zNlpSc_fw658')" id="loginModal">
@@ -54,7 +54,7 @@
                         <label class="sr-only" for="inputAccount">账号</label>
                         <div class="input-group">
                             <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
-                            <input class="form-control" id="inputAccount" name="loginName" type="text" placeholder="账号" required autofocus>
+                            <input class="form-control" id="inputAccount" name="loginName" type="text" placeholder="账号" required autofocus/>
                         </div>
                     </div>
                     <br>
@@ -73,7 +73,7 @@
                     </div>--%>
                     <div class="form-group" >
                         <button class="btn btn-default btn-lg col-md-3" style="visibility: hidden" type="button"></button>
-                        <button class="btn btn-primary btn-lg col-md-6" id="btn_login"  onclick="login()" type="button" >登录</button>
+                        <button class="btn btn-primary btn-lg col-md-6" id="btn_login"   type="submit" >登录</button>
                         <button class="btn btn-default btn-lg col-md-3" style="visibility: hidden" type="button"></button>
                     </div>
                 </form>
@@ -89,11 +89,11 @@
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <%--<script src="<%=basePath %>resources/js/myJs/login.js"></script>--%>
 <script type="text/javascript">
-function login(){
-    var loginName = $("#inputAccount").val();//获取登陆用户名
-    var password = $("#inputPassword").val();  //获取登陆密码
-        $("#loginForm").submit();
-}
+// function login(){
+//     var loginName = $("#inputAccount").val();//获取登陆用户名
+//     var password = $("#inputPassword").val();  //获取登陆密码
+//         $("#loginForm").submit();
+// }
 </script>
 </body>
 </html>

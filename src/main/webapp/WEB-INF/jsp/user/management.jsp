@@ -21,10 +21,32 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
 <body style="margin-top: 50px">
-    <ol class="breadcrumb container">
-        <li><a href="#">首页</a></li>
-        <li class="active">用户信息管理</li>
-    </ol>
+<%--导航栏--%>
+<div class="container"><div class="row clearfix"><div class="column">
+    <nav id="nav" class="navbar navbar-default">
+        <a class="navbar-brand">HIS</a>
+        <ul class="nav navbar-nav" style="width: 93%">
+            <li class="active"><a href="user/management">用户管理</a></li>
+            <li><a href="department/management">科室管理</a></li>
+            <li><a href="registrationLevel/registrationLevelManagement">挂号等级管理</a></li>
+            <li><a href="settlementType/settlementTypeManagement">结算类别管理</a></li>
+            <li><a href="diagnoseDirectory/diagnoseDirectoryManagement">诊断目录管理</a></li>
+            <li><a href="nonDrugList/nonDrugListManagement">非药品目录管理</a></li>
+            <li><a href="schedule/scheduleManagement">排班管理</a></li>
+            <li class="active pull-right" style="top: 10px"><input style="top: 10px" class="btn btn-danger" type="button" onclick="logOut()" value="退出"/></li>
+            <li class="pull-right" id="loginUser"></li>
+            <a style="display: none" id="logOut" href="${pageContext.request.contextPath}/logout">退出</a>
+        </ul>
+    </nav>
+</div></div></div>
+<%--    <ol class="breadcrumb container">--%>
+<%--        <li><a href="#">首页</a></li>--%>
+<%--        <li class="active">用户信息管理</li>--%>
+<%--        <li class="dropdown pull-right" style="position: relative;right: 5px;">--%>
+<%--            <select style="margin-top: 10px" class="form-control" onchange="update()" id="doctorID">--%>
+<%--            </select>--%>
+<%--        </li>--%>
+<%--    </ol>--%>
     <div align="center">
         <h2>医院用户管理</h2>
     </div>
@@ -141,7 +163,7 @@
                 </div>
             </div>
             <div class="col-md-2 pull-right">
-                <input type="reset" class="btn btn-default" value="清空" />&nbsp;&nbsp;
+                <input type="reset" class="btn btn-default" id="resetButton" value="清空" />&nbsp;&nbsp;
                 <button type="button" id="addUserButton" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;添加&nbsp;&nbsp;&nbsp;&nbsp;</button>
             </div>
         </div>
@@ -248,7 +270,7 @@
         $.ajax({
             type: "POST",
             url: "user/listWithPageHelper",
-            data: {pageNum : pageN,pageSize : 3},
+            data: {pageNum : pageN,pageSize : 9},
             success: function (result) {
                 pageInfo = result;
                 console.log(pageInfo);
@@ -267,7 +289,7 @@
         $.ajax({
             type: "POST",
             url: "user/findbyattributeWithPageHelper",
-            data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val(),pageNum : pageN,pageSize : 3},
+            data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val(),pageNum : pageN,pageSize : 9},
             success: function (result) {
                 pageInfo = result;
                 console.log(pageInfo);//调试用 未测试 TODO
@@ -344,18 +366,22 @@
             setRoleName += "<option value=" + roles[i].roleName + ">" + roles[i].roleName + "</option>\n";
         }
         $("#roleNameInput").html(setRoleName);
-        var setTitleName = null;
+        var setTitleName = "<option value=''>无</option>\n";
         for (var i = 0; i < titles.length; i++) {
             setTitleName += "<option value=" + titles[i].titleName + ">" + titles[i].titleName + "</option>\n";
         }
         $("#titleNameInput").html(setTitleName);
-        var setRegistrationLevelName = null;
+        var setRegistrationLevelName = "<option value=''>无</option>\n";
         for (var i = 0; i < registrationLevels.length; i++) {
             setRegistrationLevelName += "<option value=" + registrationLevels[i].levelName + ">" + registrationLevels[i].levelName + "</option>\n";
         }
         $("#registrationLevelNameInput").html(setRegistrationLevelName);
     }
+    function logOut(){
+        document.getElementById("logOut").click();
+    }
     $(document).ready(function(){
+        $("#loginUser").append("<a>" + "${USER_SESSION.loginName}" + "</a><input style=\"display: none\" id=\"userID\" value='" + ${USER_SESSION.id} + "'/>");
         getPageN(1);
         setAddUser();
         //设置保存按钮功能
@@ -384,7 +410,9 @@
                 url: "user/insertuser",
                 data: $('#addUser').serialize(),
                 success: function () {
+                    alert("添加成功");
                     getPageN(1);
+                    $("#resetButton").click();
                 }
             });
         });
