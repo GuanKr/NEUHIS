@@ -278,7 +278,7 @@ public class InspectionController {
         List<Inspection> result = new ArrayList();
         for(Inspection inspection:inspectionList){
             String s=inspection.getInspectionResultAnalysis();
-            if(s==null||s.isEmpty()&&Integer.parseInt(inspection.getRegisterState())==1) {
+            if((s==null||s.isEmpty())&&Integer.parseInt(inspection.getRegisterState())==1) {
                 result.add(inspection);
             }
         }
