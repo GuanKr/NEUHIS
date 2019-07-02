@@ -269,9 +269,10 @@ public class InspectionController {
     public @ResponseBody
     List findDoneRegister(String medicalNo){
         List<Inspection> inspectionList=inspectionService.findByMedicalNo(medicalNo);
-        List<Inspection> result = null;
+        List<Inspection> result = new ArrayList();
         for(Inspection inspection:inspectionList){
-            if(inspection.getInspectionResultAnalysis()==null){
+            String s=inspection.getInspectionResultAnalysis();
+            if(s==null||s.isEmpty()) {
                 result.add(inspection);
             }
         }
