@@ -35,8 +35,9 @@ public interface UserService {
     /**
      * 插入一个新用户
      * @param user 新的用户信息
+     * @return 处理结果
      */
-    void insertuser(User user);
+    String insertuser(User user);
 
     /**
      * 更新用户表

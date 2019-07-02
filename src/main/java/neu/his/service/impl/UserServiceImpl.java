@@ -53,8 +53,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void insertuser(User user) {
+    public String insertuser(User user) {
+        if(user.getLoginName().isEmpty()||user.getPassword().isEmpty()||user.getName().isEmpty()){
+            return "请输入必填项";
+        }
+        List<User> list = findAll();
+        for(User user1 : list){
+            if(user1.getLoginName().equals(user.getLoginName())){
+                return "用户名已被占用";
+            }
+        }
         userMapper.insertUser(user);
+        return "成功";
     }
 
     @Override
