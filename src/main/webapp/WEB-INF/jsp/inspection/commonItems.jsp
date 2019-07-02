@@ -155,7 +155,7 @@
                             "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + inspectionList[i].id + "\" id=\"resultId\" name=\"inspections[" + i + "].id\" readonly/></td>\n" +
                             "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + inspectionList[i].medicalRecordNo + "\" id=\"resultNo\" name=\"inspections[" + i + "].medicalRecordNo\"/></td>\n" +
                             "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + inspectionList[i].nonDrugListName + "\" name=\"inspections[" + i + "].medicalRecordNo\"/></td>\n" +
-                            "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + inspectionList[i].payState + "\" name=\"inspections[" + i + "].payState\"/></td>\n" +
+                            "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + inspectionList[i].registerState + "\" name=\"inspections[" + i + "].registerState\"/></td>\n" +
                             //"<td class='col-md-2'><input type=\"button\" class=\"btn btn-primary\" id = \"register\" value=\"登记\"/></td>\n" +
                             //"<td class='col-md-2' ><button type=\"button\" class=\"btn btn-primary\" value=\"" + inspectionList[i].medicalRecordNo +"\"  id=\"register\" name=\"register\">登记</button></td>\n" +
                             "<td class='col-md-2' ><button type=\"button\" class=\"btn btn-primary \" data-toggle=\"modal\"  value=\"" + inspectionList[i].id + "\" id=\"result\" onclick='resultDia("+ inspectionList[i].id +")'>记录结果</button></td>\n" +
