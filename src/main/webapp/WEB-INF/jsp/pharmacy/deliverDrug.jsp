@@ -57,9 +57,6 @@
                 </div>
             </nav>
         </div>
-        <div class="col-md-2" >
-            <input type='text' id='doctorId' class='form-control'/>
-        </div>
     </div>
 </div>
 <div class="container">
@@ -99,20 +96,20 @@
                 <tr>
                     <th>病历号</th>
                     <th>姓名</th>
-                    <th>id</th>
+<%--                    <th>id</th>--%>
                     <th>药品名称</th>
-                    <th>药品id</th>
+<%--                    <th>药品id</th>--%>
                     <th>数量</th>
-                    <th>缴费状态</th>
-<%--                    0，1--%>
-                    <th>取药状态</th>
+<%--                    <th>缴费状态</th>--%>
+<%--&lt;%&ndash;                    0，1&ndash;%&gt;--%>
+<%--                    <th>取药状态</th>--%>
 <%--                    0，1，2--%>
                     <th>总价</th>
                     <th>单价</th>
-                    <th>??</th>
+                    <th>发药</th>
                 </tr>
                 </thead>
-                <tbody id="detailTable">
+                <tbody id="detailsTable">
                 </tbody>
             </table>
         </div>
@@ -142,7 +139,6 @@
         var str;
         str = "";
         $("#prescriptionTable").html("");
-        //+ prescriptionList[i].medicalRecordNo ,prescriptionList[i].id +
         for (var i = 0;i <prescriptionList.length;i++){
             str +="<tr  onclick=\"showDetails('"+prescriptionList[i].medicalRecordNo+"','"+prescriptionList[i].id+"')\"  >\n" +
                 "<td><input type=\"text\" class=\"form-control\" value=\""+prescriptionList[i].medicalRecordNo+"\" name=\"\" id=\"foundMedicalNo\"/></td>\n" +
@@ -152,6 +148,21 @@
         }
         $("#prescriptionTable").append(str);
     }
+    //发药按钮
+    function takeMedicine(medicalNo,prescriptionId){
+        $.ajax({
+            type: "POST",
+            url: "pharmacy/takeMedicine",
+            data: {medicalNo :medicalNo,prescriptionId:prescriptionId},
+            async: false,
+            success: function(){
+                alert("take Medicine success");
+            },
+            error: function(){
+                alert("take Medicine fail");
+            }
+        });
+    }
 
     function showDetails(medicalNo,prescriptionId){
         $.ajax({
@@ -160,26 +171,25 @@
             data:{medicalNo: medicalNo,prescriptionId: prescriptionId},
             async:false,
             success: function(result){
-                $("#detailTable").html("");
+                $("#detailsTable").html("");
                 certainPrescription=result;
                 var str="";
                 str+="<tr>\n" +
                     "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.medicalRecordNo+"\" /></td>\n" +
                     "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.medicalRecordNo+"\" /></td>\n" +
-                    "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.id+"\" /></td>\n" +
+                    // "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.id+"\" /></td>\n" +
                     "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.drugName+"\" /></td>\n" +
-                    "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.drugId+"\" /></td>\n" +
+                    //"<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.drugId+"\" /></td>\n" +
                     "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.quantity+"\" /></td>\n" +
-                    "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.paymentState+"\" /></td>\n" +
-                    "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.takeMedicineState+"\" /></td>\n" +
+                    // "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.paymentState+"\" /></td>\n" +
+                    // "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.takeMedicineState+"\" /></td>\n" +
                     "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.cost+"\" /></td>\n" +
                     "<td><input class=\"form-control\" type=\"text\" value=\""+certainPrescription.drugPrice+"\" /></td>\n" +
-                    "<td><button class=\"btn-primary\" type=\"button\" id=\"takeMedicine\" value=\""+certainPrescription+"\"'/></td>\n" +
-                    //这个值不对，明天改一下
-                    "</tr>"
-                $("#detailTable").append(str);
+                    "<td><button class=\"btn-primary \" type=\"button\" id=\"takeMedicine\" onclick=\"takeMedicine('"+certainPrescription.medicalRecordNo+"','"+certainPrescription.id+"')\" value=\""+certainPrescription+"\"/></td>\n" +
+                    "</tr>";
+                $("#detailsTable").append(str);
             },
-            error:function(){
+            error: function(){
                 alert("show details fail");
             }
         });
@@ -197,25 +207,12 @@
                     setPrescriptionTable();
                 },
                 error:function(){
-                    alert("findAllfail");
+                    alert("findAll fail");
                 }
             });
         });
-        //fayao按钮
-        $(document).on('click','#takeMedicine',function(){
-            $.ajax({
-                type: "POST",
-                url: "pharmacy/takeMedicine",
-                data: {drugPrescription: $("#takeMedicine").val()},
-                async: false,
-                success: function(){
-                    alert("take Medicine success");
-                },
-                error: function(){
-                    alert("take Medicine fail");
-                }
-            });
-        });
+
+
     });
 
 </script>

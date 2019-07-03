@@ -56,9 +56,9 @@
                 </div>
             </nav>
         </div>
-        <div class="col-md-2" >
-            <input type='text' id='doctorId' class='form-control'/>
-        </div>
+<%--        <div class="col-md-2" >--%>
+<%--            <input type='text' id='doctorId' class='form-control'/>--%>
+<%--        </div>--%>
     </div>
 </div>
 <div class="container">

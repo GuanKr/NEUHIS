@@ -104,6 +104,7 @@
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript">
     var str ="";
+    //登记按钮
     function register(i){
         $.ajax({
             type:"POST",
