@@ -29,6 +29,34 @@
 <div align="center">
     <h2>医院费用科目管理</h2>
 </div>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-10 column">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#example-navbar-collapse">
+                            <span class="sr-only">切换导航</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">财务管理</a>
+
+                    </div>
+                    <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="financial/expenseClassManagement">费用科目管理</a></li>
+                            <li><a href="financial/workload" >工作量统计</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+
 <div class="tab-content vertical-tab-content col-md-12 " style="height: 600px;display: block;overflow: auto;">
     <form class="container" id="expenseClassForm" >
         <div class="row">
@@ -87,13 +115,13 @@
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript">
     //费用科目表
-    var expenseClassType = null;
+    var expenseClasses = null;
     $.ajax({
         type: "POST",
         url: "financial/listAll",
         async: false,
         success: function (result) {
-            expenseClassType = result;
+            expenseClasses = result;
         },
         error :function () {
             alert("获取结算类别表失败");
@@ -104,12 +132,12 @@
         var str;
         str = "";
         $("#tableBody").html("");
-        for (var i = 0;i < expenseClassType.length;i++){
+        for (var i = 0;i < expenseClasses.length;i++){
             str += "<tr>" +
-                "<td ><input type='checkbox' value='" +  expenseClassType[i].id + "'/></td>" +
-                "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + expenseClassType[i].id + "\" name=\"ExpenseClassType[" + i + "].id\" readonly/></td>\n" +
-                "<td><input type=\"text\" class=\"form-control\" value=\"" +  expenseClassType[i] .expenseCode+ "\" name=\"ExpenseClassType[" + i + "].expenseCode\"/></td>\n" +
-                "<td><input type=\"text\" class=\"form-control\" value=\"" +  expenseClassType[i] .expenseName+ "\" name=\"ExpenseClassType[" + i + "].expenseName\"/></td>\n" +
+                "<td ><input type='checkbox' value='" +  expenseClasses[i].id + "'/></td>" +
+                "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + expenseClasses[i].id + "\" name=\"expenseClasses[" + i + "].id\" readonly/></td>\n" +
+                "<td><input type=\"text\" class=\"form-control\" value=\"" + expenseClasses[i] .expenseCode+ "\" name=\"expenseClasses[" + i + "].expenseCode\"/></td>\n" +
+                "<td><input type=\"text\" class=\"form-control\" value=\"" +  expenseClasses[i] .expenseName+ "\" name=\"expenseClasses[" + i + "].expenseName\"/></td>\n" +
                 "</tr>";
         }
         $("#tableBody").append(str);
@@ -133,7 +161,7 @@
                         url: "financial/listAll",
                         async: false,
                         success: function (result) {
-                            expenseClassType = result;
+                            expenseClasses = result;
                             setTableBody();
                         },
                         error :function () {
@@ -173,7 +201,7 @@
                         url: "financial/listAll",
                         async: false,
                         success: function (result) {
-                            expenseClassType = result;
+                            expenseClasses = result;
                             setTableBody();
                         },
                         error :function () {

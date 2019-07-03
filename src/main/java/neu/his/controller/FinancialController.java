@@ -1,13 +1,16 @@
 package neu.his.controller;
 
 import neu.his.bean.ExpenseClass;
+import neu.his.bean.Workload;
 import neu.his.dto.ExpenseClassDTO;
 import neu.his.service.ExpenseClassService;
+import neu.his.service.WorkloadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -15,6 +18,8 @@ import java.util.List;
 public class FinancialController {
     @Autowired
     ExpenseClassService expenseClassService;
+    @Autowired
+    WorkloadService workloadService;
 
     /**
      *
@@ -23,6 +28,10 @@ public class FinancialController {
     @RequestMapping("expenseClassManagement")
     public String toExpenseClassManagement(){
         return "financial/expenseClassManagement";
+    }
+    @RequestMapping("workload")
+    public String toWorkload(){
+        return "financial/workload";
     }
 
     /**
@@ -71,6 +80,59 @@ public class FinancialController {
     public @ResponseBody
     void addSettlementType(ExpenseClass expenseClass){
         expenseClassService.addExpenseClass(expenseClass);
+    }
+
+    /**
+     * 执行科室工作量统计
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @return 工作量List
+     */
+    @RequestMapping("executiveDepartmentWorkload")
+    public @ResponseBody
+    List executiveDepartmentWorkload(Date startTime,Date endTime){
+        List<Workload> workloads = workloadService.executiveDepartmentWorkload(startTime,endTime);
+        return workloads;
+    }
+
+    /**
+     * 开立科室工作量统计
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @return 工作量List
+     */
+    @RequestMapping("drawBillDepartmentWorkload")
+    public @ResponseBody
+    List drawBillDepartmentWorkload(Date startTime,Date endTime){
+        List<Workload> workloads = workloadService.drawBillDepartmentWorkload(startTime,endTime);
+        return workloads;
+    }
+
+    /**
+     * 所有医生个人工作量
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @return 工作量List
+     */
+    @RequestMapping("allPersonWorkload")
+    public @ResponseBody
+    List allPersonWorkload(Date startTime,Date endTime){
+        List<Workload> workloads = workloadService.allPersonWorkload(startTime,endTime);
+        return workloads;
+    }
+
+    /**
+     * 门诊医生个人工作量
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @param doctorId 医生Id
+     * @return 工作量List
+     */
+    @RequestMapping("personalWorkload")
+    public @ResponseBody
+    List personalWorkload(Date startTime,Date endTime,String doctorId){
+        List<Workload> workloads = workloadService.personalWorkload(startTime,endTime,Integer.parseInt(doctorId));
+        return workloads;
     }
 
 

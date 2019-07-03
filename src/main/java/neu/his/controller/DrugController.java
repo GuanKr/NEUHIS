@@ -2,15 +2,12 @@ package neu.his.controller;
 
 import neu.his.bean.Drug;
 import neu.his.bean.DrugPrescription;
-import neu.his.bean.RegistrationInfo;
 import neu.his.service.DrugPrescriptionService;
 import neu.his.service.DrugService;
 import neu.his.service.RegistrationInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
@@ -138,7 +135,7 @@ public class DrugController {
     @RequestMapping("findNameByMedical")
     public @ResponseBody
     String findNameByMedical(String medicalNo){
-        String str=medicalNo;
+          String str=medicalNo;
 //        List<RegistrationInfo> all = registrationInfoService.findAll();
 //        for(RegistrationInfo registrationInfo:all){
 //            if(Integer.parseInt(registrationInfo.getMedicalRecordNo())==Integer.parseInt(medicalNo)){
@@ -169,11 +166,19 @@ public class DrugController {
 
     /**
      * 发药
-     * @param drugPrescription 发药处方
+     * @param medicalNo 病历号
+     * @param prescriptionId 处方id
      */
     @RequestMapping("takeMedicine")
     public @ResponseBody
-    void takeMedicine(DrugPrescription drugPrescription){
-        drugPrescriptionService.dispense(drugPrescription);
+    void takeMedicine(String medicalNo,String prescriptionId){
+        DrugPrescription dp ;
+        List<DrugPrescription> drugPrescriptions= drugPrescriptionService.findPrescription(medicalNo);
+        for(DrugPrescription drugPrescription:drugPrescriptions){
+            if(drugPrescription.getId()==Integer.parseInt(prescriptionId)){
+                dp=drugPrescription;
+                drugPrescriptionService.dispense(dp);
+            }
+        }
     }
 }
