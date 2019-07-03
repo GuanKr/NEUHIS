@@ -336,33 +336,28 @@
     </form>
 </div>
 <%--导航栏--%>
-<nav id="nav" class="navbar navbar-default">
-    <a href="#" class="navbar-brand">首页</a>
-    <ul class="nav navbar-nav" style="width: 93%">
-        <%--        <li class="dropdown">--%>
-        <%--            <a href="#" data-toggle="dropdown">信息管理 <span class="caret"></span></a>--%>
-        <%--            <ul class="dropdown-menu">--%>
-        <%--                <li><a href="user/management">用户管理</a></li>--%>
-        <%--                <li><a href="#yui">Yui</a></li>--%>
-        <%--                <li><a href="#extjs">ExtJS</a></li>--%>
-        <%--            </ul>--%>
-        <%--        </li>--%>
-        <li class="active"><a>病例首页</a></li>
-        <li class="dropdown pull-right" style="position: relative;right: 5px;">
-            <select style="margin-top: 10px" class="form-control" onchange="update()" id="doctorID">
-                <%--                <option value="">登录</option>--%>
-                <%--                <option value="123">张三</option>--%>
-                <%--                <option value="1223">李四</option>--%>
-            </select>
-            <%--            <a id="userID" data-toggle="dropdown">登录 <span class="caret"></span></a>--%>
-            <%--            <ul class="dropdown-menu">--%>
-            <%--                <li><a href="#jquery">jQuery</a></li>--%>
-            <%--                <li><a href="#yui">Yui</a></li>--%>
-            <%--                <li><a href="#extjs">ExtJS</a></li>--%>
-            <%--            </ul>--%>
-        </li>
-    </ul>
-</nav>
+<%--<div class="container"><div class="row clearfix"><div class="column">--%>
+    <nav id="nav" class="navbar navbar-default">
+        <a class="navbar-brand">HIS</a>
+        <ul class="nav navbar-nav" style="width: 93%">
+            <li class="active"><a href="medicalRecord/medicalRecord">门诊医生工作站</a></li>
+            <li class="active pull-right" style="top: 10px"><input style="top: 10px" class="btn btn-danger" type="button" id="logOutButton" value="退出"/></li>
+            <li class="pull-right" id="loginUser"></li>
+            <a style="display: none" id="logOut" href="${pageContext.request.contextPath}/logout">退出</a>
+            <li style="display: none"><input id="doctorID"/></li>
+        </ul>
+    </nav>
+<%--</div></div></div>--%>
+<%--<nav id="nav" class="navbar navbar-default">--%>
+<%--    <a href="#" class="navbar-brand">首页</a>--%>
+<%--    <ul class="nav navbar-nav" style="width: 93%">--%>
+<%--        <li class="active"><a>病例首页</a></li>--%>
+<%--        <li class="dropdown pull-right" style="position: relative;right: 5px;">--%>
+<%--            <select style="margin-top: 10px" class="form-control" onchange="update()" id="doctorID">--%>
+<%--            </select>--%>
+<%--        </li>--%>
+<%--    </ul>--%>
+<%--</nav>--%>
 <div class="center-block" style="width: 95%">
     <%--已诊患者 待诊患者--%>
     <div class="col-md-2 center-block" style="border: solid 1px #5e5e5e;width: 19.5%;height: 600px;overflow: auto">
@@ -1493,27 +1488,27 @@
     }
 
 
-    //医生列表
-    var doctors = null;
-    $.ajax({
-        type: "POST",
-        url: "user/findbyattribute",
-        data: {attribute_name : "role_name",attribute : "医生"},
-        success: function (result) {
-            doctors = result;
-            setDoctorIDBody();
-        }
-    });
-    //设置登录选项
-    function setDoctorIDBody(){
-        var str;
-        str = "<option value=\"\">登录</option>";
-        $("#doctorID").html("");
-        for (let i = 0;i < doctors.length;i++){
-            str += "<option value=\"" + doctors[i].id + "\">" + doctors[i].name + "</option>\n";
-        }
-        $("#doctorID").append(str);
-    }
+    // //医生列表
+    // var doctors = null;
+    // $.ajax({
+    //     type: "POST",
+    //     url: "user/findbyattribute",
+    //     data: {attribute_name : "role_name",attribute : "医生"},
+    //     success: function (result) {
+    //         doctors = result;
+    //         setDoctorIDBody();
+    //     }
+    // });
+    // //设置登录选项
+    // function setDoctorIDBody(){
+    //     var str;
+    //     str = "<option value=\"\">登录</option>";
+    //     $("#doctorID").html("");
+    //     for (let i = 0;i < doctors.length;i++){
+    //         str += "<option value=\"" + doctors[i].id + "\">" + doctors[i].name + "</option>\n";
+    //     }
+    //     $("#doctorID").append(str);
+    // }
     //医生登录后进行更新
     function update(){
         //    TODO 需要更新的函数
@@ -3033,6 +3028,12 @@
 
     //DOM结构加载完毕后执行
     $(document).ready(function(){
+        $("#loginUser").append("<a>" + "${USER_SESSION.loginName}" + "</a><input style=\"display: none\" id=\"userID\" value='" + ${USER_SESSION.id} + "'/>");
+        $("#doctorID").val(${USER_SESSION.id});
+        $("#logOutButton").click(function (){
+            document.getElementById("logOut").click();
+        });
+        update();
         //TODO 打开注释
         // alert("请登录");
         //诊断查找按钮

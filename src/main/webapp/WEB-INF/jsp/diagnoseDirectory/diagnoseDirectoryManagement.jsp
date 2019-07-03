@@ -20,11 +20,24 @@
     <title>诊断目录</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
-<body>
-<ol class="breadcrumb container">
-    <li><a href="#">首页</a></li>
-    <li class="active">诊断目录管理</li>
-</ol>
+<body style="margin-top: 50px">
+<%--<div class="container"><div class="row clearfix"><div class="column">--%>
+    <nav id="nav" class="navbar navbar-default">
+        <a class="navbar-brand">HIS</a>
+        <ul class="nav navbar-nav" style="width: 93%">
+            <li><a href="user/management">用户管理</a></li>
+            <li><a href="department/management">科室管理</a></li>
+            <li><a href="registrationLevel/registrationLevelManagement">挂号等级管理</a></li>
+            <li><a href="settlementType/settlementTypeManagement">结算类别管理</a></li>
+            <li class="active"><a href="diagnoseDirectory/diagnoseDirectoryManagement">诊断目录管理</a></li>
+            <li><a href="nonDrugList/nonDrugListManagement">非药品目录管理</a></li>
+            <li><a href="schedule/scheduleManagement">排班管理</a></li>
+            <li class="active pull-right" style="top: 10px"><input style="top: 10px" class="btn btn-danger" type="button" id="logOutButton" value="退出"/></li>
+            <li class="pull-right" id="loginUser"></li>
+            <a style="display: none" id="logOut" href="${pageContext.request.contextPath}/logout">退出</a>
+        </ul>
+    </nav>
+<%--</div></div></div>--%>
 <div align="center">
     <h2>医院诊断目录管理</h2>
 </div>
@@ -35,12 +48,14 @@
 
             <input type="text" id="executiveDepartmentNameInput" class="form-control"/>
             <button type="button" id="searchBut" class="btn btn-primary">分类查询</button>
-<%--            动态查询--%>
-            <ul id="executiveDepartmentNameInputUl" style="height: 175px;overflow: auto" class="dropdown-menu">
+            <ul id="executiveDepartmentNameInputUl" style="height: 175px;min-width: 150px;max-width: 155px;overflow: auto;float: right" class="dropdown-menu">
             </ul>
         </div>
-        <ul class="nav nav-tab vertical-tab" style="padding-left: 0px;padding-right: 0px;width: 110px;" role="tablist" id="diagnoseDirectoryTab">
-        </ul>
+        <div>
+            <ul class="nav nav-tab vertical-tab" style="padding-left: 0px;padding-right: 0px;width: 110px;" role="tablist" id="diagnoseDirectoryTab">
+            </ul>
+        </div>
+
     </div>
     <div class="tab-content vertical-tab-content col-md-10 " style="width: 1300px;height: 600px;display: block;overflow: auto;">
         <form class="container" style="" id="diagnoseTab">
@@ -77,7 +92,6 @@
 <div class="container">
     <div class="col-md-3 container">
         <input type="text" class="form-control" placeholder="疾病分类" id="diagnoseDirectoryNameInput" name="diagnoseDirectoryName"/>
-            <%--                TODO 动态查询 --%>
         <ul id="diagnoseDirectoryNameInputUl" style="height: 200px;overflow: auto" class="dropdown-menu">
         </ul>
     </div>
@@ -127,7 +141,6 @@
             <label class="col-md-4 control-label text-right" for="registrationLevelPriceInput">诊断目录名称</label>
             <div class="col-md-8 input-group">
                 <input type="text" class="form-control" id="registrationLevelPriceInput" name="diagnoseDirectoryName"/>
-<%--                TODO 动态查询 --%>
                 <ul id="registrationLevelPriceInputUl" style="height: 200px;overflow: auto" class="dropdown-menu">
                 </ul>
                 <span class="input-group-addon" style="color: red">*</span>
@@ -373,6 +386,10 @@
     }
 
     $(document).ready(function(){
+        $("#loginUser").append("<a>" + "${USER_SESSION.loginName}" + "</a><input style=\"display: none\" id=\"userID\" value='" + ${USER_SESSION.id} + "'/>");
+        $("#logOutButton").click(function (){
+            document.getElementById("logOut").click();
+        });
         getDiagnoseDirectoryPageN(1);
         //设置分类查询功能
         $("#searchBut").click(function () {
@@ -422,7 +439,6 @@
                 error :function () {
                     alert("删除失败");
                 }
-
             });
         });
         //设置疾病添加按钮
@@ -457,7 +473,7 @@
             if ($("#diagnoseDirectoryNameInput").val() == "") {
                 $.ajax({
                     type: "POST",
-                    url: "disease/findByAttributeWithTwoParameters",
+                    url: "disease/findByAttributeWithTwoParametersWithoutPageHelper",
                     data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val()},
                     success: function (result) {
                         diseases = result;

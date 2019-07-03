@@ -93,8 +93,12 @@ public class NonDrugListController {
      */
     @RequestMapping("findByAttributeWithPageHelper")
     public  @ResponseBody PageInfo findByAttributeWithPageHelper(String attribute_name,String attribute,int pageNum,int pageSize){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         PageHelper.startPage(pageNum,pageSize);
         List<NonDrugList> nonDrugList = nonDrugListService.findByAttribute_name(attribute_name,attribute);
+        for(NonDrugList nonDrugListOne:nonDrugList){
+            nonDrugListOne.setCreationdateString(simpleDateFormat.format(nonDrugListOne.getCreationTime()));
+        }
         PageInfo pageInfo = new PageInfo(nonDrugList);
         return pageInfo;
     }

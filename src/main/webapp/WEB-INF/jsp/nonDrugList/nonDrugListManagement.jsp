@@ -19,14 +19,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
     <title>非药品收费目录</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-<%--    日期选择控件    --%>
-<%--    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">--%>
 </head>
 <body style="margin-top: 50px">
-<ol class="breadcrumb container">
-    <li><a href="#">首页</a></li>
-    <li class="active">非药品收费目录管理</li>
-</ol>
+<div class="container"><div class="row clearfix"><div class="column">
+    <nav id="nav" class="navbar navbar-default">
+        <a class="navbar-brand">HIS</a>
+        <ul class="nav navbar-nav" style="width: 93%">
+            <li><a href="user/management">用户管理</a></li>
+            <li><a href="department/management">科室管理</a></li>
+            <li><a href="registrationLevel/registrationLevelManagement">挂号等级管理</a></li>
+            <li><a href="settlementType/settlementTypeManagement">结算类别管理</a></li>
+            <li><a href="diagnoseDirectory/diagnoseDirectoryManagement">诊断目录管理</a></li>
+            <li class="active"><a href="nonDrugList/nonDrugListManagement">非药品目录管理</a></li>
+            <li><a href="schedule/scheduleManagement">排班管理</a></li>
+            <li class="active pull-right" style="top: 10px"><input style="top: 10px" class="btn btn-danger" type="button" id="logOutButton" value="退出"/></li>
+            <li class="pull-right" id="loginUser"></li>
+            <a style="display: none" id="logOut" href="${pageContext.request.contextPath}/logout">退出</a>
+        </ul>
+    </nav>
+</div></div></div>
 <div align="center">
     <h2>医院非药品收费目录管理</h2>
 </div>
@@ -42,16 +53,16 @@
         <thead>
         <tr>
             <th width="48px">删除</th>
-            <th>id</th>
+            <th style="min-width: 20px;max-width: 24px">id</th>
             <th width="120px">项目编码</th>
-            <th width="190px">项目名称</th>
+            <th style="min-width: 120px;max-width: 125px">项目名称</th>
             <th width="40px">规格</th>
             <th width="40px">单价</th>
             <th width="135px">费用所属科目</th>
-            <th width="175px">执行科室</th>
+            <th style="min-width: 150px;max-width: 155px">执行科室</th>
             <th width="190px">拼音助记码</th>
             <th width="113px">项目类型</th>
-            <th width="125px">创建时间</th>
+            <th style="min-width: 120px;max-width: 121px">创建时间</th>
         </tr>
         </thead>
         <tbody id="tableBody">
@@ -390,6 +401,10 @@
         $("#pageChoose").append(str);
     }
     $(document).ready(function(){
+        $("#loginUser").append("<a>" + "${USER_SESSION.loginName}" + "</a><input style=\"display: none\" id=\"userID\" value='" + ${USER_SESSION.id} + "'/>");
+        $("#logOutButton").click(function (){
+            document.getElementById("logOut").click();
+        });
         getPageN(1);
         setExpenseClassInput();
         //设置删除按钮功能

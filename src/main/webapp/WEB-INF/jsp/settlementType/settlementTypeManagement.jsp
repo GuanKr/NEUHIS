@@ -22,10 +22,23 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
 <body style="margin-top: 50px">
-<ol class="breadcrumb container">
-    <li><a href="#">首页</a></li>
-    <li class="active">结算类别管理</li>
-</ol>
+<div class="container"><div class="row clearfix"><div class="column">
+    <nav id="nav" class="navbar navbar-default">
+        <a class="navbar-brand">HIS</a>
+        <ul class="nav navbar-nav" style="width: 93%">
+            <li><a href="user/management">用户管理</a></li>
+            <li><a href="department/management">科室管理</a></li>
+            <li><a href="registrationLevel/registrationLevelManagement">挂号等级管理</a></li>
+            <li class="active"><a href="settlementType/settlementTypeManagement">结算类别管理</a></li>
+            <li><a href="diagnoseDirectory/diagnoseDirectoryManagement">诊断目录管理</a></li>
+            <li><a href="nonDrugList/nonDrugListManagement">非药品目录管理</a></li>
+            <li><a href="schedule/scheduleManagement">排班管理</a></li>
+            <li class="active pull-right" style="top: 10px"><input style="top: 10px" class="btn btn-danger" type="button" id="logOutButton" value="退出"/></li>
+            <li class="pull-right" id="loginUser"></li>
+            <a style="display: none" id="logOut" href="${pageContext.request.contextPath}/logout">退出</a>
+        </ul>
+    </nav>
+</div></div></div>
 <div align="center">
     <h2>医院结算类别管理</h2>
 </div>
@@ -37,17 +50,21 @@
             <button type="button" id="updateRegistrationLevels" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;保存&nbsp;&nbsp;&nbsp;&nbsp;</button>
         </div>
     </div>
-    <table class="table table-hover table-striped">
-        <thead>
-        <tr>
-            <th>删除</th>
-            <th class="col-md-2">id</th>
-            <th >结算类别</th>
-        </tr>
-        </thead>
-        <tbody id="tableBody">
-        </tbody>
-    </table>
+    <div style="text-align: center">
+        <div style="display: inline-block">
+            <table class="table table-hover table-striped" style="width: 400px">
+                <thead>
+                <tr>
+                    <th>删除</th>
+                    <th class="col-md-2">id</th>
+                    <th >结算类别</th>
+                </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
 </form>
 <br/>
 <form class="" role="form" id="addRegistrationLevel"><div class="container">
@@ -103,6 +120,10 @@
         $("#tableBody").append(str);
     }
     $(document).ready(function(){
+        $("#loginUser").append("<a>" + "${USER_SESSION.loginName}" + "</a><input style=\"display: none\" id=\"userID\" value='" + ${USER_SESSION.id} + "'/>");
+        $("#logOutButton").click(function (){
+            document.getElementById("logOut").click();
+        });
         setTableBody();
         //设置删除按钮功能
         $("#deleteRegistrationsButton").click(function () {
@@ -156,6 +177,7 @@
                 data: $('#addRegistrationLevel').serialize(),
                 success: function () {
                     alert("添加成功");
+                    $("#settlementTypeInput").val("");
                     $.ajax({
                         type: "POST",
                         url: "settlementType/list",

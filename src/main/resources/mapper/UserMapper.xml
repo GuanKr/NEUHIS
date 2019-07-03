@@ -200,10 +200,31 @@ WHERE user.role_id != 0
     <result property="titlename" column="title_name"/>
   </resultMap>
   <insert id="insertUser" parameterType="neu.his.bean.User">
-    INSERT  INTO User (role_id,department_id,name,login_name,password,title_id,registration_level_id)
-    SELECT role.id,department.id,#{name},#{loginName},#{password},title.id,registration_level.id
+    INSERT  INTO User (role_id,
+    department_id,name,login_name,password
+      <if test="!titlename.isEmpty()" >
+          ,title_id,
+      </if>
+      <if test="!registrationLevelname.isEmpty()" >
+          registration_level_id
+      </if>)
+    SELECT distinct role.id,department.id,#{name},#{loginName},#{password}
+
+      <if test="!titlename.isEmpty()" >
+          ,title.id,
+      </if>
+      <if test="!registrationLevelname.isEmpty()" >
+          registration_level.id
+      </if>
+
     FROM role,department,title,registration_level
-    WHERE role.role_name = #{rolename} and department_name = #{departmentname} and title.title_name = #{titlename} and registration_level.level_name = #{registrationLevelname}
+    WHERE role.role_name = #{rolename} and department_name = #{departmentname}
+      <if test="!titlename.isEmpty()" >
+          and title.title_name = #{titlename}
+      </if>
+      <if test="!registrationLevelname.isEmpty()" >
+          and registration_level.level_name = #{registrationLevelname}
+      </if>
   </insert>
   <update id="updateUser" parameterType="neu.his.bean.User">
   UPDATE user

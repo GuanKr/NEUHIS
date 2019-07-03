@@ -56,7 +56,7 @@ public class LoginController {
                     case 5:
                         return "财务管理员";
                     case 6:
-                        return "department/management";
+                        return "user/management";
                 }
                 /*return "redirect:main";*/
             }

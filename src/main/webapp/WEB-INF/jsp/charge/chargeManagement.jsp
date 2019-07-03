@@ -21,7 +21,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">
 </head>
-<body>
+<body style="margin-top: 50px">
 <%--缴费对话框--%>
 <div id="chargeDialog" title="缴费"  style="display: none" >
     <form>
@@ -34,16 +34,29 @@
     </form>
 </div>
 <%--导航栏--%>
-<nav id="nav" class="navbar navbar-default">
-    <a href="#" class="navbar-brand">首页</a>
-    <ul class="nav navbar-nav" style="width: 93%">
-        <li class="active"><a>门诊收费</a></li>
-        <li class="dropdown pull-right" style="position: relative;right: 5px;">
-            <select style="margin-top: 10px" class="form-control" id="doctorID">
-            </select>
-        </li>
-    </ul>
-</nav>
+<div class="container"><div class="row clearfix"><div class="column">
+    <nav id="nav" class="navbar navbar-default">
+        <a class="navbar-brand">HIS</a>
+        <ul class="nav navbar-nav" style="width: 93%">
+            <li><a href="registration/registrationInfo">现场挂号</a></li>
+            <li class="active"><a href="charge/chargeManagement">门诊收费</a></li>
+            <li class="active pull-right" style="top: 10px"><input style="top: 10px" class="btn btn-danger" type="button" id="logOutButton" value="退出"/></li>
+            <li class="pull-right" id="loginUser"></li>
+            <a style="display: none" id="logOut" href="${pageContext.request.contextPath}/logout">退出</a>
+            <li style="display: none"><input id="doctorID"/></li>
+        </ul>
+    </nav>
+</div></div></div>
+<%--<nav id="nav" class="navbar navbar-default">--%>
+<%--    <a href="#" class="navbar-brand">首页</a>--%>
+<%--    <ul class="nav navbar-nav" style="width: 93%">--%>
+<%--        <li class="active"><a>门诊收费</a></li>--%>
+<%--        <li class="dropdown pull-right" style="position: relative;right: 5px;">--%>
+<%--            <select style="margin-top: 10px" class="form-control" id="doctorID">--%>
+<%--            </select>--%>
+<%--        </li>--%>
+<%--    </ul>--%>
+<%--</nav>--%>
 <div align="center">
     <h2>门诊收费管理</h2>
 </div>
@@ -326,6 +339,7 @@
     //生成已收费项目表
     function setPaymentTableBody() {
         var str = "";
+        paymentCost = 0;
         $("#paymentTableBody").html("");
         for (let i = 0; i < paymentItems.length; i++) {
             str += "<tr>\n" +
@@ -369,30 +383,35 @@
             });
         }
     }
-    //医生列表
-    var doctors = null;
-    $.ajax({
-        type: "POST",
-        url: "user/findbyattribute",
-        data: {attribute_name : "role_name",attribute : "挂号收费员"},
-        success: function (result) {
-            doctors = result;
-            setDoctorIDBody();
-        }
-    });
-    //设置登录选项
-    function setDoctorIDBody(){
-        var str;
-        str = "<option value=''>登录</option>";
-        $("#doctorID").html("");
-        for (let i = 0;i < doctors.length;i++){
-            str += "<option value=\"" + doctors[i].id + "\">" + doctors[i].name + "</option>\n";
-        }
-        $("#doctorID").append(str);
-    }
+    // //医生列表
+    // var doctors = null;
+    // $.ajax({
+    //     type: "POST",
+    //     url: "user/findbyattribute",
+    //     data: {attribute_name : "role_name",attribute : "挂号收费员"},
+    //     success: function (result) {
+    //         doctors = result;
+    //         setDoctorIDBody();
+    //     }
+    // });
+    // //设置登录选项
+    // function setDoctorIDBody(){
+    //     var str;
+    //     str = "<option value=''>登录</option>";
+    //     $("#doctorID").html("");
+    //     for (let i = 0;i < doctors.length;i++){
+    //         str += "<option value=\"" + doctors[i].id + "\">" + doctors[i].name + "</option>\n";
+    //     }
+    //     $("#doctorID").append(str);
+    // }
 
     $(document).ready(function () {
-        alert("请登录");
+        $("#loginUser").append("<a>" + "${USER_SESSION.loginName}" + "</a><input style=\"display: none\" id=\"userID\" value='" + ${USER_SESSION.id} + "'/>");
+        $("#doctorID").val(${USER_SESSION.id});
+        $("#logOutButton").click(function (){
+            document.getElementById("logOut").click();
+        });
+        // alert("请登录");
     });
 </script>
 </body>

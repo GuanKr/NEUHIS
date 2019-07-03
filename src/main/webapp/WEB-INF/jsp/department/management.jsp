@@ -21,10 +21,27 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
 <body style="margin-top: 50px">
-    <ol class="breadcrumb container">
-        <li><a href="#">首页</a></li>
-        <li class="active">科室管理</li>
-    </ol>
+<div class="container"><div class="row clearfix"><div class="column">
+    <nav id="nav" class="navbar navbar-default">
+        <a class="navbar-brand">HIS</a>
+        <ul class="nav navbar-nav" style="width: 93%">
+            <li><a href="user/management">用户管理</a></li>
+            <li class="active"><a href="department/management">科室管理</a></li>
+            <li><a href="registrationLevel/registrationLevelManagement">挂号等级管理</a></li>
+            <li><a href="settlementType/settlementTypeManagement">结算类别管理</a></li>
+            <li><a href="diagnoseDirectory/diagnoseDirectoryManagement">诊断目录管理</a></li>
+            <li><a href="nonDrugList/nonDrugListManagement">非药品目录管理</a></li>
+            <li><a href="schedule/scheduleManagement">排班管理</a></li>
+            <li class="active pull-right" style="top: 10px"><input style="top: 10px" class="btn btn-danger" type="button" id="logOutButton" value="退出"/></li>
+            <li class="pull-right" id="loginUser"></li>
+            <a style="display: none" id="logOut" href="${pageContext.request.contextPath}/logout">退出</a>
+        </ul>
+    </nav>
+</div></div></div>
+<%--    <ol class="breadcrumb container">--%>
+<%--        <li><a href="#">首页</a></li>--%>
+<%--        <li class="active">科室管理</li>--%>
+<%--    </ol>--%>
     <div align="center">
         <h2>医院科室管理</h2>
     </div>
@@ -58,7 +75,7 @@
     </fieldset>
     <div class="container">
         <div class="col-md-4 container">
-            <select class="form-control" id="searchBy" name="searchBy">
+            <select class="form-control" id="searchBy" onchange="ifDepartment()" name="searchBy">
                 <option value="department_code">科室编码</option>
                 <option value="department_name">科室名称</option>
                 <option value="department_category">科室分类</option>
@@ -118,7 +135,7 @@
         </div>
         <div class="row">
             <div class="col-md-2 pull-right">
-                <input type="reset" class="btn btn-default" value="清空" />&nbsp;&nbsp;
+                <input type="reset" class="btn btn-default" id="resetButton" value="清空" />&nbsp;&nbsp;
                 <button type="button" id="addDepartmentButton" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;添加&nbsp;&nbsp;&nbsp;&nbsp;</button>
             </div>
         </div>
@@ -141,6 +158,30 @@
             alert("获取科室分类失败");
         }
     });
+    //设置查询的科室选择框
+    function ifDepartment() {
+        if($("#searchBy").val() == "department_type"){
+            $("#searchValS").html("");
+            $("#searchValS").append("<select class=\"show-tick form-control\" id=\"searchVal\">\n" +
+                "    <option value=\"临床科室\" >临床科室</option>\n" +
+                "    <option value=\"医技科室\" >医技科室</option>\n" +
+                "    <option value=\"财务科室\" >财务科室</option>\n" +
+                "    <option value=\"行政科室\" >行政科室</option>\n" +
+                "    <option value=\"其他科室\" >其他科室</option>\n" +
+                "</select>");
+        }else if ($("#searchBy").val() == "department_category"){
+            $("#searchValS").html("");
+            var setDepartmentCategory = "<select class=\"show-tick form-control\" id=\"searchVal\">\n";
+            for (var i = 0; i < departmentCategories.length; i++) {
+                setDepartmentCategory += "<option value=" + departmentCategories[i] + ">" + departmentCategories[i] + "</option>\n";
+            }
+            setDepartmentCategory += "</select>";
+            $("#searchValS").append(setDepartmentCategory);
+        } else {
+            $("#searchValS").html("");
+            $("#searchValS").append("<input type='text' id='searchVal' class='form-control'/>");
+        }
+    }
     //设置科室信息表格
     function setTableBody() {
         var str;
@@ -269,6 +310,10 @@
         });
     }
     $(document).ready(function(){
+        $("#loginUser").append("<a>" + "${USER_SESSION.loginName}" + "</a><input style=\"display: none\" id=\"userID\" value='" + ${USER_SESSION.id} + "'/>");
+        $("#logOutButton").click(function (){
+            document.getElementById("logOut").click();
+        });
         getPageN(1);
         setDepartmentCategoryInput();
         //设置保存按钮功能
@@ -298,6 +343,7 @@
                 data: $('#addDepartment').serialize(),
                 success: function () {
                     getPageN(1);
+                    $("#resetButton").click();
                 }
             });
         });

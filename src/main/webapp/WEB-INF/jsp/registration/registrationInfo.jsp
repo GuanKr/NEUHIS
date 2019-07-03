@@ -21,17 +21,34 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
 <body style="margin-top: 50px">
-<ol class="breadcrumb container">
-    <li><a href="#">首页</a></li>
-    <li class="active">挂号</li>
-</ol>
+<div class="container"><div class="row clearfix"><div class="column">
+    <nav id="nav" class="navbar navbar-default">
+        <a class="navbar-brand">HIS</a>
+        <ul class="nav navbar-nav" style="width: 93%">
+            <li class="active"><a href="registration/registrationInfo">现场挂号</a></li>
+            <li><a href="charge/chargeManagement">门诊收费</a></li>
+<%--            <li><a href="registrationLevel/registrationLevelManagement">挂号等级管理</a></li>--%>
+<%--            <li><a href="settlementType/settlementTypeManagement">结算类别管理</a></li>--%>
+<%--            <li><a href="diagnoseDirectory/diagnoseDirectoryManagement">诊断目录管理</a></li>--%>
+<%--            <li><a href="nonDrugList/nonDrugListManagement">非药品目录管理</a></li>--%>
+<%--            <li><a href="schedule/scheduleManagement">排班管理</a></li>--%>
+            <li class="active pull-right" style="top: 10px"><input style="top: 10px" class="btn btn-danger" type="button" id="logOutButton" value="退出"/></li>
+            <li class="pull-right" id="loginUser"></li>
+            <a style="display: none" id="logOut" href="${pageContext.request.contextPath}/logout">退出</a>
+        </ul>
+    </nav>
+</div></div></div>
+<%--<ol class="breadcrumb container">--%>
+<%--    <li><a href="#">首页</a></li>--%>
+<%--    <li class="active">挂号</li>--%>
+<%--</ol>--%>
 <div align="center">
-    <h2>挂号信息</h2>
+    <h2>挂号</h2>
 </div>
 <form class="" role="form" id="registrationInfo"><div class="container">
     <fieldset>
         <div id="legend" class="">
-            <legend class="">挂号信息</legend>
+            <legend class="">挂号</legend>
         </div>
     </fieldset>
     <div class="row">
@@ -464,6 +481,10 @@
         });
     }
     $(document).ready(function(){
+        $("#loginUser").append("<a>" + "${USER_SESSION.loginName}" + "</a><input style=\"display: none\" id=\"userID\" value='" + ${USER_SESSION.id} + "'/>");
+        $("#logOutButton").click(function (){
+            document.getElementById("logOut").click();
+        });
         setDoctors();
         getMedicalRecordNo();
         setTableBody();
