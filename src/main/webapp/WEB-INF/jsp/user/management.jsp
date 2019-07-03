@@ -57,7 +57,7 @@
                 <button type="button" id="updateUsers" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;保存&nbsp;&nbsp;&nbsp;&nbsp;</button>
             </div>
         </div>
-        <table class="table table-hover table-striped">
+        <table class="table table-hover table-striped" >
             <thead>
                 <tr>
                     <th class="col-lg-1">id</th>
@@ -65,9 +65,9 @@
                     <th>科室</th>
                     <th>角色</th>
                     <th>职称</th>
-                    <th>挂号级别</th>
-                    <th>登录名</th>
-                    <th>登录密码</th>
+                    <th style="min-width: 130px;max-width: 200px">挂号级别</th>
+                    <th class="col-lg-1">登录名</th>
+                    <th class="col-lg-1">登录密码</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
@@ -292,7 +292,6 @@
             data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val(),pageNum : pageN,pageSize : 9},
             success: function (result) {
                 pageInfo = result;
-                console.log(pageInfo);//调试用 未测试 TODO
                 users = pageInfo.list;
                 setTableBody();
                 setSearchedPageChoose();

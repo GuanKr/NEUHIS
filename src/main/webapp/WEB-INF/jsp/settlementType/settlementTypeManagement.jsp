@@ -50,17 +50,21 @@
             <button type="button" id="updateRegistrationLevels" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;保存&nbsp;&nbsp;&nbsp;&nbsp;</button>
         </div>
     </div>
-    <table class="table table-hover table-striped">
-        <thead>
-        <tr>
-            <th>删除</th>
-            <th class="col-md-2">id</th>
-            <th >结算类别</th>
-        </tr>
-        </thead>
-        <tbody id="tableBody">
-        </tbody>
-    </table>
+    <div style="text-align: center">
+        <div style="display: inline-block">
+            <table class="table table-hover table-striped" style="width: 400px">
+                <thead>
+                <tr>
+                    <th>删除</th>
+                    <th class="col-md-2">id</th>
+                    <th >结算类别</th>
+                </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
 </form>
 <br/>
 <form class="" role="form" id="addRegistrationLevel"><div class="container">
@@ -173,6 +177,7 @@
                 data: $('#addRegistrationLevel').serialize(),
                 success: function () {
                     alert("添加成功");
+                    $("#settlementTypeInput").val("");
                     $.ajax({
                         type: "POST",
                         url: "settlementType/list",

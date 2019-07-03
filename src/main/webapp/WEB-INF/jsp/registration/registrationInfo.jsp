@@ -43,12 +43,12 @@
 <%--    <li class="active">挂号</li>--%>
 <%--</ol>--%>
 <div align="center">
-    <h2>挂号信息</h2>
+    <h2>挂号</h2>
 </div>
 <form class="" role="form" id="registrationInfo"><div class="container">
     <fieldset>
         <div id="legend" class="">
-            <legend class="">挂号信息</legend>
+            <legend class="">挂号</legend>
         </div>
     </fieldset>
     <div class="row">

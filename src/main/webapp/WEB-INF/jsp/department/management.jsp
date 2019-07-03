@@ -75,7 +75,7 @@
     </fieldset>
     <div class="container">
         <div class="col-md-4 container">
-            <select class="form-control" id="searchBy" name="searchBy">
+            <select class="form-control" id="searchBy" onchange="ifDepartment()" name="searchBy">
                 <option value="department_code">科室编码</option>
                 <option value="department_name">科室名称</option>
                 <option value="department_category">科室分类</option>
@@ -135,7 +135,7 @@
         </div>
         <div class="row">
             <div class="col-md-2 pull-right">
-                <input type="reset" class="btn btn-default" value="清空" />&nbsp;&nbsp;
+                <input type="reset" class="btn btn-default" id="resetButton" value="清空" />&nbsp;&nbsp;
                 <button type="button" id="addDepartmentButton" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;添加&nbsp;&nbsp;&nbsp;&nbsp;</button>
             </div>
         </div>
@@ -158,6 +158,30 @@
             alert("获取科室分类失败");
         }
     });
+    //设置查询的科室选择框
+    function ifDepartment() {
+        if($("#searchBy").val() == "department_type"){
+            $("#searchValS").html("");
+            $("#searchValS").append("<select class=\"show-tick form-control\" id=\"searchVal\">\n" +
+                "    <option value=\"临床科室\" >临床科室</option>\n" +
+                "    <option value=\"医技科室\" >医技科室</option>\n" +
+                "    <option value=\"财务科室\" >财务科室</option>\n" +
+                "    <option value=\"行政科室\" >行政科室</option>\n" +
+                "    <option value=\"其他科室\" >其他科室</option>\n" +
+                "</select>");
+        }else if ($("#searchBy").val() == "department_category"){
+            $("#searchValS").html("");
+            var setDepartmentCategory = "<select class=\"show-tick form-control\" id=\"searchVal\">\n";
+            for (var i = 0; i < departmentCategories.length; i++) {
+                setDepartmentCategory += "<option value=" + departmentCategories[i] + ">" + departmentCategories[i] + "</option>\n";
+            }
+            setDepartmentCategory += "</select>";
+            $("#searchValS").append(setDepartmentCategory);
+        } else {
+            $("#searchValS").html("");
+            $("#searchValS").append("<input type='text' id='searchVal' class='form-control'/>");
+        }
+    }
     //设置科室信息表格
     function setTableBody() {
         var str;
@@ -319,6 +343,7 @@
                 data: $('#addDepartment').serialize(),
                 success: function () {
                     getPageN(1);
+                    $("#resetButton").click();
                 }
             });
         });

@@ -48,12 +48,14 @@
 
             <input type="text" id="executiveDepartmentNameInput" class="form-control"/>
             <button type="button" id="searchBut" class="btn btn-primary">分类查询</button>
-<%--            动态查询--%>
-            <ul id="executiveDepartmentNameInputUl" style="height: 175px;overflow: auto" class="dropdown-menu">
+            <ul id="executiveDepartmentNameInputUl" style="height: 175px;min-width: 150px;max-width: 155px;overflow: auto;float: right" class="dropdown-menu">
             </ul>
         </div>
-        <ul class="nav nav-tab vertical-tab" style="padding-left: 0px;padding-right: 0px;width: 110px;" role="tablist" id="diagnoseDirectoryTab">
-        </ul>
+        <div>
+            <ul class="nav nav-tab vertical-tab" style="padding-left: 0px;padding-right: 0px;width: 110px;" role="tablist" id="diagnoseDirectoryTab">
+            </ul>
+        </div>
+
     </div>
     <div class="tab-content vertical-tab-content col-md-10 " style="width: 1300px;height: 600px;display: block;overflow: auto;">
         <form class="container" style="" id="diagnoseTab">
@@ -90,7 +92,6 @@
 <div class="container">
     <div class="col-md-3 container">
         <input type="text" class="form-control" placeholder="疾病分类" id="diagnoseDirectoryNameInput" name="diagnoseDirectoryName"/>
-            <%--                TODO 动态查询 --%>
         <ul id="diagnoseDirectoryNameInputUl" style="height: 200px;overflow: auto" class="dropdown-menu">
         </ul>
     </div>
@@ -140,7 +141,6 @@
             <label class="col-md-4 control-label text-right" for="registrationLevelPriceInput">诊断目录名称</label>
             <div class="col-md-8 input-group">
                 <input type="text" class="form-control" id="registrationLevelPriceInput" name="diagnoseDirectoryName"/>
-<%--                TODO 动态查询 --%>
                 <ul id="registrationLevelPriceInputUl" style="height: 200px;overflow: auto" class="dropdown-menu">
                 </ul>
                 <span class="input-group-addon" style="color: red">*</span>
@@ -439,7 +439,6 @@
                 error :function () {
                     alert("删除失败");
                 }
-
             });
         });
         //设置疾病添加按钮
