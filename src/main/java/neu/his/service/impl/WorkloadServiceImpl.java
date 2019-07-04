@@ -80,6 +80,11 @@ public class WorkloadServiceImpl implements WorkloadService {
             return null;
         }else {
             for(MedicalRecord medicalRecord : medicalRecords) {
+                regCost = new BigDecimal("0");
+                drugCost = new BigDecimal("0");
+                inspectionCost = new BigDecimal("0");
+                checkoutCost = new BigDecimal("0");
+                handleCost = new BigDecimal("0");
                 Workload workload = new Workload();
                 InvoiceExample invoiceExample = new InvoiceExample();
                 invoiceExample.or().andMedicalRecordNoEqualTo(medicalRecord.getMedicalRecordNo());
