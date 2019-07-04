@@ -22,40 +22,56 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
 <body style="margin-top: 50px">
-<ol class="breadcrumb container">
-    <li><a href="#">首页</a></li>
-    <li class="active">费用科目管理</li>
-</ol>
+
+<%--导航栏--%>
+<div class="container"><div class="row clearfix"><div class="column">
+    <nav id="nav" class="navbar navbar-default">
+        <a class="navbar-brand">HIS</a>
+        <ul class="nav navbar-nav" style="width: 93%">
+            <li class="active"><a href="financial/expenseClassManagement">费用科目管理</a></li>
+            <li><a href="financial/workload" >工作量统计</a></li>
+            <li class="active pull-right" style="top: 10px"><input style="top: 10px" class="btn btn-danger" type="button" id="logOutButton" value="退出"/></li>
+            <li class="pull-right" id="loginUser"></li>
+            <a style="display: none" id="logOut" href="${pageContext.request.contextPath}/logout">退出</a>
+            <li style="display: none"><input id="doctorID"/></li>
+        </ul>
+    </nav>
+</div></div></div>
+
+<%--<ol class="breadcrumb container">--%>
+<%--    <li><a href="#">首页</a></li>--%>
+<%--    <li class="active">费用科目管理</li>--%>
+<%--</ol>--%>
 <div align="center">
     <h2>医院费用科目管理</h2>
 </div>
-<div class="container">
-    <div class="row clearfix">
-        <div class="col-md-10 column">
-            <nav class="navbar navbar-default" role="navigation">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                data-target="#example-navbar-collapse">
-                            <span class="sr-only">切换导航</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">财务管理</a>
+<%--<div class="container">--%>
+<%--    <div class="row clearfix">--%>
+<%--        <div class="col-md-10 column">--%>
+<%--            <nav class="navbar navbar-default" role="navigation">--%>
+<%--                <div class="container-fluid">--%>
+<%--                    <div class="navbar-header">--%>
+<%--                        <button type="button" class="navbar-toggle" data-toggle="collapse"--%>
+<%--                                data-target="#example-navbar-collapse">--%>
+<%--                            <span class="sr-only">切换导航</span>--%>
+<%--                            <span class="icon-bar"></span>--%>
+<%--                            <span class="icon-bar"></span>--%>
+<%--                            <span class="icon-bar"></span>--%>
+<%--                        </button>--%>
+<%--                        <a class="navbar-brand" href="#">财务管理</a>--%>
 
-                    </div>
-                    <div class="collapse navbar-collapse" id="example-navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="financial/expenseClassManagement">费用科目管理</a></li>
-                            <li><a href="financial/workload" >工作量统计</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-</div>
+<%--                    </div>--%>
+<%--                    <div class="collapse navbar-collapse" id="example-navbar-collapse">--%>
+<%--                        <ul class="nav navbar-nav">--%>
+<%--                            <li class="active"><a href="financial/expenseClassManagement">费用科目管理</a></li>--%>
+<%--                            <li><a href="financial/workload" >工作量统计</a></li>--%>
+<%--                        </ul>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </nav>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
 
 <div class="tab-content vertical-tab-content col-md-12 " style="height: 600px;display: block;overflow: auto;">
     <form class="container" id="expenseClassForm" >
@@ -143,6 +159,13 @@
         $("#tableBody").append(str);
     }
     $(document).ready(function(){
+
+        $("#loginUser").append("<a>" + "${USER_SESSION.loginName}" + "</a><input style=\"display: none\" id=\"userID\" value='" + ${USER_SESSION.id} + "'/>");
+        <%--$("#doctorID").val(${USER_SESSION.id});--%>
+        $("#logOutButton").click(function (){
+            document.getElementById("logOut").click();
+        });
+
         setTableBody();
         //设置删除按钮功能
         $("#deleteExpenseClass ").click(function () {
