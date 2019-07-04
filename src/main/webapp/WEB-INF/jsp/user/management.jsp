@@ -39,14 +39,6 @@
         </ul>
     </nav>
 </div></div></div>
-<%--    <ol class="breadcrumb container">--%>
-<%--        <li><a href="#">首页</a></li>--%>
-<%--        <li class="active">用户信息管理</li>--%>
-<%--        <li class="dropdown pull-right" style="position: relative;right: 5px;">--%>
-<%--            <select style="margin-top: 10px" class="form-control" onchange="update()" id="doctorID">--%>
-<%--            </select>--%>
-<%--        </li>--%>
-<%--    </ol>--%>
     <div align="center">
         <h2>医院用户管理</h2>
     </div>
@@ -391,7 +383,7 @@
                 data: $('#usersForm').serialize(),
                 success: function () {
                     alert("保存成功");
-                    getPageN(1);//修改未测试 TODO
+                    getPageN(1);
                 },
                 error: function () {
                     alert("保存失败");

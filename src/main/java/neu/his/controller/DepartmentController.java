@@ -17,22 +17,15 @@ import java.util.List;
 @RequestMapping("department")
 public class DepartmentController {
     @Autowired
-    /**
-     *@Author: dell on 2019/6/14 16:44
-     *@param: []
-     *@return: java.lang.String
-     *@Description: toManagement
-     */
     DepartmentService departmentService;
     @RequestMapping("management")
     public String toManagement(){
         return "department/management";
     }
+
     /**
-     *@Author: dell on 2019/6/14 16:44
-     *@param: []
-     *@return: java.util.List
-     *@Description: departmentList
+     * 返回所有科室列表
+     * @return 科室列表
      */
     @RequestMapping("list")
     public @ResponseBody
@@ -40,11 +33,10 @@ public class DepartmentController {
         List<Department> departmentlist = departmentService.findAll();
         return departmentlist;
     }
+
     /**
-     *@Author: dell on 2019/6/14 16:45
-     *@param: [departments]
-     *@return: void
-     *@Description: updatedepartments
+     * 更新科室信息
+     * @param departments 需要更新的科室信息
      */
     @RequestMapping("updatedepartments")
     public @ResponseBody
@@ -56,10 +48,10 @@ public class DepartmentController {
     }
 
     /**
-     *@Author: dell on 2019/6/14 16:45
-     *@param: [pageNum, pageSize]
-     *@return: com.github.pagehelper.PageInfo
-     *@Description: listDepartmentWithPageHelper
+     * 带分页的科室信息
+     * @param pageNum 页数
+     * @param pageSize 每页数据条数
+     * @return 分页的科室信息
      */
     @RequestMapping("listWithPageHelper")
     public @ResponseBody
@@ -69,13 +61,15 @@ public class DepartmentController {
         PageInfo pageInfo = new PageInfo(departmentlist);
         return pageInfo;
     }
-    /**
-     *@Author: dell on 2019/6/14 16:46
-     *@param: [attribute_name, attribute, pageNum, pageSize]
-     *@return: com.github.pagehelper.PageInfo
-     *@Description: find DepartmentByAttributeWithPageHelper
-     */
 
+    /**
+     * 通过属性查找带分页的科室信息
+     * @param attribute_name 属性
+     * @param attribute 属性值
+     * @param pageNum 页数
+     * @param pageSize 每页数据条数
+     * @return 分页的查询结果
+     */
     @RequestMapping("findByAttributeWithPageHelper")
     public @ResponseBody
     PageInfo findByAttributeWithPageHelper(String attribute_name, String attribute,int pageNum,int pageSize){
@@ -87,10 +81,8 @@ public class DepartmentController {
 
 
     /**
-     *@Author: dell on 2019/6/14 16:46
-     *@param: []
-     *@return: java.util.List<java.lang.String>
-     *@Description: departmentCategory
+     * 获取科室分类列表
+     * @return 科室分类列表
      */
     @RequestMapping("departmentCategory")
     public @ResponseBody
@@ -98,11 +90,10 @@ public class DepartmentController {
         List<String> categorylist = departmentService.findCategory();
         return categorylist;
     }
+
     /**
-     *@Author: dell on 2019/6/14 18:38
-     *@param: [department]
-     *@return: void
-     *@Description: insertDepartment
+     * 添加科室
+     * @param department 要添加的科室
      */
     @RequestMapping("insertDepartment")
     public @ResponseBody
@@ -111,11 +102,10 @@ public class DepartmentController {
     }
 
     /**
-     *
-     * finddepartmentListByAttribute
-     * @param attribute_name
-     * @param attribute
-     * @return List
+     * 查找所有科室
+     * @param attribute_name 属性
+     * @param attribute 属性值
+     * @return 查找的结果
      */
     @RequestMapping("findByAttribute")
     public @ResponseBody List findByAttribute(String attribute_name, String attribute){
