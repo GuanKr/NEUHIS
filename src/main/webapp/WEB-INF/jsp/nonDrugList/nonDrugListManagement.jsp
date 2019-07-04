@@ -53,16 +53,16 @@
         <thead>
         <tr>
             <th width="48px">删除</th>
-            <th>id</th>
+            <th style="min-width: 20px;max-width: 24px">id</th>
             <th width="120px">项目编码</th>
-            <th width="190px">项目名称</th>
+            <th style="min-width: 120px;max-width: 125px">项目名称</th>
             <th width="40px">规格</th>
             <th width="40px">单价</th>
             <th width="135px">费用所属科目</th>
-            <th width="175px">执行科室</th>
+            <th style="min-width: 150px;max-width: 155px">执行科室</th>
             <th width="190px">拼音助记码</th>
             <th width="113px">项目类型</th>
-            <th width="125px">创建时间</th>
+            <th style="min-width: 120px;max-width: 121px">创建时间</th>
         </tr>
         </thead>
         <tbody id="tableBody">

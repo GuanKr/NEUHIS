@@ -39,14 +39,6 @@
         </ul>
     </nav>
 </div></div></div>
-<%--    <ol class="breadcrumb container">--%>
-<%--        <li><a href="#">首页</a></li>--%>
-<%--        <li class="active">用户信息管理</li>--%>
-<%--        <li class="dropdown pull-right" style="position: relative;right: 5px;">--%>
-<%--            <select style="margin-top: 10px" class="form-control" onchange="update()" id="doctorID">--%>
-<%--            </select>--%>
-<%--        </li>--%>
-<%--    </ol>--%>
     <div align="center">
         <h2>医院用户管理</h2>
     </div>
@@ -57,7 +49,7 @@
                 <button type="button" id="updateUsers" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;保存&nbsp;&nbsp;&nbsp;&nbsp;</button>
             </div>
         </div>
-        <table class="table table-hover table-striped">
+        <table class="table table-hover table-striped" >
             <thead>
                 <tr>
                     <th class="col-lg-1">id</th>
@@ -65,9 +57,9 @@
                     <th>科室</th>
                     <th>角色</th>
                     <th>职称</th>
-                    <th>挂号级别</th>
-                    <th>登录名</th>
-                    <th>登录密码</th>
+                    <th style="min-width: 130px;max-width: 200px">挂号级别</th>
+                    <th class="col-lg-1">登录名</th>
+                    <th class="col-lg-1">登录密码</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
@@ -292,7 +284,6 @@
             data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val(),pageNum : pageN,pageSize : 9},
             success: function (result) {
                 pageInfo = result;
-                console.log(pageInfo);//调试用 未测试 TODO
                 users = pageInfo.list;
                 setTableBody();
                 setSearchedPageChoose();
@@ -392,7 +383,7 @@
                 data: $('#usersForm').serialize(),
                 success: function () {
                     alert("保存成功");
-                    getPageN(1);//修改未测试 TODO
+                    getPageN(1);
                 },
                 error: function () {
                     alert("保存失败");
@@ -409,8 +400,8 @@
                 type: "POST",
                 url: "user/insertuser",
                 data: $('#addUser').serialize(),
-                success: function () {
-                    alert("添加成功");
+                success: function (data) {
+                    alert(data.msg);
                     getPageN(1);
                     $("#resetButton").click();
                 }

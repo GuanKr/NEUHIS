@@ -20,53 +20,68 @@
     <title>医技工作站</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
-<body>
-<div class="container">
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <ul class="breadcrumb">
-                <li><a href="#">主页</a></li>
-                <li class="active">医技工作站</li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row clearfix">
-        <div class="col-md-10 column">
-            <nav class="navbar navbar-default" role="navigation">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                data-target="#example-navbar-collapse">
-                            <span class="sr-only">切换导航</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">门诊医技工作站</a>
+<body style="margin-top: 50px">
+<%--<div class="container">--%>
+<%--    <div class="row clearfix">--%>
+<%--        <div class="col-md-12 column">--%>
+<%--            <ul class="breadcrumb">--%>
+<%--                <li><a href="#">主页</a></li>--%>
+<%--                <li class="active">医技工作站</li>--%>
+<%--            </ul>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
+<%--<div class="container">--%>
+<%--    <div class="row clearfix">--%>
+<%--        <div class="col-md-10 column">--%>
+<%--            <nav class="navbar navbar-default" role="navigation">--%>
+<%--                <div class="container-fluid">--%>
+<%--                    <div class="navbar-header">--%>
+<%--                        <button type="button" class="navbar-toggle" data-toggle="collapse"--%>
+<%--                                data-target="#example-navbar-collapse">--%>
+<%--                            <span class="sr-only">切换导航</span>--%>
+<%--                            <span class="icon-bar"></span>--%>
+<%--                            <span class="icon-bar"></span>--%>
+<%--                            <span class="icon-bar"></span>--%>
+<%--                        </button>--%>
+<%--                        <a class="navbar-brand" href="#">门诊医技工作站</a>--%>
 
-                    </div>
-                    <div class="collapse navbar-collapse" id="example-navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li ><a href="inspection/inspectionManagement">检查检验</a></li>
-                            <li class="active"><a href="inspection/commonItems">录入结果</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        <div class="col-md-2" >
-            <input type='text' id='doctorId' class='form-control'/>
-        </div>
-    </div>
-</div>
+<%--                    </div>--%>
+<%--                    <div class="collapse navbar-collapse" id="example-navbar-collapse">--%>
+<%--                        <ul class="nav navbar-nav">--%>
+<%--                            <li ><a href="inspection/inspectionManagement">检查检验</a></li>--%>
+<%--                            <li class="active"><a href="inspection/commonItems">录入结果</a></li>--%>
+<%--                        </ul>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </nav>--%>
+<%--        </div>--%>
+<%--&lt;%&ndash;        <div class="col-md-2" >&ndash;%&gt;--%>
+<%--&lt;%&ndash;            <input type='text' id='doctorId' class='form-control'/>&ndash;%&gt;--%>
+<%--&lt;%&ndash;        </div>&ndash;%&gt;--%>
+<%--    </div>--%>
+<%--</div>--%>
+
+<%--导航栏--%>
+<div class="container"><div class="row clearfix"><div class="column">
+    <nav id="nav" class="navbar navbar-default">
+        <a class="navbar-brand">HIS</a>
+        <ul class="nav navbar-nav" style="width: 93%">
+            <li><a href="inspection/inspectionManagement">检查检验登记</a></li>
+            <li class="active"><a href="inspection/commonItems">录入结果</a></li>
+            <li class="active pull-right" style="top: 10px"><input style="top: 10px" class="btn btn-danger" type="button" onclick="logOut()" value="退出"/></li>
+            <li class="pull-right" id="loginUser"></li>
+            <a style="display: none" id="logOut" href="${pageContext.request.contextPath}/logout">退出</a>
+        </ul>
+    </nav>
+</div></div></div>
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-3 column">
-            <select data-am-selected class="form-control"id = "searchBy" name="searchBy">
-                <option value="medical_record_no">病历号</option>
-            </select>
+<%--            <select data-am-selected class="form-control"id = "searchBy" name="searchBy">--%>
+<%--                <option value="medical_record_no">病历号</option>--%>
+<%--            </select>--%>
+            <h4 class="pull-right">病历号：</h4>
         </div>
         <div class="col-md-6 column">
             <input type="text" id="searchVal" name = "searchVal" class="form-control" />
@@ -139,6 +154,12 @@
         $('#myModal').modal('show');
     }
     $(document).ready(function(){
+
+        $("#loginUser").append("<a>" + "${USER_SESSION.loginName}" + "</a><input style=\"display: none\" id=\"userID\" value='" + ${USER_SESSION.id} + "'/>");
+        $("#logOutButton").click(function (){
+            document.getElementById("logOut").click();
+        });
+
         //设置查找功能按钮
         $("#search").click(function(){
             $.ajax({

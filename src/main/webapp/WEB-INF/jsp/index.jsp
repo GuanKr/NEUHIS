@@ -33,6 +33,8 @@
     <br/><br/>
     <a href="pharmacy/drugManagement">药房</a>
     <br/><br/>
+    <a href="financial/expenseClassManagement">财务</a>
+    <br/><br/>
 
 </body>
 </html>

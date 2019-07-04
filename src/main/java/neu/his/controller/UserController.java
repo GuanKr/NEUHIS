@@ -3,6 +3,7 @@ package neu.his.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import neu.his.bean.User;
+import neu.his.dto.ResultDTO;
 import neu.his.dto.UserDTO;
 import neu.his.service.UserService;
 import neu.his.service.impl.UserServiceImpl;
@@ -41,9 +42,10 @@ public class UserController {
         userService.deletebyID(id);
     }
     @RequestMapping("insertuser")
-    public @ResponseBody
-    void insertUser(User user){
-        userService.insertuser(user);
+    public @ResponseBody ResultDTO insertUser(User user){
+        ResultDTO resultDTO = new ResultDTO();
+        resultDTO.setMsg(userService.insertuser(user));
+        return resultDTO;
     }
     @RequestMapping("updateusers")
     public @ResponseBody void updateUsers(UserDTO users){

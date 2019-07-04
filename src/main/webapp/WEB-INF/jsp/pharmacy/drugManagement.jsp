@@ -33,7 +33,7 @@
 </div>
 <div class="container">
     <div class="row clearfix">
-        <div class="col-md-10 column">
+        <div class="col-md-12 column">
             <nav class="navbar navbar-default" role="navigation">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -55,9 +55,6 @@
                     </div>
                 </div>
             </nav>
-        </div>
-        <div class="col-md-2" >
-            <input type='text' id='doctorId' class='form-control'/>
         </div>
     </div>
 </div>

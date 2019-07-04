@@ -16,21 +16,21 @@ import java.util.List;
 public class DiagnoseDirectoryController {
     @Autowired
     DiagnoseDirectoryService diagnoseDirectoryService;
+
     /**
-     *@Author: dell on 2019/6/14 13:42
-     *@param: []
-     *@return: java.lang.String
-     *@Description: toTiagnoseDirectoryManagement
+     * 定向到诊断页面
+     * @return 诊断页面地址
      */
     @RequestMapping("diagnoseDirectoryManagement")
     public String toTiagnoseDirectoryManagement(){
         return"diagnoseDirectory/diagnoseDirectoryManagement";
     }
+
     /**
-     *@Author: dell on 2019/6/14 13:42
-     *@param: [pageNum, pageSize]
-     *@return: com.github.pagehelper.PageInfo
-     *@Description: listWithPageHelper
+     * 查询分页的诊断列表
+     * @param pageNum 页数
+     * @param pageSize 每页数据条数
+     * @return 分页的诊断列表
      */
     @RequestMapping("listWithPageHelper")
     public @ResponseBody

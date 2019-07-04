@@ -22,22 +22,12 @@ import java.util.List;
 public class ScheduleController {
     @Autowired
     ScheduleService scheduleService;
-    /**
-     *@Author: dell on 2019/6/14 15:33
-     *@param: []
-     *@return: java.lang.String
-     *@Description: toScheduleManagement
-     */
+
     @RequestMapping("scheduleManagement")
     public String toScheduleManagement(){
         return "schedule/scheduleManagement";
     }
-    /**
-     *@Author: dell on 2019/6/14 15:37
-     *@param: []
-     *@return: java.util.List
-     *@Description: scheduleRulesList
-     */
+
     @RequestMapping("scheduleRulesList")
     public @ResponseBody
     List scheduleRulesList(){
@@ -61,12 +51,7 @@ public class ScheduleController {
     }
 
 
-    /**
-     *@Author: dell on 2019/6/14 15:47
-     *@param: [idString]
-     *@return: void
-     *@Description: deleteScheduleRulesByID
-     */
+
     @RequestMapping("deleteScheduleRulesByID")
     public @ResponseBody
     void deleteScheduleRuleByID(String idString){
@@ -75,12 +60,7 @@ public class ScheduleController {
             scheduleService.deleteByID(Integer.parseInt(id));
         }
     }
-    /**
-     *@Author: dell on 2019/6/14 15:53
-     *@param: [scheduleRules]
-     *@return: void
-     *@Description: updateScheduleRules
-     */
+
     @RequestMapping("updateScheduleRules")
     public @ResponseBody
     void updateScheduleRules(ScheduleRuleDTO scheduleRules){
@@ -95,22 +75,14 @@ public class ScheduleController {
 //        scheduleService.
 //    }
 
-    /**
-     *
-     * addScheduleRule
-     * @param scheduleRule
-     */
+
     @RequestMapping("addScheduleRule")
     public @ResponseBody
     void addScheduleRule(ScheduleRule scheduleRule){
         scheduleService.insertScheduleRule(scheduleRule);
     }
 
-    /**
-     *
-     * deleteScheduleInfosByID
-     * @param idString
-     */
+
     @RequestMapping("deleteScheduleInfosByID")
     public @ResponseBody
     void deleteScheduleInfosByID(String idString){
@@ -120,11 +92,6 @@ public class ScheduleController {
         }
     }
 
-    /**
-     *
-     * updateScheduleInfos
-     * @param scheduleInfoList
-     */
     @RequestMapping("updateScheduleInfos")
     public @ResponseBody
     void updateScheduleInfos(ScheduleInfoDTO scheduleInfoList){
