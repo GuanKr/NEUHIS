@@ -27,7 +27,7 @@
 </ol>
 <div class="container">
     <div class="row clearfix">
-        <div class="col-md-10 column">
+        <div class="col-md-12 column">
             <nav class="navbar navbar-default" role="navigation">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -43,8 +43,8 @@
                     </div>
                     <div class="collapse navbar-collapse" id="example-navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="financial/expenseClassManagement">费用科目管理</a></li>
-                            <li><a href="financial/workload" >工作量统计</a></li>
+                            <li ><a href="financial/expenseClassManagement">费用科目管理</a></li>
+                            <li class="active"><a href="financial/workload" >工作量统计</a></li>
                         </ul>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
 <%--            <button type="button" id="addRegistrationLevelButton" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;添加&nbsp;&nbsp;&nbsp;&nbsp;</button>--%>
 <%--        </div>--%>
         <div class="form-group col-md-3">
-            <input type="text" id="doctorId" class="form-control col-md-6" style="display: none"/>
+            <input type="text" id="doctorId" class="form-control col-md-1" style="display: none ;max-width: 100px "/>
             <button type="button" id="search" onclick="findWorkload($('#role').val())" class=" btn btn-primary  col-md-6">&nbsp;&nbsp;&nbsp;&nbsp;查询&nbsp;&nbsp;&nbsp;&nbsp;</button>
         </div>
     </div>
@@ -90,17 +90,6 @@
         <thead id="tableHead">
         </thead>
         <tbody id="tableBody">
-        <tr>
-            <th><input type="text" class="form-control" value="workloadList[i].departmentId" /></th>
-            <th><input type="text" class="form-control" value="workloadList[i].patientName"/>患者姓名</th>
-            <th><input type="text" class="form-control" value="workloadList[i].medicalNo"/>病历号</th>
-            <th><input type="text" class="form-control" value="workloadList[i].regCost" />挂号费</th>
-            <th><input type="text" class="form-control" value="workloadList[i].drugCost" />处方费</th>
-            <th><input type="text" class="form-control" value="workloadList[i].inspectionCost" />检查费</th>
-            <th><input type="text" class="form-control" value="workloadList[i].checkoutCost" />检验费</th>
-            <th><input type="text" class="form-control" value="workloadList[i].handleCost" />处置费</th>
-            <th><input type="text" class="form-control" value="workloadList[i].cost" />金额</th>
-        </tr>
         </tbody>
     </table>
 </form>
@@ -129,7 +118,6 @@
                     var headstr="";
                     $("#tableHead").html("");
                     headstr+="<tr>\n" +
-                        "            <th>科室Id</th>\n" +
                         "            <th>科室名称</th>\n" +
                         "            <th>发票数量</th>\n" +
                         "            <th>看诊人数</th>\n" +
@@ -143,20 +131,20 @@
                     $("#tableHead").append(headstr);
                     var bodystr="";
                     $("#tableBody").html("");
-                    bodystr+=" <tr>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].departmentId+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].departmentName+"\"/></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].invoiceQuantity+"\"/></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].seeQuantity+"\"/></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].regCost+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].drugCost+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].inspectionCost+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].checkoutCost+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].handleCost+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].cost+"\" /></th>\n" +
-                        "        </tr>";
+                    for(var k=0; k<workloadList.length;k++){
+                        bodystr+=" <tr>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].departmentName+"\"/></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].invoiceQuantity+"\"/></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].seeQuantity+"\"/></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].regCost+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].drugCost+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].inspectionCost+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].checkoutCost+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].handleCost+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].cost+"\" /></th>\n" +
+                            "        </tr>";
+                    }
                     $("#tableBody").append(bodystr);
-
                 },
                 error:function(){
                     alert("search fail");
@@ -189,18 +177,20 @@
                     $("#tableHead").append(headstr);
                     var bodystr="";
                     $("#tableBody").html("");
-                    bodystr+=" <tr>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].departmentId+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].departmentName+"\"/></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].invoiceQuantity+"\"/></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].seeQuantity+"\"/></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].regCost+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].drugCost+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].inspectionCost+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].checkoutCost+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].handleCost+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].cost+"\" /></th>\n" +
-                        "        </tr>";
+                    for(var k=0; k<workloadList.length;k++){
+                        bodystr+=" <tr>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].departmentId+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].departmentName+"\"/></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].invoiceQuantity+"\"/></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].seeQuantity+"\"/></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].regCost+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].drugCost+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].inspectionCost+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].checkoutCost+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].handleCost+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].cost+"\" /></th>\n" +
+                            "        </tr>";
+                    }
                     $("#tableBody").append(bodystr);
                 },
                 error:function(){
@@ -220,7 +210,6 @@
                     var headstr="";
                     $("#tableHead").html("");
                     headstr+="<tr>\n" +
-                        "            <th>医生Id</th>\n" +
                         "            <th>医生姓名</th>\n" +
                         "            <th>发票数量</th>\n" +
                         "            <th>看诊人数</th>\n" +
@@ -234,18 +223,20 @@
                     $("#tableHead").append(headstr);
                     var bodystr="";
                     $("#tableBody").html("");
-                    bodystr+=" <tr>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].doctorId+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].doctorName+"\"/></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].invoiceQuantity+"\"/></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].seeQuantity+"\"/></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].regCost+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].drugCost+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].inspectionCost+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].checkoutCost+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].handleCost+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].cost+"\" /></th>\n" +
-                        "        </tr>";
+                    for(var k=0;k<workloadList.length;k++){
+                        bodystr+=" <tr>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].doctorName+"\"/></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].invoiceQuantity+"\"/></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].seeQuantity+"\"/></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].regCost+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].drugCost+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].inspectionCost+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].checkoutCost+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].handleCost+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].cost+"\" /></th>\n" +
+                            "        </tr>";
+                    }
+
                     $("#tableBody").append(bodystr);
                 },
                 error:function(){
@@ -277,17 +268,19 @@
                     $("#tableHead").append(headstr);
                     var bodystr="";
                     $("#tableBody").html("");
-                    bodystr+=" <tr>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].doctorName+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].patientName+"\"/></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].medicalNo+"\"/></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].regCost+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].drugCost+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].inspectionCost+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].checkoutCost+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].handleCost+"\" /></th>\n" +
-                        "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[i].cost+"\" /></th>\n" +
-                        "        </tr>";
+                    for(var k=0;k<workloadList.length;k++){
+                        bodystr+=" <tr>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].doctorName+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].patientName+"\"/></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].medicalNo+"\"/></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].regCost+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].drugCost+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].inspectionCost+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].checkoutCost+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].handleCost+"\" /></th>\n" +
+                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].cost+"\" /></th>\n" +
+                            "        </tr>";
+                    }
                     $("#tableBody").append(bodystr);
                },
                 error:function(){

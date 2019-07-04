@@ -2,6 +2,7 @@ package neu.his.controller;
 
 import neu.his.bean.Drug;
 import neu.his.bean.DrugPrescription;
+import neu.his.bean.RegistrationInfo;
 import neu.his.service.DrugPrescriptionService;
 import neu.his.service.DrugService;
 import neu.his.service.RegistrationInfoService;
@@ -132,16 +133,14 @@ public class DrugController {
      * @param medicalNo 病历号
      * @return 姓名
      */
-    @RequestMapping("findNameByMedical")
+    @RequestMapping(value = "findNameByMedical" ,produces = {"application/json;charset=UTF-8"})
     public @ResponseBody
     String findNameByMedical(String medicalNo){
-          String str=medicalNo;
-//        List<RegistrationInfo> all = registrationInfoService.findAll();
-//        for(RegistrationInfo registrationInfo:all){
-//            if(Integer.parseInt(registrationInfo.getMedicalRecordNo())==Integer.parseInt(medicalNo)){
-//                str=registrationInfo.getPatientName();
-//            }
-//        }
+        String str="can't find";
+        List<RegistrationInfo> all = registrationInfoService.query2("medical_record_no",medicalNo);
+        if(all!=null&&all.size()>0){
+            str = all.get(0).getPatientName();
+        }
         return str;
     }
 
@@ -181,4 +180,21 @@ public class DrugController {
             }
         }
     }
+
+    @RequestMapping("returnMedicine")
+    public @ResponseBody
+    String  returnMedicine(String medicalNo,String prescriptionId,String quantity){
+        String str="";
+        DrugPrescription dp ;
+        List<DrugPrescription> drugPrescriptions= drugPrescriptionService.findPrescription(medicalNo);
+        for(DrugPrescription drugPrescription:drugPrescriptions){
+            if(drugPrescription.getId()==Integer.parseInt(prescriptionId)){
+                dp=drugPrescription;
+                drugPrescriptionService.drugReturn(dp,Integer.parseInt(quantity));
+                str=drugPrescriptionService.drugReturn(dp,Integer.parseInt(quantity));
+            }
+        }
+        return str;
+    }
+
 }
