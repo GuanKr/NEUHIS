@@ -163,7 +163,6 @@
                     var headstr="";
                     $("#tableHead").html("");
                     headstr+="<tr>\n" +
-                        "            <th>科室Id</th>\n" +
                         "            <th>科室名称</th>\n" +
                         "            <th>发票数量</th>\n" +
                         "            <th>看诊人数</th>\n" +
@@ -179,7 +178,6 @@
                     $("#tableBody").html("");
                     for(var k=0; k<workloadList.length;k++){
                         bodystr+=" <tr>\n" +
-                            "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].departmentId+"\" /></th>\n" +
                             "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].departmentName+"\"/></th>\n" +
                             "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].invoiceQuantity+"\"/></th>\n" +
                             "            <th><input type=\"text\" class=\"form-control\" value=\""+workloadList[k].seeQuantity+"\"/></th>\n" +
