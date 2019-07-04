@@ -373,13 +373,14 @@
                 <div class="col-md-8 center-block" style="width: 70%;height: 600px;overflow: auto">
                     <%--病历首页--%>
                     <form role="form" id="medicalRecordInfo">
-                        <div class="col-md-5 pull-right">
+                        <div class="col-md-6 pull-right">
                             <input type="reset" id="medicalRecordInfoResetButton" class="btn btn-default" value="清屏" />&nbsp;
                             <button type="button" id="holdButton" class="btn btn-primary">&nbsp;暂存&nbsp;</button>&nbsp;
                             <button type="button" id="readHoldButton" class="btn btn-primary">读取暂存</button>&nbsp;
                             <button type="button" id="submitButton" class="btn btn-primary">&nbsp;提交&nbsp;</button>&nbsp;
                             <button type="button" id="templateButton" onclick="showSaveTemplateDialog()" class="btn btn-primary">设为模板</button>&nbsp;
                             <button type="button" id="readMedicalR"  class="btn btn-primary">读取病历</button>
+                            <button type="button" onclick="overMR()" class="btn btn-primary">诊毕</button>
                         </div>
                         <fieldset>
                             <legend class="">门诊病例信息</legend>
@@ -467,8 +468,8 @@
                             <tbody id="diagnoseTableBody">
                             <tr>
                                 <th style="display: none"><input type="text" class="form-control" id="diseases0id" name="diagnoses[0].diseaseId"/></th>
-                                <th><input type="text" class="form-control" id="diseases0internationalIcdCode" /></th>
-                                <th><input type="text" class="form-control" id="diseases0diseaseName" name="diagnoses[0].diseaseName"/></th>
+                                <th><input type="text" class="form-control" id="diseases0internationalIcdCode" readonly/></th>
+                                <th><input type="text" class="form-control" id="diseases0diseaseName" name="diagnoses[0].diseaseName" readonly/></th>
                                 <th><select class="form-control" name="diagnoses[0].majorDiagnoseSign">
                                     <option value="1">主诊</option>
                                     <option value="0">疑似</option>
@@ -1787,8 +1788,8 @@
         diagnoseNum = 0;
         var str = "<tr>\n" +
             "<th style='display: none'><input type=\"text\" class=\"form-control\" id='diseases" + diagnoseNum + "id' name=\"diagnoses[" + diagnoseNum + "].diseaseId\"/></th>" +
-            "<th><input type=\"text\" class=\"form-control\" id=\"diseases" + diagnoseNum + "internationalIcdCode\"/></th>" +
-            "<th><input type=\"text\" class=\"form-control\" id='diseases" + diagnoseNum + "diseaseName' name='diagnoses[" + diagnoseNum + "].diseaseName'/></th>\n" +
+            "<th><input type=\"text\" class=\"form-control\" id=\"diseases" + diagnoseNum + "internationalIcdCode\" readonly/></th>" +
+            "<th><input type=\"text\" class=\"form-control\" id='diseases" + diagnoseNum + "diseaseName' name='diagnoses[" + diagnoseNum + "].diseaseName' readonly/></th>\n" +
             "    <th><select class=\"form-control\" name=\"diagnoses[" + diagnoseNum + "].majorDiagnoseSign\">\n" +
             "    <option value=\"1\">主诊</option>\n" +
             "    <option value=\"0\">疑似</option>\n" +
@@ -1817,6 +1818,25 @@
                 alert("提交失败");
             }
         });
+    }
+    //诊毕
+    function overMR() {
+        var medicalRecordNo =  $('input[name=patientMedicalRecordNo]:checked').val();
+        if(medicalRecordNo == null){
+            alert("请选择患者");
+        }else {
+            $.ajax({
+                type: "POST",
+                url: "medicalRecord/overMR",
+                data: {medicalRecordNo: medicalRecordNo},
+                success: function () {
+                    alert("已诊毕");
+                },
+                error:function () {
+                    alert("无法诊毕");
+                }
+            });
+        }
     }
 
 //检查
@@ -1936,8 +1956,8 @@
             type: "POST",
             url: "inspection/submitInspections",
             data: $.param({doctorId:doctorID,medicalRecordNo:medicalRecordNo}) + '&' + $('#inspectionsInfo').serialize(),
-            success: function () {
-                alert("所有项目已开立");
+            success: function (result) {
+                alert(result.msg);
                 getOpenedInspections();
                 resetInspectionTableBody();
             },
@@ -2564,8 +2584,8 @@
             type: "POST",
             url: "drugPrescription/submitDrugPrescription",
             data: $.param({doctorId:doctorID,medicalRecordNo:medicalRecordNo}) + '&' + $('#drugsInfo').serialize(),
-            success: function () {
-                alert("处方已开立");
+            success: function (data) {
+                alert(data.msg);
                 // getOpenedInspections();
                 getOpenedDrugPrescription();
                 resetDrugsTableBody();
@@ -2871,8 +2891,8 @@
             diagnoseNum = diagnoseNum + 1;
             var str = "<tr>\n" +
                 "<th style='display: none'><input type=\"text\" class=\"form-control\" id='diseases" + diagnoseNum + "id' name=\"diagnoses[" + diagnoseNum + "].diseaseId\"/></th>" +
-                "<th><input type=\"text\" class=\"form-control\" id=\"diseases" + diagnoseNum + "internationalIcdCode\"/></th>" +
-                "<th><input type=\"text\" class=\"form-control\" id='diseases" + diagnoseNum + "diseaseName' name='diagnoses[" + diagnoseNum + "].diseaseName'/></th>\n" +
+                "<th><input type=\"text\" class=\"form-control\" id=\"diseases" + diagnoseNum + "internationalIcdCode\" readonly/></th>" +
+                "<th><input type=\"text\" class=\"form-control\" id='diseases" + diagnoseNum + "diseaseName' name='diagnoses[" + diagnoseNum + "].diseaseName' readonly/></th>\n" +
                 "    <th><select class=\"form-control\" name=\"diagnoses[" + diagnoseNum + "].majorDiagnoseSign\">\n" +
                 "    <option value=\"1\">主诊</option>\n" +
                 "    <option value=\"0\">疑似</option>\n" +
