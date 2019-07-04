@@ -72,13 +72,17 @@ public class InspectionController {
      * @param inspectionDTO 项目列表
      */
     @RequestMapping("submitInspections")
-    public @ResponseBody void submitInspections(int doctorId, String medicalRecordNo, InspectionDTO inspectionDTO){
+    public @ResponseBody ResultDTO submitInspections(int doctorId, String medicalRecordNo, InspectionDTO inspectionDTO){
         List<Inspection> inspections = inspectionDTO.getInspections();
+        String info = "";
         for (Inspection inspection : inspections) {
             inspection.setDoctorId(doctorId);
             inspection.setMedicalRecordNo(medicalRecordNo);
-            inspectionService.addInspection(inspection);
+            info = inspectionService.addInspection(inspection);
         }
+        ResultDTO resultDTO = new ResultDTO();
+        resultDTO.setMsg(info);
+        return resultDTO;
     }
 
     /**

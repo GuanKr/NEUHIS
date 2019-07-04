@@ -52,9 +52,9 @@ public class LoginController {
                     case 3:
                         return "inspection/inspectionManagement";
                     case 4:
-                        return "药房操作员";
+                        return "pharmacy/drugManagement";
                     case 5:
-                        return "财务管理员";
+                        return "financial/expenseClassManagement";
                     case 6:
                         return "user/management";
                 }
