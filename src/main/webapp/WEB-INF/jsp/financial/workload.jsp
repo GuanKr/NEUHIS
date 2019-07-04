@@ -20,46 +20,62 @@
     <title>工作量统计</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
-<body>
-<ol class="breadcrumb container">
-    <li><a href="#">首页</a></li>
-    <li class="active">工作量统计</li>
-</ol>
-<div class="container">
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <nav class="navbar navbar-default" role="navigation">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                data-target="#example-navbar-collapse">
-                            <span class="sr-only">切换导航</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">财务管理</a>
+<body style="margin-top: 50px">
+<%--<ol class="breadcrumb container">--%>
+<%--    <li><a href="#">首页</a></li>--%>
+<%--    <li class="active">工作量统计</li>--%>
+<%--</ol>--%>
+<%--<div class="container">--%>
+<%--    <div class="row clearfix">--%>
+<%--        <div class="col-md-12 column">--%>
+<%--            <nav class="navbar navbar-default" role="navigation">--%>
+<%--                <div class="container-fluid">--%>
+<%--                    <div class="navbar-header">--%>
+<%--                        <button type="button" class="navbar-toggle" data-toggle="collapse"--%>
+<%--                                data-target="#example-navbar-collapse">--%>
+<%--                            <span class="sr-only">切换导航</span>--%>
+<%--                            <span class="icon-bar"></span>--%>
+<%--                            <span class="icon-bar"></span>--%>
+<%--                            <span class="icon-bar"></span>--%>
+<%--                        </button>--%>
+<%--                        <a class="navbar-brand" href="#">财务管理</a>--%>
 
-                    </div>
-                    <div class="collapse navbar-collapse" id="example-navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li ><a href="financial/expenseClassManagement">费用科目管理</a></li>
-                            <li class="active"><a href="financial/workload" >工作量统计</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-</div>
+<%--                    </div>--%>
+<%--                    <div class="collapse navbar-collapse" id="example-navbar-collapse">--%>
+<%--                        <ul class="nav navbar-nav">--%>
+<%--                            <li ><a href="financial/expenseClassManagement">费用科目管理</a></li>--%>
+<%--                            <li class="active"><a href="financial/workload" >工作量统计</a></li>--%>
+<%--                        </ul>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </nav>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
+
+<%--导航栏--%>
+<div class="container"><div class="row clearfix"><div class="column">
+    <nav id="nav" class="navbar navbar-default">
+        <a class="navbar-brand">HIS</a>
+        <ul class="nav navbar-nav" style="width: 93%">
+            <li><a href="financial/expenseClassManagement">费用科目管理</a></li>
+            <li class="active"><a href="financial/workload" >工作量统计</a></li>
+            <li class="active pull-right" style="top: 10px"><input style="top: 10px" class="btn btn-danger" type="button" id="logOutButton" value="退出"/></li>
+            <li class="pull-right" id="loginUser"></li>
+            <a style="display: none" id="logOut" href="${pageContext.request.contextPath}/logout">退出</a>
+            <li style="display: none"><input id="doctorID"/></li>
+        </ul>
+    </nav>
+</div></div></div>
+
 <form class="" role="form" id="addRegistrationLevel">
     <div class="container">
         <div class="form-group col-md-3">
-            <select class="form-control" id="role"  name="role">
-                <option value="1" onclick="unshowInputId()">执行科室</option>
-                <option value="2" onclick="unshowInputId()">开立科室</option>
-                <option value="3" onclick="unshowInputId()">全部医生</option>
-                <option value="4" onclick="showInputId()">门诊医生</option>
+            <select class="form-control" id="role" onchange="ifShowInputDocID()" name="role">
+                <option value="1">执行科室</option>
+                <option value="2">开立科室</option>
+                <option value="3">全部医生</option>
+                <option value="4">门诊医生</option>
 <%--                需要医生id--%>
             </select>
         </div>
@@ -79,8 +95,8 @@
 <%--            <input type="reset" class="btn btn-default" value="清空" />&nbsp;&nbsp;--%>
 <%--            <button type="button" id="addRegistrationLevelButton" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;添加&nbsp;&nbsp;&nbsp;&nbsp;</button>--%>
 <%--        </div>--%>
-        <div class="form-group col-md-3">
-            <input type="text" id="doctorId" class="form-control col-md-1" style="display: none ;max-width: 100px "/>
+        <div class="form-group col-md-3" id="inputDocID">
+<%--            <input type="text" id="doctorId" placeholder="医生ID" class="form-control col-md-1" style="max-width: 100px;min-width: 95px"/>&nbsp;&nbsp;--%>
             <button type="button" id="search" onclick="findWorkload($('#role').val())" class=" btn btn-primary  col-md-6">&nbsp;&nbsp;&nbsp;&nbsp;查询&nbsp;&nbsp;&nbsp;&nbsp;</button>
         </div>
     </div>
@@ -99,12 +115,22 @@
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript">
     var workloadList="";
-    function showInputId(){
-        $("#doctorId").css('display','block');
+    function ifShowInputDocID() {
+        if($("#role").val() == "4"){
+            $("#inputDocID").html("");
+            $("#inputDocID").append("<input type=\"text\" id=\"doctorId\" placeholder=\"医生姓名\" class=\"form-control col-md-1\" style=\"max-width: 100px;min-width: 95px\"/>&nbsp;&nbsp;\n" +
+                "            <button type=\"button\" id=\"search\" onclick=\"findWorkload($('#role').val())\" class=\" btn btn-primary  col-md-6 pull-right\">&nbsp;&nbsp;&nbsp;&nbsp;查询&nbsp;&nbsp;&nbsp;&nbsp;</button>");
+        }else {
+            $("#inputDocID").html("");
+            $("#inputDocID").append("<button type=\"button\" id=\"search\" onclick=\"findWorkload($('#role').val())\" class=\" btn btn-primary  col-md-6\">&nbsp;&nbsp;&nbsp;&nbsp;查询&nbsp;&nbsp;&nbsp;&nbsp;</button>");
+        }
     }
-    function unshowInputId(){
-        $("#doctorId").css('display','none');
-    }
+    // function showInputId(){
+    //     $("#doctorId").css('display','block');
+    // }
+    // function unshowInputId(){
+    //     $("#doctorId").css('display','none');
+    // }
     function findWorkload(i){
         //执行科室
         if(i==1){
@@ -288,6 +314,15 @@
         }
 
     }
+
+    $(document).ready(function () {
+        $("#loginUser").append("<a>" + "${USER_SESSION.loginName}" + "</a><input style=\"display: none\" id=\"userID\" value='" + ${USER_SESSION.id} + "'/>");
+        <%--$("#doctorID").val(${USER_SESSION.id});--%>
+        $("#logOutButton").click(function (){
+            document.getElementById("logOut").click();
+        });
+        // alert("请登录");
+    });
 </script>
 </body>
 </html>
