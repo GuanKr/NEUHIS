@@ -46,6 +46,7 @@ public class CheckDayServiceImpl implements CheckDayService {
     @Override
     public void checkDay(Integer tollId, Date endTime) {
         CheckDayExample checkDayExample = new CheckDayExample();
+        checkDayExample.or().andTollCollectorIdEqualTo(tollId);
         checkDayExample.setOrderByClause("end_time DESC");
         Date startTime = checkDayMapper.selectByExample(checkDayExample).get(0).getEndTime();
 

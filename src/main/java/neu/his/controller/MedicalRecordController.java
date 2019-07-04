@@ -6,6 +6,7 @@ import neu.his.bean.RegistrationInfo;
 import neu.his.dto.DiagnoseDTO;
 import neu.his.dto.ResultDTO;
 import neu.his.service.MedicalRecordService;
+import neu.his.service.RegistrationInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,8 @@ import java.util.List;
 public class MedicalRecordController {
     @Autowired
     MedicalRecordService medicalRecordService;
+    @Autowired
+    RegistrationInfoService registrationInfoService;
 
     /**
      * 定向到病例首页
@@ -218,5 +221,15 @@ public class MedicalRecordController {
     @RequestMapping("getDiagnose")
     public @ResponseBody List<Diagnose> getDiagnose(String medicalRecordNo){
         return medicalRecordService.findByMedNo(medicalRecordNo);
+    }
+
+    /**
+     * 诊毕
+     * @param medicalRecordNo 病历号
+     */
+    @RequestMapping("overMR")
+    public @ResponseBody void overMR(String medicalRecordNo){
+        List<RegistrationInfo> registrationInfoList = registrationInfoService.query("medical_record_no",medicalRecordNo);
+        registrationInfoService.completeRegistration(registrationInfoList.get(0));
     }
 }

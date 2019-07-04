@@ -19,34 +19,19 @@ import java.util.List;
 public class SettlementTypeController {
     @Autowired
     SettlementTypeService settlementTypeService;
-    /**
-     *@Author: dell on 2019/6/14 14:30
-     *@param: []
-     *@return: java.lang.String
-     *@Description: settlementTypeManagement
-     */
+
     @RequestMapping("settlementTypeManagement")
     public String toSettlementTypeManagement(){
         return "settlementType/settlementTypeManagement";
     }
-    /**
-     *@Author: dell on 2019/6/14 14:30
-     *@param: []
-     *@return: java.util.List
-     *@Description: settlementTypeList
-     */
+
     @RequestMapping("list")
     public @ResponseBody
     List settlementTypeList(){
         List<SettlementType> settlementtypelist = settlementTypeService.findAll();
         return settlementtypelist;
     }
-    /**
-     *@Author: dell on 2019/6/14 14:29
-     *@param: [idStirng]
-     *@return: void
-     *@Description: deleteSettlementTypesByID
-     */
+
     @RequestMapping("deleteSettlementTypesByID")
     public @ResponseBody
     void deleteSettlementTypesByID(String idString ){
@@ -55,12 +40,7 @@ public class SettlementTypeController {
             settlementTypeService.deleteByID(Integer.parseInt(id));
         }
     }
-    /**
-     *@Author: dell on 2019/6/14 14:31
-     *@param: [settlementtypes]
-     *@return: void
-     *@Description: updateSettlementTypes
-     */
+
     @RequestMapping("updateSettlementTypes")
     public @ResponseBody
     void updateSettlementTypes(SettlementTypeDTO settlementtypes){

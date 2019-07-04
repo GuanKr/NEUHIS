@@ -21,24 +21,14 @@ public class DiseaseController {
     DiseaseService diseaseService;
     @Autowired
     DiagnoseDirectoryService diagnoseDirectoryService;
-    /**
-     *@Author: dell on 2019/6/14 13:39
-     *@param: [directory]
-     *@return: java.util.List
-     *@Description: listFindByDirectory
-     */
+
     @RequestMapping("listFindByDirectory")
     public @ResponseBody
     List listFindByDirectory(String directory){
         List<Disease>  diseases = diseaseService.findByDirectory(directory);
         return diseases;
     }
-    /**
-     *@Author: dell on 2019/6/14 13:40
-     *@param: [diseases]
-     *@return: void
-     *@Description: updateDiseases
-     */
+
     @RequestMapping("updateDiseases")
     public @ResponseBody
     void updateDiseases(DiseaseDTO diseases){

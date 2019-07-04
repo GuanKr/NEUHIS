@@ -38,8 +38,6 @@
                 <button type="button" onclick="commonDrugDialogFind()" class="btn btn-primary">&nbsp;&nbsp;药品查询&nbsp;&nbsp;</button>
             </div>
         </div>
-<%--        <input type="text" class="form-control" name="nonDrugListId" id="commonInspectionDialogNonDrugListId" style="display: none"/>--%>
-<%--        <input type="text" class="form-control" name="doctorId" id="commonDrugDialogDoctorId" style="display: none"/>--%>
         <br><br><br>
         <p>药品名称：<input type="text" class="form-control" name="drugName" id="commonDrugDialogDrugName" readonly /></p>
         <p>药品规格：<input type="text" class="form-control" name="drugFormat" id="commonDrugDialogDrugFormat" readonly/></p>
@@ -74,12 +72,6 @@
 <%--存为处方组套对话框--%>
 <div id="saveAsDrugSetDialog" title="存为处方组套"  style="display: none" >
     <form id="saveAsDrugSetForm">
-<%--        <p>组套类型：<select class="form-control" id="saveAsDrugSetDialogThreeSelectOne" >--%>
-<%--            <option value="检查">检查</option>--%>
-<%--            <option value="检验">检验</option>--%>
-<%--            <option value="处置">处置</option>--%>
-<%--        </select>--%>
-<%--        </p>--%>
         <p>组套编码：<input type="text" class="form-control" name="combinatorialCode" id="saveAsDrugSetDialogCombinatorialCode"  /></p>
         <p>组套名称：<input type="text" class="form-control" name="combinatorialName" id="saveAsDrugSetDialogCombinatorialName" /></p>
         <p>目的和要求：<input type="text" class="form-control" name="requirement" id="saveAsDrugSetDialogRequirement" /></p>
@@ -114,7 +106,6 @@
                 <th class="col-md-2">用法</th>
                 <th class="col-md-2">用量</th>
                 <th class="col-md-2">频次</th>
-                <%--<th>类型</th>--%>
             </tr>
             </thead>
             <tbody id="saveAsDrugSetTableBody">
@@ -232,7 +223,6 @@
                 <th class="col-md-2">项目编码</th>
                 <th class="col-md-2">名称</th>
                 <th class="col-md-3">价格</th>
-                <%--<th>类型</th>--%>
             </tr>
             </thead>
             <tbody id="saveAsSetInspectionTableBody">
@@ -280,8 +270,8 @@
         <input type="text" class="form-control" name="diseaseId" id="commonDiagnoseDialogDiseaseId" style="display: none"/>
         <input type="text" class="form-control" name="doctorId" id="commonDiagnoseDialogDoctorId" style="display: none"/>
         <br><br><br>
-        <p>国际ICD编码：<input type="text" class="form-control" id="commonDiagnoseDialogICDCode" /></p>
-        <p>诊断名称：<input type="text" class="form-control" name="diseaseName" id="commonDiagnoseDialogDiseaseName" /></p>
+        <p>国际ICD编码：<input type="text" class="form-control" id="commonDiagnoseDialogICDCode" readonly/></p>
+        <p>诊断名称：<input type="text" class="form-control" name="diseaseName" id="commonDiagnoseDialogDiseaseName" readonly/></p>
         <p>&nbsp;&nbsp;类&nbsp;&nbsp;型&nbsp;&nbsp;：<select class="form-control" name="diseaseType" id="commonDiagnoseDialogDiseaseType" >
             <option value ="1">西医</option>
             <option value ="2">中医</option>
@@ -336,7 +326,6 @@
     </form>
 </div>
 <%--导航栏--%>
-<%--<div class="container"><div class="row clearfix"><div class="column">--%>
     <nav id="nav" class="navbar navbar-default">
         <a class="navbar-brand">HIS</a>
         <ul class="nav navbar-nav" style="width: 93%">
@@ -347,17 +336,6 @@
             <li style="display: none"><input id="doctorID"/></li>
         </ul>
     </nav>
-<%--</div></div></div>--%>
-<%--<nav id="nav" class="navbar navbar-default">--%>
-<%--    <a href="#" class="navbar-brand">首页</a>--%>
-<%--    <ul class="nav navbar-nav" style="width: 93%">--%>
-<%--        <li class="active"><a>病例首页</a></li>--%>
-<%--        <li class="dropdown pull-right" style="position: relative;right: 5px;">--%>
-<%--            <select style="margin-top: 10px" class="form-control" onchange="update()" id="doctorID">--%>
-<%--            </select>--%>
-<%--        </li>--%>
-<%--    </ul>--%>
-<%--</nav>--%>
 <div class="center-block" style="width: 95%">
     <%--已诊患者 待诊患者--%>
     <div class="col-md-2 center-block" style="border: solid 1px #5e5e5e;width: 19.5%;height: 600px;overflow: auto">
@@ -395,13 +373,14 @@
                 <div class="col-md-8 center-block" style="width: 70%;height: 600px;overflow: auto">
                     <%--病历首页--%>
                     <form role="form" id="medicalRecordInfo">
-                        <div class="col-md-5 pull-right">
+                        <div class="col-md-6 pull-right">
                             <input type="reset" id="medicalRecordInfoResetButton" class="btn btn-default" value="清屏" />&nbsp;
                             <button type="button" id="holdButton" class="btn btn-primary">&nbsp;暂存&nbsp;</button>&nbsp;
                             <button type="button" id="readHoldButton" class="btn btn-primary">读取暂存</button>&nbsp;
                             <button type="button" id="submitButton" class="btn btn-primary">&nbsp;提交&nbsp;</button>&nbsp;
                             <button type="button" id="templateButton" onclick="showSaveTemplateDialog()" class="btn btn-primary">设为模板</button>&nbsp;
                             <button type="button" id="readMedicalR"  class="btn btn-primary">读取病历</button>
+                            <button type="button" onclick="overMR()" class="btn btn-primary">诊毕</button>
                         </div>
                         <fieldset>
                             <legend class="">门诊病例信息</legend>
@@ -484,14 +463,13 @@
                                 <th>主诊</th>
                                 <th class="col-md-3">发病日期</th>
                                 <th>类型</th>
-                                <%--                                <th>类型</th>--%>
                             </tr>
                             </thead>
                             <tbody id="diagnoseTableBody">
                             <tr>
                                 <th style="display: none"><input type="text" class="form-control" id="diseases0id" name="diagnoses[0].diseaseId"/></th>
-                                <th><input type="text" class="form-control" id="diseases0internationalIcdCode" /></th>
-                                <th><input type="text" class="form-control" id="diseases0diseaseName" name="diagnoses[0].diseaseName"/></th>
+                                <th><input type="text" class="form-control" id="diseases0internationalIcdCode" readonly/></th>
+                                <th><input type="text" class="form-control" id="diseases0diseaseName" name="diagnoses[0].diseaseName" readonly/></th>
                                 <th><select class="form-control" name="diagnoses[0].majorDiagnoseSign">
                                     <option value="1">主诊</option>
                                     <option value="0">疑似</option>
@@ -616,7 +594,6 @@
                                     <th class="col-md-2">项目编码</th>
                                     <th class="col-md-2">名称</th>
                                     <th class="col-md-3">价格</th>
-                                    <%--<th>类型</th>--%>
                                 </tr>
                                 </thead>
                                 <tbody id="inspectionTableBody">
@@ -651,7 +628,6 @@
                                 <th class="col-md-3">价格</th>
                                 <th class="col-md-2">结果</th>
                                 <th class="col-md-2">作废</th>
-                                <%--<th>类型</th>--%>
                             </tr>
                             </thead>
                             <tbody id="openedInspectionTableBody">
@@ -672,7 +648,6 @@
                         <ul id="medicalRecordMiniTab000" class="nav nav-tabs">
                             <li class="active"><a href="#setTab" data-toggle="tab">组套</a></li>
                             <li><a href="#commonInspections" data-toggle="tab">常用项目</a></li>
-                            <%--                                <li><a href="#" data-toggle="tab">历史病例</a></li>--%>
                         </ul>
                         <div id="medicalRecordMiniTabContent000" class="tab-content">
                             <%--组套标签页--%>
@@ -708,14 +683,6 @@
                                         <div id="displaySetsThree">
                                         </div>
                                     </div>
-                                    <%--所有组套--%>
-                                    <%--<fieldset>--%>
-                                    <%--    <div>--%>
-                                    <%--        <legend class="">组套</legend>--%>
-                                    <%--    </div>--%>
-                                    <%--</fieldset>--%>
-                                    <%--<div id="displaySets">--%>
-                                    <%--</div>--%>
                                 </div>
                             </div>
                             <%--常用项目标签页--%>
@@ -736,20 +703,6 @@
                         </div>
                     </div>
                 </div>
-                <%--                <form role="form" id="inspectionInfo">--%>
-                <%--                    <div class="col-md-5 pull-right">--%>
-                <%--                        <input type="reset" id="inspectionInfoResetButton" class="btn btn-default" value="清屏" />&nbsp;--%>
-                <%--                        <button type="button" id="lookButton" class="btn btn-primary">&nbsp;查看&nbsp;</button>&nbsp;--%>
-                <%--&lt;%&ndash;                        <button type="button" id="readHoldButton" class="btn btn-primary">读取暂存</button>&nbsp;&ndash;%&gt;--%>
-                <%--&lt;%&ndash;                        <button type="button" id="submitButton" class="btn btn-primary">&nbsp;提交&nbsp;</button>&nbsp;&ndash;%&gt;--%>
-                <%--&lt;%&ndash;                        <button type="button" id="templateButton" onclick="showSaveTemplateDialog()" class="btn btn-primary">设为模板</button>&nbsp;&ndash;%&gt;--%>
-                <%--&lt;%&ndash;                        <button type="button" id="readMedicalR"  class="btn btn-primary">读取病历</button>&ndash;%&gt;--%>
-                <%--                    </div>--%>
-                <%--                    <fieldset>--%>
-                <%--                        <legend class="">检查开立</legend>--%>
-                <%--                    </fieldset>--%>
-                <%--                    --%>
-                <%--                </form>--%>
             </div>
             <div class="tab-pane fade" id="drugList">
                 <div class="col-md-8 center-block" style="width: 70%;height: 600px;overflow: auto">
@@ -800,9 +753,6 @@
                                     <th style="min-width: 100px;max-width: 130px">天数</th>
                                     <th style="min-width: 100px;max-width: 130px">数量</th>
                                     <th style="min-width: 100px;max-width: 130px">用药嘱托</th>
-                                    <%--                                    <th class="col-md-2">用量</th>--%>
-                                    <%--                                    <th class="col-md-3">频次</th>--%>
-                                    <%--<th>类型</th>--%>
                                 </tr>
                                 </thead>
                                 <tbody id="drugsTableBody">
@@ -848,7 +798,6 @@
                                 <th class="col-md-3">数量</th>
                                 <th class="col-md-2">总价</th>
                                 <th class="col-md-2">作废</th>
-                                <%--<th>类型</th>--%>
                             </tr>
                             </thead>
                             <tbody id="openedDrugPrescriptionTableBody">
@@ -869,7 +818,6 @@
                             <div class="tab-pane fade in active" id="drugSetTab">
                                 <div style="height: 550px;overflow: auto">
                                     <div>
-<%--                                        TODO--%>
                                         <button type="button" onclick="showSaveAsDrugSetDialog()" class="btn btn-primary">添加处方组套</button>&nbsp;
                                     </div>
                                     <div style="height: 450px;overflow: auto">
@@ -909,6 +857,11 @@
             <%--                费用明细标签页--%>
             <div class="tab-pane fade" id="costList">
                 <div class="col-md-8 center-block" style="width: 95%;height: 600px;overflow: auto">
+                    <div class="pull-right" style="width: 150px">
+                        <div class="" >
+                            <input class="form-control" id="doctorSeeTotalCost" readonly>
+                        </div>
+                    </div>
                     <fieldset>
                         <div>
                             <legend class="">费用明细</legend>
@@ -933,9 +886,6 @@
                             </div>
                         </div>
                     </div>
-                    <%--                        <div style="width: 200px;">--%>
-                    <%--                            --%>
-                    <%--                        </div>--%>
 
                     <table class="table table-hover table-striped">
                         <thead>
@@ -943,11 +893,7 @@
                             <th>项目</th>
                             <th>类型</th>
                             <th>费用</th>
-<%--                            <th>数量</th>--%>
-<%--                            <th>费用</th>--%>
                             <th>执行科室</th>
-<%--                            <th>类型</th>--%>
-<%--                            <th>开立医生</th>--%>
                             <th>开立科室</th>
                         </tr>
                         </thead>
@@ -1215,28 +1161,6 @@
             }
         });
     });
-    // //查找具体的一项药品并添加到组套中
-    // function findOneDrugInDialog(){
-    //     $.ajax({
-    //         type:"POST",
-    //         url :"drugPrescription/findDrugsByName",
-    //         data: {drugName : $("#saveAsDrugSetDialogInspectionMnemonicCodeInput").val()},
-    //         async: false,
-    //         success:function(result){
-    //             var drug = result;
-    //             if ($(eval('drugPrescription' + dialogDrugNum + 'id')).val() != ""){
-    //                 dialogAddOneDrug();
-    //             }
-    //             $(eval('drugPrescription' + dialogDrugNum + 'id')).val(drug[0].id);
-    //             $(eval('drugPrescription' + dialogDrugNum + 'drugName')).val(drug[0].drugName);
-    //             $(eval('drugPrescription' + dialogDrugNum + 'drugFormat')).val(drug[0].drugFormat);
-    //             $(eval('drugPrescription' + dialogDrugNum + 'drugPrice')).val(drug[0].drugPrice);
-    //             $(eval('drugPrescription' + dialogDrugNum + 'drugDosage')).val(drug[0].drugDosage);
-    //             $(eval('drugPrescription' + dialogDrugNum + 'drugType')).val(drug[0].drugType);
-    //             $("#drugMnemonicCodeInput").val("");
-    //         }
-    //     });
-    // }
 
     //检查检验结果分析弹出框
     function showInspectionResultDialog() {
@@ -1487,28 +1411,6 @@
         $('#saveTemplateDialog').dialog("close");
     }
 
-
-    // //医生列表
-    // var doctors = null;
-    // $.ajax({
-    //     type: "POST",
-    //     url: "user/findbyattribute",
-    //     data: {attribute_name : "role_name",attribute : "医生"},
-    //     success: function (result) {
-    //         doctors = result;
-    //         setDoctorIDBody();
-    //     }
-    // });
-    // //设置登录选项
-    // function setDoctorIDBody(){
-    //     var str;
-    //     str = "<option value=\"\">登录</option>";
-    //     $("#doctorID").html("");
-    //     for (let i = 0;i < doctors.length;i++){
-    //         str += "<option value=\"" + doctors[i].id + "\">" + doctors[i].name + "</option>\n";
-    //     }
-    //     $("#doctorID").append(str);
-    // }
     //医生登录后进行更新
     function update(){
         //    TODO 需要更新的函数
@@ -1886,8 +1788,8 @@
         diagnoseNum = 0;
         var str = "<tr>\n" +
             "<th style='display: none'><input type=\"text\" class=\"form-control\" id='diseases" + diagnoseNum + "id' name=\"diagnoses[" + diagnoseNum + "].diseaseId\"/></th>" +
-            "<th><input type=\"text\" class=\"form-control\" id=\"diseases" + diagnoseNum + "internationalIcdCode\"/></th>" +
-            "<th><input type=\"text\" class=\"form-control\" id='diseases" + diagnoseNum + "diseaseName' name='diagnoses[" + diagnoseNum + "].diseaseName'/></th>\n" +
+            "<th><input type=\"text\" class=\"form-control\" id=\"diseases" + diagnoseNum + "internationalIcdCode\" readonly/></th>" +
+            "<th><input type=\"text\" class=\"form-control\" id='diseases" + diagnoseNum + "diseaseName' name='diagnoses[" + diagnoseNum + "].diseaseName' readonly/></th>\n" +
             "    <th><select class=\"form-control\" name=\"diagnoses[" + diagnoseNum + "].majorDiagnoseSign\">\n" +
             "    <option value=\"1\">主诊</option>\n" +
             "    <option value=\"0\">疑似</option>\n" +
@@ -1900,31 +1802,6 @@
             "</tr>";
         $("#diagnoseTableBody").append(str);
     }
-    // //病历首页读取已诊患者的病历信息
-    // function readMedicalR() {
-    //     var medicalRecordNo =  $('input[name=patientMedicalRecordNo]:checked').val();
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "medicalRecord/findByMedicalNo",
-    //         data: {medicalRecordNo:medicalRecordNo},
-    //         success: function (result) {
-    //             if (result == null){
-    //                 alert("该患者未看诊");
-    //             } else {
-    //                 var medicalRecord = result;
-    //                 $("#chiefComplaint").val(medicalRecord.chiefComplaint);
-    //                 $("#historyOfPresentIllness").val(medicalRecord.historyOfPresentIllness);
-    //                 $("#treatmentOfCurrentIllness").val(medicalRecord.treatmentOfCurrentIllness);
-    //                 $("#pastHistory").val(medicalRecord.pastHistory);
-    //                 $("#allergyHistory").val(medicalRecord.allergyHistory);
-    //                 $("#physicalExamination").val(medicalRecord.physicalExamination);
-    //             }
-    //         },
-    //         error: function () {
-    //             alert("获取失败")
-    //         }
-    //     });
-    // }
 
     //确诊
     function confirmed(){
@@ -1941,6 +1818,25 @@
                 alert("提交失败");
             }
         });
+    }
+    //诊毕
+    function overMR() {
+        var medicalRecordNo =  $('input[name=patientMedicalRecordNo]:checked').val();
+        if(medicalRecordNo == null){
+            alert("请选择患者");
+        }else {
+            $.ajax({
+                type: "POST",
+                url: "medicalRecord/overMR",
+                data: {medicalRecordNo: medicalRecordNo},
+                success: function () {
+                    alert("已诊毕");
+                },
+                error:function () {
+                    alert("无法诊毕");
+                }
+            });
+        }
     }
 
 //检查
@@ -2060,8 +1956,8 @@
             type: "POST",
             url: "inspection/submitInspections",
             data: $.param({doctorId:doctorID,medicalRecordNo:medicalRecordNo}) + '&' + $('#inspectionsInfo').serialize(),
-            success: function () {
-                alert("所有项目已开立");
+            success: function (result) {
+                alert(result.msg);
                 getOpenedInspections();
                 resetInspectionTableBody();
             },
@@ -2298,80 +2194,6 @@
             }
         });
     }
-
-    // //所有组套
-    //     var allInspectionSets = null;
-    //     //获取组套
-    //     function getAllSets(){
-    //         $.ajax({
-    //             type: "POST",
-    //             url: "inspection/getAllSets",
-    //             async: false,
-    //             data: {doctorId : $("#doctorID").val()},
-    //             success: function (result) {
-    //                 allInspectionSets = result;
-    //                 displayAllSets();
-    //             }
-    //         });
-    //     }
-    //     //生成组套列表
-    //     function displayAllSets(){
-    //         var str = "";
-    //         $("#displaySets").html("");
-    //         for (let i = 0;i < allInspectionSets.length;i++){
-    //             str += "<div class=\"row center-block\" style=\"width: 100%;margin-bottom: 3px\">\n" +
-    //                 "    <input type=\"text\" class=\"form-control\" style=\"width: 80%\" value='" + allInspectionSets[i].combinatorialName + "' readonly/>\n" +
-    //                 "    <button type=\"button\" class=\"btn btn-primary\" onclick='useSet(" + i + ")'>引用</button>&nbsp;\n" +
-    //                 "    <button type=\"button\" class=\"btn btn-primary\" onclick='modifySet(" + i + ")'>查看</button>\n" +
-    //                 "    <button type=\"button\" class=\"btn btn-danger\" onclick='deleteSet(" + i + ")'>删除</button>\n" +
-    //                 "</div>";
-    //         }
-    //         $("#displaySets").append(str);
-    //     }
-    //     //引用组套
-    //     function useSet(i){
-    //         $.ajax({
-    //             type: "POST",
-    //             url: "inspection/findDetailBySetId",
-    //             async: false,
-    //             data: {setId : allInspectionSets[i].id},
-    //             success: function (result) {
-    //                 var inspectionSetDetails = result;
-    //                 for (let i = 0; i < inspectionSetDetails.length; i++) {
-    //                     if ($(eval('inspections' + inspectionNum + 'id')).val() != ""){
-    //                         addOneInspection();
-    //                     }
-    //                     $(eval('inspections' + inspectionNum + 'id')).val(inspectionSetDetails[i].nonDrugListId);
-    //                     $(eval('inspections' + inspectionNum + 'itemCode')).val(inspectionSetDetails[i].itemCode);
-    //                     $(eval('inspections' + inspectionNum + 'itemName')).val(inspectionSetDetails[i].itemName);
-    //                     $(eval('inspections' + inspectionNum + 'price')).val(inspectionSetDetails[i].price);
-    //                 }
-    //             }
-    //         });
-    //     }
-    //     //查看组套
-    //     function modifySet(i){
-    //         $("#modifySetDialogId").val(allInspectionSets[i].id);
-    //         $("#modifySetDialogDoctorId").val(allInspectionSets[i].doctorId);
-    //         $("#modifySetDialogCombinatorialCode").val(allInspectionSets[i].combinatorialCode);
-    //         $("#modifySetDialogCombinatorialName").val(allInspectionSets[i].combinatorialName);
-    //         $("#modifySetDialogRequirement").val(allInspectionSets[i].requirement);
-    //         $("#modifySetDialogCategory").val(allInspectionSets[i].category);
-    //         showModifySetDialog();
-    //     }
-    //     //删除组套
-    //     function deleteSet(i){
-    //         $.ajax({
-    //             type: "POST",
-    //             url: "inspection/deleteSet",
-    //             async: false,
-    //             data: {setId : allInspectionSets[i].id,doctorId : $("#doctorID").val()},
-    //             success: function (result) {
-    //                 alert(result.msg);
-    //                 getAllSets();
-    //             }
-    //         });
-    //     }
 
     //检查组套
     var inspectionSetsOne = null;
@@ -2762,8 +2584,8 @@
             type: "POST",
             url: "drugPrescription/submitDrugPrescription",
             data: $.param({doctorId:doctorID,medicalRecordNo:medicalRecordNo}) + '&' + $('#drugsInfo').serialize(),
-            success: function () {
-                alert("处方已开立");
+            success: function (data) {
+                alert(data.msg);
                 // getOpenedInspections();
                 getOpenedDrugPrescription();
                 resetDrugsTableBody();
@@ -2860,7 +2682,6 @@
             success: function (result) {
                 var drugPrescriptionSetDetails = result;
                 for (let i = 0; i < drugPrescriptionSetDetails.length; i++) {
-                    //TODO 测试
                     if ($(eval('drugPrescription' + drugNum + 'id')).val() != ""){
                         addOneDrug();
                     }
@@ -2902,7 +2723,7 @@
     }
     //常用药品目录
     var commonDrugList = null;
-    //获取并显示常用项目
+    //获取并显示常用药品
     function getCommonDrugList(){
         $.ajax({
             type: "POST",
@@ -2924,7 +2745,7 @@
             }
         });
     }
-    //引用常用项目
+    //引用常用药品
     function useCommonDrug(i){
         $.ajax({
             type:"POST",
@@ -2945,7 +2766,7 @@
             }
         });
     }
-    //删除常用项目
+    //删除常用药品
     function deleteCommonDrug(i){
         $.ajax({
             type: "POST",
@@ -2957,25 +2778,6 @@
             }
         });
     }
-
-    // //开立处方
-    // function openDrugPrescription(){
-    //     var doctorID = $("#doctorID").val();
-    //     var medicalRecordNo =  $('input[name=patientMedicalRecordNo]:checked').val();
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "drugPrescription/submitDrugPrescription",
-    //         data: $.param({doctorId:doctorID,medicalRecordNo : medicalRecordNo}) + '&' + $('#drugsInfo').serialize(),
-    //         success: function () {
-    //             alert("处方已开立");
-    //             // getOpenedInspections();
-    //             resetDrugsTableBody();
-    //         },
-    //         error: function () {
-    //             alert("开立失败");
-    //         }
-    //     });
-    // }
 
 //费用明细
     //收费项目列表
@@ -2994,6 +2796,7 @@
                 items = result;
                 if (items.length == 0){
                     alert("无缴费项目");
+                    $("#costListTableBody").html("");
                 } else {
                     // cost = result.cost;
                     // $("#totalCost").val(cost + "元");
@@ -3006,23 +2809,19 @@
     function setCostListTableBody() {
         var str = "";
         $("#costListTableBody").html("");
+        var doctorSeeTotalCostVal = 0;
         for (let i = 0; i < items.length; i++) {
-            // var format = "";
-            // if (items[i].format != null) {
-            //     format = items[i].format;
-            // }
             str += "<tr>\n" +
                 "<th><input  type=\"text\" class='form-control' value='" + items[i].itemName + "' name='items[" + i + "].itemName' readonly/></th>\n" +
                 "<th><input  type=\"text\" class='form-control' value='" + items[i].costType + "' name='items[" + i + "].format' readonly/></th>\n" +
                 "<th><input  type=\"text\" class='form-control' value='" + items[i].cost + "元' name='items[" + i + "].unitPrice' readonly/></th>\n" +
-                // "<th><input  type=\"text\" class='form-control' value='" + items[i].quantity + "' name='items[" + i + "].quantity' readonly/></th>\n" +
-                // "<th><input  type=\"text\" class='form-control' value='" + items[i].cost + "元' name='items[" + i + "].cost' readonly/></th>\n" +
                 "<th><input  type=\"text\" class='form-control' value='" + items[i].executiveDepartmentName + "' name='items[" + i + "].departmentName' readonly/></th>\n" +
-                // "<th><input  type=\"text\" class='form-control' value='" + items[i].category + "' name='items[" + i + "].category' readonly/></th>\n" +
-                // "<th><input  type=\"text\" class='form-control' value='" + items[i].doctorName + "' name='items[" + i + "].doctorName' readonly/></th>\n" +
                 "<th><input  type=\"text\" class='form-control' value='" + items[i].drawBillDepartmentName + "' name='items[" + i + "].drawBillDepartmentName' readonly/></th>\n" +
                 "</tr>";
+            doctorSeeTotalCostVal += items[i].cost;
         }
+        doctorSeeTotalCostVal = doctorSeeTotalCostVal.toFixed(2);
+        $("#doctorSeeTotalCost").val("共计：" + doctorSeeTotalCostVal + "元");
         $("#costListTableBody").append(str);
     }
 
@@ -3034,8 +2833,6 @@
             document.getElementById("logOut").click();
         });
         update();
-        //TODO 打开注释
-        // alert("请登录");
         //诊断查找按钮
         $("#foundDiagnose").click(function () {
             $.ajax({
@@ -3094,8 +2891,8 @@
             diagnoseNum = diagnoseNum + 1;
             var str = "<tr>\n" +
                 "<th style='display: none'><input type=\"text\" class=\"form-control\" id='diseases" + diagnoseNum + "id' name=\"diagnoses[" + diagnoseNum + "].diseaseId\"/></th>" +
-                "<th><input type=\"text\" class=\"form-control\" id=\"diseases" + diagnoseNum + "internationalIcdCode\"/></th>" +
-                "<th><input type=\"text\" class=\"form-control\" id='diseases" + diagnoseNum + "diseaseName' name='diagnoses[" + diagnoseNum + "].diseaseName'/></th>\n" +
+                "<th><input type=\"text\" class=\"form-control\" id=\"diseases" + diagnoseNum + "internationalIcdCode\" readonly/></th>" +
+                "<th><input type=\"text\" class=\"form-control\" id='diseases" + diagnoseNum + "diseaseName' name='diagnoses[" + diagnoseNum + "].diseaseName' readonly/></th>\n" +
                 "    <th><select class=\"form-control\" name=\"diagnoses[" + diagnoseNum + "].majorDiagnoseSign\">\n" +
                 "    <option value=\"1\">主诊</option>\n" +
                 "    <option value=\"0\">疑似</option>\n" +

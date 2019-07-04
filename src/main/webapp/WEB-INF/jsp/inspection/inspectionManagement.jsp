@@ -20,42 +20,59 @@
     <title>医技工作站</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
-<body>
-<div class="container">
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <ul class="breadcrumb">
-                <li><a href="#">主页</a></li>
-                <li class="active">医技工作站</li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row clearfix">
-        <div class="col-md-10 column">
-            <nav class="navbar navbar-default" role="navigation">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                data-target="#example-navbar-collapse">
-                            <span class="sr-only">切换导航</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">门诊医技工作站</a>
+<body style="margin-top: 50px">
+<%--<div class="container">--%>
+<%--    <div class="row clearfix">--%>
+<%--        <div class="col-md-12 column">--%>
+<%--            <ul class="breadcrumb">--%>
+<%--                <li><a href="#">主页</a></li>--%>
+<%--                <li class="active">医技工作站</li>--%>
+<%--            </ul>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
 
-                    </div>
-                    <div class="collapse navbar-collapse" id="example-navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="inspection/inspectionManagement">检查检验</a></li>
-                            <li><a href="inspection/commonItems">录入结果</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
+<%--导航栏--%>
+<div class="container"><div class="row clearfix"><div class="column">
+    <nav id="nav" class="navbar navbar-default">
+        <a class="navbar-brand">HIS</a>
+        <ul class="nav navbar-nav" style="width: 93%">
+            <li class="active"><a href="inspection/inspectionManagement">检查检验登记</a></li>
+            <li><a href="inspection/commonItems">录入结果</a></li>
+            <li class="active pull-right" style="top: 10px"><input style="top: 10px" class="btn btn-danger" type="button" onclick="logOut()" value="退出"/></li>
+            <li class="pull-right" id="loginUser"></li>
+            <a style="display: none" id="logOut" href="${pageContext.request.contextPath}/logout">退出</a>
+        </ul>
+    </nav>
+</div></div></div>
+
+
+<div class="container">
+    <div class="row clearfix">
+<%--        <div class="col-md-10 column">--%>
+<%--            <nav class="navbar navbar-default" role="navigation">--%>
+<%--                <div class="container-fluid">--%>
+<%--                    <div class="navbar-header">--%>
+<%--                        <button type="button" class="navbar-toggle" data-toggle="collapse"--%>
+<%--                                data-target="#example-navbar-collapse">--%>
+<%--                            <span class="sr-only">切换导航</span>--%>
+<%--                            <span class="icon-bar"></span>--%>
+<%--                            <span class="icon-bar"></span>--%>
+<%--                            <span class="icon-bar"></span>--%>
+<%--                        </button>--%>
+<%--                        <a class="navbar-brand" href="#">门诊医技工作站</a>--%>
+
+<%--                    </div>--%>
+<%--                    <div class="collapse navbar-collapse" id="example-navbar-collapse">--%>
+<%--                        <ul class="nav navbar-nav">--%>
+<%--                            <li class="active"><a href="inspection/inspectionManagement">检查检验</a></li>--%>
+<%--                            <li><a href="inspection/commonItems">录入结果</a></li>--%>
+<%--                        </ul>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </nav>--%>
+<%--        </div>--%>
+<%--    TODO 注掉 自动绑定id--%>
         <div class="col-md-2" >
             <input type='text' id='doctorId' class='form-control'/>
         </div>
@@ -66,7 +83,7 @@
         <div class="col-md-3 column">
             <select data-am-selected class="form-control"id = "searchBy" name="searchBy">
                 <option value="medical_record_no">病历号</option>
-                <option value="id" selected>姓名</option>
+                <option value="patient_name" selected>姓名</option>
             </select>
         </div>
         <div class="col-md-6 column">
@@ -114,6 +131,34 @@
             success:function (result) {
                 str = result;
                 alert(str);
+                $.ajax({
+                    type:"POST",
+                    data: {attribute_name : $("#searchBy").val(),attribute : $("#searchVal").val(),doctorId : $("#doctorId").val()},
+                    // data: {attribute : $("#searchVal").val()},
+                    url :'inspection/findInspectionByAttribute',
+                    async: false,
+                    success:function(result){
+                        inspectionList = result;
+                        var str;
+                        str = "";
+                        $("#inspectionTable").html("");
+                        for (var i = 0;i < inspectionList.length;i++){
+                            str += "<tr>" +
+                                "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + inspectionList[i].id + "\" id=\"registerId\" name=\"inspections[" + i + "].id\" readonly/></td>\n" +
+                                "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + inspectionList[i].medicalRecordNo + "\" id=\"registerNo\" name=\"inspections[" + i + "].medicalRecordNo\"/></td>\n" +
+                                "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + inspectionList[i].nonDrugListName + "\" name=\"inspections[" + i + "].medicalRecordNo\"/></td>\n" +
+                                "<td class='col-md-2'><input type=\"text\" class=\"form-control\" value=\"" + inspectionList[i].payState + "\" name=\"inspections[" + i + "].payState\"/></td>\n" +
+                                //"<td class='col-md-2'><input type=\"button\" class=\"btn btn-primary\" id = \"register\" value=\"登记\"/></td>\n" +
+                                "<td class='col-md-2' ><button type=\"button\" class=\"btn btn-primary\" value=\"" + inspectionList[i].medicalRecordNo +"\"  id=\"register\" name=\"register\" onclick=\"register("+ i +")\" >登记</button></td>\n" +
+                                //"<td class='col-md-2' ><button type=\"button\" class=\"btn btn-primary\" value=\"" + inspectionList[i].id + "\" id=\"result\">记录结果</button></td>\n" +
+                                "</tr>";
+                        }
+                        $("#inspectionTable").append(str);
+                    },
+                    error :function () {
+                        alert("获取处置患者失败");
+                    }
+                });
             },
             error :function () {
                 alert("登记失败");
@@ -122,6 +167,13 @@
     }
     var inspectionList = null;
     $(document).ready(function(){
+
+        $("#loginUser").append("<a>" + "${USER_SESSION.loginName}" + "</a><input style=\"display: none\" id=\"userID\" value='" + ${USER_SESSION.id} + "'/>");
+        $("#doctorId").val(${USER_SESSION.id});
+        $("#logOutButton").click(function (){
+            document.getElementById("logOut").click();
+        });
+
         //设置查找功能按钮
 
         $("#search").click(function(){

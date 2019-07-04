@@ -14,7 +14,7 @@
     INSERT  INTO prescription_set_detail (prescription_set_id, drug_id, drug_format, drug_usage, drug_dosage, frequency)
     SELECT #{prescriptionSetId},drug.id,#{drugFormat},#{drugUsage},#{drugDosage},#{frequency}
     FROM drug
-    WHERE drug.drug_name = #{drugName}
+    WHERE drug.drug_name = #{drugName} and drug.drug_format = #{drugFormat}
   </insert>
 
   <resultMap id="Detail" type="neu.his.bean.PrescriptionSetDetail">

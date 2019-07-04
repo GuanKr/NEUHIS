@@ -128,7 +128,7 @@ public interface RegistrationInfoService {
 
     /**
      * 诊毕
-     * @param registrationInfo 病历号
+     * @param registrationInfo 挂号信息
      */
     void completeRegistration(RegistrationInfo registrationInfo);
 

@@ -30,6 +30,15 @@ public class WorkloadServiceImpl implements WorkloadService {
     @Autowired
     DepartmentMapper departmentMapper;
 
+    private List<Workload> deleteNull(List<Workload> workloads){
+        List<Workload> list = new ArrayList<>();
+        for(Workload workload: workloads){
+            if(workload.getInvoiceQuantity() != null){
+                list.add(workload);
+            }
+        }
+        return list;
+    }
 
     @Override
     public List<Workload> personalWorkload(Date startTime, Date endTime, Integer doctorId) {
@@ -149,7 +158,7 @@ public class WorkloadServiceImpl implements WorkloadService {
                 }
             }
         }
-        return workloads;
+        return deleteNull(workloads);
     }
 
     @Override
@@ -213,7 +222,7 @@ public class WorkloadServiceImpl implements WorkloadService {
                 }
             }
         }
-        return workloads;
+        return deleteNull(workloads);
     }
 
     @Override
@@ -275,6 +284,6 @@ public class WorkloadServiceImpl implements WorkloadService {
                 }
             }
         }
-        return workloads;
+        return deleteNull(workloads);
     }
 }

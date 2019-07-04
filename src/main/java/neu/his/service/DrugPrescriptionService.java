@@ -48,7 +48,7 @@ public interface DrugPrescriptionService {
      * 发送处方
      * @param drugPrescription 处方
      */
-    void sendPrescription(DrugPrescription drugPrescription);
+    String sendPrescription(DrugPrescription drugPrescription);
 
     /**
      * 作废处方

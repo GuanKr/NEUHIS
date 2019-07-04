@@ -1,5 +1,7 @@
 package neu.his.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import neu.his.bean.*;
 import neu.his.dto.DrugPrescriptionDTO;
 import neu.his.dto.PrescriptionSetDetailDTO;
@@ -32,9 +34,20 @@ public class DrugPrescriptionController {
      */
     @RequestMapping("findDrugsByMnemonicCode")
     public @ResponseBody List<Drug> findDrugsByMnemonicCode(String drugMnemonicCode){
+
+//        PageHelper.startPage(1,30);
+//        List<Disease> diseaseList = diseaseService.findAllByAttribute_name(attribute_name,attribute);
+//        PageInfo<Disease> pageInfo = new PageInfo(diseaseList);
+//        diseaseList = pageInfo.getList();
+//        return diseaseList;
+
         Drug drug = new Drug();
         drug.setMnemonicCode(drugMnemonicCode);
-        return drugService.query(drug);
+        PageHelper.startPage(1,30);
+        List<Drug> drugList = drugService.query(drug);
+        PageInfo<Drug> pageInfo = new PageInfo<>(drugList);
+        drugList = pageInfo.getList();
+        return drugList;
     }
 
     /**
@@ -65,14 +78,17 @@ public class DrugPrescriptionController {
      * @param drugPrescriptionDTO 处方药品列表
      */
     @RequestMapping("submitDrugPrescription")
-    public @ResponseBody void submitDrugPrescription(int doctorId, String medicalRecordNo, DrugPrescriptionDTO drugPrescriptionDTO){
+    public @ResponseBody ResultDTO submitDrugPrescription(int doctorId, String medicalRecordNo, DrugPrescriptionDTO drugPrescriptionDTO){
         List<DrugPrescription> drugPrescriptionList = drugPrescriptionDTO.getDrugPrescription();
+        String info = "";
         for (DrugPrescription drugPrescription : drugPrescriptionList) {
             drugPrescription.setDoctorId(doctorId);
             drugPrescription.setMedicalRecordNo(medicalRecordNo);
-            System.out.println(drugPrescription.toString());
-            drugPrescriptionService.sendPrescription(drugPrescription);
+            info = drugPrescriptionService.sendPrescription(drugPrescription);
         }
+        ResultDTO resultDTO = new ResultDTO();
+        resultDTO.setMsg(info);
+        return resultDTO;
     }
 
     /**
