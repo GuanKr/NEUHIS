@@ -40,6 +40,16 @@ public class WorkloadServiceImpl implements WorkloadService {
         return list;
     }
 
+    private List<Workload> deleteNullPersonal(List<Workload> workloads){
+        List<Workload> list = new ArrayList<>();
+        for(Workload workload: workloads){
+            if(workload.getCost().equals(0)){
+                list.add(workload);
+            }
+        }
+        return list;
+    }
+
     @Override
     public List<Workload> personalWorkload(Date startTime, Date endTime, String doctorName) {
         List<Workload> list = new ArrayList<>();
@@ -107,7 +117,7 @@ public class WorkloadServiceImpl implements WorkloadService {
                 workload = new Workload();
             }
         }
-        return deleteNull(list);
+        return deleteNullPersonal(list);
     }
 
     @Override
