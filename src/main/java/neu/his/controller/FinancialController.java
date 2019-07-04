@@ -131,7 +131,7 @@ public class FinancialController {
     @RequestMapping("personalWorkload")
     public @ResponseBody
     List personalWorkload(Date startTime,Date endTime,String doctorId){
-        List<Workload> workloads = workloadService.personalWorkload(startTime,endTime,Integer.parseInt(doctorId));
+        List<Workload> workloads = workloadService.personalWorkload(startTime,endTime,doctorId);
         return workloads;
     }
 
