@@ -43,7 +43,7 @@ public class WorkloadServiceImpl implements WorkloadService {
     private List<Workload> deleteNullPersonal(List<Workload> workloads){
         List<Workload> list = new ArrayList<>();
         for(Workload workload: workloads){
-            if(workload.getCost().equals(0)){
+            if(!workload.getCost().equals(new BigDecimal(0))){
                 list.add(workload);
             }
         }
