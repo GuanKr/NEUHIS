@@ -41,13 +41,23 @@ public class WorkloadServiceImpl implements WorkloadService {
     }
 
     @Override
-    public List<Workload> personalWorkload(Date startTime, Date endTime, Integer doctorId) {
+    public List<Workload> personalWorkload(Date startTime, Date endTime, String doctorName) {
         List<Workload> list = new ArrayList<>();
         BigDecimal regCost = new BigDecimal("0");
         BigDecimal drugCost = new BigDecimal("0");
         BigDecimal inspectionCost = new BigDecimal("0");
         BigDecimal checkoutCost = new BigDecimal("0");
         BigDecimal handleCost = new BigDecimal("0");
+        //获得医生id
+        Integer doctorId;
+        UserExample userExample = new UserExample();
+        userExample.or().andNameEqualTo(doctorName);
+        List<User> users = userMapper.selectByExample(userExample);
+        if(users.isEmpty()){
+            return null;
+        }else{
+            doctorId = users.get(0).getId();
+        }
         //获得病历号
         MedicalRecordExample medicalRecordExample = new MedicalRecordExample();
         MedicalRecordExample.Criteria criteria = medicalRecordExample.createCriteria();
@@ -89,6 +99,7 @@ public class WorkloadServiceImpl implements WorkloadService {
                 workload.setDrugCost(drugCost);
                 workload.setHandleCost(handleCost);
                 workload.setInspectionCost(inspectionCost);
+                workload.setDoctorName(doctorName);
                 workload.setCost(regCost.add(checkoutCost.add(drugCost.add(handleCost.add(inspectionCost)))));
                 workload.setMedicalNo(medicalRecord.getMedicalRecordNo());
                 workload.setInvoiceQuantity(medicalRecords.size());
@@ -96,7 +107,7 @@ public class WorkloadServiceImpl implements WorkloadService {
                 workload = new Workload();
             }
         }
-        return list;
+        return deleteNull(list);
     }
 
     @Override
