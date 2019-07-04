@@ -189,7 +189,7 @@
             for(var i=0;i<prescriptionList.length;i++){
                 str+="<tr>\n" +
                     "<td><input class=\"form-control\" type=\"text\" value=\""+prescriptionList[i].medicalRecordNo+"\" /></td>\n" +
-                    "<td><input class=\"form-control\" type=\"text\" value=\""+patientName+"\" /></td>\n" +
+                    "<td><input class=\"form-control\" type=\"text\" value=\""+patientName.msg+"\" /></td>\n" +
                     "<td><input class=\"form-control\" type=\"text\" value=\""+prescriptionList[i].drugName+"\" /></td>\n" +
                     "<td><input class=\"form-control\" type=\"text\" value=\""+prescriptionList[i].quantity+"\" /></td>\n" +
                     "<td><input class=\"form-control\" type=\"text\" value=\""+prescriptionList[i].cost+"\" /></td>\n" +
@@ -219,13 +219,13 @@
             for (var i = 0; i < prescriptionList.length; i++) {
                 str += "<tr \">\n" +
                     "<td><input class=\"form-control\" type=\"text\" value=\"" + prescriptionList[i].medicalRecordNo + "\" /></td>\n" +
-                    "<td><input class=\"form-control\" type=\"text\" value=\"" + patientName + "\" /></td>\n" +
+                    "<td><input class=\"form-control\" type=\"text\" value=\"" + patientName.msg+ "\" /></td>\n" +
                     "<td><input class=\"form-control\" type=\"text\" value=\"" + prescriptionList[i].drugName + "\" /></td>\n" +
                     "<td><input class=\"form-control\" type=\"text\" value=\"" + prescriptionList[i].quantity + "\" /></td>\n" +
                     "<td><input class=\"form-control\" type=\"text\" value=\"" + prescriptionList[i].cost + "\" /></td>\n" +
                     "<td><input class=\"form-control\" type=\"text\" value=\"" + prescriptionList[i].drugPrice + "\" /></td>\n" +
                     "<td><input class=\"form-control\" type=\"text\" value=\"\" id =\"quantity\"/></td>\n" +
-                    "<td><button class=\"btn btn-primary \" type=\"button\" id=\"takeMedicine\" onclick=\"returnMedicine("+prescriptionList[i].medicalRecordNo+","+ prescriptionList[i].id+","+$(this).parent().parent().find("td").eq(6).find("input").val()+")\" >退药</button></td>\n" +
+                    "<td><button class=\"btn btn-primary \" type=\"button\" id=\"takeMedicine\" onclick=\"returnMedicine("+prescriptionList[i].medicalRecordNo+","+ prescriptionList[i].id+","+$(this).parent().parent().find("td").eq(0).text()+"\" >退药</button></td>\n" +
                     "</tr>";
             }
             $("#detailsTable").append(str);

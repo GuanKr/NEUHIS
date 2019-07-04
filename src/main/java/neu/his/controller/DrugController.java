@@ -3,6 +3,7 @@ package neu.his.controller;
 import neu.his.bean.Drug;
 import neu.his.bean.DrugPrescription;
 import neu.his.bean.RegistrationInfo;
+import neu.his.dto.ResultDTO;
 import neu.his.service.DrugPrescriptionService;
 import neu.his.service.DrugService;
 import neu.his.service.RegistrationInfoService;
@@ -129,19 +130,21 @@ public class DrugController {
         return drugPrescriptionService.findByMedNo(medicalNo,state);
     }
     /**
-     * 返回患者姓名
+     * 返回msg为患者姓名的resultDTO
      * @param medicalNo 病历号
      * @return 姓名
      */
-    @RequestMapping(value = "findNameByMedical" ,produces = {"application/json;charset=UTF-8"})
+    @RequestMapping("findNameByMedical")
     public @ResponseBody
-    String findNameByMedical(String medicalNo){
-        String str="can't find";
+    ResultDTO findNameByMedical(String medicalNo){
+        String msg="can't find";
+        ResultDTO resultDTO=new ResultDTO();
         List<RegistrationInfo> all = registrationInfoService.query2("medical_record_no",medicalNo);
         if(all!=null&&all.size()>0){
-            str = all.get(0).getPatientName();
+            msg = all.get(0).getPatientName();
+            resultDTO.setMsg(msg);
         }
-        return str;
+        return resultDTO;
     }
 
     /**
