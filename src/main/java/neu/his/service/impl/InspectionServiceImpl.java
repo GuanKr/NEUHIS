@@ -37,12 +37,21 @@ public class InspectionServiceImpl implements InspectionService {
     }
 
     @Override
-    public void addInspection(Inspection inspection) {
+    public String addInspection(Inspection inspection) {
+        RegistrationInfoExample registrationInfoExample = new RegistrationInfoExample();
+        registrationInfoExample.or().andMedicalRecordNoEqualTo(inspection.getMedicalRecordNo());
+        List<RegistrationInfo> registrationInfos = registrationInfoMapper.selectByExample(registrationInfoExample);
+        if (!registrationInfos.isEmpty()) {
+            if (registrationInfos.get(0).getIsCompleted().equals("1")) {
+                return "已诊毕，不可进行检查申请";
+            }
+        }
         inspection.setIsCommon("0");
         inspection.setPayState("0");
         inspection.setRegisterState("0");
         inspection.setValidity("1");
         inspectionMapper.insertSelective(inspection);
+        return "成功";
     }
 
     @Override

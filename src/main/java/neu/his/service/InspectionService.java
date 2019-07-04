@@ -25,8 +25,9 @@ public interface InspectionService {
     /**
      * 开立检查/检验/处置项目
      * @param inspection 检查/检验
+     * @return 返回信息
      */
-    void addInspection(Inspection inspection);
+    String addInspection(Inspection inspection);
 
     /**
      * 暂存检查/检验/处置项目

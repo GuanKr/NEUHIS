@@ -1,10 +1,7 @@
 package neu.his.service.impl;
 
 import neu.his.bean.*;
-import neu.his.dao.DrugCommonMapper;
-import neu.his.dao.DrugMapper;
-import neu.his.dao.DrugPrescriptionMapper;
-import neu.his.dao.DrugUsageDetailMapper;
+import neu.his.dao.*;
 import neu.his.service.DrugPrescriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +22,9 @@ public class DrugPrescriptionServiceImpl implements DrugPrescriptionService {
 
     @Autowired
     DrugMapper drugMapper;
+
+    @Autowired
+    RegistrationInfoMapper registrationInfoMapper;
 
     private static List<DrugPrescription> temDrugPre = new ArrayList<>();
     private static int temPreId = 1;
@@ -90,7 +90,15 @@ public class DrugPrescriptionServiceImpl implements DrugPrescriptionService {
     }
 
     @Override
-    public void sendPrescription(DrugPrescription drugPrescription) {
+    public String sendPrescription(DrugPrescription drugPrescription) {
+        RegistrationInfoExample registrationInfoExample = new RegistrationInfoExample();
+        registrationInfoExample.or().andMedicalRecordNoEqualTo(drugPrescription.getMedicalRecordNo());
+        List<RegistrationInfo> registrationInfos = registrationInfoMapper.selectByExample(registrationInfoExample);
+        if (!registrationInfos.isEmpty()) {
+            if (registrationInfos.get(0).getIsCompleted().equals("1")) {
+                return "已诊毕，不可开立处方";
+            }
+        }
         drugPrescription.setPaymentState("0");
         drugPrescription.setTakeMedicineState("0");
         drugPrescription.setStatus("1");
@@ -109,6 +117,7 @@ public class DrugPrescriptionServiceImpl implements DrugPrescriptionService {
             }
         }
         drugPrescriptionMapper.insertSelective(drugPrescription);
+        return "成功";
     }
 
     @Override

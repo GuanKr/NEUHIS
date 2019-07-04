@@ -283,7 +283,9 @@ public class InvoiceServiceImpl implements InvoiceService {
             DrugPrescription drugPrescription = drugPrescriptionMapper.selectByPrimaryKey(invoice.getCostTypeId());
             if((drugPrescription.getCost() == invoice.getCost())){
                 return "请先退药";
-            }else {
+            }else if(invoice.getStatus().equals("0")){
+                return "已退费";
+            }else{
                 invoice.setStatus("0");
                 invoiceMapper.updateByPrimaryKeySelective(invoice);
                 invoice.setCost((invoice.getCost().add(drugPrescription.getCost().negate())).negate());
