@@ -226,7 +226,7 @@ public class DrugPrescriptionServiceImpl implements DrugPrescriptionService {
             returnDrugPrescription.setPaymentState("0");
             returnDrugPrescription.setPaymentTime(null);
             drugPrescriptionMapper.insertSelective(returnDrugPrescription);
-            return "成功";
+            return "Successful Drug Withdrawal!";
         } /*else if (drugPrescription.getQuantity() == returnQuantity) {
             drugPrescriptionMapper.deleteByPrimaryKey(drugPrescription.getId());
             returnDrugPrescription.setTakeMedicineState("1");
@@ -236,7 +236,7 @@ public class DrugPrescriptionServiceImpl implements DrugPrescriptionService {
             drugPrescriptionMapper.insertSelective(returnDrugPrescription);
             return "成功";
         }*/ else {
-            return "退药数量超过可退数量";
+            return "Return Quantity Exceed Refundable!";
         }
     }
 

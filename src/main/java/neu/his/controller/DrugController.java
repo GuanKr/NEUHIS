@@ -3,6 +3,7 @@ package neu.his.controller;
 import neu.his.bean.Drug;
 import neu.his.bean.DrugPrescription;
 import neu.his.bean.RegistrationInfo;
+import neu.his.dto.DrugDTO;
 import neu.his.dto.ResultDTO;
 import neu.his.service.DrugPrescriptionService;
 import neu.his.service.DrugService;
@@ -184,6 +185,13 @@ public class DrugController {
         }
     }
 
+    /**
+     * 退药
+     * @param medicalNo 病历号
+     * @param prescriptionId 处方Id
+     * @param quantity 数量
+     * @return 是否成功
+     */
     @RequestMapping("returnMedicine")
     public @ResponseBody
     String  returnMedicine(String medicalNo,String prescriptionId,String quantity){
@@ -197,6 +205,14 @@ public class DrugController {
             }
         }
         return str;
+    }
+    @RequestMapping("update")
+    public @ResponseBody
+    void update(DrugDTO drugList){
+        List<Drug> drugList1=drugList.getDrugList();
+        for(Drug drug :drugList1){
+            drugService.updateDrug(drug);
+        }
     }
 
 }

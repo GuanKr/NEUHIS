@@ -182,7 +182,7 @@
                 alert(resultstr);
             },
             error: function(){
-                alert("return Medicine fail");
+                alert("Return Drug Fail");
             }
         });
     }

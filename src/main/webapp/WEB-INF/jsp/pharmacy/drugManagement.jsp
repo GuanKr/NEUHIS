@@ -102,12 +102,12 @@
                                         <div class="btn-group">
                                             <button class="btn btn-default" type="button" id="deleteDrugButton" style="text-align: center">
                                                 删除</button>
-<%--                                            <button class="btn btn-default" type="button" id="updateDrug" style="text-align: center">--%>
-<%--                                                保存</button>--%>
+                                            <button class="btn btn-default" type="button" id="updateDrug" style="text-align: center">
+                                                保存</button>
                                             <button class="btn btn-default" data-toggle="modal" data-target="#insertDrugDialog" type="button" id="newDrug" style="text-align: center">
                                                 添加</button>
-                                            <button class="btn btn-default" type="button"  id="allDrug" style="text-align: center">
-                                                4</button>
+<%--                                            <button class="btn btn-default" type="button"  id="allDrug" style="text-align: center">--%>
+<%--                                                4</button>--%>
                                         </div>
                                     </div>
                                 </div>
@@ -196,13 +196,14 @@
         $("#drugTable").html("");
         for (var i = 0;i <drugList.length;i++){
             str +="<tr style='height: 40px'>" +
-                "<td style='width: 48px ;height: 40px ' ><input type='radio' value='"+drugList[i].id+"'/></td>"+
-                "<td style='width: 138px ;height: 40px ' ><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugCode+"\" name=\"drug["+ i + "].drugNameCode\" readonly/></td>\n" +
-                "<td style='width: 138px ;height: 40px '><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugName+"\" name=\"drug["+ i + "].drugName\" readonly/></td>\n" +
-                "<td style='width: 138px ;height: 40px '><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugFormat+"\" name=\"drug["+ i + "].drugFormat\" readonly/></td>\n" +
-                "<td style='width: 138px ;height: 40px '><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugDosage+"\" name=\"drug["+ i + "].drugDosage\" readonly/></td>\n" +
-                "<td style='width: 138px ;height: 40px '><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugPrice+"\" name=\"drug["+ i + "].drugPrice\" readonly/></td>\n" +
-                "<td style='width: 138px ;height: 40px '><input type=\"text\" class=\"form-control\" value=\""+drugList[i].manufacturer+"\" name=\"drug["+ i + "].manufacturer\" readonly/></td>\n" +
+                "<td style='width: 48px ;height: 40px ' ><input type='radio' value='"+drugList[i].id+"' name=\"drugList["+ i + "].id\"/></td>"+
+                "<td style='width: 48px ;height: 40px ' ><input type=\"text\" value='"+drugList[i].id+"' name=\"drugList["+ i + "].id\" style='display: none'/></td>"+
+                "<td style='width: 138px ;height: 40px ' ><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugCode+"\" name=\"drugList["+ i + "].drugNameCode\" readonly/></td>\n" +
+                "<td style='width: 138px ;height: 40px '><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugName+"\" name=\"drugList["+ i + "].drugName\" /></td>\n" +
+                "<td style='width: 138px ;height: 40px '><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugFormat+"\" name=\"drugList["+ i + "].drugFormat\"/></td>\n" +
+                "<td style='width: 138px ;height: 40px '><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugDosage+"\" name=\"drugList["+ i + "].drugDosage\" /></td>\n" +
+                "<td style='width: 138px ;height: 40px '><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugPrice+"\" name=\"drugList["+ i + "].drugPrice\" /></td>\n" +
+                "<td style='width: 138px ;height: 40px '><input type=\"text\" class=\"form-control\" value=\""+drugList[i].manufacturer+"\" name=\"drugList["+ i + "].manufacturer\" /></td>\n" +
                 "</tr>";
         }
         $("#drugTable").append(str);
@@ -266,20 +267,19 @@
             });
         });
         //设置保存按钮功能
-        // $("#updateDrug").click(function () {
-        //     $.ajax({
-        //         type: "POST",
-        //         url: "nonDrugList/updateNonDrugLists",
-        //         data: $('#registrationLevelForm').serialize(),
-        //         success: function () {
-        //             alert("保存成功");
-        //             getPageN(1);
-        //         },
-        //         error: function () {
-        //             alert("保存失败");
-        //         }
-        //     });
-        // });
+        $("#updateDrug").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "pharmacy/update",
+                data: $('#drugForm').serialize(),
+                success: function () {
+                    alert("保存成功");
+                },
+                error: function () {
+                    alert("保存失败");
+                }
+            });
+        });
 
         //提交搜索条件表单
         $("#submit").click(function(){
