@@ -98,11 +98,11 @@
                     <th>发药</th>
                 </tr>
                 </thead>
-                <tbody id="detailsTable">
+                <tbody id="detailsTable" >
                 </tbody>
             </table>
         </div>
-    </div>
+    </div >
 </div>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
@@ -115,7 +115,7 @@
         $.ajax({
             type: "POST",
             url: "pharmacy/findNameByMedical",
-
+            async: false,
             data: { medicalNo: $("#medical-record-no").val()},
             success: function (result) {
                 patientName=result;
@@ -155,13 +155,15 @@
 
     }
     function returnMedicine(medicalNo,prescriptionId,quantity){
+        var resulstr="";
         $.ajax({
             type: "POST",
             url: "pharmacy/returnMedicine",
             data: {medicalNo :medicalNo,prescriptionId:prescriptionId ,quantity:quantity},
             async: false,
-            success: function(){
-                alert("return Medicine success");
+            success: function(result){
+                resultstr=result;
+                alert(resultstr);
             },
             error: function(){
                 alert("return Medicine fail");
@@ -199,6 +201,34 @@
             }
             $("#detailsTable").append(str);
         }
+        if($("#state").val()==1){
+
+            var headstr="";
+            $("#detailHead").html("");
+            headstr+="<tr>\n" +
+                "                    <th>病历号</th>\n" +
+                "                    <th>姓名</th>\n" +
+                "                    <th>药品名称</th>\n" +
+                "                    <th>数量</th>\n" +
+                "                    <th>总价</th>\n" +
+                "                    <th>单价</th>\n" +
+                "                </tr>";
+            $("#detailHead").append(headstr);
+
+            $("#detailsTable").html("");
+            var str="";
+            for(var i=0;i<prescriptionList.length;i++){
+                str+="<tr>\n" +
+                    "<td><input class=\"form-control\" type=\"text\" value=\""+prescriptionList[i].medicalRecordNo+"\" /></td>\n" +
+                    "<td><input class=\"form-control\" type=\"text\" value=\""+patientName.msg+"\" /></td>\n" +
+                    "<td><input class=\"form-control\" type=\"text\" value=\""+prescriptionList[i].drugName+"\" /></td>\n" +
+                    "<td><input class=\"form-control\" type=\"text\" value=\""+prescriptionList[i].quantity+"\" /></td>\n" +
+                    "<td><input class=\"form-control\" type=\"text\" value=\""+prescriptionList[i].cost+"\" /></td>\n" +
+                    "<td><input class=\"form-control\" type=\"text\" value=\""+prescriptionList[i].drugPrice+"\" /></td>\n" +
+                    "</tr>";
+            }
+            $("#detailsTable").append(str);
+        }
         if($("#state").val()==2) {
             var headstr = "";
             $("#detailHead").html("");
@@ -219,16 +249,17 @@
             for (var i = 0; i < prescriptionList.length; i++) {
                 str += "<tr \">\n" +
                     "<td><input class=\"form-control\" type=\"text\" value=\"" + prescriptionList[i].medicalRecordNo + "\" /></td>\n" +
-                    "<td><input class=\"form-control\" type=\"text\" value=\"" + patientName.msg+ "\" /></td>\n" +
+                    "<td><input class=\"form-control\" type=\"text\" value=\"" + patientName.msg +"\" /></td>\n" +
                     "<td><input class=\"form-control\" type=\"text\" value=\"" + prescriptionList[i].drugName + "\" /></td>\n" +
                     "<td><input class=\"form-control\" type=\"text\" value=\"" + prescriptionList[i].quantity + "\" /></td>\n" +
                     "<td><input class=\"form-control\" type=\"text\" value=\"" + prescriptionList[i].cost + "\" /></td>\n" +
                     "<td><input class=\"form-control\" type=\"text\" value=\"" + prescriptionList[i].drugPrice + "\" /></td>\n" +
-                    "<td><input class=\"form-control\" type=\"text\" value=\"\" id =\"quantity\"/></td>\n" +
-                    "<td><button class=\"btn btn-primary \" type=\"button\" id=\"takeMedicine\" onclick=\"returnMedicine("+prescriptionList[i].medicalRecordNo+","+ prescriptionList[i].id+","+$(this).parent().parent().find("td").eq(0).text()+"\" >退药</button></td>\n" +
+                    "<td><input class=\"form-control\" type=\"text\"  id =\"quantity\"/></td>\n" +
+                    "<td onclick=\"returnMedicine('"+prescriptionList[i].medicalRecordNo+"','"+prescriptionList[i].id+"',$(this).prev().children(':input').val())\" ><button class=\"btn btn-primary \" type=\"button\" id=\"takeMedicine\" >退药</button></td>\n" +
                     "</tr>";
             }
             $("#detailsTable").append(str);
+
         }
     }
     $(document).ready(function () {
