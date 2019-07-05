@@ -193,7 +193,6 @@ public class DrugController {
         for(DrugPrescription drugPrescription:drugPrescriptions){
             if(drugPrescription.getId()==Integer.parseInt(prescriptionId)){
                 dp=drugPrescription;
-                drugPrescriptionService.drugReturn(dp,Integer.parseInt(quantity));
                 str=drugPrescriptionService.drugReturn(dp,Integer.parseInt(quantity));
             }
         }
