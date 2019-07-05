@@ -40,6 +40,7 @@
       <version>${spring.version}</version>
     </dependency>
 
+
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-oxm</artifactId>
@@ -80,6 +81,31 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
       <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>1.1.0.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>5.2.4.Final</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-el-api</artifactId>
+      <version>8.5.24</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-jasper-el</artifactId>
+      <version>8.5.24</version>
+      <scope>provided</scope>
     </dependency>
     <!-- springframe end -->
 
@@ -122,10 +148,16 @@
     </dependency>
 
     <!-- servlet -->
-    <dependency>
+<!--    <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>servlet-api</artifactId>
       <version>2.5</version>
+      <scope>provided</scope>
+    </dependency>-->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.0.1</version>
       <scope>provided</scope>
     </dependency>
     <!-- json数据 -->
