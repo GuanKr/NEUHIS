@@ -39,7 +39,7 @@
         <ul class="nav navbar-nav" style="width: 93%">
             <li class="active"><a href="inspection/inspectionManagement">检查检验登记</a></li>
             <li><a href="inspection/commonItems">录入结果</a></li>
-            <li class="active pull-right" style="top: 10px"><input style="top: 10px" class="btn btn-danger" type="button" onclick="logOut()" value="退出"/></li>
+            <li class="active pull-right" style="top: 10px"><input style="top: 10px" class="btn btn-danger" type="button" id="logOutButton" value="退出"/></li>
             <li class="pull-right" id="loginUser"></li>
             <a style="display: none" id="logOut" href="${pageContext.request.contextPath}/logout">退出</a>
         </ul>

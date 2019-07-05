@@ -20,44 +20,60 @@
     <title>药房工作站</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
-<body>
-<div class="container">
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <ul class="breadcrumb">
-                <li><a href="#">主页</a></li>
-                <li class="active">药房工作站</li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <nav class="navbar navbar-default" role="navigation">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                data-target="#example-navbar-collapse">
-                            <span class="sr-only">切换导航</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">药房工作站</a>
+<body style="margin-top: 50px">
 
-                    </div>
-                    <div class="collapse navbar-collapse" id="example-navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="pharmacy/drugManagement">药品信息维护</a></li>
-                            <li><a href="pharmacy/deliverDrug" >发药</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-</div>
+<%--导航栏--%>
+<div class="container"><div class="row clearfix"><div class="column">
+    <nav id="nav" class="navbar navbar-default">
+        <a class="navbar-brand">HIS</a>
+        <ul class="nav navbar-nav" style="width: 93%">
+            <li class="active"><a href="pharmacy/drugManagement">药品信息维护</a></li>
+            <li><a href="pharmacy/deliverDrug" >发药</a></li>
+            <li class="active pull-right" style="top: 10px"><input style="top: 10px" class="btn btn-danger" type="button" id="logOutButton" value="退出"/></li>
+            <li class="pull-right" id="loginUser"></li>
+            <a style="display: none" id="logOut" href="${pageContext.request.contextPath}/logout">退出</a>
+            <li style="display: none"><input id="doctorID"/></li>
+        </ul>
+    </nav>
+</div></div></div>
+
+<%--<div class="container">--%>
+<%--    <div class="row clearfix">--%>
+<%--        <div class="col-md-12 column">--%>
+<%--            <ul class="breadcrumb">--%>
+<%--                <li><a href="#">主页</a></li>--%>
+<%--                <li class="active">药房工作站</li>--%>
+<%--            </ul>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
+<%--<div class="container">--%>
+<%--    <div class="row clearfix">--%>
+<%--        <div class="col-md-12 column">--%>
+<%--            <nav class="navbar navbar-default" role="navigation">--%>
+<%--                <div class="container-fluid">--%>
+<%--                    <div class="navbar-header">--%>
+<%--                        <button type="button" class="navbar-toggle" data-toggle="collapse"--%>
+<%--                                data-target="#example-navbar-collapse">--%>
+<%--                            <span class="sr-only">切换导航</span>--%>
+<%--                            <span class="icon-bar"></span>--%>
+<%--                            <span class="icon-bar"></span>--%>
+<%--                            <span class="icon-bar"></span>--%>
+<%--                        </button>--%>
+<%--                        <a class="navbar-brand" href="#">药房工作站</a>--%>
+
+<%--                    </div>--%>
+<%--                    <div class="collapse navbar-collapse" id="example-navbar-collapse">--%>
+<%--                        <ul class="nav navbar-nav">--%>
+<%--                            <li class="active"><a href="pharmacy/drugManagement">药品信息维护</a></li>--%>
+<%--                            <li><a href="pharmacy/deliverDrug" >发药</a></li>--%>
+<%--                        </ul>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </nav>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
 <div class="container" >
     <div class="row clearfix">
         <div class="col-md-12 column">
@@ -79,15 +95,15 @@
                 </div>
                 <div class="col-md-9 column" >
                     <div class="container" >
-                        <div class="row clearfix"  style="height: 400px ; width: 862px ;overflow: auto">
+                        <div class="row clearfix"  style="height: 550px ; width: 862px ;overflow: auto">
                             <form class="row clearfix" id="drugForm" style="width:862px">
                                 <div class="row">
                                     <div class="col-md-4 pull-right">
                                         <div class="btn-group">
                                             <button class="btn btn-default" type="button" id="deleteDrugButton" style="text-align: center">
                                                 删除</button>
-                                            <button class="btn btn-default" type="button" id="updateDrug" style="text-align: center">
-                                                保存</button>
+<%--                                            <button class="btn btn-default" type="button" id="updateDrug" style="text-align: center">--%>
+<%--                                                保存</button>--%>
                                             <button class="btn btn-default" data-toggle="modal" data-target="#insertDrugDialog" type="button" id="newDrug" style="text-align: center">
                                                 添加</button>
                                             <button class="btn btn-default" type="button"  id="allDrug" style="text-align: center">
@@ -209,6 +225,13 @@
         });
     }
     $(document).ready(function(){
+
+        $("#loginUser").append("<a>" + "${USER_SESSION.loginName}" + "</a><input style=\"display: none\" id=\"userID\" value='" + ${USER_SESSION.id} + "'/>");
+        <%--$("#doctorID").val(${USER_SESSION.id});--%>
+        $("#logOutButton").click(function (){
+            document.getElementById("logOut").click();
+        });
+
         //all
         $("#allDrug").click(function () {
             $.ajax({
@@ -225,6 +248,7 @@
                 }
             });
         });
+        // $("#allDrug").click();//载入时显示所有药品  页面加载会比较慢
         //删除单选项
         $("#deleteDrugButton").click(function () {
             $.ajax({

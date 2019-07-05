@@ -280,7 +280,8 @@
     function setDoctors(){
         $.ajax({
             type: "POST",
-            url: "user/list",
+            url: "user/findbyattribute",
+            data: {attribute_name : "role_name",attribute : "门诊医生"},
             async: false,
             success: function (result) {
                 doctors = result;

@@ -415,7 +415,7 @@
                     "<td><input type='text' class=\"form-control\" value=\"" + scheduleInfos[i].scheduleQuota + "\" readonly/></td>\n" ;
             } else {
                 str += "<td style='display: none'><input type='text' class=\"form-control\" value=\"" + scheduleInfos[i].id + "\" name=\"scheduleInfos[" + i + "].id\" readonly/></td>\n" +
-                    "<td><input type='date' class=\"form-control\" value=\"" + scheduleInfos[i].scheduleDateString + "\" readonly/></td>\n" +
+                    "<td><input type='text' class=\"form-control\" value=\"" + scheduleInfos[i].scheduleDateString + "\" readonly/></td>\n" +
                     "<td><input type='text' class=\"form-control\" value=\"" + scheduleInfos[i].userName + "\" readonly/></td>\n" +
                     "<td><input type='text' class=\"form-control\" value=\"" + scheduleInfos[i].department_name + "\" readonly/></td>\n" +
                     "<td><input type='text' class=\"form-control\" value=\"" + scheduleInfos[i].registrationLevelName + "\" readonly/></td>\n";
