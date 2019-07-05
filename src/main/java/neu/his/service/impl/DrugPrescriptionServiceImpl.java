@@ -48,6 +48,16 @@ public class DrugPrescriptionServiceImpl implements DrugPrescriptionService {
         }
     }
 
+    private List<DrugPrescription> deleteZero(List<DrugPrescription> list){
+        List<DrugPrescription> prescriptions = new ArrayList<>();
+        for(DrugPrescription drugPrescription : list){
+            if(drugPrescription.getQuantity() != 0){
+                prescriptions.add(drugPrescription);
+            }
+        }
+        return prescriptions;
+    }
+
     @Override
     public List<DrugUsageDetail> findUsage() {
         return drugUsageDetailMapper.selectByExample(new DrugUsageDetailExample());
@@ -177,7 +187,7 @@ public class DrugPrescriptionServiceImpl implements DrugPrescriptionService {
         for(DrugPrescription drugPrescription : list){
             drugPrescription.setDrugName(drugMapper.selectByPrimaryKey(drugPrescription.getDrugId()).getDrugName());
         }
-        return list;
+        return deleteZero(list);
     }
 
     @Override
