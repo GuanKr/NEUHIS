@@ -155,13 +155,15 @@
 
     }
     function returnMedicine(medicalNo,prescriptionId,quantity){
+        var resulstr="";
         $.ajax({
             type: "POST",
             url: "pharmacy/returnMedicine",
             data: {medicalNo :medicalNo,prescriptionId:prescriptionId ,quantity:quantity},
             async: false,
-            success: function(){
-                alert("return Medicine success");
+            success: function(result){
+                resultstr=result;
+                alert(resultstr);
             },
             error: function(){
                 alert("return Medicine fail");
