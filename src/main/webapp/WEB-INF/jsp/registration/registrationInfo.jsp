@@ -92,7 +92,7 @@
         <div class="form-group col-md-3">
             <label class="col-md-4 control-label text-right">地址</label>
             <div class="col-md-8 input-group">
-                <input type="text" class="form-control" name="address"/>
+                <input type="text" class="form-control" id="addressInput" name="address"/>
                 <span class="input-group-addon" style="color: red">*</span>
             </div>
         </div>
@@ -153,7 +153,7 @@
         <div class="form-group col-md-3">
             <label class="col-md-4 control-label text-left">病历本</label>
             <div class="col-md-8 input-group left">
-                <select class="form-control" onchange="setExpenseInput()" name="isNeedMedicalrecordbook">
+                <select class="form-control" onchange="setExpenseInput()" id="isNeedMedicalrecordbook" name="isNeedMedicalrecordbook">
                     <option value=""></option>
                     <option value="需要">需要</option>
                     <option value="不需要">不需要</option>
@@ -309,7 +309,11 @@
             async: false,
             success: function (result) {
                 doctors = result;
-                setDoctorNameInput();
+                if (doctors.length == 0){
+                    alert("无符合条件看诊医生,请选择其它时间");
+                }else {
+                    setDoctorNameInput();
+                }
             },
             error :function () {
                 alert("获取医生表失败");
@@ -471,6 +475,40 @@
             }
         });
     }
+    function checkNull(){
+        if ($("#medicalRecordNoInput").val() == ""){
+            alert("请刷新网页获取病历号");
+            return false;
+        } else if ($("#patientNameInput").val() == ""){
+            alert("请输入姓名");
+            return false;
+        } else if ($("#patientIdentityNumberInput").val() == "") {
+            alert("请输入身份证号");
+            return false;
+        } else if ($("#patientBirthdayInput").val() == "") {
+            alert("请输入出生日期");
+            return false;
+        } else if ($("#patientAgeInput").val() == "") {
+            alert("请输入年龄");
+            return false;
+        } else if ($("#addressInput").val() == "") {
+            alert("请输入地址");
+            return false;
+        } else if ($("#departmentNameInput").val() == "") {
+            alert("请输入挂号科室");
+            return false;
+        } else if ($("#displaySeeDoctorDate").val() == "") {
+            alert("请输入看诊日期");
+            return false;
+        } else if ($("#doctorNameInput").val() == null) {
+            alert("无符合条件看诊医生,请选择其它时间");
+            return false;
+        } else if ($("#isNeedMedicalrecordbook").val() == "") {
+            alert("请选择是否需要病历本");
+            return false;
+        }
+        return true;
+    }
     $(document).ready(function(){
         $("#loginUser").append("<a>" + "${USER_SESSION.loginName}" + "</a><input style=\"display: none\" id=\"userID\" value='" + ${USER_SESSION.id} + "'/>");
         $("#logOutButton").click(function (){
@@ -481,33 +519,35 @@
         setTableBody();
         //设置挂号按钮功能
         $("#registrationButton").click(function () {
-            $.ajax({
-                type: "POST",
-                url: "registration/addRegistrationInfo",
-                async: false,
-                data: $('#registrationInfo').serialize(),
-                success: function () {
-                    $("#registrationInfoReset").click();
-                    setDoctors()
-                    alert("挂号成功");
-                    $.ajax({
-                        type:"POST",
-                        url: "registration/registrationInfoList",
-                        async: false,
-                        success: function (result) {
-                            registrationInfoList = result;
-                            setTableBody();
-                        },
-                        error :function () {
-                            alert("获取挂号列表失败");
-                        }
-                    });
-                },
-                error: function () {
-                    alert("挂号失败");
-                }
-            });
-            getMedicalRecordNo();
+            if (checkNull()) {
+                $.ajax({
+                    type: "POST",
+                    url: "registration/addRegistrationInfo",
+                    async: false,
+                    data: $('#registrationInfo').serialize(),
+                    success: function () {
+                        $("#registrationInfoReset").click();
+                        setDoctors();
+                        alert("挂号成功");
+                        $.ajax({
+                            type: "POST",
+                            url: "registration/registrationInfoList",
+                            async: false,
+                            success: function (result) {
+                                registrationInfoList = result;
+                                setTableBody();
+                            },
+                            error: function () {
+                                alert("获取挂号列表失败");
+                            }
+                        });
+                    },
+                    error: function () {
+                        alert("挂号失败");
+                    }
+                });
+                getMedicalRecordNo();
+            }
         });
     });
 </script>

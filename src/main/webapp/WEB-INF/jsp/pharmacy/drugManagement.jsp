@@ -197,7 +197,7 @@
         for (var i = 0;i <drugList.length;i++){
             str +="<tr style='height: 40px'>" +
                 "<td style='width: 48px ;height: 40px ' ><input type='radio' value='"+drugList[i].id+"' name=\"drugList["+ i + "].id\"/></td>"+
-                "<td style='width: 48px ;height: 40px ' ><input type=\"text\" value='"+drugList[i].id+"' name=\"drugList["+ i + "].id\" style='display: none'/></td>"+
+                "<td style='width: 48px ;height: 40px;display: none ' ><input type=\"text\" value='"+drugList[i].id+"' name=\"drugList["+ i + "].id\" style='display: none'/></td>"+
                 "<td style='width: 138px ;height: 40px ' ><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugCode+"\" name=\"drugList["+ i + "].drugNameCode\" readonly/></td>\n" +
                 "<td style='width: 138px ;height: 40px '><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugName+"\" name=\"drugList["+ i + "].drugName\" /></td>\n" +
                 "<td style='width: 138px ;height: 40px '><input type=\"text\" class=\"form-control\" value=\""+drugList[i].drugFormat+"\" name=\"drugList["+ i + "].drugFormat\"/></td>\n" +
