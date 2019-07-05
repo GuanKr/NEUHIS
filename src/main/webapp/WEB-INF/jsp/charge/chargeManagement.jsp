@@ -364,23 +364,29 @@
         if($("#doctorID").val() == ""){
             alert("请先登录");
         }else {
-            var dataString = JSON.stringify({"tollCollectorId":$("#doctorID").val(),"patientName":$("#patientNameInput").val(),"medicalNo":$("#medicalRecordNoInput").val(),"settlementType":$("#settlementTypeNameInput").val(),"items":items});
-            $.ajax({
-                type: "POST",
-                url: "charge/charge",
-                async: false,
-                data: dataString,
-                contentType: 'application/json;charset=utf-8',
-                success: function () {
-                    // var money = Number($("#realInput").val()) - cost;
-                    var money = $("#realInput").val() - cost;
-                    money = money.toFixed(2);
-                    alert("找零：" + money +"元，缴费成功");
-                    $("#totalCost").val("");
-                    $("#tableBody").html("");
-                    findPaymentItems()
-                }
-            });
+            var money = $("#realInput").val() - cost;
+            money = money.toFixed(2);
+            if (money < 0){
+                alert("金额不足");
+            }else {
+                var dataString = JSON.stringify({"tollCollectorId":$("#doctorID").val(),"patientName":$("#patientNameInput").val(),"medicalNo":$("#medicalRecordNoInput").val(),"settlementType":$("#settlementTypeNameInput").val(),"items":items});
+                $.ajax({
+                    type: "POST",
+                    url: "charge/charge",
+                    async: false,
+                    data: dataString,
+                    contentType: 'application/json;charset=utf-8',
+                    success: function () {
+                        // var money = Number($("#realInput").val()) - cost;
+                        // var money = $("#realInput").val() - cost;
+                        // money = money.toFixed(2);
+                        alert("找零：" + money +"元，缴费成功");
+                        $("#totalCost").val("");
+                        $("#tableBody").html("");
+                        findPaymentItems()
+                    }
+                });
+            }
         }
     }
     // //医生列表
